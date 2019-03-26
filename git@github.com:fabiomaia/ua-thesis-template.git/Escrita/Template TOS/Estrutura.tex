@@ -1,0 +1,104 @@
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% PACKAGES %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%
+% Obrigatórias
+\documentclass[11pt,twoside,a4paper]{report}
+\usepackage[DETI,newLogo,final]{uaThesis}
+
+%%%%%%%%%%%%%%
+% Opcionais
+\usepackage[portuguese]{babel}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xspace}% used by \sigla
+\usepackage{lipsum}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{thesisBib.bib}
+\usepackage{csquotes}
+\usepackage[acronym,nonumberlist]{glossaries}
+\usepackage{todonotes}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% MACROS %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%
+% TOS
+\setcounter{tocdepth}{3}
+% optional (comment to used default)
+%   horizontal line to separate floats (figures and tables) from text
+\def\topfigrule{\kern 7.8pt \hrule width\textwidth\kern -8.2pt\relax}
+\def\dblfigrule{\kern 7.8pt \hrule width\textwidth\kern -8.2pt\relax}
+\def\botfigrule{\kern -7.8pt \hrule width\textwidth\kern 8.2pt\relax}
+
+% custom macros (could also be defined using \newcommand)
+\def\I{\mathtt{i}}         % one possible way to represent $\sqrt{-1}$
+\def\Exp#1{e^{2\pi\I #1}}  % argument inside braces, i.e., "{}"
+\def\EXP#1.{e^{2\pi\I #1}} % argument finishes when a full stop is encountered, i.e., "."
+\def\sigla{\LaTeX\xspace}  % use as "blabla \sigla blabla (no need to do "blabla \sigla\ blabla"
+
+\def\AddVMargin#1{\setbox0=\hbox{#1}%
+                  \dimen0=\ht0\advance\dimen0 by 2pt\ht0=\dimen0%
+                  \dimen0=\dp0\advance\dimen0 by 2pt\dp0=\dimen0%
+                  \box0}   % add extra vertical space above and below the argument (#1)
+\def\Header#1#2{\setbox1=\hbox{#1}\setbox2=\hbox{#2}%
+           \ifdim\wd1>\wd2\dimen0=\wd1\else\dimen0=\wd2\fi%
+           \AddVMargin{\parbox{\dimen0}{\centering #1\\#2}}} % put #1 on top #2
+
+%%%%%%%%%%%%
+% Minhas
+\def\ThesisYear{\the\year}
+\def\myName{Miguel Oliveira Inocêncio}
+\def\ThesisTitle{Encoder HEVC implementado em FPGA}
+
+\setlength\bibitemsep{2.5\itemsep}        % Aumenta espaçamento entre entradas da bibliografia
+
+%%%%%%%%%%%%%%%%%%%%
+% Carregar Glossário
+\makeglossaries
+\loadglsentries{glossary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% BEGIN DOCUMENT %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Capa, contracapa, Júri, agradecimentos, palavras chave, resumo,
+\input{Sections/Cover/InitPages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tables of contents, of figures, ...
+\pagenumbering{roman}
+\tableofcontents
+
+\cleardoublepage
+\listoffigures
+
+\cleardoublepage
+\listoftables
+
+\cleardoublepage
+\printglossary[type=\acronymtype]
+%\printglossary
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introdução
+\input{Sections/Introducao/introducao}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Estado de arte
+\input{Sections/Estado/estado}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliografia
+\cleardoublepage
+  \nocite{*}
+  \printbibliography
+\cleardoublepage
+
+\end{document}
