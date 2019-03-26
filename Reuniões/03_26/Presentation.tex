@@ -17,6 +17,8 @@
 \usepackage[portuguese]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{multirow}
+\usepackage{ragged2e}
+\justifying
 
 \setlength{\parindent}{0.5cm}
 %%%%%%%%%%%%%%%%%%%%%
@@ -92,7 +94,7 @@
 			\textbf{Perfis} 									& 14 							& 3 \\
 			\textbf{Níveis} 									& 13 							& 12 \\
 			\multirow{2}{*}{\textbf{Layers}} 	& Slices 					& Frames divididas \\
-																				& independentes 	& por Tiles \\
+			& independentes 	& por Tiles \\
 		\end{tabular}
 		\caption{\label{tab:high-level}Noções gerais de ambos os codecs}
 	\end{table}
@@ -105,7 +107,7 @@
 		\centering
 		\begin{tabular}{l|l|l}
 			\textbf{Característica} 					& \textbf{HEVC} 	& \textbf{AV1} \\\hline
-			\textbf{Nº de tamanhos} 						& 24 							& 42 \\
+			\textbf{Nº de tamanhos} 					& 24 							& 42 \\
 			\textbf{Tamanho máximo} 					& 64x64 					& 128x128
 		\end{tabular}
 		\caption{\label{tab:partitioning}Partitioning}
@@ -120,9 +122,9 @@
 		\begin{tabular}{l|l|l}
 			\textbf{Característica} 									& \textbf{HEVC} 	& \textbf{AV1} \\\hline
 			\textbf{Nº de modos angulares} 						& 33 							& 56 \\
-			\textbf{Nº modos não angulares} 						& 2	 							& 6 \\
+			\textbf{Nº modos não angulares} 					& 2	 							& 6 \\
 			\multirow{2}{*}{\textbf{Outras adições}}	& $\varnothing$		& 5 modos recursivos \\
-			 																					&									& 1 \textit{Chroma from Luma} \\
+			&									& 1 \textit{Chroma from Luma} \\
 		\end{tabular}
 		\caption{\label{tab:intra}Intra-Prediction}
 	\end{table}
@@ -138,8 +140,8 @@
 			\textbf{Nº de modos de predição} 					& 2 							& 4 \\
 			\textbf{Nº frames de referência} 					& 8 de 16	 				& 7 de 8 \\
 			\multirow{3}{*}{\textbf{Outras adições}}	& $\frac{1}{8} pel$		& Global Motion \\
-			 																					&									& 5 filtros de sub-pel \\
-																								&									& independentes \\
+			&									& 5 filtros de sub-pel \\
+			&									& independentes \\
 		\end{tabular}
 		\caption{\label{tab:inter}Inter-Prediction}
 	\end{table}
@@ -153,11 +155,11 @@
 		\begin{tabular}{l|l|l}
 			\textbf{Característica} 													& \textbf{HEVC} 	& \textbf{AV1} \\\hline
 			\multirow{3}{*}{\textbf{Tipos de transformadas}} 	& DCT e DST 			& DCT, ADST, \\
-																												&									& Flip ADS e \\
-																												&									& Identidade \\
+			&									& Flip ADS e \\
+			&									& Identidade \\
 			\textbf{Tamanho máximo do bloco} 									& 32x32		 				& 64x64 \\
 			\multirow{2}{*}{\textbf{Outras adições}}					& $\varnothing$		& Blocos Retangulares \\
-			 																									&									& Blocos Recursivos \\
+			&									& Blocos Recursivos \\
 		\end{tabular}
 		\caption{\label{tab:transforms}Transforms}
 	\end{table}
@@ -185,7 +187,7 @@
 		\begin{tabular}{l|l|l}
 			\textbf{Característica} 													& \textbf{HEVC} 	& \textbf{AV1} \\\hline
 			\multirow{2}{*}{\textbf{Codificação}}							& CABAC			 			& Multi-symbol arithmetic \\
-																												&									& com alfabeto até 16 \\
+			&									& com alfabeto até 16 \\
 			\textbf{Atualização do alfabeto}									& a cada frame		& a cada símbolo \\
 		\end{tabular}
 		\caption{\label{tab:entropy}Entropy Coding}
@@ -201,8 +203,8 @@
 			\textbf{Característica} 													& \textbf{HEVC} 	& \textbf{AV1} \\\hline
 			\textbf{De-blocking}															& Sim			 				& Sim \\
 			\multirow{3}{*}{\textbf{Outros Filtros}}					&	\multirow{2}{*}{Sample Adaptive Offset}	& Constrained Directional \\
-			 																									&													&  Enhancement Filter\\
-																												&													&	Loop Filter \\
+			&													&  Enhancement Filter\\
+			&													&	Loop Filter \\
 		\end{tabular}
 		\caption{\label{tab:filtering}Filtering}
 	\end{table}
@@ -233,8 +235,43 @@
 		\end{tabular}
 		\caption{\label{tab:time}Tempo de codificação de clip de 5s}
 	\end{table}
+\end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Documentação
+\section{Documentação e Trabalhos Publicados}
+\begin{frame}{Documentação}
+	Devido à maior longevidade do HEVC, existe mais documentação explicativa, além dos trabalhos publicados pelas equipas de investigação.
 
+	Isto tem também significa que o desenvolvimento de trabalho inovador é difícil de realizar, devido ao grande investimento feito nos ultimos 8 anos neste padrão.
+
+	Quanto ao AV1, este aspecto não se põe em causa. Devido ao quão recente o formato é, os trabalhos publicados são excassos, e muitos apenas representam algumas análises de performance ou revisões bibliográficas.
+
+	Contudo, a excassez de publicações também se verifica no caráter explicativo.
+
+	Apesar disto,a documentação do padrão é bastante clara. Para além do AV1 estar apoiado por empresas que apostam bastante em documentações claras e extensas dos seus projetos Open Source (nomeadamente a Google e Mozilla).
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Industria
+\section{Indústria}
+\begin{frame}{Indústria}
+	A elevada complexidade de licenseamento do HEVC foi o que levou à criação da \textit{Alliance for Open Media}. Devido aos grandes gigantes da produção de entretenimento estarem neste consórcio, existe uma grande inclinação a uma adoção massiça deste formato.
+
+	Apesar do âmbito da tese de mestrado não ser ir de enconcontro à indústria, o desenvolvimento de trabalho num padrão que tenderá a gerar interesse mundialmente, poderá abrir oportunidades para trabalhos futuros.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Conclusão
+\section{Conclusões}
+\begin{frame}{Conclusões}
+	\begin{itemize}
+		\item O AV1 apresenta uma complexidade superior ao HEVC em termos do próprio formato, assim como em termos do ambiente de desenvolvimento
+		\item Existe um interesse crescente no padrão mais recente
+		\item Apesar de recentes, os trabalhos começam agora a surgir devido ao apoio da \textit{AOM}
+	\end{itemize}
+
+	Devido à inexperiência em ambos os formatos, bem como no desenvolvimento de trabalhos semelhantes, qualquer que seja a escolha apresentará um desafio semelhante.
 \end{frame}
 
 \end{document}
