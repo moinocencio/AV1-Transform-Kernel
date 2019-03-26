@@ -1,2 +1,0 @@
-# HEVC
-Master Thesis
