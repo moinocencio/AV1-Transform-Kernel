@@ -1,3 +1,4 @@
+%!TeX spellcheck = en-US,en-DE
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%% PACKAGES %%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
@@ -5,20 +6,21 @@
 %%%%%%%%%%%%%%
 % Obrigatórias
 \documentclass[11pt,twoside,a4paper]{report}
-\usepackage[DETI,newLogo,final]{uaThesis}
+\usepackage[DETI,newLogo]{uaThesis}
 
 %%%%%%%%%%%%%%
 % Opcionais
-\usepackage[portuguese]{babel}
+\usepackage[english]{babel}
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{xspace}% used by \sigla
 \usepackage{lipsum}
-\usepackage[backend=biber]{biblatex}
-\addbibresource{thesisBib.bib}
+\usepackage[backend=biber, refsection=chapter]{biblatex}
+\addbibresource{newBib.bib}
 \usepackage{csquotes}
 \usepackage[acronym,nonumberlist]{glossaries}
+\usepackage{xcolor}
 \usepackage{todonotes}
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -87,18 +89,17 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Introdução
-\input{Sections/1Introduction/introduction}
+\include{Sections/1Introduction/introduction}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Estado de arte
-\input{Sections/2StateOfTheArt/state}
-
+\include{Sections/2StateOfTheArt/state}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliografia
-\cleardoublepage
-  \nocite{*}
-  \printbibliography
-\cleardoublepage
+%\cleardoublepage
+%  \nocite{*}
+%  \printbibliography
+%\cleardoublepage
 
 \end{document}
