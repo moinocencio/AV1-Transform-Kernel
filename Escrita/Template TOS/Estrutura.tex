@@ -16,12 +16,26 @@
 \usepackage{amssymb}
 \usepackage{xspace}% used by \sigla
 \usepackage{lipsum}
-\usepackage[backend=biber, refsection=chapter]{biblatex}
+\usepackage[backend=biber, refsection=chapter, sorting=none]{biblatex}
 \addbibresource{newBib.bib}
 \usepackage{csquotes}
 \usepackage[acronym,nonumberlist]{glossaries}
 \usepackage{xcolor}
 \usepackage{todonotes}
+\usepackage[bottom]{footmisc}
+
+%%%%%%%%%%%%%%%
+%%%% Fonts %%%%
+%%%%%%%%%%%%%%%
+%\usepackage[cm]{sfmath}
+%\renewcommand{\familydefault}{\sfdefault} % Sans serif
+%\usepackage{kpfonts}
+%\usepackage[T1]{fontenc}
+
+\usepackage[Sonny]{fncychap}
+\ChNameVar{\Huge\bfseries}
+\ChNumVar{\Huge\bfseries}
+\ChTitleVar{\LARGE\bfseries}
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%% MACROS %%%%%%%
@@ -54,9 +68,14 @@
 % Minhas
 \def\ThesisYear{\the\year}
 \def\myName{Miguel Oliveira Inocêncio}
+\def\TituloTese{Co-processador da Transformada e Quantização para AV1}
 \def\ThesisTitle{AV1 Transform and Quantization Co-Processor}
 
 \setlength\bibitemsep{2.5\itemsep}        % Aumenta espaçamento entre entradas da bibliografia
+
+\emergencystretch=14em                     % Corrigir overfull hbox
+
+
 
 %%%%%%%%%%%%%%%%%%%%
 % Carregar Glossário
@@ -79,13 +98,20 @@
 
 \cleardoublepage
 \listoffigures
+\addcontentsline{toc}{chapter}{\listfigurename}
 
 \cleardoublepage
 \listoftables
+\addcontentsline{toc}{chapter}{\listtablename}
 
 \cleardoublepage
 \printglossary[type=\acronymtype]
-%\printglossary
+\addcontentsline{toc}{chapter}{\acronymname}
+
+\cleardoublepage
+\printglossary
+\addcontentsline{toc}{chapter}{\glossaryname}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Introdução

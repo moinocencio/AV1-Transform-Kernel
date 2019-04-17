@@ -154,9 +154,10 @@
 % the \HEADER macro. The first argument is the author's name and the second
 % argument is the thesis title.
 %
-\long\def\TITLE#1#2{\noindent\hspace*{15mm}\parbox[t]{52mm}{\raggedright
+\long\def\TITLE#1#2#3{\noindent\hspace*{15mm}\parbox[t]{52mm}{\raggedright
   \ua@font@size1\textsf{\textbf{#1}}}\hspace*{10mm}\parbox[t]{120mm}{\raggedright
-  \ua@font@size1\textsf{\textbf{#2}}}\par}
+  \ua@font@size1\textsf{\textbf{#2}}}\par\vspace{10mm}\hspace*{71mm}\parbox[t]{120mm}{\raggedright
+  \ua@font@size1\textsf{\textbf{#3}}}}
 
 %
 % Used to put text in the page. The first argument is the left hand side
