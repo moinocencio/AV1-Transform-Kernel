@@ -4,8 +4,8 @@
 
 \section{\textcolor{red}{Background and Motivation}}
 \todo[inline,color=green]{* Desenvolvimento da qualidade de vídeo ao consumidor final}
-\todo[inline,color=red]{* Depêndencia das baterias para aplicações móveis}
-\todo[inline,color=red]{* Hardware dedicado melhora performance e consumo energético}
+\todo[inline,color=green]{* Depêndencia das baterias para aplicações móveis}
+\todo[inline,color=green]{* Hardware dedicado melhora performance e consumo energético}
 
 Since the spark of television research in 1887, a tremendous investment has been put into increasing the quality of images, cameras and screens that display them \cite{schubinWhatSparkedVideo2017}.
 
@@ -23,8 +23,11 @@ This problem has led to the introduction of a new concept: \textit{Video Compres
 
 The first form of video compression, \gls{interlacing}, dates from 1940, and was purely analog. This solution was introduced with the intent of reducing the necessary broadcasting bandwidth for old \glspl{CRT}, without decreasing the displayed fps. And even though this technique has been implemented over more than seventy years, it has proven to be so efficient that most TV channels today still use interlaced broadcasting.
 
-However, analog television is now obsolete, as well as CRTs. The massive developments in \Gls{ic} fabrication led to the rise of the digital era we now live in. Therefore, most screens (be it televisions, monitors or cellphones) use digital, \gls{progressive}. Therefore, the use of analog compression techniques wasn't applicable. Accordingly, the evolution of digital video led to the development of digital compression techniques, such as the one presented in this text.
+However, analog television is now obsolete, as well as CRTs. The massive developments in \Gls{ic} fabrication led to the rise of the digital era we now live in. Therefore, most screens (be it televisions, monitors or cellphones) use digital, \gls{progressive}. As such, the use of analog compression techniques wasn't applicable. Accordingly, the evolution of digital video led to the development of digital compression techniques, such as the one presented in this work.
 
+Being purely digital, these methodologies rely on computers and other processors to analyze data and apply the compression algorithms, making them very demanding processes from a computational standpoint. As expected, a high compression ratio is only obtainable by a high complexity algorithm, which also increases with the size of the video (more data leads to more analysis). Since in the early days of digital video, the used resolutions were lower as to the ones used in the present days, the compression algorithms used were not very demanding. However as the pursuit for higher quality video continued, so did the necessity for better compression ratios, and therefore the computational needs also increased. Such complex softwares lead to a high power consumption by the processor executing it, making such implementations unsuitable for portable, battery limited applications, such as cellphones or laptops. Besides this huge factor, such softwares tend to be very slow, specially when a real time compression or decompression is desired.
+
+To amend for these factors, and to increase the reachability of high quality video to as many users as possible, these applications needed to have a viable solution that didn't compromise its usability. Henceforth, a new approach has been implemented on the most recent codec's. Besides the optimization of pure software compression/decompression solutions, there has been a great focus on the development of specialized hardware for such codecs. This solution could redress many of the problems presented previously, making them viable on a mobile implementation, as well as other specialized appliances, since such co-processors usually present a better performance than generic ones. This tendency has already been verified on the implementation choices on recent smartphones \cite[p.~14]{scientiamobileMobileOverviewReport}, as well as recent \textit{Nvidia} \gls{gpu} lineups \cite{VideoEncodeDecode2016}.
 
 \printbibliography[heading=subbibliography]
 \addcontentsline{toc}{section}{References}
