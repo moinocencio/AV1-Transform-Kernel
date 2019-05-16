@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            "name": "aomenc_test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/Software/Builds/aom_mine/aomenc",
+            "args": [
+                "--limit=5",
+                "-h", "288",
+                "-w", "352",
+                "-p", "1",
+                "-o", "/media/moinocencio/Data/Tese/Master-Thesis/Software/Tests/tt_vscode.webm",
+                "/media/moinocencio/Data/Tese/Master-Thesis/Software/Tests/RawSequences/tt_sif.y4m"],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

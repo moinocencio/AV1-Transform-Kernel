@@ -79,7 +79,7 @@
 
 %%%%%%%%%%%%%%%%%%%%
 % Carregar Glossário
-\makeglossaries
+\makenoidxglossaries
 \loadglsentries{glossary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -105,11 +105,11 @@
 \addcontentsline{toc}{chapter}{\listtablename}
 
 \cleardoublepage
-\printglossary[type=\acronymtype]
+\printnoidxglossary[type=\acronymtype]
 \addcontentsline{toc}{chapter}{\acronymname}
 
 \cleardoublepage
-\printglossary
+\printnoidxglossary
 \addcontentsline{toc}{chapter}{\glossaryname}
 
 
