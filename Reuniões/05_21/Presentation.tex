@@ -1,0 +1,234 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+\usetheme{Madrid}      % Madrid, Montpellier, Pittsburgh, Rochester, boxes
+\usecolortheme{seagull} 	% beaver, crane, dolphin, dove, lily, orchid, seagull, seahorse
+\usefonttheme{default}  % or try serif, structurebold, ...
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{multirow}
+\usepackage{ragged2e}
+\usepackage{textpos}
+\usepackage[export]{adjustbox}
+\justifying
+\usepackage{pifont}
+\newcommand{\xmark}{\ding{55}}%
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning} 
+\usetikzlibrary{matrix}
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    %Define style for boxes
+    reBox/.style={
+           rectangle,
+           rounded corners,
+           draw=black, very thick,
+           text width=6.5em,
+           minimum height=2em,
+           text centered},
+    rBox/.style={
+           rectangle,           
+           draw=black, very thick,
+           minimum height=2em,
+           text centered},
+    % Define arrow style
+    pil/.style={
+           ->,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt,}
+}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+
+
+\setlength{\parindent}{0.5cm}
+%%%%%%%%%%%%%%%%%%%%%
+% Títulos e etc
+\title[Apresentação Semanal]{Tese de Mestrado}
+\subtitle{Apresentação Semanal}
+\author[M. Inocêncio]{Miguel Inocêncio}
+\institute[UA]	{Universidade de Aveiro\\ 
+				Instituto de Telecomunicações}
+\date{21/05/2019}
+\titlegraphic{\includegraphics[height=1.5cm]{../ua.jpg}\includegraphics[height=1.5cm]{../IT.png}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Página Inicial
+\begin{frame}
+	\titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Table of Contents
+\begin{frame}{Conteúdos}
+	\tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Libaom
+\section{Libaom - Software de Referência}
+\begin{frame}
+	\frametitle{Libaom - Ponto de situação na última reunião}
+
+	\begin{itemize}
+		\item Encoding, Decoding e visualização realizadas com sucesso
+		\item Dificuldade no estudo do código fonte
+		\item Realização do setup para debug com Visual Studio 		
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Libaom - Desenvolvimento do estudo do código fonte}
+
+	%Tendo em conta a reBoxexidade do código e a falta de experiência com um projeto desta dimensão, a melhor ferramenta disponível seria fazer um debug sólido linha-a-linha e verificar o procedimento do código.
+
+       \centering
+       \begin{tikzpicture}
+              \node (dummy) {};
+              \coordinate[below=of dummy] (c);
+              \node[reBox, left=of c] (complexidade) {Complexidade do Código};
+              \node[reBox, right=of c] (experiencia) {Falta de experiencia com projetos desta dimensão};
+              \node[reBox, below=2cm of c] (debug) {Debug linha-a-linha com VSCode};
+
+              \draw [pil, bend right=45] (complexidade) -- (debug);
+              \draw [pil, bend left=45] (experiencia) -- (debug);
+       \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+       \frametitle{Libaom - Desenvolvimento do debug}
+
+       O debug e procedente análise do código foi feita realizando o encode de uma sequência de frames linha a linha.
+
+       Deste modo foi possível verificar as condições de execução do código, e os diferentes módulos usados, não sendo esta análise apresentada nesta reunião.
+       
+       \begin{itemize}
+              \item \textbf{Organização de fluxograma de código?} 
+       \end{itemize}
+\end{frame}
+
+\begin{frame}
+       \frametitle{Libaom - Cálculo da Transformada}
+
+       Como mencionado numa reunião anterior, o AV1 suporta mais tipos de transformadas que os seus antecedentes, bem como uma maior diversidade de tamanhos, com a adição de formatos retangulares.
+
+       No \textit{libaom}, este aspeto é realizado efetuando a transformada independentemente entre as colunas e as linhas, a 1 dimensão, permitindo assim que o tamanho das duas dimensões seja diferente, efetuando assim uma transformada em bloco retangular.
+
+       \begin{tikzpicture} [ampersand replacement=\&,
+                            nodes in empty cells,
+                            nodes={minimum width=0.1cm, 
+                            minimum height=0.7cm},
+                            row sep=-\pgflinewidth, 
+                            column sep=-\pgflinewidth]
+
+              border/.style={draw}
+            
+              \matrix(vector1)     [matrix of nodes,
+                                   nodes in empty cells,
+                                   row 1/.style={nodes={draw, minimum width=0.1cm,minimum height=1cm},anchor=center}]
+                                   {
+                                   $a_{0,0}$ \& $a_{0,1}$ \& \dots \& $a_{0,N-1}$\\
+                                   };
+
+              \node  [rBox, 
+                     right=0.5cm of vector1,
+                     minimum height=1.2cm,
+                     minimum width=1.2cm]                      
+                     (T1) {$T$};
+              
+              \draw [pil] (vector1) -- (T1);
+              
+              \matrix(vector2)     [right=of T1,
+                                   matrix of nodes,
+                                   row 1/.style={nodes={draw, minimum width=1.4cm,minimum height=0.7cm}},
+                                   row 2/.style={nodes={draw, minimum width=1.4cm,minimum height=1cm}},
+                                   row 3/.style={nodes={draw, minimum width=1.4cm,minimum height=1cm}},
+                                   row 4/.style={nodes={draw, minimum width=1.4cm,minimum height=1cm}}]
+                                   {
+                                   $a_{0,0}$ \\
+                                   $a_{1,0}$ \\
+                                   $...$ \\
+                                   $a_{M-1,0}$\\
+                                   };
+
+              \node  [rBox, 
+                     right=0.5cm of vector2,
+                     minimum height=1.5cm,
+                     minimum width=1.5cm]                      
+                     (T2) {$T$};
+              
+              \draw [pil] (vector2) -- (T2);
+        \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+       \frametitle{Libaom - Transformadas Implementadas}
+
+       Da análise que do código, as transformadas implementadas são:
+
+       \begin{table}%[ampersand replacement=\&]
+              \centering
+              \begin{tabular}{c|r|r|r|r|r}
+                     \textbf{Transformada} & $1 \times 4$ & $1 \times 8$ & $1 \times 16$ & $1 \times 32$ & $1 \times 64$ \\ \hline
+                     DCT & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\ \hline
+                     ADST & \checkmark & \checkmark & \checkmark & \xmark & \xmark \\ \hline
+                     Identidade & \checkmark & \checkmark & \checkmark & \checkmark & \xmark \\                      
+              \end{tabular}
+       \end{table}
+\end{frame}
+
+\begin{frame}
+       \frametitle{Libaom - Próximos passos}
+
+       Tendo em conta esta análise inicial, apresento uma proposta para os próximos passos:
+
+       \begin{itemize}
+              \item Fazer o encode de diferentes sequências de vídeos, de modo a analisar quais as transformadas utilizadas com maior frequência
+              \item Diagramas de blocos para as transformadas
+              \item Estudo teórico das diferentes transformadas e comparação com os modelos implementados em software
+       \end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Cadence
+\section{Cadence}
+\begin{frame}
+       \frametitle{Obtenção de ferramentas do Cadence}
+
+       A obtenção do \textit{IP Package} apresenta um custo elevado para a obtenção de vários programas, muitos dos quais não seriam utilizados.
+
+       O Jones sugeriu se seria possível obter apenas o programa \textit{Genus}, pois segundo ele, seria o programa que teria maior utilidade.
+
+       A decisão quanto à obtenção dos programas poderia ser tomada consoante esta disponibilidade.
+
+       Quanto à disponibilidade de utilizar as ferramentas deles, não foi dada nenhuma informação adicional, para além da informação que já tinha sido dada anteriormente (utilização das ferramentas, aquando da minha deslocação a Pelotas, ou utilização remota).
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% JVET
+\section{VVC}
+\begin{frame}
+       \frametitle{Análise VVC-AV1}
+
+       O VVC é o mais recente padrão do JVET, ainda sem finalização do bitstream anunciada.
+
+       Apesar da sua performance exemplar em comparação com o HEVC e até em relação ao AV1, há uma incógnita quanto à tendência da indústria na utilizaçaão das diferentes opções, devido à opção da AOM para tornar os seus codecs \textit{royalty free}.
+\end{frame}
+
+
+\end{document}	
