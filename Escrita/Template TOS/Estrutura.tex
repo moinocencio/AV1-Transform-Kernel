@@ -32,10 +32,29 @@
 %\usepackage{kpfonts}
 %\usepackage[T1]{fontenc}
 
-\usepackage[Sonny]{fncychap}
-\ChNameVar{\Huge\bfseries}
-\ChNumVar{\Huge\bfseries}
-\ChTitleVar{\LARGE\bfseries}
+%\usepackage[Sonny]{fncychap}
+%\ChNameVar{\Huge\bfseries}
+%\ChNumVar{\Huge\bfseries}
+%\ChTitleVar{\LARGE\bfseries}
+\usepackage{color}
+\definecolor{gray75}{gray}{0.75}
+\usepackage{titlesec}
+
+\titlespacing*{\chapter}{0pt}{-10pt}{60pt}
+
+\titleformat{\chapter}[display] % shape
+{\bfseries\LARGE} % format
+{\MakeUppercase{\chaptertitlename} \Huge\thechapter} % label
+{0.5ex} % sep
+{\titlerule\vspace{1ex}\filleft}
+[\vspace{1ex}\titlerule]
+
+\titleformat{\section}[hang]
+{\Large\bfseries}
+{\thesection\hspace{10pt}$\textcolor{gray}{\big\bracevert}$\hspace{10pt}}
+{0pt}
+{\Large\bfseries}
+
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%% MACROS %%%%%%%
@@ -75,7 +94,7 @@
 
 \emergencystretch=14em                     % Corrigir overfull hbox
 
-
+\setlength{\parskip}{0ex}
 
 %%%%%%%%%%%%%%%%%%%%
 % Carregar Glossário
@@ -112,14 +131,25 @@
 \printnoidxglossary
 \addcontentsline{toc}{chapter}{\glossaryname}
 
+%%%%% Temporary %%%%%
+\cleardoublepage
+\listoftodos
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Introdução
+% Introduction
 \include{Sections/1Introduction/introduction}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Estado de arte
-\include{Sections/2StateOfTheArt/state}
+% Basics of Video Encoding
+\include{Sections/2BasicsOfVideoCompression/videoBasics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AV1 Video Codec
+\include{Sections/3AV1/av1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Developed Architecture
+\include{Sections/4DevelopedArchitecture/develWork}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliografia
