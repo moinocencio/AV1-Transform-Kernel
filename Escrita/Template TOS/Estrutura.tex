@@ -1,15 +1,16 @@
-%!TeX spellcheck = en-US,en-DE
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%% PACKAGES %%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%
-% Obrigatórias
+%%%%%%%%%%%%%%%%%
+%%% Mandatory %%%
+%%%%%%%%%%%%%%%%%
 \documentclass[11pt,twoside,a4paper]{report}
 \usepackage[DETI,newLogo]{uaThesis}
 
-%%%%%%%%%%%%%%
-% Opcionais
+%%%%%%%%%%%%%%%%
+%%% Optional %%%
+%%%%%%%%%%%%%%%%
 \usepackage[english]{babel}
 \usepackage{hyperref}
 \usepackage{amsmath}
@@ -24,14 +25,28 @@
 \usepackage{todonotes}
 \usepackage[bottom]{footmisc}
 
-%%%%%%%%%%%%%%%
-%%%% Fonts %%%%
-%%%%%%%%%%%%%%%
-%\usepackage[cm]{sfmath}
-%\renewcommand{\familydefault}{\sfdefault} % Sans serif
-%\usepackage{kpfonts}
-%\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{mathdots}
+\usepackage{yhmath}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{siunitx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usetikzlibrary{fadings}
 
+%%%%%%%%%%%%%%%%%%%%%%%
+% Tikz library and set
+\include{tikzlib}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Header makeup %%%%
+%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage[Sonny]{fncychap}
 %\ChNameVar{\Huge\bfseries}
 %\ChNumVar{\Huge\bfseries}
@@ -84,7 +99,7 @@
            \AddVMargin{\parbox{\dimen0}{\centering #1\\#2}}} % put #1 on top #2
 
 %%%%%%%%%%%%
-% Minhas
+% Mine
 \def\ThesisYear{\the\year}
 \def\myName{Miguel Oliveira Inocêncio}
 \def\TituloTese{Co-processador da Transformada e Quantização para AV1}
@@ -101,13 +116,13 @@
 \makenoidxglossaries
 \loadglsentries{glossary}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%% BEGIN DOCUMENT %%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Capa, contracapa, Júri, agradecimentos, palavras chave, resumo,
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Capa, contracapa, Júri, agradecimentos, palavras chave, resumo
 \input{Sections/0Cover/InitPages}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -146,6 +161,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % AV1 Video Codec
 \include{Sections/3AV1/av1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AV1 Video Codec
+\include{Sections/3Transforms/transforms}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Developed Architecture

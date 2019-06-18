@@ -1,0 +1,82 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+\usetheme{Madrid}      % Madrid, Montpellier, Pittsburgh, Rochester, boxes
+\usecolortheme{seagull} 	% beaver, crane, dolphin, dove, lily, orchid, seagull, seahorse
+\usefonttheme{default}  % or try serif, structurebold, ...
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{multirow}
+\usepackage{ragged2e}
+\usepackage{textpos}
+\usepackage[export]{adjustbox}
+\justifying
+\usepackage{pifont}
+\newcommand{\xmark}{\ding{55}}%
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning} 
+\usetikzlibrary{matrix}
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    %Define style for boxes
+    reBox/.style={
+           rectangle,
+           rounded corners,
+           draw=black, very thick,
+           text width=6.5em,
+           minimum height=2em,
+           text centered},
+    rBox/.style={
+           rectangle,           
+           draw=black, very thick,
+           minimum height=2em,
+           text centered},
+    % Define arrow style
+    pil/.style={
+           ->,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt,}
+}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+
+
+\setlength{\parindent}{0.5cm}
+%%%%%%%%%%%%%%%%%%%%%
+% Títulos e etc
+\title[Apresentação Semanal]{Tese de Mestrado}
+\subtitle{Apresentação Semanal}
+\author[M. Inocêncio]{Miguel Inocêncio}
+\institute[UA]	{Universidade de Aveiro\\ 
+				Instituto de Telecomunicações}
+\date{11/06/2019}
+\titlegraphic{\includegraphics[height=1.5cm]{../ua.jpg}\includegraphics[height=1.5cm]{../IT.png}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Página Inicial
+\begin{frame}
+	\titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Table of Contents
+\begin{frame}{Conteúdos}
+	\tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}	
