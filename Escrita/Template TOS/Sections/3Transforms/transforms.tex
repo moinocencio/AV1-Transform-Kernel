@@ -1,12 +1,38 @@
 \cleardoublepage
-\pagenumbering{arabic}
-\chapter{Video Coding Transformations}
+\chapter{Video Coding Transforms}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{red}{Motivation}}
+\section{\textcolor{red}{Introduction}}
+
+\textcolor{red}{As mentioned previously,} the basic principle behind the compression of video, is the reduction of inter-pixel/inter-symbol correlation. Therefore, all of the integral blocks of a video compression system output a better compressed symbol than its input. One of such blocks is the \emph{Transform} 
+\todo{as seen in ...}
+,which is the focus of this work.
+
+\todo[inline,color=red!40]{Verify accordance with previous chapter}
+
+The technique implemented by this process relies on the energy compaction in the frequency domain to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated in the frequency domain, and is quantified on its main frequencies, on a spatial and/or temporal domain, similarly to the process executed on an \gls{fft}.
+
+Besides its use in video coding, many other areas use some sort of component transformation, namely in audio compression, voice identification, et al.
+
+A useful interpretation of this process is to see it as the decomposition of the input as a set of basis vectors (1D transforms) or images/matrices (2D transforms). The transformation outputs , $y_i$, can be seen as the weights of each basis vector/image, $\vec{e_i}$, that summed return the input, $\vec{z}$, i.e.
+
+\begin{equation}
+    \vec{z} = \sum_{i=1}^{N} y_i \vec{e_i}
+\end{equation}
+which means that the coefficients are related to the amount of correlation between the input and each basis component, and can be obtained with the inner product of the input and each basis vector \cite[sec. 4.1.4 \& 4.2.2]{shiImageVideoCompression2008}.
+
+\begin{equation}
+    y_i = \vec{e_i}^T \vec{z}
+\end{equation}
+
+x
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textcolor{red}{Background}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textcolor{red}{Used Transformation Kernels}}
+
+\printbibliography[heading=subbibliography]
+\addcontentsline{toc}{section}{References}
