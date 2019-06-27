@@ -10,7 +10,7 @@
 
 \todo[inline,color=red!40]{Verify accordance with previous chapter}
 
-The technique implemented by this process relies on the energy compaction in the frequency domain to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated in the frequency domain, and is quantified on its main frequencies, on a spatial and/or temporal domain, similarly to the process executed on an \gls{fft}.
+The technique implemented by this process relies on the energy compaction in the frequency domain, to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated on its main frequencies --- the \emph{transform coefficients}, on a spatial and/or temporal domain, similarly to the process executed on an \gls{fft}. Once each block is quantized on these coefficients, the compression is made with the removal of the least significant, on the \emph{Quantization}.
 
 Besides its use in video coding, many other areas use some sort of component transformation, namely in audio compression, voice identification, et al.
 
@@ -25,7 +25,7 @@ which means that the coefficients are related to the amount of correlation betwe
     y_i = \vec{e_i}^T \vec{z}
 \end{equation}
 
-x
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
