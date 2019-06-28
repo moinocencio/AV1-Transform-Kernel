@@ -4,28 +4,38 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textcolor{red}{Introduction}}
 
-\textcolor{red}{As mentioned previously,} the basic principle behind the compression of video, is the reduction of inter-pixel/inter-symbol correlation. Therefore, all of the integral blocks of a video compression system output a better compressed symbol than its input. One of such blocks is the \emph{Transform} 
+\textcolor{red}{As mentioned previously,} the basic principle behind the compression of video, is the reduction of inter-pixel/inter-symbol correlation. The various integral blocks of a video compression system try to accomplish this objective through different strategies. The \emph{Intra-frame} and \emph{Inter-frame Prediction} exploit spatial and temporal correlation, respectively. With the subtraction of the input by the output of one of these blocks, and the attainment of the \emph{residue}, the next compression stage is made in the \emph{Transform} block
 \todo{as seen in ...}
 ,which is the focus of this work.
 
 \todo[inline,color=red!40]{Verify accordance with previous chapter}
 
-The technique implemented by this process relies on the energy compaction in the frequency domain, to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated on its main frequencies --- the \emph{transform coefficients}, on a spatial and/or temporal domain, similarly to the process executed on an \gls{fft}. Once each block is quantized on these coefficients, the compression is made with the removal of the least significant, on the \emph{Quantization}.
-
-Besides its use in video coding, many other areas use some sort of component transformation, namely in audio compression, voice identification, et al.
+The technique implemented by this process relies on the energy compaction in the frequency domain to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated on its main frequencies --- the \emph{transform coefficients} --- on a spatial and/or temporal domain, similarly to the process executed on an \gls{fft}. Once each block is quantized on these coefficients, the compression is made with the removal of the least significant ones, on the \emph{Quantization} stage. The intent of the \emph{transform} is to split the image into a set of predefined coefficients.
 
 A useful interpretation of this process is to see it as the decomposition of the input as a set of basis vectors (1D transforms) or images/matrices (2D transforms). The transformation outputs , $y_i$, can be seen as the weights of each basis vector/image, $\vec{e_i}$, that summed return the input, $\vec{z}$, i.e.
 
 \begin{equation}
     \vec{z} = \sum_{i=1}^{N} y_i \vec{e_i}
 \end{equation}
-which means that the coefficients are related to the amount of correlation between the input and each basis component, and can be obtained with the inner product of the input and each basis vector \cite[sec. 4.1.4 \& 4.2.2]{shiImageVideoCompression2008}.
+which means that the coefficients are related to the amount of correlation between the input and each basis component, and can be obtained with the \emph{inner product} of the input and each basis vector %\cite[sec. 4.1.4 \& 4.2.2]{shiImageVideoCompression2008}.
+.
 
-\begin{equation}
+\begin{equation} \label{eq:coef_vec}
     y_i = \vec{e_i}^T \vec{z}
 \end{equation}
 
+Considering a 2D image, $g(x,y)$, and its corresponding transformed coefficients, $T(u,v)$, where $(x,y)$ are the pixel coordinates, and $(u,v)$ are the corresponding coordinates in the transform domain, we can obtain an analogous version of equation \ref{eq:coef_vec} as
 
+\begin{equation}
+    T(u,v) = \sum_{x=0}^{N-1}\sum_{y=0}^{M-1}g(x,y)f(x,y,u,v)
+\end{equation}
+
+Similarly, we can re-obtain the original picture
+
+\begin{equation}
+    g(x,y) = \sum_{u=0}^{N-1}\sum_{v=0}^{M-1}T(u,v)i(x,y,u,v)
+\end{equation}
+where $f(x,y,u,v)$ and $i(x,y,u,v)$ are the \emph{forward} and \emph{inverse transformation kernels} \cite[ch. 4]{shiImageVideoCompression2008}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
