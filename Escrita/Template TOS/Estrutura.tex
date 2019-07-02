@@ -40,6 +40,7 @@
 \usepackage{booktabs}
 \usetikzlibrary{fadings}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%
 % Tikz library and set
 \include{tikzlib}
@@ -64,11 +65,31 @@
 {\titlerule\vspace{1ex}\filleft}
 [\vspace{1ex}\titlerule]
 
+\newcommand{\dgrayvline}{\raisebox{-0.5ex}{\tikz\filldraw[darkgray,x=2pt,y=2pt] (0,0) -- ++(0.5,0) -- ++(0,1em) -- ++(-0.5,0) -- cycle;}}
+
 \titleformat{\section}[hang]
 {\Large\bfseries}
-{\thesection\hspace{10pt}$\textcolor{gray}{\big\bracevert}$\hspace{10pt}}
+{\thesection\hspace{10pt}\dgrayvline\hspace{10pt}}
 {0pt}
 {\Large\bfseries}
+
+\newcommand{\grayvline}{\raisebox{-0.5ex}{\tikz\filldraw[gray,x=2pt,y=2pt] (0,0) -- ++(0.5,0) -- ++(0,1em) -- ++(-0.5,0) -- cycle;}}
+
+\titleformat{\subsection}[hang]
+{\large\bfseries}
+{\thesubsection\hspace{10pt}\grayvline\hspace{10pt}}
+{0pt}
+{\large\bfseries}
+
+\newcommand{\lgrayvline}{\raisebox{-0.5ex}{\tikz\filldraw[lightgray,x=2pt,y=2pt] (0,0) -- ++(0.5,0) -- ++(0,1em) -- ++(-0.5,0) -- cycle;}}
+
+\titleformat{\subsubsection}[hang]
+{\normalsize\itshape}
+{\thesubsubsection\hspace{10pt}\lgrayvline\hspace{10pt}}
+{0pt}
+{\normalsize\itshape}
+
+\newcommand{\textsep}{\noindent\makebox[\linewidth]{\resizebox{0.3333\linewidth}{1pt}{$\bullet$}}\bigskip}
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -78,6 +99,7 @@
 %%%%%%%%%%%%
 % TOS
 \setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
 % optional (comment to used default)
 %   horizontal line to separate floats (figures and tables) from text
 \def\topfigrule{\kern 7.8pt \hrule width\textwidth\kern -8.2pt\relax}

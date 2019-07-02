@@ -2,44 +2,127 @@
 \chapter{Video Coding Transforms}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{red}{Introduction}}
+\section{{Introduction}}
 
-\textcolor{red}{As mentioned previously,} the basic principle behind the compression of video, is the reduction of inter-pixel/inter-symbol correlation. The various integral blocks of a video compression system try to accomplish this objective through different strategies. The \emph{Intra-frame} and \emph{Inter-frame Prediction} exploit spatial and temporal correlation, respectively. With the subtraction of the input by the output of one of these blocks, and the attainment of the \emph{residue}, the next compression stage is made in the \emph{Transform} block
+\textcolor{red}{As mentioned previously,} the basic principle behind the compression of video, is the reduction of inter-pixel/inter-symbol correlation. The various integral blocks of a video compression system try to accomplish this objective through different strategies. The \emph{Intra-frame} and \emph{Inter-frame Prediction} exploit spatial and temporal correlation, respectively. Through the subtraction of the input by the output of one of these blocks, and the attainment of the \emph{residue}, the next compression stage is made in the \emph{Transform} block
 \todo{as seen in ...}
 ,which is the focus of this work.
 
 \todo[inline,color=red!40]{Verify accordance with previous chapter}
 
-The technique implemented by this process relies on the energy compaction in the frequency domain to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated on its main frequencies --- the \emph{transform coefficients} --- on a spatial and/or temporal domain, similarly to the process executed on an \gls{fft}. Once each block is quantized on these coefficients, the compression is made with the removal of the least significant ones, on the \emph{Quantization} stage. The intent of the \emph{transform} is to split the image into a set of predefined coefficients.
+The technique implemented by this process relies on the energy compaction in the frequency domain to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated on its main frequencies --- the \emph{transform coefficients} --- on a spatial and/or temporal domain, similarly to the process executed on an \gls{fft}. Once each block is quantized on these coefficients, the compression is made with the removal of the least significant ones, on the \emph{Quantization} stage. The intent of the \emph{transform} is to split the image into a set of predefined coefficients, that get transmitted instead of the pixel values.
 
-A useful interpretation of this process is to see it as the decomposition of the input as a set of basis vectors (1D transforms) or images/matrices (2D transforms). The transformation outputs , $y_i$, can be seen as the weights of each basis vector/image, $\vec{e_i}$, that summed return the input, $\vec{z}$, i.e.
+The objective of this chapter is to give the reader a basic understanding of the theoretical basis behind said Transformations, as well as to introduce the most commonly used ones. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{red}{Background}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Basis vector/image interpretation}
+
+A useful interpretation, and a good starting point to the study of this process, is to see it as the decomposition of the input as a set of basis vectors (1D transforms) or images/matrices (2D transforms). The transformation outputs , $T_i$, can be seen as the weights of each basis vector/image, $\vec{e_i}$, that summed return the input, $\vec{g}$, i.e.
 
 \begin{equation}
-    \vec{z} = \sum_{i=1}^{N} y_i \vec{e_i}
+    \vec{g} = \sum_{i=1}^{N} T_i \vec{e_i}
 \end{equation}
-which means that the coefficients are related to the amount of correlation between the input and each basis component, and can be obtained with the \emph{inner product} of the input and each basis vector %\cite[sec. 4.1.4 \& 4.2.2]{shiImageVideoCompression2008}.
-.
+which means that the coefficients are related to the amount of correlation between the input and each basis component, and can be obtained with the \emph{inner product} of the input and each basis vector.
 
 \begin{equation} \label{eq:coef_vec}
-    y_i = \vec{e_i}^T \vec{z}
+    T_i = \vec{e_i}^T \vec{g}
 \end{equation}
+
+Since each input vector will have different correlation values between the various basis vectors, this operation accomplishes two main objectives:
+
+\begin{itemize}
+    \item De-correlation of the input values
+    \item Signaling of the most important basis vectors.
+\end{itemize}
 
 Considering a 2D image, $g(x,y)$, and its corresponding transformed coefficients, $T(u,v)$, where $(x,y)$ are the pixel coordinates, and $(u,v)$ are the corresponding coordinates in the transform domain, we can obtain an analogous version of equation \ref{eq:coef_vec} as
 
-\begin{equation}
+\begin{equation} \label{eq:Tmatsum}
     T(u,v) = \sum_{x=0}^{N-1}\sum_{y=0}^{M-1}g(x,y)f(x,y,u,v)
 \end{equation}
 
 Similarly, we can re-obtain the original picture
 
-\begin{equation}
+\begin{equation} \label{eq:Gmatsum}
     g(x,y) = \sum_{u=0}^{N-1}\sum_{v=0}^{M-1}T(u,v)i(x,y,u,v)
 \end{equation}
-where $f(x,y,u,v)$ and $i(x,y,u,v)$ are the \emph{forward} and \emph{inverse transformation kernels} \cite[ch. 4]{shiImageVideoCompression2008}.
+where $f(x,y,u,v)$ and $i(x,y,u,v)$ are the \emph{forward} and \emph{inverse transformation kernels}. To better explain the concept of these, first it's needed to introduce the two following concepts.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ATTENTION: "BETTER EXPLAIN ... FIRST IT'S NEEDED" gives the idea that there is going to be a later explanation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Separability}
+
+A useful characteristic of 2D Video Coding Transforms is its ability to be independently calculated between rows and columns. This means that given a 2D block as input, the transform coefficients can be calculated first with the \emph{horizontal transform}, and then with the \emph{vertical transform}, or vice-versa.
+
+This aspect is applicable if the following conditions are applied
+
+\begin{equation} \label{eq:fwf1f2}
+    f(x,y,u,v)=f_1(x,u)f_2(y,v)
+\end{equation}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{red}{Background}}
+\begin{equation} \label{eq:ini1i2}
+    i(x,y,u,v)=i_1(x,u)i_2(y,v)
+\end{equation}
+
+This means that the equation \ref{eq:Tmatsum} is reconstructed as 2 independent and sequential operations
+
+\begin{align}
+    T_{temp}(x,v) = \sum_{y=0}^{M-1}g(x,y)f_2(y,v) \\
+    T(u,v) = \sum_{x=0}^{N-1}T_{temp}(x,v)f_1(x,u)
+\end{align}
+
+On AV1, due to the various implemented transformation kernels, this aspect is severely explored, since the only way of implementing the combination of different 1D kernels, is to calculate them independently. This aspect is further explained with the following concept.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Symmetry}
+
+Taking equation \ref{eq:fwf1f2}, a transformation kernel is said to be symmetric if 
+
+\begin{equation}
+    f_1(y,v) = f_2(x,u)
+\end{equation}
+
+This characteristic is particularly useful because it makes the forward and inverse transformations expressible as matrix multiplications. Therefore, the equations \ref{eq:Tmatsum} and \ref{eq:Gmatsum} are represented, respectively, as
+
+\begin{equation}
+    T = F^TGF 
+\end{equation}
+\begin{equation}
+    G = I^TTI
+\end{equation}
+where $F$ and $I$ are the forward and inverse transform matrices. This aspect is only possible for square matrix, i.e., input blocks with the same height and width.
+
+\textcolor{red}{This concept isn't exploited in AV1, since the use of different 1D transformation kernels, and rectangular block sizes ($M \neq N$) make the 2D transform asymmetric.}
+
+\textsep
+
+Looking now at equation \ref{eq:Gmatsum}, we can interpret the inverse transformation kernel as a set of basis images, dependent of the $(u,v)$ pair. By this, it is meant 
+
+\begin{equation}
+    g(x,y) = \sum_{u=0}^{N-1}\sum_{v=0}^{M-1}T(u,v)I_{u,v}
+\end{equation}
+where
+
+\begin{equation}
+    I_{u,v}=\begin{bmatrix}
+                i(0,0,u,v) & i(0,1,u,v) & \dots & i(0,N-1,u,v) \\
+                i(1,0,u,v) & i(1,1,u,v) & \dots & i(1,N-1,u,v) \\
+                \vdots     & \vdots     & \dots & \vdots       \\
+                i(M-1,0,u,v) & i(M-1,1,u,v) & \dots & i(M-1,N-1,u,v) \\
+            \end{bmatrix}
+\end{equation}
+
+Therefore, the forward and inverse transformation process can be seen as the deconstruction of an input block, into a set of $M \cdot N$ basis images, dependent of the used transformation kernel. As expressed in equations \ref{eq:fwf1f2} and \ref{eq:ini1i2}, this analogy can be made on a 1D space \cite[ch. 4]{shiImageVideoCompression2008}.
+
+\todo[inline,color=red!40]{JPEG example?}
+
+Given a general comprehension of the theoretical principles behind the \emph{Transform} block, now the most common transformation kernels are introduced, with focus on the AV1 video codec.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textcolor{red}{Used Transformation Kernels}}
