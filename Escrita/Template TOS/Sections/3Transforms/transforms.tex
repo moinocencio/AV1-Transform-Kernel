@@ -15,7 +15,7 @@ The technique implemented by this process relies on the energy compaction in the
 The objective of this chapter is to give the reader a basic understanding of the theoretical basis behind said Transformations, as well as to introduce the most commonly used ones. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{red}{Background}}
+\section{Background}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Basis vector/image interpretation}
 
@@ -40,13 +40,13 @@ Since each input vector will have different correlation values between the vario
 Considering a 2D image, $g(x,y)$, and its corresponding transformed coefficients, $T(u,v)$, where $(x,y)$ are the pixel coordinates, and $(u,v)$ are the corresponding coordinates in the transform domain, we can obtain an analogous version of equation \ref{eq:coef_vec} as
 
 \begin{equation} \label{eq:Tmatsum}
-    T(u,v) = \sum_{x=0}^{N-1}\sum_{y=0}^{M-1}g(x,y)f(x,y,u,v)
+    T(u,v) = \sum_{x=0}^{M-1}\sum_{y=0}^{N-1}g(x,y)f(x,y,u,v)
 \end{equation}
 
 Similarly, we can re-obtain the original picture
 
 \begin{equation} \label{eq:Gmatsum}
-    g(x,y) = \sum_{u=0}^{N-1}\sum_{v=0}^{M-1}T(u,v)i(x,y,u,v)
+    g(x,y) = \sum_{u=0}^{M-1}\sum_{v=0}^{N-1}T(u,v)i(x,y,u,v)
 \end{equation}
 where $f(x,y,u,v)$ and $i(x,y,u,v)$ are the \emph{forward} and \emph{inverse transformation kernels}. To better explain the concept of these, first it's needed to introduce the two following concepts.
 
@@ -72,10 +72,10 @@ This aspect is applicable if the following conditions are applied
 
 This means that the equation \ref{eq:Tmatsum} is reconstructed as 2 independent and sequential operations
 
-\begin{align}
-    T_{temp}(x,v) = \sum_{y=0}^{M-1}g(x,y)f_2(y,v) \\
-    T(u,v) = \sum_{x=0}^{N-1}T_{temp}(x,v)f_1(x,u)
-\end{align}
+\begin{gather}
+    T_{temp}(x,v) = \sum_{y=0}^{N-1}g(x,y)f_2(y,v) \\
+    T(u,v) = \sum_{x=0}^{M-1}T_{temp}(x,v)f_1(x,u)
+\end{gather}
 
 On AV1, due to the various implemented transformation kernels, this aspect is severely explored, since the only way of implementing the combination of different 1D kernels, is to calculate them independently. This aspect is further explained with the following concept.
 
@@ -98,34 +98,87 @@ This characteristic is particularly useful because it makes the forward and inve
 \end{equation}
 where $F$ and $I$ are the forward and inverse transform matrices. This aspect is only possible for square matrix, i.e., input blocks with the same height and width.
 
-\textcolor{red}{This concept isn't exploited in AV1, since the use of different 1D transformation kernels, and rectangular block sizes ($M \neq N$) make the 2D transform asymmetric.}
+\textcolor{red}{This concept isn't exploited in AV1, since the use of different 1D transformation kernels, and rectangular block sizes ($M \neq N$) make the 2D transform asymmetric, and therefore, not executable as matrix multiplication.}
 
 \textsep
 
 Looking now at equation \ref{eq:Gmatsum}, we can interpret the inverse transformation kernel as a set of basis images, dependent of the $(u,v)$ pair. By this, it is meant 
 
 \begin{equation}
-    g(x,y) = \sum_{u=0}^{N-1}\sum_{v=0}^{M-1}T(u,v)I_{u,v}
+    g(x,y) = \sum_{u=0}^{M-1}\sum_{v=0}^{N-1}T(u,v)I_{u,v}
 \end{equation}
 where
 
 \begin{equation}
     I_{u,v}=\begin{bmatrix}
-                i(0,0,u,v) & i(0,1,u,v) & \dots & i(0,N-1,u,v) \\
-                i(1,0,u,v) & i(1,1,u,v) & \dots & i(1,N-1,u,v) \\
+                i(0,0,u,v) & i(0,1,u,v) & \dots & i(0,M-1,u,v) \\
+                i(1,0,u,v) & i(1,1,u,v) & \dots & i(1,M-1,u,v) \\
                 \vdots     & \vdots     & \dots & \vdots       \\
-                i(M-1,0,u,v) & i(M-1,1,u,v) & \dots & i(M-1,N-1,u,v) \\
+                i(N-1,0,u,v) & i(N-1,1,u,v) & \dots & i(N-1,M-1,u,v) \\
             \end{bmatrix}
 \end{equation}
 
-Therefore, the forward and inverse transformation process can be seen as the deconstruction of an input block, into a set of $M \cdot N$ basis images, dependent of the used transformation kernel. As expressed in equations \ref{eq:fwf1f2} and \ref{eq:ini1i2}, this analogy can be made on a 1D space \cite[ch. 4]{shiImageVideoCompression2008}.
+Therefore, the forward and inverse transformation process can be seen as the deconstruction of an input block, into a set of $M \cdot N$ basis images, dependent of the used transformation kernel. As expressed in equations \ref{eq:fwf1f2} and \ref{eq:ini1i2}, this analogy can be made on a 1D space \nocite{shiImageVideoCompression2008}.
 
 \todo[inline,color=red!40]{JPEG example?}
 
 Given a general comprehension of the theoretical principles behind the \emph{Transform} block, now the most common transformation kernels are introduced, with focus on the AV1 video codec.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{red}{Used Transformation Kernels}}
+\section{Transformation Kernels}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Discrete Fourier Transform (DFT)}
+
+Although it isn't implemented in video coding, it's widely used in digital signal processing, and many of the used transformation kernels are approximations of this function.
+
+It has it's roots on the \emph{Fourier Transform}, whose forward and inverse transformations are expressed in equations \ref{eq:fourf} and \ref{eq:fouri}, respectively.
+
+\begin{equation} \label{eq:fourf}
+    T(u,v) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}g(x,y)e^{-j2\pi(ux+vy)} dx \, dy
+\end{equation}
+
+\begin{equation} \label{eq:fouri}
+    g(x,y) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}T(u,v)e^{j2\pi(ux+vy)} du \, dv
+\end{equation}
+
+Once we consider a finite number of points, the previous equations become
+
+\begin{equation} \label{eq:dftf}
+    T(u,v) = \frac{1}{MN}\sum_{x=0}^{M-1}\sum_{y=0}^{N-1}g(x,y)e^{-j2\pi \left(\frac{ux}{M}+\frac{vy}{N}\right)}
+\end{equation}
+
+\begin{equation} \label{eq:dfti}
+    g(x,y) = \sum_{u=0}^{M-1}\sum_{v=0}^{N-1}T(u,v)e^{j2\pi \left(\frac{ux}{M}+\frac{vy}{N}\right)}
+\end{equation}
+which corresponds to replacing the kernels in equations \ref{eq:Tmatsum} and \ref{eq:Gmatsum} with
+
+\begin{gather}
+    f(x,y,u,v) = \frac{1}{MN} e^{-j2\pi \left(\frac{ux}{M}+\frac{vy}{N}\right)} \\
+    i(x,y,u,v) = e^{j2\pi \left(\frac{ux}{M}+\frac{vy}{N}\right)}
+\end{gather}
+
+The position of the multiplication factor, $\frac{1}{MN}$, is irrelevant, and in some works is divided into two terms in the forward and inverse kernels, $\frac{1}{M}$ and $\frac{1}{N}$, or even $\frac{1}{\sqrt{MN}}$. \nocite{gonzalezDigitalImageProcessing2018}
+
+Because of the use of complex numbers, this operation tends require a high computational effort, whence its disuse in video coding.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Discrete Walsh-Hadamard Transform (WHT)}
+
+This transformation replaces the sum of sines and cosines of the DFT, alternating of positive and negative $1$'s, depending on the binary representation of the inputs.
+
+Considering the inputs of the transform to be represented with $m$ bits, where $m-1$ is the most significant bit ($b_{m-1}$), the forward and inverse kernels are represented as
+
+\begin{equation}
+    f(x,y,u,v) = i(x,y,u,v) = \frac{1}{\sqrt{MN}}(-1)^{\sum_{i=0}^{m-1}\lfloor b_i(x)p_i(u)+b_i(y)p_i(v)\rfloor}
+\end{equation}
+where
+
+\begin{align*}
+    &p_0(u)=b_{m-1}(u) \\
+    &p_1(u)=b_{m-1}(u) +b_{m-2}(u) \\
+    \,&\vdots \addtocounter{equation}{1}\tag{\theequation} \\
+    &p_{m-1}(u)=b_1(u)+b_0(u) 
+\end{align*}
 
 \printbibliography[heading=subbibliography]
 \addcontentsline{toc}{section}{References}
