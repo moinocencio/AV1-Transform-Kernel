@@ -40,7 +40,7 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usetikzlibrary{fadings}
-
+\usepackage{caption,subcaption}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % Tikz library and set
@@ -85,10 +85,10 @@
 \newcommand{\lgrayvline}{\raisebox{-0.5ex}{\tikz\filldraw[lightgray,x=2pt,y=2pt] (0,0) -- ++(0.5,0) -- ++(0,1em) -- ++(-0.5,0) -- cycle;}}
 
 \titleformat{\subsubsection}[hang]
-{\normalsize\itshape}
+{\normalsize\bfseries}
 {\thesubsubsection\hspace{10pt}\lgrayvline\hspace{10pt}}
 {0pt}
-{\normalsize\itshape}
+{\normalsize\bfseries}
 
 \newcommand{\textsep}{\noindent\makebox[\linewidth]{\resizebox{0.3333\linewidth}{1pt}{$\bullet$}}\bigskip}
 
@@ -99,7 +99,7 @@
 
 %%%%%%%%%%%%
 % TOS
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{3}
 % optional (comment to used default)
 %   horizontal line to separate floats (figures and tables) from text
