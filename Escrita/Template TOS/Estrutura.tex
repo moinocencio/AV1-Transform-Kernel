@@ -17,7 +17,7 @@
 \usepackage{amssymb}
 \usepackage{xspace}% used by \sigla
 \usepackage{lipsum}
-\usepackage[backend=biber, refsection=chapter, sorting=none]{biblatex}
+\usepackage[backend=biber, refsection=chapter, sorting=none, url=false, doi=false]{biblatex}
 \addbibresource{newBib.bib}
 \usepackage{csquotes}
 \usepackage[acronym,nonumberlist]{glossaries}
@@ -70,7 +70,7 @@
 
 \titleformat{\section}[hang]
 {\Large\bfseries}
-{\thesection\hspace{10pt}\dgrayvline\hspace{10pt}}
+{\thesection\hspace{25pt}\dgrayvline\hspace{10pt}}
 {0pt}
 {\Large\bfseries}
 
@@ -78,7 +78,7 @@
 
 \titleformat{\subsection}[hang]
 {\large\bfseries}
-{\thesubsection\hspace{10pt}\grayvline\hspace{10pt}}
+{\thesubsection\hspace{18pt}\grayvline\hspace{10pt}}
 {0pt}
 {\large\bfseries}
 
@@ -103,9 +103,9 @@
 \setcounter{secnumdepth}{3}
 % optional (comment to used default)
 %   horizontal line to separate floats (figures and tables) from text
-\def\topfigrule{\kern 7.8pt \hrule width\textwidth\kern -8.2pt\relax}
-\def\dblfigrule{\kern 7.8pt \hrule width\textwidth\kern -8.2pt\relax}
-\def\botfigrule{\kern -7.8pt \hrule width\textwidth\kern 8.2pt\relax}
+%\def\topfigrule{\kern 7.8pt \hrule width\textwidth\kern -8.2pt\relax}
+%\def\dblfigrule{\kern 7.8pt \hrule width\textwidth\kern -8.2pt\relax}
+%\def\botfigrule{\kern -7.8pt \hrule width\textwidth\kern 8.2pt\relax}
 
 % custom macros (could also be defined using \newcommand)
 \def\I{\mathtt{i}}         % one possible way to represent $\sqrt{-1}$

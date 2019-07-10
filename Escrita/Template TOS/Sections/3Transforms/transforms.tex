@@ -201,9 +201,9 @@ It is frequently compared to the \emph{DFT}, due to the similarity of their oper
 
 The main reason behind the heavy adoption of the \emph{DCT} is its great energy compaction on the lower frequencies, where most of the energy in a picture is packed. If the the output of the first step of table \ref{tab:DFTDCT} is observed, this aspect is more easily understood.
 
-Due to the back-to-head repetition seen in figure \ref{subfig:dft2n}, there is a disruption every $N$ points, which gives origin to high frequency components in the \emph{Fourier} transform. Therefore, the more continuous behavior obtained with the back-to-back repetition of the \emph{DCT} gives origin to more significant low frequency coefficients. However, there are many ways of creating a periodic and symmetric sequence from a finite number of points. This factor has led to the implementation of different versions of the \emph{DCT}, which differ in minor details between themselves. These differences are consequence of the way the symmetry is obtained, which can be observed in figure \ref{subfig:dct2n}. The represented implementations are referred to as \emph{DCT-1} to \emph{DCT-4}, but other possibilities exist.
+Due to the back-to-head repetition seen in figure \ref{subfig:dft2n}, there is a disruption every $N$ points, which gives origin to high frequency components in the \emph{Fourier} transform. Therefore, the more continuous behavior obtained with the back-to-back repetition of the \emph{DCT} gives origin to more significant low frequency coefficients. However, there are many ways of creating a periodic and symmetric sequence from a finite number of points. This factor has led to the implementation of different versions of the \emph{DCT}, which differ in minor details between themselves. These differences are consequence of the way the symmetry is obtained, which can be observed in figure \ref{subfig:dct2n}. The represented implementations are referred to as \emph{DCT-I} to \emph{DCT-IV}, but other possibilities exist. Their definition depends on the overlapping of points when repeating each sequence.
 
-\begin{figure}[h]
+\begin{figure}[t!]
     \centering 
         \begin{subfigure}[c]{\textwidth}
             \centering
@@ -222,9 +222,76 @@ Due to the back-to-head repetition seen in figure \ref{subfig:dft2n}, there is a
 \end{figure}
 \todo[inline]{Change image to TIKZ}
 
-Of the different implementations, \emph{DCT-1} and \emph{DCT-2} are the most commonly used, being the \textcolor{red}{focus of this work}. 
+%Of the different implementations, \emph{DCT-1} and \emph{DCT-2} are the most commonly used, being the \textcolor{red}{focus of this work}. 
 
-\subsubsection{}
+Since the \emph{DCT} in \emph{AV1} is implemented in one dimension, the description of the following kernels is also made in 1D. Therefore, the dimension of the transform, $L$, is referring either to the blocks' width or height, depending if the operation is made to the rows or columns, respectively ($M$ or $N$, previously).
 
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{DCT-I}
+
+The sequence created with first version of the DCT has overlapping points at $n = k(L-1) ,\ k = 0,1,2,...$, making the overall period of the final sequence $2L-2$.
+
+\begin{equation}
+    f(x,u) = \frac{2}{L-1}\alpha(x)\cos\left(\frac{\pi xu}{L-1}\right)
+\end{equation}
+where
+
+\begin{equation}
+    \alpha(x)= \begin{cases}
+                    \frac{1}{2}, & x=0 \lor x = N-1 \\
+                    1, & 1 \leq x \leq N-2
+                \end{cases}
+\end{equation}
+
+The inverse transform becomes
+\begin{equation}
+    i(x,u) = \alpha(u)\cos\left(\frac{xu\pi}{L-1}\right)
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{DCT-II}
+
+Usually referred to as "the \emph{DCT}", it is by far the most implemented version, being the only one mentioned in many of the studied works.
+
+As seen in figure \ref{subfig:dct2n}, this version has no overlap on the created sequence, making the period $2L$, and the points of symmetry $kL - \frac{1}{2}$.
+
+\begin{gather}
+    f(x,u) = i(x,u) = \beta(u)\cos\left(\frac{(2x+1)u\pi }{2L}\right) \\
+    \beta(u)= \begin{cases}
+                    \sqrt{\frac{1}{L}}, & u=0 \\
+                    \sqrt{\frac{2}{L}}, & 1 \leq u \leq N-1
+                \end{cases}
+\end{gather}
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{DCT-III}
+
+Named the \emph{inverse} of DCT-II, due to the switch of the transform and pixel coordinates.
+
+\begin{gather}
+    f(x,u) = i(x,u) = \beta(u)\cos\left(\frac{(2u+1)x\pi }{2L}\right) \\
+    \beta(u)= \begin{cases}
+                    \sqrt{\frac{1}{L}}, & u=0 \\
+                    \sqrt{\frac{2}{L}}, & 1 \leq u \leq N-1
+                \end{cases}
+\end{gather}
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{DCT-IV}
+
+\nocite{DiscreteCosineTransform}
+
+\begin{equation}
+    f(x,u) = i(x,u) = \sqrt{\frac{2}{L}}\cos\left(\frac{(2u+1)(2x+1)\pi }{4L}\right)
+\end{equation}
+
+Is the basis of the \emph{Modified Discrete Cosine Function (MDCT)}, where the input blocks overlap.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Discrete Sine Transform (DST)}
+
+
+
+\clearpage
 \printbibliography[heading=subbibliography]
 \addcontentsline{toc}{section}{References}
