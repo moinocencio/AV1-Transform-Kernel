@@ -826,7 +826,7 @@ The AV1 specification, reference code and format bindings for use},
   file = {/home/moinocencio/Downloads/Discrete-Time Signal Processing
 Alan V. Oppenheim Ronald W. Schafer
 Third Edition
-;/home/moinocencio/Zotero/storage/UKEX44UA/Discrete-Time Signal Processing Alan V. Oppenheim Ronald W. Schafer Third Edition;/home/moinocencio/Zotero/storage/XWS8HEH4/[Prentice-Hall Signal Processing Series] Alan V. Oppenheim, Ronald W. Schafer, John R. Buck - Discrete-Time Signal Processing (1999, Prentice Hall).djvu},
+;/home/moinocencio/Zotero/storage/XWS8HEH4/[Prentice-Hall Signal Processing Series] Alan V. Oppenheim, Ronald W. Schafer, John R. Buck - Discrete-Time Signal Processing (1999, Prentice Hall).djvu},
   annote = {Includes bibliographical references and index. - Previous ed.: 1989}
 }
 
@@ -846,8 +846,79 @@ Third Edition
 
 @misc{DiscreteCosineTransform,
   title = {Discrete Cosine Transform - {{MATLAB}} Dct},
-  howpublished = {https://www.mathworks.com/help/signal/ref/dct.html},
   file = {/home/moinocencio/Zotero/storage/J75649GT/dct.html}
+}
+
+@article{jainSinusoidalFamilyUnitary1979,
+  title = {A {{Sinusoidal Family}} of {{Unitary Transforms}}},
+  volume = {PAMI-1},
+  issn = {0162-8828},
+  abstract = {A new family of unitary transforms is introduced. It is shown that the well-known discrete Fourier, cosine, sine, and the Karhunen-Loeve (KL) (for first-order stationary Markov processes) transforms are members of this family. All the member transforms of this family are sinusoidal sequences that are asymptotically equivalent. For finite-length data, these transforms provide different approximations to the KL transform of the said data. From the theory of these transforms some well-known facts about orthogonal transforms are easily explained and some widely misunderstood concepts are brought to light. For example, the near-optimal behavior of the even discrete cosine transform to the KL transform of first-order Markov processes is explained and, at the same time, it is shown that this transform is not always such a good (or near-optimal) approximation to the above-mentioned KL transform. It is also shown that each member of the sinusoidal family is the KL transform of a unique, first-order, non-stationary (in general), Markov process. Asymptotic equivalence and other interesting properties of these transforms can be studied by analyzing the underlying Markov processes.},
+  number = {4},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  doi = {10.1109/TPAMI.1979.4766944},
+  author = {Jain, A. K.},
+  month = oct,
+  year = {1979},
+  keywords = {Discrete cosine transforms,Discrete transforms,Discrete Fourier transforms,Fourier transforms,Fast Fourier transforms,Random processes,Karhunen-Loeve transforms,Covariance matrix,Fast transforms,image transforms,Karhunen-Loeve transform,Markov processes,Oceans,orthogonal transforms,unitary matrices},
+  pages = {356-365},
+  file = {/home/moinocencio/Zotero/storage/3LH6TMTJ/Jain - 1979 - A Sinusoidal Family of Unitary Transforms.pdf;/home/moinocencio/Zotero/storage/6WNMQ978/4766944.html}
+}
+
+@inproceedings{hanButterflyStructuredDesign2013,
+  address = {{San Jose, CA, USA}},
+  title = {A Butterfly Structured Design of the Hybrid Transform Coding Scheme},
+  isbn = {978-1-4799-0294-1 978-1-4799-0292-7},
+  abstract = {The hybrid transform coding scheme that alternates amongst the asymmetric discrete sine transform (ADST) and the discrete cosine transform (DCT) depending on the boundary prediction conditions, is an efficient tool for video and image compression. It optimally exploits the statistical characteristics of prediction residual, thereby achieving significant coding performance gains over the conventional DCT-based approach. A practical concern lies in the intrinsic conflict between transform kernels of ADST and DCT, which prevents a butterfly structured implementation for parallel computing. Hence the hybrid transform coding scheme has to rely on matrix multiplication, which presents a speed-up barrier due to under-utilization of the hardware, especially for larger block sizes. In this work, we devise a novel ADSTlike transform whose kernel is consistent with that of DCT, thereby enabling butterfly structured computation flow, while largely retaining the performance advantages of hybrid transform coding scheme in terms of compression efficiency. A prototype implementation of the proposed butterfly structured hybrid transform coding scheme is available in the VP9 codec repository.},
+  language = {en},
+  booktitle = {2013 {{Picture Coding Symposium}} ({{PCS}})},
+  publisher = {{IEEE}},
+  doi = {10.1109/PCS.2013.6737672},
+  author = {Han, Jingning and Xu, Yaowu and Mukherjee, Debargha},
+  month = dec,
+  year = {2013},
+  pages = {17-20},
+  file = {/home/moinocencio/Zotero/storage/AFAB4356/Han et al. - 2013 - A butterfly structured design of the hybrid transf.pdf}
+}
+
+@article{jingninghanJointlyOptimizedSpatial2012,
+  title = {Jointly {{Optimized Spatial Prediction}} and {{Block Transform}} for {{Video}} and {{Image Coding}}},
+  volume = {21},
+  issn = {1057-7149, 1941-0042},
+  number = {4},
+  journal = {IEEE Trans. on Image Process.},
+  doi = {10.1109/TIP.2011.2169976},
+  author = {{Jingning Han} and Saxena, A. and Melkote, V. and Rose, K.},
+  month = apr,
+  year = {2012},
+  pages = {1874-1884}
+}
+
+@article{vHybridApproachesImage2011,
+  title = {Hybrid {{Approaches}} to {{Image Coding}}: {{A Review}}},
+  volume = {2},
+  issn = {2156-5570},
+  shorttitle = {Hybrid {{Approaches}} to {{Image Coding}}},
+  abstract = {Now a days, the digital world is most focused on storage space and speed. With the growing demand for better bandwidth utilization, efficient image data compression techniques have emerged as an important factor for image data transmission and storage. To date, different approaches to image compression have been developed like the classical predictive coding, popular transform coding and vector quantization. Several second generation coding schemes or the segmentation based schemes are also gaining popularity. Practically efficient compression systems based on hybrid coding which combines the advantages of different traditional methods of image coding have also being developed over the years. In this paper, different hybrid approaches to image compression are discussed. Hybrid coding of images, in this context, deals with combining two or more traditional approaches to enhance the individual methods and achieve better quality reconstructed images with higher compression ratio. Literature on hybrid techniques of image coding over the past years is also reviewed. An attempt is made to highlight the neuro-wavelet approach for enhancing coding efficiency.},
+  language = {en},
+  number = {7},
+  journal = {IJACSA},
+  doi = {10.14569/IJACSA.2011.020716},
+  author = {V, Rehna and Kumar., Jeya},
+  year = {2011},
+  file = {/home/moinocencio/Zotero/storage/RWFMF8EN/V and Kumar. - 2011 - Hybrid Approaches to Image Coding A Review.pdf}
+}
+
+@book{bingNextgenerationVideoCoding2015,
+  address = {{Hoboken}},
+  title = {Next-Generation Video Coding and Streaming},
+  isbn = {978-1-119-13332-2 978-1-119-13333-9},
+  lccn = {TA1638},
+  abstract = {"This book describes next-generation video coding and streaming technologies with a comparative assessment of the strengths and weaknesses. Specific emphasis is placed on the H.265/HEVC video coding standard and adaptive bit rate video streaming"--},
+  publisher = {{Wiley}},
+  author = {Bing, Benny},
+  year = {2015},
+  keywords = {Video compression,TECHNOLOGY \& ENGINEERING / Telecommunications}
 }
 
 

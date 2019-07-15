@@ -4,9 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{{Introduction}}
 
-\textcolor{red}{As mentioned previously,} the basic principle behind the compression of video, is the reduction of inter-pixel/inter-symbol correlation. The various integral blocks of a video compression system try to accomplish this objective through different strategies. The \emph{Intra-frame} and \emph{Inter-frame Prediction} exploit spatial and temporal correlation, respectively. Through the subtraction of the input by the output of one of these blocks, and the attainment of the \emph{residue}, the next compression stage is made in the \emph{Transform} block
-\todo{as seen in ...}
-,which is the focus of this work.
+\textcolor{red}{As mentioned previously,} the basic principle behind the compression of video, is the reduction of inter-pixel/inter-symbol correlation. The various integral blocks of a video compression system try to accomplish this objective through different strategies. The \emph{Intra-frame} and \emph{Inter-frame Prediction} exploit spatial and temporal correlation, respectively. Through the subtraction of the input by the output of one of these blocks, and the attainment of the \emph{residue}, the next compression stage is made in the \emph{Transform} block, which is the focus of this work.
 
 \todo[inline,color=red!40]{Verify accordance with previous chapter}
 
@@ -98,7 +96,8 @@ This characteristic is particularly useful because it makes the forward and inve
 \end{equation}
 where $F$ and $I$ are the forward and inverse transform matrices. This aspect is only possible for square matrix, i.e., input blocks with the same height and width.
 
-\textcolor{red}{This concept isn't exploited in AV1, since the use of different 1D transformation kernels, and rectangular block sizes ($M \neq N$) make the 2D transform asymmetric, and therefore, not executable as matrix multiplication.}
+This concept isn't exploited in AV1, since the use of different 1D transformation kernels, and rectangular block sizes ($M \neq N$) make the 2D transform asymmetric, and therefore, not executable as matrix multiplication. Consequently, the block transformation is made as 2 separate 1D operations, as shown previously.
+
 
 \textsep
 
@@ -120,12 +119,15 @@ where
 
 Therefore, the forward and inverse transformation process can be seen as the deconstruction of an input block, into a set of $M \cdot N$ basis images, dependent of the used transformation kernel. As expressed in equations \ref{eq:fwf1f2} and \ref{eq:ini1i2}, this analogy can be made on a 1D space \nocite{shiImageVideoCompression2008}.
 
-\todo[inline,color=red!40]{JPEG example?}
+%\todo[inline,color=red!40]{JPEG example?}
 
 Given a general comprehension of the theoretical principles behind the \emph{Transform} block, now the most common transformation kernels are introduced, with focus on the AV1 video codec.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Transformation Kernels}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discrete Fourier Transform (DFT)}
 
@@ -201,26 +203,43 @@ It is frequently compared to the \emph{DFT}, due to the similarity of their oper
 
 The main reason behind the heavy adoption of the \emph{DCT} is its great energy compaction on the lower frequencies, where most of the energy in a picture is packed. If the the output of the first step of table \ref{tab:DFTDCT} is observed, this aspect is more easily understood.
 
-Due to the back-to-head repetition seen in figure \ref{subfig:dft2n}, there is a disruption every $N$ points, which gives origin to high frequency components in the \emph{Fourier} transform. Therefore, the more continuous behavior obtained with the back-to-back repetition of the \emph{DCT} gives origin to more significant low frequency coefficients. However, there are many ways of creating a periodic and symmetric sequence from a finite number of points. This factor has led to the implementation of different versions of the \emph{DCT}, which differ in minor details between themselves. These differences are consequence of the way the symmetry is obtained, which can be observed in figure \ref{subfig:dct2n}. The represented implementations are referred to as \emph{DCT-I} to \emph{DCT-IV}, but other possibilities exist. Their definition depends on the overlapping of points when repeating each sequence.
+Due to the back-to-head repetition seen in figure \ref{subfig:dft}, there is a disruption every $N$ points, which gives origin to high frequency components in the \emph{Fourier} transform. Therefore, the more continuous behavior obtained with the back-to-back repetition of the \emph{DCT} gives origin to more significant low frequency coefficients. However, there are many ways of creating a periodic and symmetric sequence from a finite number of points. This factor has led to the implementation of different versions of the \emph{DCT}, which differ in minor details between themselves. These differences are consequence of the way the symmetry is obtained, which can be observed in figures \ref{subfig:dct1} to \ref{subfig:dct4}. The represented implementations are referred to as \emph{DCT-I} to \emph{DCT-IV}, but other possibilities exist. Their definition depends on the overlapping of points when repeating each sequence.
 
 \begin{figure}[t!]
     \centering 
         \begin{subfigure}[c]{\textwidth}
             \centering
-            \includegraphics[width=0.8\textwidth]{Sections/3Transforms/Images/DFT2N.png}
+            \input{Sections/3Transforms/Images/DFTSymmetry.tex}
             \caption{\emph{DFT}}
-            \label{subfig:dft2n}
+            \label{subfig:dft}
         \end{subfigure}
-        \begin{subfigure}[c]{\textwidth}
+        \begin{subfigure}[c]{0.45\textwidth}
             \centering
-            \includegraphics[width=0.8\textwidth]{Sections/3Transforms/Images/DCTs2N.png}
-            \caption{\emph{DCT}}
-            \label{subfig:dct2n}
+            \input{Sections/3Transforms/Images/DCT1Symmetry.tex}
+            \caption{\emph{DCT-I}}
+            \label{subfig:dct1}
         \end{subfigure}
-    \caption[Sequences generated in the first step of table \ref{tab:DFTDCT}]{Sequences generated in the first step of table \ref{tab:DFTDCT} \cite{shiImageVideoCompression2008}}
+        \begin{subfigure}[c]{0.45\textwidth}
+            \centering
+            \input{Sections/3Transforms/Images/DCT2Symmetry.tex}
+            \caption{\emph{DCT-II}}
+            \label{subfig:dct2}
+        \end{subfigure}
+        \begin{subfigure}[c]{0.45\textwidth}
+            \centering
+            \input{Sections/3Transforms/Images/DCT3Symmetry.tex}
+            \caption{\emph{DCT-III}}
+            \label{subfig:dct3}
+        \end{subfigure}
+        \begin{subfigure}[c]{0.45\textwidth}
+            \centering
+            \input{Sections/3Transforms/Images/DCT4Symmetry.tex}
+            \caption{\emph{DCT-IV}}
+            \label{subfig:dct4}
+        \end{subfigure}
+        \caption{Sequences generated in the first step of table \ref{tab:DFTDCT}for the DFT and different DCTs. Filled dots correspond to the original sequence.}
     \label{fig:2NSeq}
 \end{figure}
-\todo[inline]{Change image to TIKZ}
 
 %Of the different implementations, \emph{DCT-1} and \emph{DCT-2} are the most commonly used, being the \textcolor{red}{focus of this work}. 
 
@@ -253,7 +272,7 @@ The inverse transform becomes
 
 Usually referred to as "the \emph{DCT}", it is by far the most implemented version, being the only one mentioned in many of the studied works.
 
-As seen in figure \ref{subfig:dct2n}, this version has no overlap on the created sequence, making the period $2L$, and the points of symmetry $kL - \frac{1}{2}$.
+As seen in figure \ref{subfig:dct2}, this version has no overlap on the created sequence, making the period $2L$, and the points of symmetry $kL - \frac{1}{2}$.
 
 \begin{gather}
     f(x,u) = i(x,u) = \beta(u)\cos\left(\frac{(2x+1)u\pi }{2L}\right) \\
@@ -290,6 +309,36 @@ Is the basis of the \emph{Modified Discrete Cosine Function (MDCT)}, where the i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discrete Sine Transform (DST)}
 
+\nocite{prattDigitalImageProcessing2001}
+
+Similarly to the DCT, there is also the possibility to represent a finite sequence as a sum of discrete \emph{sine} functions, giving origin to the \emph{DST}. Contrarily to the former presented transform, this variant uses sinusoidal functions to generate its basis images, which gives origin to \emph{odd symmetric} sequences.
+
+In the same way as its \emph{even} counterpart, there are various different ways off accomplishing such symmetry, which also gives origin to eight different variations of this Transform. However, due to its misuse over the DCT, only the \emph{DST-II} is presented.
+
+\begin{equation}
+    f(x,u) = i(x,u) = \sqrt{\frac{2}{L+1}}\sin\left(\frac{(j+1)(u+1)\pi}{L+1}\right)
+\end{equation}
+
+Equivalently to what happens with the DFT, the odd symmetry of this function gives origin to discontinuities, which are undesirable when coding video blocks, since they lead to less significant low frequency coefficients, and therefore higher quantization errors.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Asymmetric Discrete Sine Transform (ADST)}
+
+\nocite{hanButterflyStructuredDesign2013}
+\nocite{bingNextgenerationVideoCoding2015}
+
+The symmetric behavior of previous transforms lead to better performance on evenly spread residue blocks, i.e. when the pixel values post-subtraction have roughly the same value across the whole block.
+
+However, due to the directional spatial prediction, the residue on one boundary of the block may be different from the other boundaries, leading to worse energy compression.
+
+In order to combat this aspect, VP9 introduced a new transform called \emph{Asymmetric Discrete Sine Transform (ADST)}, which corresponds to an alternative implementation of the DST with the addition of frequency and phase shifts.
+
+This enhancement provides the developer with a high degree of liberty, since the basis images can be adapted with the variation of the shifts. On AV1, there is only one ADST implementation per block size. However this transformation can be done on two directions, i. e., the input vector can be transformed front-to-back and vice-versa.
+
+\todo[inline,color=red!40]{AV1 ADST formula}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Integer Transformations}
 
 
 \clearpage

@@ -1,0 +1,28 @@
+\begin{tikzpicture}[scale=0.45]
+    \draw[thick,->] (-1,0) -- (13,0) node[anchor=north west] {$n$};
+    \foreach \x in {1,...,3}
+        \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$\x$};
+    \foreach \x in {4,...,11}
+        \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=south] {$\x$};
+    \draw (12 cm,1pt) -- (12 cm,-1pt) node[anchor=north] {12};
+    \draw[thick,->] (0,-1) -- (0,5) node[anchor=south east] {};
+    
+    \foreach \x in {0,...,3} {
+        \filldraw[fill=black, draw=black] (\x cm,4-\x) circle (0.1cm);
+        \draw (\x,4-\x) -- (\x,0);
+    }
+
+    \foreach \x in {4,...,7} {
+        \draw[draw=black] (\x cm,-\x+3) circle (0.1cm);
+        \draw (\x,-\x+3) -- (\x,0);
+    }
+
+    \foreach \x in {8,...,11} {
+        \draw[draw=black] (\x cm,-12+\x) circle (0.1cm);
+        \draw (\x, -12+\x) -- (\x,0);
+    }
+
+    \draw[draw=black] (12 cm,1) circle (0.1cm);
+    \draw (12, 1) -- (12,0);
+
+\end{tikzpicture}
