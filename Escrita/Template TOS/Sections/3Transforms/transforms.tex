@@ -339,7 +339,17 @@ This enhancement provides the developer with a high degree of liberty, since the
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Integer Transformations}
+\nocite{soo-changpeiIntegerTransformsAnalogous2000}
 
+In battery driven applications, computing power plays an important role. Consequently, any approach that leads to lower computational costs tends to get incorporated into a video codec.
+
+When considering the transformation stage, a widely used approach is the use of integer transforms. Doing so maintains the features of floating point transforms, but reduces the used operations to arithmetic additions and multiplications (or shifts).
+
+From the previously presented transforms, there have been several methods of developing integer counterparts. In \emph{libaom}, this was achieved by basic scaling and approximating the basis images to a certain scale. However, other fast implementations have been developed, most of them being based in either \emph{Fast Fourier Transform} algorithms or in the \emph{Walsh-Hadamard Transform} \cite{wolterParallelArchitecturesDiscrete1992,yonghongzengIntegerDCTsFast2001}.
+
+Most of the faster implementations tend to present higher distortion rates, due to the implemented approximations. This aspect \textcolor{red}{can be observerd in...}
+
+\todo[inline,color=red!40]{Reconstruction of image with regular vs integer DCT and respective error images}
 
 \clearpage
 \printbibliography[heading=subbibliography]
