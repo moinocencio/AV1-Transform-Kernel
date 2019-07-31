@@ -2,15 +2,80 @@
 \chapter{Video Compression Systems}\label{chap:av1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Basic Functioning}
+\section{Basic Principles}
 
+\emph{Video Compression Systems} have been in development for approximately forty years, with the first video codec, \emph{H.120}, being released in 1984. It was composed of basic operations, which didn't correlate to good compression performances. This has lead to a quick downfall of its usage, being aggravated by the release of the \emph{H.261} standard by 1984.
+
+However, the building blocks on which later standards were based are the same as in the first generations, i.e., the strategies implemented on newer standards exploit the same \emph{redundancies} as previous, less efficient, codecs. 
+
+This way, to have a better understanding of the functioning behind video codecs, the mentioned redundancies, and respective origins, are presented. Most of such have origin on the way humans perceive vision, being this the first topic of this chapter.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Human Visual System}
 
-\todo[inline,color=red!40]{*Essency of video compression relies on making changes the image without serious perception by the user}
-\todo[inline,color=red!40]{*Eye Functioning}
-\todo[inline,color=red!40]{*"Known Issues" (lower perception to chroma, high frequencies, etc)}
-\todo[inline,color=red!40]{*Opportunity to explore various types of redundancies to the image}
+%\todo[inline,color=green!40]{*Essency of video compression relies on making changes the image without serious perception by the user}
+%\todo[inline,color=green!40]{*Eye Functioning}
+%\todo[inline,color=red!40]{*"Known Issues" (lower perception to chroma, high frequencies, etc)}
+%\todo[inline,color=red!40]{*Opportunity to explore various types of redundancies to the image}
 
+\nocite{gonzalezDigitalImageProcessing2018}
+
+Most of the compressed/decompressed video nowadays is directed to content visualization by consumers, with the exception of some network-driven image processing applications, \textcolor{red}{e.g. \dots}. 
+\todo[inline,color=red!40]{example of across network video processing}
+Therefore, the compression of video sequences has the intent of making changes to the original data, without serious impact to the users' perception. This process is mentioned as the removal of the \emph{Psychovisual redundancy} \cite{shiImageVideoCompression2008}. Therefore, a basic understanding of the visual system can clarify many of the design choices made in video compression applications, and why their use doesn't present much impact on the quality of the image, while greatly reducing its size.
+
+The image perception starts in the human eye, represented in figure \ref{fig:eye}. Its different constituents accomplish different tasks, from focusing, to aperture control. Although their importance to the overall functioning of the eye, the part that matters most to the focus of this work is the innermost membrane, the retina.
+
+\begin{figure}[h]
+    \centering
+    \missingfigure{Eye Scheme}
+    \caption{Representation of an human eye}
+    \label{fig:eye}
+\end{figure}
+
+Once the desired image is properly focused by the lens, an inverse version of it is shined on the aforementioned membrane, which is covered by two types of light sensitive cells, the \emph{cones} and \emph{rods}, which transform the observable image into a series of pulses, that get subsequently processed.
+
+The cones are highly sensitive to color, being responsible for the \emph{photonic} or \emph{bright-light} vision. There are three different types of cones, corresponding to the wavelength they are susceptible to. These are the \emph{S}, \emph{M} and \emph{L} cones, being sensitive to, approximately, the blue, green and red light, respectively, making a somewhat similar capture to the RGB color system.
+
+On the other side, rods aren't stimulated by bright light, being more active on low illumination levels. This aspect makes them responsible for giving a rough overview of the field of view. This is called as \emph{scotopic} or \emph{dim-light} vision. These cells are spread more broadly across the retina, while to the cones, which is also observable in the number of cells (approximately 6 million cones, to 100 million rods).
+
+From this, it's already observable that the human visual system is more sensitive to differences on the luminosity, than to the color of an object \cite{mullenContrastSensitivityHuman1985}, which is a starting point for compressing video, as will be shown later in this chapter. However, many other opportunities come from the processing of the nerve signals, and the \emph{psychovisual} perception that follows.
+
+Although more sensitive to \emph{luminance}, there is a threshold to which the difference between two objects --- $\Delta I$ --- can't be discerned. This relation is mentioned as \emph{contrast sensitivity function}, which is roughly approximated with the \emph{Weber's Law}
+
+\begin{equation}
+    \frac{\Delta I}{I}\approx constant
+\end{equation}
+
+Analyzing this equation, it's possible to conclude that the darker an object is, the lower the difference in luminance needs to be to distinguish another object. Also, darker images tend to be more susceptible to compression artifacts.
+
+Besides the luminance values, the spatial and temporal frequencies also represent an important role in the perception of such errors. 
+
+The image \ref{fig:noise} gives an example of the dependency with spatial frequency. The first image \ref{subfig:noiseOri} represents the original image, which got added with white gaussian noise (\emph{WGN}) on figure \ref{subfig:noise}. As it is observable, these artifacts are less noticeable on the highly detailed areas than in the smooth ones.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[c]{\textwidth}
+        \centering
+        \missingfigure{Original Image}
+        \caption{Original Image}
+        \label{subfig:noiseOri}
+    \end{subfigure}
+    \begin{subfigure}[c]{\textwidth}
+        \centering
+        \missingfigure{Image with AWGN}
+        \caption{Image with added WGN}
+        \label{subfig:noise}
+    \end{subfigure}
+    \caption{Example of the effect of added noise on figure}
+    \label{fig:noise}
+\end{figure}
+
+Temporal frequency dependency, although more challenging to exemplify, is easily understandable. On a sequence of frames with fast camera or subject movements, the human eye doesn't have the ability to track details or other artifacts, while in slow moving scenes, it can easily identify errors.
+
+These are some of the "\emph{flaws}" of the human visual system, that get exploited during the compression of video. However, other \emph{redundancies}, inherent from the captured images themselves contribute to the reduction of the video size, as will be described in the following sections.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Redundancy Exploitation}
 
 \todo[inline,color=red!40]{*Types of redundancies (Temporal, Statistical and Coding)}
@@ -20,6 +85,7 @@
 \todo[inline,color=red!40]{*Transform and Quantization}
 \todo[inline,color=red!40]{*Entropy Coding}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Basic Video Compression/Decompression System}
 
 \todo[inline,color=red!40]{*Encoder Model}

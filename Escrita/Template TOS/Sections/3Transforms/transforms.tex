@@ -200,12 +200,13 @@ It is frequently compared to the \emph{DFT}, due to the similarity of their oper
     \caption{Similarity between the processes of the        \emph{DFT} and the \emph{DCT}}
     \label{tab:DFTDCT}
 \end{table}
+\todo[inline,color=red!40]{Beautify table}
 
 The main reason behind the heavy adoption of the \emph{DCT} is its great energy compaction on the lower frequencies, where most of the energy in a picture is packed. If the the output of the first step of table \ref{tab:DFTDCT} is observed, this aspect is more easily understood.
 
 Due to the back-to-head repetition seen in figure \ref{subfig:dft}, there is a disruption every $N$ points, which gives origin to high frequency components in the \emph{Fourier} transform. Therefore, the more continuous behavior obtained with the back-to-back repetition of the \emph{DCT} gives origin to more significant low frequency coefficients. However, there are many ways of creating a periodic and symmetric sequence from a finite number of points. This factor has led to the implementation of different versions of the \emph{DCT}, which differ in minor details between themselves. These differences are consequence of the way the symmetry is obtained, which can be observed in figures \ref{subfig:dct1} to \ref{subfig:dct4}. The represented implementations are referred to as \emph{DCT-I} to \emph{DCT-IV}, but other possibilities exist. Their definition depends on the overlapping of points when repeating each sequence.
 
-\begin{figure}[t!]
+\begin{figure}[h]
     \centering 
         \begin{subfigure}[c]{\textwidth}
             \centering
@@ -347,9 +348,16 @@ When considering the transformation stage, a widely used approach is the use of 
 
 From the previously presented transforms, there have been several methods of developing integer counterparts. In \emph{libaom}, this was achieved by basic scaling and approximating the basis images to a certain scale. However, other fast implementations have been developed, most of them being based in either \emph{Fast Fourier Transform} algorithms or in the \emph{Walsh-Hadamard Transform} \cite{wolterParallelArchitecturesDiscrete1992,yonghongzengIntegerDCTsFast2001}.
 
-Most of the faster implementations tend to present higher distortion rates, due to the implemented approximations. This aspect \textcolor{red}{can be observerd in...}
+Most of the faster implementations tend to present higher distortion rates, due to the implemented approximations. This aspect \textcolor{red}{can be observed in figure \ref{fig:lena}.}
 
 \todo[inline,color=red!40]{Reconstruction of image with regular vs integer DCT and respective error images}
+
+\begin{figure}[h]
+    \centering
+    \missingfigure{Lena with IntDCT and DCT reconstruction}
+    \caption{Effect of integer DCT}
+    \label{fig:lena}
+\end{figure}
 
 \clearpage
 \printbibliography[heading=subbibliography]
