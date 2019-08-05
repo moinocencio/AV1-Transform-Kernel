@@ -6,12 +6,14 @@
 
 \emph{Video Compression Systems} have been in development for approximately forty years, with the first video codec, \emph{H.120}, being released in 1984. It was composed of basic operations, which didn't correlate to good compression performances. This has lead to a quick downfall of its usage, being aggravated by the release of the \emph{H.261} standard by 1984.
 
-However, the building blocks on which later standards were based are the same as in the first generations, i.e., the strategies implemented on newer standards exploit the same \emph{redundancies} as previous, less efficient, codecs. 
+However, the building blocks on which later standards were based are the same as in the first generations, i.e., the strategies implemented on newer standards exploit the same \emph{redundancies} as previous, less efficient, codecs.
+
+By redundancies, it is meant disposable information to the playback of an image sequence. This concept is the key of video compression. Throughout the years, the enhancement of video codecs was based on the improving the algorithms which can reliably represent a video, while maintaining the least of the original information. In other words, the video sequence is analyzed for predictable/identifiable characteristics, e.g. the movement of a subject or the edge of an object, calculates strategies of predicting nearby pixel values through that information and disposes the unused information. This process is mentioned as \emph{redundancy removal}.
 
 This way, to have a better understanding of the functioning behind video codecs, the mentioned redundancies, and respective origins, are presented. Most of such have origin on the way humans perceive vision, being this the first topic of this chapter.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Human Visual System}
+\subsection{Human Visual System} \label{ssec:hvs}
 
 %\todo[inline,color=green!40]{*Essency of video compression relies on making changes the image without serious perception by the user}
 %\todo[inline,color=green!40]{*Eye Functioning}
@@ -20,9 +22,7 @@ This way, to have a better understanding of the functioning behind video codecs,
 
 \nocite{gonzalezDigitalImageProcessing2018}
 
-Most of the compressed/decompressed video nowadays is directed to content visualization by consumers, with the exception of some network-driven image processing applications, \textcolor{red}{e.g. \dots}. 
-\todo[inline,color=red!40]{example of across network video processing}
-Therefore, the compression of video sequences has the intent of making changes to the original data, without serious impact to the users' perception. This process is mentioned as the removal of the \emph{Psychovisual redundancy} \cite{shiImageVideoCompression2008}. Therefore, a basic understanding of the visual system can clarify many of the design choices made in video compression applications, and why their use doesn't present much impact on the quality of the image, while greatly reducing its size.
+Most of the compressed/decompressed video nowadays is directed to content visualization by consumers, with the exception of some network-driven image processing applications, such as automatic video surveillance. Therefore, the compression of video sequences has the intent of making changes to the original data, without serious impact to the users' perception. This process is mentioned as the removal of the \emph{Psychovisual redundancy} \cite{shiImageVideoCompression2008}. Therefore, a basic understanding of the visual system can clarify many of the design choices made in video compression applications, and why their use doesn't present much impact on the quality of the image, while greatly reducing its size.
 
 The image perception starts in the human eye, represented in figure \ref{fig:eye}. Its different constituents accomplish different tasks, from focusing, to aperture control. Although their importance to the overall functioning of the eye, the part that matters most to the focus of this work is the innermost membrane, the retina.
 
@@ -51,7 +51,7 @@ Analyzing this equation, it's possible to conclude that the darker an object is,
 
 Besides the luminance values, the spatial and temporal frequencies also represent an important role in the perception of such errors. 
 
-The image \ref{fig:noise} gives an example of the dependency with spatial frequency. The first image \ref{subfig:noiseOri} represents the original image, which got added with white gaussian noise (\emph{WGN}) on figure \ref{subfig:noise}. As it is observable, these artifacts are less noticeable on the highly detailed areas than in the smooth ones.
+The image \ref{fig:noise} gives an example of the dependency with spatial frequency. The first image \ref{subfig:noiseOri} represents the original image, which got added with \gls{wgn}, represented in figure \ref{subfig:noise}. As it is observable, these artifacts are less noticeable on the highly detailed areas than in the smooth ones.
 
 \begin{figure}[h]
     \centering
@@ -71,7 +71,7 @@ The image \ref{fig:noise} gives an example of the dependency with spatial freque
     \label{fig:noise}
 \end{figure}
 
-Temporal frequency dependency, although more challenging to exemplify, is easily understandable. On a sequence of frames with fast camera or subject movements, the human eye doesn't have the ability to track details or other artifacts, while in slow moving scenes, it can easily identify errors.
+Temporal frequency dependency, although more challenging to exemplify, is easily understandable. On a sequence of frames with fast camera, or subject movements, the human eye doesn't have the ability to track details or other artifacts, while in slow moving scenes, it can easily identify errors.
 
 These are some of the "\emph{flaws}" of the human visual system, that get exploited during the compression of video. However, other \emph{redundancies}, inherent from the captured images themselves contribute to the reduction of the video size, as will be described in the following sections.
 
@@ -84,6 +84,55 @@ These are some of the "\emph{flaws}" of the human visual system, that get exploi
 \todo[inline,color=red!40]{*Inter-prediction}
 \todo[inline,color=red!40]{*Transform and Quantization}
 \todo[inline,color=red!40]{*Entropy Coding}
+
+Even though there are countless observable subjects and sceneries, it's unfair to think of a frame as a random sequence of pixels. Objects tend to represent clusters of pixels with roughly the same values, moving objects follow predictable directions, etc. Such characteristics represent redundancies that can be removed.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Spatial Redundancy} \label{sssec:spatred}
+
+Spatial redundancy comes from the similarity between neighboring pixels, on one frame. This aspect is easily verified through the autocorrelation of an image, as will be shown in the following example.
+
+Taking image \ref{subfig:noiseOri} and calculating its autocorrelation with various horizontal shifts, gives origin to the graph in image \ref{fig:autocorr}.
+
+\begin{figure}[h]
+    \centering
+    \missingfigure{autocorrelation of image}
+    \caption{Autocorrelation of image \ref{subfig:noiseOri}}
+    \label{fig:autocorr}
+\end{figure}
+
+As it is observable, for shorter shifts, the normalized autocorrelation is very close to 1, since most of the de-correlation comes for the mismatching edges. Although this relation varies depending on the image, it's safe to assume that it is very similar for the majority of the cases.
+
+Such study gives a promising opportunity for compression, since it means that most pixels can be predicted from its neighbors. This aspect as lead to what now is known as \emph{differential} or \emph{predictive} coding.
+
+On a video compression system, the spatial redundancy is considered in the \emph{intra-prediction} block, which calculates pixels, or blocks of pixels, through its surrounds.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Temporal Redundancy}
+
+As expected, a series of consecutive frames, on the same subject, tend to be very similar between each other, especially if considered the $30$ or $60 fps$ desired nowadays. 
+
+Making a similar analysis to what was made in section \ref{sssec:spatred}, a series of frames of the \textcolor{red}{BLABLABLA sequence} was considered, and the cross correlation between the first and the following nine was calculated, giving origin to the graph in figure \ref{fig:crosscorr}.
+
+\begin{figure}[h]
+    \centering
+    \missingfigure{cross correlation of sequence of frames}
+    \caption{Cross-correlation between the first and tenth frames of \dots}
+    \label{fig:crosscorr}
+\end{figure}
+
+Similarly to what happened in the previous example, the cross correlation between consecutive frames is very high. Even though for faster moving scenes this relation might not be as pronounced, its application on video coding greatly contributes to the compression verified in the latest codecs. 
+
+The codec takes advantage of this redundancy in the \emph{inter-prediction} stage, which is composed by the \emph{Motion Estimation} (MC) and \emph{Motion Compensation} (ME) blocks. On this stage, blocks of pixels in nearby frames are analyzed for movement, predicting its position for following frames.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Psychovisual Redundancy}
+
+From the redundancies presented in section \ref{ssec:hvs}, video codecs implement compression measures in various stages.
+
+The first measure is the \emph{chroma subsampling}, which takes advantage of the lower perception to color, discarding some of the \emph{chroma} samples, depending on the subsampling chosen.
+
+Typically, a pixel value is represented in one luminance and two chrominance values, on the \emph{YCbCr} color space. The subsampling is defined in through the relation of luminance to chroma samples, being the most common the $4:4:4$, $4:2:2$ and $4:2:0$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Basic Video Compression/Decompression System}
