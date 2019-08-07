@@ -58,7 +58,7 @@ The image \ref{fig:noise} gives an example of the dependency with spatial freque
     \begin{subfigure}[c]{\textwidth}
         \centering
         \includegraphics[width=\figwidth]{Sections/3AV1/Diagrams/paisagemOri.jpg}
-        \caption{Original Image}
+        \caption{Original Image \cite{FreepikDownloadNow}}
         \label{subfig:noiseOri}
     \end{subfigure}
     \begin{subfigure}[c]{\textwidth}
@@ -78,12 +78,12 @@ These are some of the "\emph{flaws}" of the human visual system, that get exploi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Redundancy Exploitation}
 
-\todo[inline,color=red!40]{*Types of redundancies (Temporal, Statistical and Coding)}
-\todo[inline,color=red!40]{*Color subsampling}
-\todo[inline,color=red!40]{*Intra-prediction}
-\todo[inline,color=red!40]{*Inter-prediction}
-\todo[inline,color=red!40]{*Transform and Quantization}
-\todo[inline,color=red!40]{*Entropy Coding}
+%\todo[inline,color=red!40]{*Types of redundancies (Temporal, Statistical and Coding)}
+%\todo[inline,color=red!40]{*Color subsampling}
+%\todo[inline,color=red!40]{*Intra-prediction}
+%\todo[inline,color=red!40]{*Inter-prediction}
+%\todo[inline,color=red!40]{*Transform and Quantization}
+%\todo[inline,color=red!40]{*Entropy Coding}
 
 Even though there are countless observable subjects and sceneries, it's unfair to think of a frame as a random sequence of pixels. Objects tend to represent clusters of pixels with roughly the same values, moving objects follow predictable directions, etc. Such characteristics represent redundancies that can be removed.
 
@@ -96,8 +96,8 @@ Taking image \ref{subfig:noiseOri} and calculating its autocorrelation with vari
 
 \begin{figure}[h]
     \centering
-    \missingfigure{autocorrelation of image}
-    \caption{Autocorrelation of image \ref{subfig:noiseOri}}
+    \includegraphics[width=\textwidth]{Sections/3AV1/Diagrams/intracorr.eps}
+    \caption{Autocorrelation of image \ref{subfig:noiseOri}, with horizontal shifts}
     \label{fig:autocorr}
 \end{figure}
 
@@ -105,19 +105,19 @@ As it is observable, for shorter shifts, the normalized autocorrelation is very 
 
 Such study gives a promising opportunity for compression, since it means that most pixels can be predicted from its neighbors. This aspect as lead to what now is known as \emph{differential} or \emph{predictive} coding.
 
-On a video compression system, the spatial redundancy is considered in the \emph{intra-prediction} block, which calculates pixels, or blocks of pixels, through its surrounds.
+On a video compression system, the spatial redundancy is considered in the \emph{intra-prediction} block, which calculates pixels, or pixel blocks, through its surrounds.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Temporal Redundancy}
 
 As expected, a series of consecutive frames, on the same subject, tend to be very similar between each other, especially if considered the $30$ or $60 fps$ desired nowadays. 
 
-Making a similar analysis to what was made in section \ref{sssec:spatred}, a series of frames of the \textcolor{red}{BLABLABLA sequence} was considered, and the cross correlation between the first and the following nine was calculated, giving origin to the graph in figure \ref{fig:crosscorr}.
+Making a similar analysis to what was made in section \ref{sssec:spatred}, a series of frames of the \emph{Stefan} sequence \cite{YUVSequences} was considered, and the cross correlation between the first and the following nine was calculated, giving origin to the graph in figure \ref{fig:crosscorr}.
 
 \begin{figure}[h]
     \centering
-    \missingfigure{cross correlation of sequence of frames}
-    \caption{Cross-correlation between the first and tenth frames of \dots}
+    \includegraphics[width=\textwidth]{Sections/3AV1/Diagrams/intercorr.eps}
+    \caption{Cross-correlation between the first and following nice frames of the \emph{Stefan} sequence}
     \label{fig:crosscorr}
 \end{figure}
 
@@ -135,11 +135,29 @@ The first measure is the \emph{chroma subsampling}, which takes advantage of the
 Typically, a pixel value is represented in one luminance and two chrominance values, on the \emph{YCbCr} color space. The subsampling is defined in through the relation of luminance to chroma samples, being the most common the 4:4:4, 4:2:2 and 4:2:0 standards, represented in figure \ref{fig:subsample}. In the first one, no chroma samples are discarded, which means that for each 4 luminance (\emph{Y}) samples, there are 4 \emph{Cb} and 4 \emph{Cr} samples. Correspondingly, in the second standard, for each 4 Y samples, only 2 of each color components are maintained. The last example, although its misleading term, means that only 1 of each 4 chroma samples are kept.
 
 \begin{figure}[h]
-    \centering
-    \missingfigure{color subsamples}
-    \caption{Representation of chroma subsampling}
+    \centering 
+        \begin{subfigure}[c]{\textwidth}
+            \centering
+            \input{Sections/3AV1/Diagrams/sub444.tex}
+            \caption{4:4:4}
+            \label{subfig:444}
+        \end{subfigure}
+        \begin{subfigure}[c]{\textwidth}
+            \centering
+            \input{Sections/3AV1/Diagrams/sub422.tex}
+            \caption{4:2:2}
+            \label{subfig:dct1}
+        \end{subfigure}
+        \begin{subfigure}[c]{\textwidth}
+            \centering
+            \input{Sections/3AV1/Diagrams/sub420.tex}
+            \caption{4:2:0}
+            \label{subfig:dct2}
+        \end{subfigure}
+       \caption{Representation of chroma subsampling}
     \label{fig:subsample}
 \end{figure}
+
 
 From the reduced sensitivity to details (or areas with high spatial frequency), the compression is explored in the \emph{Transform} (T) and \emph{Quantization} (Q) blocks. In the first stage, blocks of pixels are evaluated in their frequency components. These are then evaluated in the second stage, where the least significant ones get discarded. In the decoder, the image is reconstructed with the maintained coefficients, without much impact to the image quality. This process is further explained throughout the work.
 

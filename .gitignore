@@ -240,3 +240,8 @@ TSWLatexianTemp*
 
 # generated if using elsarticle.cls
 *.spl
+
+##### MY STUFF
+# Ignore Raw video files
+*.yuv
+*.y4m

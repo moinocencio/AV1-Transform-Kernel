@@ -6,9 +6,9 @@ close all
 clc
 
 %% Parameters
-im_in_name = 'paisagemOri.jpg';
+im_in_name = 'passeioOri.jpg';
 noise = 0.01;
-im_out_name = 'paisagemNoise.jpg';
+im_out_name = 'passeioNoise.jpg';
 
 %% Original Image
 im_in = imread(im_in_name);
