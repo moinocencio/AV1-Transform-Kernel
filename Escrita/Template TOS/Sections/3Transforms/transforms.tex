@@ -8,7 +8,7 @@
 
 \todo[inline,color=red!40]{Verify accordance with previous chapter}
 
-The technique implemented by this process relies on the energy compaction in the frequency domain to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated on its main frequencies --- the \emph{transform coefficients} --- on a spatial and/or temporal domain, similarly to the process executed on an \gls{fft}. Once each block is quantized on these coefficients, the compression is made with the removal of the least significant ones, on the \emph{Quantization} stage. The intent of the \emph{transform} is to split the image into a set of predefined coefficients, that get transmitted instead of the pixel values.
+The technique implemented by this process relies on the energy compaction in the frequency domain to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated on its main frequencies --- the \emph{transform coefficients} --- on a spatial and/or temporal domain, similarly to the process executed on a \gls{fft}. Once each block is quantized on these coefficients, the compression is made with the removal of the least significant ones, on the \emph{Quantization} stage. The intent of the \emph{transform} is to split the image into a set of predefined coefficients, that get transmitted instead of the pixel values.
 
 The objective of this chapter is to give the reader a basic understanding of the theoretical basis behind said Transformations, as well as to introduce the most commonly used ones. 
 
@@ -191,16 +191,16 @@ It is frequently compared to the \emph{DFT}, due to the similarity of their oper
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{l|r|r|r|r} 
-        \textbf{Step} &      \multicolumn{2}{r|}{\textbf{\emph{DFT}}} &      \multicolumn{2}{r}{\textbf{\emph{DCT}}} \\ \hline
-        1 &         \multicolumn{2}{p{0.4\textwidth}|}{Repeat $g(n)$ every N points, giving origin to $\widetilde{g}_N(n)$} &         \multicolumn{2}{p{0.4\textwidth}}{Concatenate $g(n)$ with a flipped version of itself, creating a $2N$ sequence, $g_{2N}(n)$, and repeat it, giving origin to $\widetilde{g}_{2N}(n)$}\\ \hline
-        2 &         \multicolumn{2}{p{0.4\textwidth}|}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_N$} &         \multicolumn{2}{p{0.4\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_{2N}$}\\ \hline
-        3 &         \multicolumn{2}{p{0.4\textwidth}|}{Keep the first $N$ coefficients\, and set all others to $0$} &         \multicolumn{2}{p{0.4\textwidth}}{Keep the first $N$ coefficients, and set all others to $0$}\\ 
+    \begin{tabular}{@{}lllll@{}} \toprule
+        \textbf{Step} &      \multicolumn{2}{l}{\textbf{\emph{DFT}}} &      \multicolumn{2}{l}{\textbf{\emph{DCT}}} \\ \hline
+        1 &         \multicolumn{2}{p{0.4\textwidth}}{Repeat $g(n)$ every N points, giving origin to $\widetilde{g}_N(n)$} &         \multicolumn{2}{p{0.4\textwidth}}{Concatenate $g(n)$ with a flipped version of itself, creating a $2N$ sequence, $g_{2N}(n)$, and repeat it, giving origin to $\widetilde{g}_{2N}(n)$}\\ \hline
+        2 &         \multicolumn{2}{p{0.4\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_N$} &         \multicolumn{2}{p{0.4\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_{2N}$}\\ \hline
+        3 &         \multicolumn{2}{p{0.4\textwidth}}{Keep the first $N$ coefficients\, and set all others to $0$} &         \multicolumn{2}{p{0.4\textwidth}}{Keep the first $N$ coefficients, and set all others to $0$}\\ 
+        \bottomrule
     \end{tabular}
     \caption{Similarity between the processes of the        \emph{DFT} and the \emph{DCT}}
     \label{tab:DFTDCT}
 \end{table}
-\todo[inline,color=red!40]{Beautify table}
 
 The main reason behind the heavy adoption of the \emph{DCT} is its great energy compaction on the lower frequencies, where most of the energy in a picture is packed. If the the output of the first step of table \ref{tab:DFTDCT} is observed, this aspect is more easily understood.
 
@@ -344,11 +344,11 @@ This enhancement provides the developer with a high degree of liberty, since the
 
 In battery driven applications, computing power plays an important role. Consequently, any approach that leads to lower computational costs tends to get incorporated into a video codec.
 
-When considering the transformation stage, a widely used approach is the use of integer transforms. Doing so maintains the features of floating point transforms, but reduces the used operations to arithmetic additions and multiplications (or shifts).
+When considering the transformation stage, a widely used approach is the use of \emph{integer transforms}. However, these Doing so maintains the features of floating point transforms, but reduces the used operations to arithmetic additions and multiplications (or shifts).
 
-From the previously presented transforms, there have been several methods of developing integer counterparts. In \emph{libaom}, this was achieved by basic scaling and approximating the basis images to a certain scale. However, other fast implementations have been developed, most of them being based in either \emph{Fast Fourier Transform} algorithms or in the \emph{Walsh-Hadamard Transform} \cite{wolterParallelArchitecturesDiscrete1992,yonghongzengIntegerDCTsFast2001}.
+From the previously presented transforms, there have been several methods of developing integer counterparts. In \emph{libaom}, this was achieved with scaling and approximating the basis images to a certain scale, depending of the number of used bits. However, other fast implementations have been developed, most of them being based in either \emph{Fast Fourier Transform} algorithms or in the \emph{Walsh-Hadamard Transform} \cite{wolterParallelArchitecturesDiscrete1992,yonghongzengIntegerDCTsFast2001}.
 
-Most of the faster implementations tend to present higher distortion rates, due to the implemented approximations. This aspect \textcolor{red}{can be observed in figure \ref{fig:lena}.}
+Most of the faster implementations tend to present higher distortion rates, due to the implemented approximations. This aspect \textcolor{red}{can be observed in figure \ref{fig:lena}.} However, since most of the distortion comes from the \emph{Quantization} stage, these small errors tend to be ignored.
 
 \todo[inline,color=red!40]{Reconstruction of image with regular vs integer DCT and respective error images}
 
@@ -358,6 +358,8 @@ Most of the faster implementations tend to present higher distortion rates, due 
     \caption{Effect of integer DCT}
     \label{fig:lena}
 \end{figure}
+
+
 
 \clearpage
 \printbibliography[heading=subbibliography]
