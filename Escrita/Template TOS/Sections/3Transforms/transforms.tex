@@ -124,9 +124,7 @@ Therefore, the forward and inverse transformation process can be seen as the dec
 Given a general comprehension of the theoretical principles behind the \emph{Transform} block, now the most common transformation kernels are introduced, with focus on the AV1 video codec.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Transformation Kernels}
-
-
+\section{Transformation Kernels} \label{sec:kernels}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discrete Fourier Transform (DFT)}
@@ -336,7 +334,7 @@ In order to combat this aspect, VP9 introduced a new transform called \emph{Asym
 
 This enhancement provides the developer with a high degree of liberty, since the basis images can be adapted with the variation of the shifts. On AV1, there is only one ADST implementation per block size. However this transformation can be done on two directions, i. e., the input vector can be transformed front-to-back and vice-versa.
 
-\todo[inline,color=red!40]{AV1 ADST formula}
+%\todo[inline,color=red!40]{AV1 ADST formula}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Integer Transformations}
@@ -344,20 +342,22 @@ This enhancement provides the developer with a high degree of liberty, since the
 
 In battery driven applications, computing power plays an important role. Consequently, any approach that leads to lower computational costs tends to get incorporated into a video codec.
 
-When considering the transformation stage, a widely used approach is the use of \emph{integer transforms}. However, these Doing so maintains the features of floating point transforms, but reduces the used operations to arithmetic additions and multiplications (or shifts).
+When considering the transformation stage, a widely used approach is the use of \emph{integer transforms}. The objective of such operations is to maintain the features of floating point transforms, but severely reducing the complexity, decreasing the used operations to arithmetic additions and integer multiplications. In many implementations, the latter are implemented with bitwise shifts and additions.
 
-From the previously presented transforms, there have been several methods of developing integer counterparts. In \emph{libaom}, this was achieved with scaling and approximating the basis images to a certain scale, depending of the number of used bits. However, other fast implementations have been developed, most of them being based in either \emph{Fast Fourier Transform} algorithms or in the \emph{Walsh-Hadamard Transform} \cite{wolterParallelArchitecturesDiscrete1992,yonghongzengIntegerDCTsFast2001}.
+From the transforms presented throughout section \ref{sec:kernels}, there have been several methods of developing integer counterparts. Most of the fast implementations are based in either \emph{Fast Fourier Transform} algorithms or in the \emph{Walsh-Hadamard Transform} \cite{wolterParallelArchitecturesDiscrete1992,yonghongzengIntegerDCTsFast2001}. \textcolor{red}{Since the objective of this work was to develop a \emph{Transform Co-processor} for \emph{libaom}}, the focus of this section resolves around these kernels. 
 
-Most of the faster implementations tend to present higher distortion rates, due to the implemented approximations. This aspect \textcolor{red}{can be observed in figure \ref{fig:lena}.} However, since most of the distortion comes from the \emph{Quantization} stage, these small errors tend to be ignored.
+Therefore, the reference software was profoundly studied, especially regarding the transformation stage. 
 
-\todo[inline,color=red!40]{Reconstruction of image with regular vs integer DCT and respective error images}
 
-\begin{figure}[h]
-    \centering
-    \missingfigure{Lena with IntDCT and DCT reconstruction}
-    \caption{Effect of integer DCT}
-    \label{fig:lena}
-\end{figure}
+%The different transform codecs were deconstructed into block diagrams, presented in the following sections.
+
+%While \emph{AV1} accepts \emph{transform block} sizes varying between 4 and 64, the codec tends to be similar between the different sizes. Therefore, only the \emph{1D 8 input} codecs are presented.
+
+
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{}
+
 
 
 
