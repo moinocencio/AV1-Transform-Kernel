@@ -245,3 +245,9 @@ TSWLatexianTemp*
 # Ignore Raw video files
 *.yuv
 *.y4m
+
+# Ignore libaom and builds
+Developed_Work/Libaom/
+
+# Ignore fuse hidden (?)
+*.fuse_hidden*

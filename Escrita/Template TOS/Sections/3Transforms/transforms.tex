@@ -346,7 +346,16 @@ When considering the transformation stage, a widely used approach is the use of 
 
 From the transforms presented throughout section \ref{sec:kernels}, there have been several methods of developing integer counterparts. Most of the fast implementations are based in either \emph{Fast Fourier Transform} algorithms or in the \emph{Walsh-Hadamard Transform} \cite{wolterParallelArchitecturesDiscrete1992,yonghongzengIntegerDCTsFast2001}. \textcolor{red}{Since the objective of this work was to develop a \emph{Transform Co-processor} for \emph{libaom}}, the focus of this section resolves around these kernels. 
 
-Therefore, the reference software was profoundly studied, especially regarding the transformation stage. 
+Therefore, the reference software was profoundly studied, especially regarding the transformation stage, which is represented in figure \ref{fig:libtrans}.
+
+\begin{figure}[h]
+    \centering
+    \input{Sections/3Transforms/Images/libtrans.tex}
+    \caption{Diagram of the Transform Stage on \emph{libaom}}
+    \label{fig:libtrans}
+\end{figure}
+\todo[inline, color=red!40]{Beautify graph}
+
 
 
 %The different transform codecs were deconstructed into block diagrams, presented in the following sections.
@@ -356,7 +365,7 @@ Therefore, the reference software was profoundly studied, especially regarding t
 
 
 %%%%%%%%%%%%%%%%%%%
-\subsubsection{}
+%\subsubsection{}
 
 
 
