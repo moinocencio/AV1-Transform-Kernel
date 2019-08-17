@@ -350,7 +350,7 @@ From the transforms presented throughout section \ref{sec:kernels}, there have b
 
 Therefore, the reference software was profoundly studied, especially regarding the transformation stage, which is represented in figure \ref{fig:libtrans}.
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \centering
     \input{Sections/3Transforms/Images/libtrans.tex}
     \caption{Flowchart of the Transform Stage on \emph{libaom}}
@@ -381,19 +381,34 @@ Most of the temporary coefficients inside each stage are calculated with the fun
     \texttt{half\_btf(w0, in0, w1, in1, bits)} \quad \widehat{=} \quad \nfloor*{\frac{w_0in_0 + w_1in_1 + 2^{bits -1}}{2^{bits}}}
 \end{equation}
 
-Although the code implementation is sequential, the \emph{8 length} transformation kernels are represented in the following sections as parallel block diagrams, with the diverse stages in series. While \emph{AV1} accepts \emph{transform block} sizes varying between 4 and 64, the method of transformation is similar between the different sizes.
+Although the code implementation is sequential, the \emph{8 length} transformation kernels are represented in figures \ref{fig:intDCT} and \ref{fig:intADST} as parallel block diagrams, with the diverse stages in series. While \emph{AV1} accepts \emph{transform block} sizes varying between 4 and 64, the method of transformation is similar between the different sizes.
 
-%%%%%%%%%%%%%%%%%%%
-\subsubsection{Forward DCT}
+Both pictures start with the input vector components, i.e., \texttt{x0} to \texttt{x7}. The following sum's represent the addition of the two pointing values, in case the that the arrow guiding these doesn't present any further coefficient. If such is verified, the operation to be realized is the one presented in equation \ref{eq:half_btf}. The value near each arrow is referred to the equivalent \texttt{cospi} position, that multiplies by the result coming from the arrow's origin. Figure \ref{fig:aid} presents a visual aid for the following figures.
+
+\begin{figure}[h]
+    \centering
+    \input{Sections/3Transforms/Images/graphaid.tex}
+    \caption{Graphical aid for figures \ref{fig:intDCT} and \ref{fig:intADST}}
+    \label{fig:aid}
+\end{figure}
 
 \begin{figure}[h]
     \centering
     \input{Sections/3Transforms/Images/av1_fdct8_new.tex}
-    \caption{Block diagram of the implemented Integer DCT}
+    \caption{Block diagram of \emph{libaom}'s Integer DCT}
     \label{fig:intDCT}
 \end{figure}
 
-
+\begin{landscape}
+    \vspace*{\fill}
+    \begin{figure}[h]
+        \centering
+        \input{Sections/3Transforms/Images/av1_fadst8_new.tex}
+        \caption{Block diagram of \emph{libaom}'s Integer ADST}
+        \label{fig:intADST}
+    \end{figure}
+    \vspace*{\fill}        
+\end{landscape}
 
 
 \clearpage

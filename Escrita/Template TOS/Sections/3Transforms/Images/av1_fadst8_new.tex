@@ -1,0 +1,193 @@
+\begin{tikzpicture}[%
+    >={Triangle[length=5pt,angle'=28]},
+    start chain=going below,    % General flow is left-to-right
+    node distance=2mm and 28.8mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    ]
+
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+  proc/.style={base, rectangle, text width=8em},
+  inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70},
+  term/.style={proc, rounded corners},
+  sum/.style={base, circle, inner sep=0pt, radius=0.4cm},
+  % coord node style is used for placing corners of connecting lines
+  coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+  % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+  % Connector line styles for different parts of the diagram
+  norm/.style={aar, draw},
+  free/.style={aar, draw, green3},
+  cong/.style={aar, draw, red3},
+  it/.style={font={\small\itshape}},
+  ar/.style={aar},
+  nar/.style={aar, red!75!black},
+  aar/.style={->},
+  pathcos/.style={font=\small, sloped}
+}    
+
+\begin{scope}
+    %% Stage 1
+    \foreach \x in {0,...,7}
+        \node [inout] (x\x) {\texttt{x\x}};
+
+    \node [sum, right=of x0] (s10) {\textbf{+}};
+    \foreach \x in {1,...,7}
+        \node [sum] (s1\x) {\textbf{+}};
+    
+    \draw [aar] (x0.east) -- (s10);   
+    \draw [nar] (x1.east) -- (s14);
+    \draw [aar] (x2.east) -- (s16);
+    \draw [nar] (x3.east) -- (s12);
+    \draw [aar] (x4.east) -- (s13);
+    \draw [nar] (x5.east) -- (s17);         
+    \draw [aar] (x6.east) -- (s15);
+    \draw [nar] (x7.east) -- (s11);
+
+    %% Stage 2
+    \node [sum, right=of s10] (s20) {\textbf{+}};
+    \foreach \x in {1,...,7}
+        \node [sum] (s2\x) {\textbf{+}};
+
+    \draw [aar] (s10.east) -- (s20);
+    \draw [aar] (s11.east) -- (s21);
+    \pathcos{s12}{s22}{}{4}{black}{yshift=-0.1cm, above, near end};
+        \draw [aar] (s12.east) -- (s22);      
+    \pathcos{s12}{s23}{}{4}{black}{above, near end, yshift=-0.5mm, xshift=1.8mm};
+        \draw [aar] (s12.east) -- (s23);  
+    \pathcos{s13}{s22}{}{4}{black}{above, near start, yshift=-1mm, xshift=-2mm};
+        \draw [aar] (s13.east) -- (s22);
+    \pathcos{s13}{s23}{}{4}{red!75!black}{below, near start, yshift=1mm, xshift=-2mm};
+        \draw [nar] (s13.east) -- (s23);
+    \draw [aar] (s14.east) -- (s24);
+    \draw [aar] (s15.east) -- (s25);
+    \pathcos{s16}{s26}{}{4}{black}{yshift=-0.1cm, above, near end};
+        \draw [aar] (s16.east) -- (s26);      
+    \pathcos{s16}{s27}{}{4}{black}{above, near end, yshift=-0.5mm, xshift=1.8mm};
+        \draw [aar] (s16.east) -- (s27);  
+    \pathcos{s17}{s26}{}{4}{black}{above, near start, yshift=-1mm, xshift=-2mm};
+        \draw [aar] (s17.east) -- (s26);
+    \pathcos{s17}{s27}{}{4}{red!75!black}{below, near start, yshift=1mm, xshift=-2mm};
+        \draw [nar] (s17.east) -- (s27);
+
+    %% Stage 3
+    \node [sum, right=of s20] (s30) {\textbf{+}};
+    \foreach \x in {1,...,7}
+        \node [sum] (s3\x) {\textbf{+}};
+
+    \draw [aar] (s20.east) -- (s30);
+    \draw [aar] (s20.east) -- (s32);
+    \draw [aar] (s21.east) -- (s31);
+    \draw [aar] (s21.east) -- (s33);
+    \draw [aar] (s22.east) -- (s30);
+    \draw [nar] (s22.east) -- (s32);
+    \draw [aar] (s23.east) -- (s31);
+    \draw [nar] (s23.east) -- (s33);
+    \draw [aar] (s24.east) -- (s34);
+    \draw [aar] (s24.east) -- (s36);
+    \draw [aar] (s25.east) -- (s35);
+    \draw [aar] (s25.east) -- (s37);
+    \draw [aar] (s26.east) -- (s34);
+    \draw [nar] (s26.east) -- (s36);
+    \draw [aar] (s27.east) -- (s35);
+    \draw [nar] (s27.east) -- (s37);
+
+    %% Stage 4
+    \node [sum, right=of s30] (s40) {\textbf{+}};
+    \foreach \x in {1,...,7}
+        \node [sum] (s4\x) {\textbf{+}};    
+
+    \foreach \x in {0,...,3}
+        \draw [aar] (s3\x.east) -- (s4\x);
+    \pathcos{s34}{s44}{}{8}{black}{xshift=1mm, yshift=-0.1cm, above, near end};
+        \draw [aar] (s34.east) -- (s44);
+    \pathcos{s34}{s45}{3}{8}{black}{above, near end, yshift=-0.4mm, xshift=3mm};
+        \draw [aar] (s34.east) -- (s45);
+    \pathcos{s35}{s44}{3}{8}{black}{above, near start, yshift=-1mm, xshift=-2mm};
+        \draw [aar] (s35.east) -- (s44);
+    \pathcos{s35}{s45}{}{8}{red!75!black}{below, near start, yshift=1mm, xshift=-2mm};
+        \draw [nar] (s35.east) -- (s45);        
+    \pathcos{s36}{s46}{3}{8}{red!75!black}{xshift=1mm, yshift=-0.1cm, above, near end};
+        \draw [nar] (s36.east) -- (s46);
+    \pathcos{s36}{s47}{}{8}{black}{above, near end, yshift=-0.4mm, xshift=3mm};
+        \draw [aar] (s36.east) -- (s47);
+    \pathcos{s37}{s46}{}{8}{black}{above, near start, yshift=-1mm, xshift=-2mm};
+        \draw [aar] (s37.east) -- (s46);
+    \pathcos{s37}{s47}{3}{8}{black}{below, near start, yshift=1mm, xshift=-2mm};
+        \draw [aar] (s37.east) -- (s47);   
+
+    %% Stage 5
+    \node [sum, right=of s40] (s50) {\textbf{+}};
+    \foreach \x in {1,...,7}
+        \node [sum] (s5\x) {\textbf{+}};
+
+    \draw [aar] (s40.east) -- (s50);
+    \draw [aar] (s40.east) -- (s54);
+    \draw [aar] (s41.east) -- (s51);
+    \draw [aar] (s41.east) -- (s55);
+    \draw [aar] (s42.east) -- (s52);
+    \draw [aar] (s42.east) -- (s56);
+    \draw [aar] (s43.east) -- (s53);
+    \draw [aar] (s43.east) -- (s57);
+    \draw [nar] (s44.east) -- (s54);
+    \draw [aar] (s44.east) -- (s50);
+    \draw [nar] (s45.east) -- (s55);
+    \draw [aar] (s45.east) -- (s51);
+    \draw [nar] (s46.east) -- (s56);
+    \draw [aar] (s46.east) -- (s52);
+    \draw [nar] (s47.east) -- (s57);
+    \draw [aar] (s47.east) -- (s53);
+
+    %% Stage 6
+    \node [sum, right=of s50] (s60) {\textbf{+}};
+    \foreach \x in {1,...,7}
+        \node [sum] (s6\x) {\textbf{+}};
+
+    \pathcos{s50}{s60}{}{32}{black}{xshift=1mm, yshift=-0.1cm, above, near end};
+        \draw [aar] (s50.east) -- (s60);
+    \pathcos{s50}{s61}{15}{32}{black}{font=\tiny, above, near end, yshift=-0.4mm, xshift=2mm};
+        \draw [aar] (s50.east) -- (s61);
+    \pathcos{s51}{s60}{15}{32}{black}{font=\tiny, above, near start, yshift=-1mm, xshift=-2mm};
+        \draw [aar] (s51.east) -- (s60);
+    \pathcos{s51}{s61}{}{32}{red!75!black}{below, near start, yshift=1mm, xshift=-2mm};
+        \draw [nar] (s51.east) -- (s61);        
+    \pathcos{s52}{s62}{5}{32}{black}{xshift=1mm, yshift=-0.1cm, above, near end};
+        \draw [aar] (s52.east) -- (s62);
+    \pathcos{s52}{s63}{11}{32}{black}{font=\tiny, above, near end, yshift=-0.4mm, xshift=2mm};
+        \draw [aar] (s52.east) -- (s63);
+    \pathcos{s53}{s62}{11}{32}{black}{font=\tiny, above, near start, yshift=-1mm, xshift=-2mm};
+        \draw [aar] (s53.east) -- (s62);
+    \pathcos{s53}{s63}{5}{32}{red!75!black}{below, near start, yshift=1mm, xshift=-2mm};
+        \draw [nar] (s53.east) -- (s63);   
+    \pathcos{s54}{s64}{9}{32}{black}{xshift=1mm, yshift=-0.1cm, above, near end};
+        \draw [aar] (s54.east) -- (s64);
+    \pathcos{s54}{s65}{7}{32}{black}{font=\tiny, above, near end, yshift=-0.4mm, xshift=2mm};
+        \draw [aar] (s54.east) -- (s65);
+    \pathcos{s55}{s64}{7}{32}{black}{font=\tiny, above, near start, yshift=-1mm, xshift=-2mm};
+        \draw [aar] (s55.east) -- (s64);
+    \pathcos{s55}{s65}{9}{32}{red!75!black}{below, near start, yshift=1mm, xshift=-2mm};
+        \draw [nar] (s55.east) -- (s65);  
+    \pathcos{s56}{s66}{13}{32}{black}{xshift=1mm, yshift=-0.1cm, above, near end};
+        \draw [aar] (s56.east) -- (s66);
+    \pathcos{s56}{s67}{3}{32}{black}{font=\tiny, above, near end, yshift=-0.4mm, xshift=2mm};
+        \draw [aar] (s56.east) -- (s67);
+    \pathcos{s57}{s66}{3}{32}{black}{font=\tiny, above, near start, yshift=-1mm, xshift=-2mm};
+        \draw [aar] (s57.east) -- (s66);
+    \pathcos{s57}{s67}{13}{32}{red!75!black}{below, near start, yshift=1mm, xshift=-1.5mm};
+        \draw [nar] (s57.east) -- (s67);  
+
+    %% Stage 7
+    \node [inout, right=of s60] (y0) {\texttt{y0}};
+    \foreach \x in {1,...,7}
+        \node [inout] (y\x) {\texttt{y\x}};
+
+    \draw [aar] (s60.east) -- (y7.west);
+    \draw [aar] (s61.east) -- (y0.west);
+    \draw [aar] (s62.east) -- (y5.west);
+    \draw [aar] (s63.east) -- (y2.west);
+    \draw [aar] (s64.east) -- (y3.west);
+    \draw [aar] (s65.east) -- (y4.west);
+    \draw [aar] (s66.east) -- (y1.west);
+    \draw [aar] (s67.east) -- (y6.west);
+\end{scope}
+
+\end{tikzpicture}

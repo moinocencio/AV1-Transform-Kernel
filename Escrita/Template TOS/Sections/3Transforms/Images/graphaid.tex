@@ -1,0 +1,85 @@
+\begin{tikzpicture}[%
+    >={Triangle[length=6pt,angle'=28]},
+    start chain=going below,    % General flow is left-to-right
+    node distance=2mm and 20mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    ]
+
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+  proc/.style={base, rectangle, text width=8em},
+  inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70},
+  term/.style={proc, rounded corners},
+  sum/.style={base, circle, inner sep=0pt, radius=0.4cm},
+  % coord node style is used for placing corners of connecting lines
+  coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+  % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+  % Connector line styles for different parts of the diagram
+  norm/.style={->, draw},
+  free/.style={->, draw, green3},
+  cong/.style={->, draw, red3},
+  it/.style={font={\small\itshape}},
+  ar/.style={->},
+  nar/.style={->, red!75!black},
+  pathcos/.style={font=\small, sloped}
+}
+
+\begin{scope}
+    \node [inout] (a1) {$A$};
+    \node [inout] (b1) {$B$};
+
+    \node [inout, below=2cm of a1] (a2) {$A$};
+    \node [inout] (b2) {$B$};
+
+    \node [inout, below=2cm of a2] (a3) {$A$};
+    \node [inout] (b3) {$B$};
+
+    \path (a1) -- (b1) node [midway] (s1t) {};
+    \path (a2) -- (b2) node [midway] (s2t) {};
+    \path (a3) -- (b3) node [midway] (s3t) {};
+
+    \node [sum, right=of s1t] (s1) {\textbf{+}};
+    \node [sum, right=of s2t] (s2) {\textbf{+}};
+    \node [sum, right=of s3t] (s3) {\textbf{+}};
+
+        \draw [->] (a1.east) -- (s1);
+        \draw [->] (b1.east) -- (s1);
+
+        \draw [->] (a2.east) -- (s2);
+        \draw [nar] (b2.east) -- (s2);
+
+        \path (a3.east) to node [pathcos, above, near start] {$\alpha$} (s3.west);
+            \draw [->] (a3.east) -- (s3);
+        \path (b3.east) to node [pathcos, color=red!75!black, below, near start] {$\beta$} (s3.west);
+            \draw [nar] (b3.east) -- (s3);
+
+    \node [inout, right=of s1] (c1) {$C$};        
+    \node [inout, right=of s2] (c2) {$C$};
+    \node [inout, right=of s3] (c3) {$C$};
+
+        \draw [->] (s1) -- (c1);
+        \draw [->] (s2) -- (c2);
+        \draw [->] (s3) -- (c3);
+
+    \node [right=3.2cm of c1] (eq1) {$C = A + B$};
+    \node [right=3.2cm of c2] (eq2) {$C = A - B$};
+    \node [right=1cm of c3] (eq3) {$C = \,$\texttt{half\_btf(}$A, cospi_\alpha, B, -cospi_\beta, bits$\texttt{)}};
+\end{scope}    
+
+\begin{pgfonlayer}{background}
+    \path (a1.west |- a1.north)+(-5mm,2mm) node (a11) {};
+    \path (eq3.east |- b1.south)+(5mm,-2mm) node (a21) {};
+    \path[fill=black!10,rounded corners, draw=black!50, dashed]
+      (a11) rectangle (a21);
+
+    \path (a2.west |- a2.north)+(-5mm,2mm) node (a11) {};
+    \path (eq3.east |- b2.south)+(5mm,-2mm) node (a21) {};
+    \path[fill=black!10,rounded corners, draw=black!50, dashed]
+        (a11) rectangle (a21);
+
+    \path (a3.west |- a3.north)+(-5mm,2mm) node (a11) {};
+    \path (eq3.east |- b3.south)+(5mm,-2mm) node (a21) {};
+    \path[fill=black!10,rounded corners, draw=black!50, dashed]
+        (a11) rectangle (a21);
+\end{pgfonlayer}
+\end{tikzpicture}
