@@ -240,6 +240,7 @@ Due to the back-to-head repetition seen in figure \ref{subfig:dft}, there is a d
     \label{fig:2NSeq}
 \end{figure}
 
+\todor{explain graph}
 %Of the different implementations, \emph{DCT-1} and \emph{DCT-2} are the most commonly used, being the \textcolor{red}{focus of this work}. 
 
 Since the \emph{DCT} in \emph{AV1} is implemented in one dimension, the description of the following kernels is also made in 1D. Therefore, the dimension of the transform, $L$, is referring either to the blocks' width or height, depending if the operation is made to the rows or columns, respectively ($M$ or $N$, previously).
@@ -283,7 +284,7 @@ As seen in figure \ref{subfig:dct2}, this version has no overlap on the created 
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{DCT-III}
-
+\todor{Add more text to DCT3 and 4}
 Named the \emph{inverse} of DCT-II, due to the switch of the transform and pixel coordinates.
 
 \begin{gather}
@@ -326,19 +327,20 @@ Equivalently to what happens with the DFT, the odd symmetry of this function giv
 \nocite{hanButterflyStructuredDesign2013}
 \nocite{bingNextgenerationVideoCoding2015}
 
-The symmetric behavior of previous transforms lead to better performance on evenly spread residue blocks, i.e. when the pixel values post-subtraction have roughly the same value across the whole block.
+The symmetric behavior of previous transforms lead to better performance on evenly spread residue blocks, i.e. when the pixel values post-subtraction (and before transformation) have roughly the same value across the whole block.
 
-However, due to the directional spatial prediction, the residue on one boundary of the block may be different from the other boundaries, leading to worse energy compression.
+However, due to the directional spatial prediction, the residue on one boundary of the block may be different from the other boundaries, since the chosen direction for prediction may diverge from the original block, across the prediction block. This leads to worse energy compression.
 
 In order to combat this aspect, VP9 introduced a new transform called \emph{Asymmetric Discrete Sine Transform (ADST)}, which corresponds to an alternative implementation of the DST with the addition of frequency and phase shifts.
 
-This enhancement provides the developer with a high degree of liberty, since the basis images can be adapted with the variation of the shifts. On AV1, there is only one ADST implementation per block size. However this transformation can be done on two directions, i. e., the input vector can be transformed front-to-back and vice-versa.
+This enhancement provides the developer with a high degree of liberty, since the basis images can be adapted with the variation of the shifts. On AV1, there is only one ADST implementation per block size. However this transformation can be done in two directions, i. e., the input vector can be transformed front-to-back and vice-versa. \emph{AOMedia} named these transforms \emph{ADST} and \emph{Flip-ADST}, according to the direction of the input vector.
 
 %\todo[inline,color=red!40]{AV1 ADST formula}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Integer Transformations}
 \nocite{soo-changpeiIntegerTransformsAnalogous2000}
+\nocite{AV1BitstreamDecoding}
 
 In battery driven applications, computing power plays an important role. Consequently, any approach that leads to lower computational costs tends to get incorporated into a video codec.
 
@@ -351,21 +353,45 @@ Therefore, the reference software was profoundly studied, especially regarding t
 \begin{figure}[h]
     \centering
     \input{Sections/3Transforms/Images/libtrans.tex}
-    \caption{Diagram of the Transform Stage on \emph{libaom}}
+    \caption{Flowchart of the Transform Stage on \emph{libaom}}
     \label{fig:libtrans}
 \end{figure}
-\todo[inline, color=red!40]{Beautify graph}
 
+This stage is controlled by a configuration set, which is chosen according to the desired encoding objectives. These parameters control the transformation block width and height (\emph{\texttt{size\_col}} and \emph{\texttt{size\_row}} \footnote{Each number does not correspond to the number of elements in columns and rows, but rather to the number of rows and columns.}, respectively), the transformation kernels to use in the rows and columns, the precision to use in the sine and/or cosine coefficient approximations, as well as other parameters for overflow control. Associated to the transformation kernel chosen, the variables \emph{\texttt{ud\_flip}} and \emph{\texttt{lr\_flip}} are also set. The first one is set to \emph{\texttt{1}} if the block's columns are to be transformed with the \emph{Flip-ADST} kernel. If such choice is applied to the rows, the second variable is, likewise, set to \emph{\texttt{1}}. These variables control if the input rows are flipped vertically, and/or if the coefficients resulting from the column transformation are flipped horizontally \footnote{Here, the notation of \emph{horizontally} or \emph{vertically} is set considering a matrix input block. In the 1D transform implemented in \emph{libaom}, this just means that what would be the last coefficient is now the first, and so on.}.
 
+The choosing of these parameters will not be addressed in this work, since \emph{AV1} allows for a great deal of maneuverability to the designer, as to adjust each encoder/decoder to the desired application. In this regard, \emph{libaom} allows for a high number of configuration options, that dramatically change the parameters chosen in the transformation stage, as well as in the rest of the system.
 
-%The different transform codecs were deconstructed into block diagrams, presented in the following sections.
+Throughout the represented process, many of the operations are done with sequential, iterative processes, e.g., the input vector selection or the flipping operations. Such operations would greatly benefit of a hardware implementation, since they are easily parallelizable, as the objectives of \emph{AV1} suggested. \textcolor{red}{However, on this work, the focus relies of the \emph{T} block, i.e., the transformation itself}.
 
-%While \emph{AV1} accepts \emph{transform block} sizes varying between 4 and 64, the codec tends to be similar between the different sizes. Therefore, only the \emph{1D 8 input} codecs are presented.
+Independently of the transformation kernel, the operation is done sequently, in various stages. In each of these, the corresponding intermediary coefficients get calculated as function of two of the previous calculated coefficients. These, in most of the stages, are multiplied by a specific integer approximation of cosine/sine value. Such approximations, as mentioned previously, depend on the number of bits chosen on which they are represented. The arrays on which the calculated cosine and sine values are stored have 64 and 9 positions, respectively, representing the first quadrant of the trigonometric circle. Each position is calculated according to equations \ref{eq:cos} and \ref{eq:sin}, where $k$ represents the position in the array, and $N$ corresponds to the number of bits. Therefore, \verb|cospi[0]| corresponds to $\cos(0)$, \verb|cospi[63]| is $\cos(63\pi/128)$, and the following positions can also be associated to a certain angle.
 
+\begin{equation} \label{eq:cos}
+    cospi_{k} = \nint*{2^{N}\cos\left(\frac{k\pi}{128}\right)}
+\end{equation}
 
+\begin{equation} \label{eq:sin}
+    sinpi_{k} = 2^{N}\nint*{\frac{2}{3}\sqrt{2}\sin\left(\frac{k\pi}{9}\right)}
+\end{equation}
+
+The \emph{sinpi} array is only used in the shortest length of the \emph{ADST}, which is the reason it only has five positions. All other versions of this kernel use \emph{cospi} to get the corresponding value.
+
+Most of the temporary coefficients inside each stage are calculated with the function \verb|half_btf|, which performs the operation represented in equation \ref{eq:half_btf}. This function takes the two previously calculated coefficients, two values from the previously introduced arrays, as well as the number of bits used to represent these, and maps the result from the multiplications and sum of the first inputs to the desired number of bits.
+
+\begin{equation} \label{eq:half_btf}
+    \texttt{half\_btf(w0, in0, w1, in1, bits)} \quad \widehat{=} \quad \nfloor*{\frac{w_0in_0 + w_1in_1 + 2^{bits -1}}{2^{bits}}}
+\end{equation}
+
+Although the code implementation is sequential, the \emph{8 length} transformation kernels are represented in the following sections as parallel block diagrams, with the diverse stages in series. While \emph{AV1} accepts \emph{transform block} sizes varying between 4 and 64, the method of transformation is similar between the different sizes.
 
 %%%%%%%%%%%%%%%%%%%
-%\subsubsection{}
+\subsubsection{Forward DCT}
+
+\begin{figure}[h]
+    \centering
+    \input{Sections/3Transforms/Images/av1_fdct8_new.tex}
+    \caption{Block diagram of the implemented Integer DCT}
+    \label{fig:intDCT}
+\end{figure}
 
 
 
