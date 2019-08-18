@@ -43,7 +43,8 @@
 \usepackage{caption,subcaption}
 \usepackage{epstopdf}
 \usepackage{mathtools, nccmath}
-\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{afterpage}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % Tikz library and set
@@ -146,7 +147,7 @@
 \DeclarePairedDelimiter{\nint}\lfloor\rceil
 \DeclarePairedDelimiter{\nfloor}\lfloor\rfloor
 
-\interfootnotelinepenalty=10000         % Change priority for footnotes
+%\interfootnotelinepenalty=10000         % Change priority for footnotes
 
 \newcommand{\todor}[1]{\todo[inline, color=red!40]{#1}}
 \newcommand{\pathcos}[6]{\path (#1.east) to node [pathcos, color=#5, #6] {$\sfrac{#3\pi}{#4}$} (#2.west)}

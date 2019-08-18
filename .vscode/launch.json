@@ -9,7 +9,7 @@
             "name": "aomenc_test",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Developed_Work/Libaom/Builds/Debug_Build/aomenc",
+            "program": "${workspaceFolder}/Developed_Work/Libaom/Builds/Test_Build/aomenc",
             "args": [
                 "--limit=20",
                 "-h", "288",

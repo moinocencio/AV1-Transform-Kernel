@@ -4,9 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{{Introduction}}
 
-\textcolor{red}{As mentioned previously,} the basic principle behind the compression of video, is the reduction of inter-pixel/inter-symbol correlation. The various integral blocks of a video compression system try to accomplish this objective through different strategies. The \emph{Intra-frame} and \emph{Inter-frame Prediction} exploit spatial and temporal correlation, respectively. Through the subtraction of the input by the output of one of these blocks, and the attainment of the \emph{residue}, the next compression stage is made in the \emph{Transform} block, which is the focus of this work.
-
-\todo[inline,color=red!40]{Verify accordance with previous chapter}
+As mentioned previously, the basic principle behind the compression of video, is the reduction of inter-pixel/inter-symbol correlation. The various integral blocks of a video compression system try to accomplish this objective through different strategies. The \emph{Intra-frame} and \emph{Inter-frame Prediction} exploit spatial and temporal correlation, respectively. Through the subtraction of the input by the output of one of these blocks, and the attainment of the \emph{residue}, the next compression stage is made in the \emph{Transform} block, which is the focus of this work.
 
 The technique implemented by this process relies on the energy compaction in the frequency domain to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated on its main frequencies --- the \emph{transform coefficients} --- on a spatial and/or temporal domain, similarly to the process executed on a \gls{fft}. Once each block is quantized on these coefficients, the compression is made with the removal of the least significant ones, on the \emph{Quantization} stage. The intent of the \emph{transform} is to split the image into a set of predefined coefficients, that get transmitted instead of the pixel values.
 
@@ -141,7 +139,7 @@ It has it's roots on the \emph{Fourier Transform}, whose forward and inverse tra
     g(x,y) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}T(u,v)e^{j2\pi(ux+vy)} du \, dv
 \end{equation}
 
-Once we consider a finite number of points, the previous equations become
+Once considered a finite number of points, the previous equations become
 
 \begin{equation} \label{eq:dftf}
     T(u,v) = \frac{1}{MN}\sum_{x=0}^{M-1}\sum_{y=0}^{N-1}g(x,y)e^{-j2\pi \left(\frac{ux}{M}+\frac{vy}{N}\right)}
@@ -200,7 +198,7 @@ It is frequently compared to the \emph{DFT}, due to the similarity of their oper
     \label{tab:DFTDCT}
 \end{table}
 
-The main reason behind the heavy adoption of the \emph{DCT} is its great energy compaction on the lower frequencies, where most of the energy in a picture is packed. If the the output of the first step of table \ref{tab:DFTDCT} is observed, this aspect is more easily understood.
+The main reason behind the heavy adoption of the \emph{DCT} is its great energy compaction on the lower frequencies, where most of the energy in a picture is packed. If the output of the first step of table \ref{tab:DFTDCT} is observed, this aspect is more easily understood. In figure \ref{fig:2NSeq}, a 4 point sequence, corresponding to the filled points, gets replicated throughout the discrete time axis, according to the corresponding transform.
 
 Due to the back-to-head repetition seen in figure \ref{subfig:dft}, there is a disruption every $N$ points, which gives origin to high frequency components in the \emph{Fourier} transform. Therefore, the more continuous behavior obtained with the back-to-back repetition of the \emph{DCT} gives origin to more significant low frequency coefficients. However, there are many ways of creating a periodic and symmetric sequence from a finite number of points. This factor has led to the implementation of different versions of the \emph{DCT}, which differ in minor details between themselves. These differences are consequence of the way the symmetry is obtained, which can be observed in figures \ref{subfig:dct1} to \ref{subfig:dct4}. The represented implementations are referred to as \emph{DCT-I} to \emph{DCT-IV}, but other possibilities exist. Their definition depends on the overlapping of points when repeating each sequence.
 
@@ -240,13 +238,12 @@ Due to the back-to-head repetition seen in figure \ref{subfig:dft}, there is a d
     \label{fig:2NSeq}
 \end{figure}
 
-\todor{explain graph}
 %Of the different implementations, \emph{DCT-1} and \emph{DCT-2} are the most commonly used, being the \textcolor{red}{focus of this work}. 
 
 Since the \emph{DCT} in \emph{AV1} is implemented in one dimension, the description of the following kernels is also made in 1D. Therefore, the dimension of the transform, $L$, is referring either to the blocks' width or height, depending if the operation is made to the rows or columns, respectively ($M$ or $N$, previously).
 
 %%%%%%%%%%%%%%%%%%%
-\subsubsection{DCT-I}
+\paragraph{DCT-I}
 
 The sequence created with first version of the DCT has overlapping points at $n = k(L-1) ,\ k = 0,1,2,...$, making the overall period of the final sequence $2L-2$.
 
@@ -268,7 +265,7 @@ The inverse transform becomes
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%
-\subsubsection{DCT-II}
+\paragraph{DCT-II}
 
 Usually referred to as "the \emph{DCT}", it is by far the most implemented version, being the only one mentioned in many of the studied works.
 
@@ -283,8 +280,7 @@ As seen in figure \ref{subfig:dct2}, this version has no overlap on the created 
 \end{gather}
 
 %%%%%%%%%%%%%%%%%%%
-\subsubsection{DCT-III}
-\todor{Add more text to DCT3 and 4}
+\paragraph{DCT-III}
 Named the \emph{inverse} of DCT-II, due to the switch of the transform and pixel coordinates.
 
 \begin{gather}
@@ -296,15 +292,15 @@ Named the \emph{inverse} of DCT-II, due to the switch of the transform and pixel
 \end{gather}
 
 %%%%%%%%%%%%%%%%%%%
-\subsubsection{DCT-IV}
+\paragraph{DCT-IV}
+
+Is the basis of the \emph{Modified Discrete Cosine Function (MDCT)}, where the input blocks overlap.
 
 \nocite{DiscreteCosineTransform}
 
 \begin{equation}
     f(x,u) = i(x,u) = \sqrt{\frac{2}{L}}\cos\left(\frac{(2u+1)(2x+1)\pi }{4L}\right)
 \end{equation}
-
-Is the basis of the \emph{Modified Discrete Cosine Function (MDCT)}, where the input blocks overlap.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discrete Sine Transform (DST)}
@@ -366,11 +362,11 @@ Throughout the represented process, many of the operations are done with sequent
 Independently of the transformation kernel, the operation is done sequently, in various stages. In each of these, the corresponding intermediary coefficients get calculated as function of two of the previous calculated coefficients. These, in most of the stages, are multiplied by a specific integer approximation of cosine/sine value. Such approximations, as mentioned previously, depend on the number of bits chosen on which they are represented. The arrays on which the calculated cosine and sine values are stored have 64 and 9 positions, respectively, representing the first quadrant of the trigonometric circle. Each position is calculated according to equations \ref{eq:cos} and \ref{eq:sin}, where $k$ represents the position in the array, and $N$ corresponds to the number of bits. Therefore, \verb|cospi[0]| corresponds to $\cos(0)$, \verb|cospi[63]| is $\cos(63\pi/128)$, and the following positions can also be associated to a certain angle.
 
 \begin{equation} \label{eq:cos}
-    cospi_{k} = \nint*{2^{N}\cos\left(\frac{k\pi}{128}\right)}
+    cospi[k] = \nint*{2^{N}\cos\left(\frac{k\pi}{128}\right)}
 \end{equation}
 
 \begin{equation} \label{eq:sin}
-    sinpi_{k} = 2^{N}\nint*{\frac{2}{3}\sqrt{2}\sin\left(\frac{k\pi}{9}\right)}
+    sinpi[k] = 2^{N}\nint*{\frac{2}{3}\sqrt{2}\sin\left(\frac{k\pi}{9}\right)}
 \end{equation}
 
 The \emph{sinpi} array is only used in the shortest length of the \emph{ADST}, which is the reason it only has five positions. All other versions of this kernel use \emph{cospi} to get the corresponding value.
@@ -385,30 +381,52 @@ Although the code implementation is sequential, the \emph{8 length} transformati
 
 Both pictures start with the input vector components, i.e., \texttt{x0} to \texttt{x7}. The following sum's represent the addition of the two pointing values, in case the that the arrow guiding these doesn't present any further coefficient. If such is verified, the operation to be realized is the one presented in equation \ref{eq:half_btf}. The value near each arrow is referred to the equivalent \texttt{cospi} position, that multiplies by the result coming from the arrow's origin. Figure \ref{fig:aid} presents a visual aid for the following figures.
 
-\begin{figure}[h]
+The identity transforms, \emph{IDTX}, are the simplest of the ones implemented in \emph{libaom}, since they consist of a scale factor, which varies throughout the transform sizes.
+
+On the 4 and 16 length transforms, the scaling factor includes a 12-bit integer approximation of the square root of 2, which is calculated through
+\begin{equation}
+    N_{\sqrt{2}}=\nint*{2^{12}\sqrt{2}}=5793
+\end{equation}
+Being so, the input also suffers an additional mapping, similar to the operation in \ref{eq:half_btf}. These operations are demonstrated in figure \ref{fig:intIDEN}.
+
+\begin{figure}[!htbp]
     \centering
     \input{Sections/3Transforms/Images/graphaid.tex}
     \caption{Graphical aid for figures \ref{fig:intDCT} and \ref{fig:intADST}}
     \label{fig:aid}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \centering
     \input{Sections/3Transforms/Images/av1_fdct8_new.tex}
     \caption{Block diagram of \emph{libaom}'s Integer DCT}
     \label{fig:intDCT}
 \end{figure}
 
-\begin{landscape}
-    \vspace*{\fill}
-    \begin{figure}[h]
-        \centering
-        \input{Sections/3Transforms/Images/av1_fadst8_new.tex}
-        \caption{Block diagram of \emph{libaom}'s Integer ADST}
-        \label{fig:intADST}
-    \end{figure}
-    \vspace*{\fill}        
-\end{landscape}
+\afterpage{
+    \clearpage
+    \thispagestyle{empty}
+    \begin{landscape}
+        \vspace*{\fill}
+        \begin{figure}[h]
+            \centering
+            \input{Sections/3Transforms/Images/av1_fadst8_new.tex}
+            \caption{Block diagram of \emph{libaom}'s Integer ADST}
+            \label{fig:intADST}
+        \end{figure}
+        \vspace*{\fill}        
+    \end{landscape}
+    \clearpage
+}
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/3Transforms/Images/av1_identity.tex}
+    \caption{Description of the Identity transforms in \emph{libaom}}
+    \label{fig:intIDEN}
+\end{figure}
+
+With the forward transformations explained and represented graphically, it's easily understandable that the corresponding inverses correspond to the backwards operation in figures \ref{fig:intDCT}, \ref{fig:intIDEN} and \ref{fig:intADST}. With this, it is meant that only the direction of the arrows change, and the corresponding procedure is done right-to-left, i.e., the output's position, \texttt{y}, is now the input.
 
 
 \clearpage
