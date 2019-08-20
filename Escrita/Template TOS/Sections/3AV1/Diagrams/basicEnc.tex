@@ -1,0 +1,115 @@
+\begin{tikzpicture}[%
+    >=triangle 60,              % Nice arrows; your taste may be different
+    start chain=going right,    % General flow is top-to-bottom
+    node distance=2.5cm,          % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    ]
+
+\tikzset{
+    base/.style={draw, on chain, on grid, align=center},
+    proc/.style={base, rectangle, text width=1.6cm, fill=black!15, minimum height=1.5cm, minimum width=1.5cm,font={\bfseries}},    
+    frame/.style={base, minimum height=1.5cm, minimum width=2cm, fill=blue!10, thick},
+    sub/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!10, minimum height=3.5ex, font={\bfseries}},
+    spot/.style={circle, inner sep=0pt, radius=0.4cm, minimum height=2mm, draw},
+    edge rectangle/.style={ to path={ rectangle (\tikztotarget)}},
+    % coord node style is used for placing corners of connecting lines
+    coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+    % Arrows 
+    fforw/.style={->, thick},
+    fback/.style={->, thick, red!75!black},
+    aref/.style={<->, dashed, black!50},
+    % -------------------------------------------------
+    % Connector line styles for different parts of the diagram
+    cascaded/.style = {%
+    general shadow = {%
+      shadow scale = 1,
+      shadow xshift = -1ex,
+      shadow yshift = 1ex,
+      draw,
+      thick,
+      fill = blue!40},
+    general shadow = {%
+      shadow scale = 1,
+      shadow xshift = -.5ex,
+      shadow yshift = .5ex,
+      draw,
+      thick,
+      fill =blue!40},
+    fill = blue!40, 
+    draw,
+    thick,
+    minimum width = 2cm,
+    minimum height = 1.5cm},
+    base
+}    
+
+%% Top row
+\node [frame] (inframe) {Input\\Frame};
+    \node [coord] (ni1) {};    
+    \node [coord, right=2mm of inframe.east] (ni2) {};
+\node [sub, right=2cm of ni1] (sub) {-};
+    \draw [fforw] (inframe) -- (sub);
+\node [proc] (T) {T};
+    \draw [fforw] (sub) -- (T);
+\node [proc] (Q) {Q};
+    \draw [fforw] (T) -- (Q);
+\coordinate (rq) at ($(Q.east)+(4mm,0)$);
+\node [proc, right=1cm of Q.east] (EC) {Entropy\\Coding};
+    \draw [fforw] (Q) -- (EC);
+\coordinate (out) at ($(EC.east)+(4mm,0)$);
+%\path (EC) to node [yshift=-1em] {Encoded\\Bitstream} (out);
+    \draw [fforw] (EC) -- (out);
+
+%% Reference
+\node [cascaded, below=5cm of inframe] (ref) {Reference\\Frames};
+
+%% Intra
+\node [proc, below=1.5cm of ni1] (intra) {Intra\\Coding};
+    \coordinate (ni3) at (ni2 |- intra);    
+    \draw [fforw] (ni3) -- (intra);
+
+%% Inter    
+\node [proc,right=of ref] (inter) {Inter\\Coding};
+    \node [coord, below=4.5cm of ni2] (ni4) {};
+    \draw [fforw] (ni2) -- (ni4) |- ($(inter.west)+(0,5mm)$);
+    \draw [fforw] ($(ref.east)+(0,-5mm)$) -- ($(inter.west)+(0,-5mm)$);
+
+%% Selector
+\coordinate (rintra) at ($(intra.east)+(5mm,0)$);
+\node [spot, below=1cm of rintra, fill=black] (sintra) {};
+    \draw [thick] (intra.east) -- (rintra) |- (sintra.north);
+
+\coordinate (rinter) at ($(inter.east)+(5mm,0)$);
+\node [spot, above=1cm of rinter, fill=black] (sinter) {};
+    \draw [thick] (inter.east) -- (rinter) |- (sinter.south);
+
+\path (sintra) -- (sinter) coordinate [midway] (intraintermid);
+\node [spot, at=(sub |- intraintermid)] (sel) {};
+\draw [dashed] ($(sel)+(-2mm,3.3mm)$) arc (140:220:5mm);
+    \draw [fforw] (sel) -- (sintra);
+    \draw [fforw] (sel) -- (sub);
+
+%% Lower Row    
+\node [sub, below=3.7cm of sel] (add) {+};
+    \draw [fback] (sel) -- (add);
+\node [proc] (T1) {$\mathbf{T^{-1}}$};
+    \draw [fback] (T1) -- (add);
+\node [proc] (Q1) {$\mathbf{Q^{-1}}$};
+    \draw [fback] (Q1) -- (T1);
+\coordinate (rq1) at ($(Q1.east)+(4mm,0)$);
+    \draw [fback] (rq) -- (rq1) |- (Q1);
+\node [frame, below=7.4cm of inframe] (recframe) {Reconstructed\\Frame};
+    \draw [fback] (add) -- (recframe);
+
+%% Control
+\path (inframe.west) -- (EC.east) node[midway] (mid) {};
+\node [proc, text width=8cm, fill=black!40, above=2cm of mid, rounded corners, ] (control) {Control Unit};
+    \draw [aref] (T) -- (T.north |- control.south);
+    \draw [aref] (Q) -- (Q.north |- control.south);
+\coordinate (aboveec) at (EC |- control);
+    \draw [aref] (EC) -- (aboveec) |- (control);
+    \draw [aref] (Q1.north) -- ++(0,5mm) |- ($(Q1.north west)+(-4mm,5mm)$) coordinate (y) |- (y |- control.south);
+    \draw [aref] (T1.north) -- ++(0,5mm) |- ($(T1.north west)+(-4mm,5mm)$) coordinate (y) |- (y |- control.south);
+    \draw [aref] (intra.north) -- (intra |- control.south);
+    \draw [aref] (inter.south) -- ++(0,-3.2mm) |- ($(inter.south east)+(20mm,-3.2mm)$) coordinate (y) |- (y |- control.south);
+\end{tikzpicture}
