@@ -173,18 +173,68 @@ It is known that symbol probability plays a major role in information compressio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Basic Video Compression/Decompression System}
 
-\todo[inline,color=red!40]{*Encoder Model}
-\todo[inline,color=red!40]{*Decoder Model}
-
 From the basic principles of the previously mentioned blocks, it is possible to integrate them into two complete compression --- \emph{Encoder} --- and decompression --- \emph{Decoder} --- modules.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Encoder Model}
 
+The encoder's objective is to compress a video sequence, turning it into a readable \emph{encoded bitstream}. For this, the previously presented strategies get implemented on a system based on the schematic of figure \ref{fig:basicenc}.
+
 \begin{figure}[!htbp]
     \centering
     \input{Sections/3AV1/Diagrams/basicEnc.tex}
-    \caption{Basic Encoder Model}
+    \caption{Simplified Basic Encoder Model}
+    \label{fig:basicenc}
+\end{figure}
+
+The encoding process starts on the \emph{Input Frame}, which can be of two types. \emph{I Frames} are encoded using only the information present in themselves, i.e., using only \emph{Intra Prediction/Coding}, while \emph{P Frames} may use predictive coding from previously encoded frames \footnote{Most video codecs allow that the encoding sequence isn't the same as the temporal sequence. This allows to reference frames displayed next to the one being encoded.}.
+
+The input gets split into blocks, which get fed into the two main blocks of a video encoder: the \emph{Intra} and \emph{Inter} Prediction blocks.
+
+The \emph{Intra Coding} block, as mentioned previously, deals with the spatial redundancy, by predicting the current block from the pixels above and to the left of its upper and left edges. The prediction may be done with various algorithms, ranging from calculating the average from the reference pixels, to replicating these according to a certain direction. One such example is presented in figure \ref{fig:intraex}, where pixels B through H get spread across a $4\times 4$ block, diagonally.
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/3AV1/Diagrams/intraex.tex}
+    \caption{Directional Intra-prediction Example}
+    \label{fig:intraex}
+\end{figure}
+
+Into the \emph{Inter Coding} block, go two inputs. The currently encoding block, as well as a bank of previously encoded frames, named \emph{Reference Frames}. Firstly, the frames inside the buffer get searched for blocks resembling the former input. Once found, this process generates a \emph{motion vector}, corresponding to the difference between the position of the block found in the reference frame, and the position of the currently encoding block, as shown in figure \ref{fig:interex}.
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/3AV1/Diagrams/interex.tex}
+    \caption{Inter-prediction Example}
+    \label{fig:interex}
+\end{figure}
+
+After the prediction stage, the chosen output between the two processes, i.e., the predicted block, gets subtracted by the current block, giving origin to the \emph{residue}. This corresponds to the pixel value differences between the original and predicted blocks. Lower \emph{residues} indicate better prediction stages.
+
+The next stage, the \emph{Forward Transform}, is the focus of this work. It takes the residue blocks, which may not be the same size of the prediction blocks, and evaluates them according to its spatial frequencies. Its output corresponds to a series of \emph{coefficients}, that are related to the similarity --- or \emph{correlation} --- between the input block and a series of \emph{basis images}. This process is further explained in chapter \ref{chap:trans}.
+
+On the \emph{Quantization} stage, the coefficients calculated in \textbf{T} get scaled according to a \emph{Quantization Matrix}. This stage takes advantage of the eye's lower perception to high frequency details, and scales the higher frequency coefficients by a higher value, than the lower, more significant ones. In most of the transformed blocks, this leads that only a few low frequency components are maintained, while the others get nullified, since they are not relevant to the reconstruction of the image. Therefore, this stage is the the one that presents the higher loss, although the previously presented also introduce errors.
+
+The wipe out of the least significant coefficients is particularly efficient when paired with the last stage before the output, the \emph{Entropy Encoder}. On this block, \textbf{Q}'s output block gets run sequentially via a \emph{zig-zag scan}, which first passes through the lower frequency coefficients, followed by the higher frequency ones. 
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/3AV1/Diagrams/zigzag.tex}
+    \caption{Demonstration of Zig-Zag Scan}
+    \label{fig:zigzag}
+\end{figure}
+
+In most of the cases, this causes that the non-zero coefficients get read first, followed by a sequence of zeros. Such sequence benefits heavily of being encoded with \gls{vlc}, such as \emph{Huffman Tree Codes} or \Gls{cabac}. Off all the processes, this is the one that doesn't introduce further distortion into the encoded sequence, which is the reason it doesn't get included in the \emph{feedback loop}.
+
+The intent of this loop is to get an exact same copy of the frame reconstructed in the decoder. This reconstructed frame gets used as the reference for intra-prediction, or gets put into the reference frame buffer to be used in a later inter-prediction process.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Decoder Model}
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/3AV1/Diagrams/basicDec.tex}
+    \caption{Simplified Basic Decoder Model}
     \label{fig:basicenc}
 \end{figure}
 

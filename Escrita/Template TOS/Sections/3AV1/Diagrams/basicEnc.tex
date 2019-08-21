@@ -85,8 +85,8 @@
 
 \path (sintra) -- (sinter) coordinate [midway] (intraintermid);
 \node [spot, at=(sub |- intraintermid)] (sel) {};
-\draw [dashed] ($(sel)+(-2mm,3.3mm)$) arc (140:220:5mm);
-    \draw [fforw] (sel) -- (sintra);
+\draw [dashed] ($(sel)+(-4mm,3.3mm)$) arc (140:220:5mm);
+    \draw [fforw] (sintra) -- (sel);
     \draw [fforw] (sel) -- (sub);
 
 %% Lower Row    
@@ -111,5 +111,15 @@
     \draw [aref] (Q1.north) -- ++(0,5mm) |- ($(Q1.north west)+(-4mm,5mm)$) coordinate (y) |- (y |- control.south);
     \draw [aref] (T1.north) -- ++(0,5mm) |- ($(T1.north west)+(-4mm,5mm)$) coordinate (y) |- (y |- control.south);
     \draw [aref] (intra.north) -- (intra |- control.south);
-    \draw [aref] (inter.south) -- ++(0,-3.2mm) |- ($(inter.south east)+(20mm,-3.2mm)$) coordinate (y) |- (y |- control.south);
+    \draw [aref] (inter.south) -- ++(0,-3.2mm) |- ($(inter.south east)+(22mm,-3.2mm)$) coordinate (y) |- (y |- control.south);
+    \draw [aref] (sel.east) -- ++(4mm,0) coordinate (y) |- (y |- control.south);
+
+%% Legend
+\node [right=1.5cm of rq1, font={\tiny}] (lc) {Control\\Signal};
+    \draw [aref] ($(lc.west)+(-6mm,0)$) -- +(5mm,0);
+\node [above=7mm of lc, font={\tiny}] (lb) {Feedback\\Loop};
+    \draw [fback] ($(lc.west)+(-6mm,7mm)$) -- +(5mm,0);
+\node [above=7mm of lb, font={\tiny}] (lf) {Forward\\Path};
+    \draw [fforw] ($(lc.west)+(-6mm,14mm)$) -- +(5mm,0); 
+\draw[thick] ($(lc.south west)+(-9mm,-2mm)$) rectangle ($(lf.north east)+(2mm,2mm)$);
 \end{tikzpicture}

@@ -1,0 +1,40 @@
+\begin{tikzpicture}[scale=.7,every node/.style={minimum size=1cm},on grid,>=triangle 60]
+		
+    %slanting: production of a set of n 'laminae' to be piled up. N=number of grids.
+    \begin{scope}[
+            yshift=-83,every node/.append style={
+            yslant=0.5,xslant=-1},yslant=0.5,xslant=-1
+            ]
+        % opacity to prevent graphical interference
+        \fill[white,fill opacity=0.9] (0,0) rectangle (5,5);
+        \draw[blue!40!black,very thick] (0,0) rectangle (5,5);%marking borders
+        \filldraw[blue!30] (0.5,0.5) rectangle (1.5,1.5);
+        \draw[gray, dashed] (0.5,1.5) -- (3.42,4.42);
+        \draw[gray, dashed] (1.5,0.5) -- (4.42,3.42);
+        \draw[gray, dashed] (0.5,0.5) -- (3.42,3.42);
+        \draw[gray, dashed] (1.5,1.5) -- (4.42,4.42);
+        %Idem as above, for the n-th grid:
+    \end{scope}
+    
+    \begin{scope}[
+    	    yshift=0,every node/.append style={
+    	    yslant=0.5,xslant=-1},yslant=0.5,xslant=-1
+            ]
+        \fill[white,fill opacity=.9] (0,0) rectangle (5,5);
+        \draw[black,very thick] (0,0) rectangle (5,5);
+
+        \draw[blue!30] (0.5,0.5) rectangle (1.5,1.5);
+        \filldraw[gray] (2.5,3) rectangle (3.5,4);
+
+        \draw[->] (0.5,0.5) -- (2.5,3);
+    \end{scope}
+
+    \draw[-latex,thick](5.8,0)node[right]{Reference Frame}
+    to[out=180,in=90] (3.4,-1);
+
+    \draw[-latex,thick] (5.8,3) node[right]{Present Frame}
+         to[out=180,in=90] (3.4,2);
+
+    \draw[-latex,thick] (-5.5,2.2) node[left]{Motion Vector}
+    to [out=0,in=180](-0.22,1.5);
+\end{tikzpicture}
