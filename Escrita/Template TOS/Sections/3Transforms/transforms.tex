@@ -6,7 +6,7 @@
 
 As mentioned previously, the basic principle behind the compression of video, is the reduction of inter-pixel/inter-symbol correlation. The various integral blocks of a video compression system try to accomplish this objective through different strategies. The \emph{Intra-frame} and \emph{Inter-frame Prediction} exploit spatial and temporal correlation, respectively. Through the subtraction of the input by the output of one of these blocks, and the attainment of the \emph{residue}, the next compression stage is made in the \emph{Transform} block, which is the focus of this work.
 
-The technique implemented by this process relies on the energy compaction in the frequency domain to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated on its main frequencies --- the \emph{transform coefficients} --- on a spatial and/or temporal domain, similarly to the process executed on a \gls{fft}. Once each block is quantized on these coefficients, the compression is made with the removal of the least significant ones, on the \emph{Quantization} stage. The intent of the \emph{transform} is to split the image into a set of predefined coefficients, that get transmitted instead of the \emph{residue}.
+The technique implemented by this process relies on the energy compaction in the frequency domain to reduce the correlation within a frame block, i.e. the input of the Transform block is evaluated on its main frequencies --- the \emph{transform coefficients} --- on a spatial domain, similarly to the process executed on a \emph{Fourier Transform}. Once each block is quantized on these coefficients, the compression is made with the removal of the least significant ones, on the \emph{Quantization} stage. The intent of the \emph{transform} is to split the image into a set of predefined coefficients, that get transmitted in place of the \emph{residue}.
 
 The objective of this chapter is to give the reader a basic understanding of the theoretical basis behind said Transformations, as well as to introduce the most commonly used ones. 
 
@@ -44,7 +44,7 @@ Similarly, we can re-obtain the original picture
 \begin{equation} \label{eq:Gmatsum}
     g(x,y) = \sum_{u=0}^{M-1}\sum_{v=0}^{N-1}T(u,v)i(x,y,u,v)
 \end{equation}
-where $f(x,y,u,v)$ and $i(x,y,u,v)$ are the \emph{forward} and \emph{inverse transformation kernels}. To better explain the concept of these, first it's needed to introduce the two following concepts.
+where $f(x,y,u,v)$ and $i(x,y,u,v)$ are the \emph{forward} and \emph{inverse transformation kernels}\label{par:kernel}. To better explain the concept of these, first it's needed to introduce the two following concepts.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ATTENTION: "BETTER EXPLAIN ... FIRST IT'S NEEDED" gives the idea that there is going to be a later explanation
@@ -336,7 +336,6 @@ This enhancement provides the developer with a high degree of liberty, since the
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Integer Transformations}
 \nocite{soo-changpeiIntegerTransformsAnalogous2000}
-\nocite{AV1BitstreamDecoding}
 
 In battery driven applications, computing power plays an important role. Consequently, any approach that leads to lower computational costs tends to get incorporated into a video codec.
 

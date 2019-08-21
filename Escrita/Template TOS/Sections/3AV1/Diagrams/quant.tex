@@ -1,0 +1,135 @@
+\begin{tikzpicture}[scale=0.5,>=triangle 60]
+    \def\intrans{
+        {19, -1, 0, 1, -1, 8, 3, -3, -3, -2, 1, -7, -3, -4, 8, 0}
+    }
+    \tikzset{
+        a/.style={>->, thick},
+    }    
+    \node (inres) [inner sep=0pt, draw, label={[align=center, font={\small\bfseries}]above:Input\\Residue}, fit={(0,0) (4,4)}] {};
+        \draw[step=1cm,black,very thin, inner sep=0pt] (0,0) grid (4,4);   
+            \node at (0.5, 0.5) {6};
+            \node at (0.5, 1.5) {-3};
+            \node at (0.5, 2.5) {5};
+            \node at (0.5, 3.5) {6};
+            \node at (1.5, 0.5) {0};
+            \node at (1.5, 1.5) {9};
+            \node at (1.5, 2.5) {8};
+            \node at (1.5, 3.5) {8};
+            \node at (2.5, 0.5) {8};
+            \node at (2.5, 1.5) {7};
+            \node at (2.5, 2.5) {-2};
+            \node at (2.5, 3.5) {5};
+            \node at (3.5, 0.5) {7};
+            \node at (3.5, 1.5) {7};
+            \node at (3.5, 2.5) {6};
+            \node at (3.5, 3.5) {-1};
+    
+    \node [inner sep=0pt, draw, right=1 of inres, label={[align=center, font={\small\bfseries}]above:Transformed\\Coefficients}, fit={(5,0) (9,4)}] (intrans) {};
+        \draw[step=1cm,black,very thin, inner sep=0pt] (intrans.south west) grid (intrans.north east);   
+                    \node at ($(intrans.south west)+(0.5,0.5)$) {1};
+                    \node at ($(intrans.south west)+(0.5,1.5)$) {0};
+                    \node at ($(intrans.south west)+(0.5,2.5)$) {-1};
+                    \node at ($(intrans.south west)+(0.5,3.5)$) {19};
+                    \node at ($(intrans.south west)+(1.5,0.5)$) {-3};
+                    \node at ($(intrans.south west)+(1.5,1.5)$) {3};
+                    \node at ($(intrans.south west)+(1.5,2.5)$) {8};
+                    \node at ($(intrans.south west)+(1.5,3.5)$) {-1};
+                    \node at ($(intrans.south west)+(2.5,0.5)$) {-7};
+                    \node at ($(intrans.south west)+(2.5,1.5)$) {1};
+                    \node at ($(intrans.south west)+(2.5,2.5)$) {-2};
+                    \node at ($(intrans.south west)+(2.5,3.5)$) {-3};
+                    \node at ($(intrans.south west)+(3.5,0.5)$) {0};
+                    \node at ($(intrans.south west)+(3.5,1.5)$) {8};
+                    \node at ($(intrans.south west)+(3.5,2.5)$) {-4};
+                    \node at ($(intrans.south west)+(3.5,3.5)$) {-3};
+
+    \node [draw, circle, fill=lightgray, right=1 of intrans, minimum height=0.5, font={\bfseries}] (div) {$\div$};
+
+    \node [inner sep=0pt, draw, below right=3 and 3 of div, label={[align=center, font={\small\bfseries}]above:Quantized\\Coefficients}, fit={(11,0) (15,4)}] (inq) {};
+        \draw[step=1cm,black,very thin, inner sep=0pt] (inq.south west) grid (inq.north east);   
+                \node at ($(inq.south west)+(0.5,0.5)$) {0};
+                \node at ($(inq.south west)+(0.5,1.5)$) {0};
+                \node at ($(inq.south west)+(0.5,2.5)$) {-1};
+                \node at ($(inq.south west)+(0.5,3.5)$) {19};
+                \node at ($(inq.south west)+(1.5,0.5)$) {-1};
+                \node at ($(inq.south west)+(1.5,1.5)$) {1};
+                \node at ($(inq.south west)+(1.5,2.5)$) {3};
+                \node at ($(inq.south west)+(1.5,3.5)$) {-1};
+                \node at ($(inq.south west)+(2.5,0.5)$) {-1};
+                \node at ($(inq.south west)+(2.5,1.5)$) {0};
+                \node at ($(inq.south west)+(2.5,2.5)$) {0};
+                \node at ($(inq.south west)+(2.5,3.5)$) {-1};
+                \node at ($(inq.south west)+(3.5,0.5)$) {0};
+                \node at ($(inq.south west)+(3.5,1.5)$) {1};
+                \node at ($(inq.south west)+(3.5,2.5)$) {-1};
+                \node at ($(inq.south west)+(3.5,3.5)$) {-1};
+
+    \node [inner sep=0pt, draw, below left=3 and 2 of div, label={[align=center, font={\small\bfseries}]above:Quantization\\Matrix}, fit={(11,0) (15,4)}] (qm) {};
+        \draw[step=1cm,black,very thin, inner sep=0pt] (qm.south west) grid (qm.north east);   
+            \node at ($(qm.south west)+(0.5,0.5)$) {4};
+            \node at ($(qm.south west)+(0.5,1.5)$) {3};
+            \node at ($(qm.south west)+(0.5,2.5)$) {2};
+            \node at ($(qm.south west)+(0.5,3.5)$) {1};
+            \node at ($(qm.south west)+(1.5,0.5)$) {5};
+            \node at ($(qm.south west)+(1.5,1.5)$) {4};
+            \node at ($(qm.south west)+(1.5,2.5)$) {3};
+            \node at ($(qm.south west)+(1.5,3.5)$) {2};
+            \node at ($(qm.south west)+(2.5,0.5)$) {7};
+            \node at ($(qm.south west)+(2.5,1.5)$) {6};
+            \node at ($(qm.south west)+(2.5,2.5)$) {6};
+            \node at ($(qm.south west)+(2.5,3.5)$) {3};
+            \node at ($(qm.south west)+(3.5,0.5)$) {9};
+            \node at ($(qm.south west)+(3.5,1.5)$) {8};
+            \node at ($(qm.south west)+(3.5,2.5)$) {7};
+            \node at ($(qm.south west)+(3.5,3.5)$) {6};
+    
+    \node [inner sep=0pt, draw, below left=6 and 2 of div, label={[align=center, font={\small\bfseries}]above:Restored\\Coefficients}, fit={(11,0) (15,4)}] (outq) {};
+        \draw[step=1cm,black,very thin, inner sep=0pt] (outq.south west) grid (outq.north east);   
+            \node at ($(outq.south west)+(0.5,0.5)$) {0};
+            \node at ($(outq.south west)+(0.5,1.5)$) {0};
+            \node at ($(outq.south west)+(0.5,2.5)$) {-2};
+            \node at ($(outq.south west)+(0.5,3.5)$) {19};
+            \node at ($(outq.south west)+(1.5,0.5)$) {-5};
+            \node at ($(outq.south west)+(1.5,1.5)$) {4};
+            \node at ($(outq.south west)+(1.5,2.5)$) {9};
+            \node at ($(outq.south west)+(1.5,3.5)$) {-2};
+            \node at ($(outq.south west)+(2.5,0.5)$) {-7};
+            \node at ($(outq.south west)+(2.5,1.5)$) {0};
+            \node at ($(outq.south west)+(2.5,2.5)$) {0};
+            \node at ($(outq.south west)+(2.5,3.5)$) {-3};
+            \node at ($(outq.south west)+(3.5,0.5)$) {0};
+            \node at ($(outq.south west)+(3.5,1.5)$) {8};
+            \node at ($(outq.south west)+(3.5,2.5)$) {-7};
+            \node at ($(outq.south west)+(3.5,3.5)$) {-6};
+
+    \node [draw, circle, fill=lightgray, right=of outq, minimum height=0.5, font={\bfseries}] (mul) {$\times$};
+
+    \node [inner sep=0pt, draw, left=of outq, label={[align=center, font={\small\bfseries}]above:Restored\\Residue}, fit={(2,-12) (6,-8)}] (outt) {};
+    \draw[step=1cm,black,very thin, inner sep=0pt] (outt.south west) grid (outt.north east);   
+        \node at ($(outt.south west)+(0.5,0.5)$) {5};
+        \node at ($(outt.south west)+(0.5,1.5)$) {-5};
+        \node at ($(outt.south west)+(0.5,2.5)$) {5};
+        \node at ($(outt.south west)+(0.5,3.5)$) {5};
+        \node at ($(outt.south west)+(1.5,0.5)$) {1};
+        \node at ($(outt.south west)+(1.5,1.5)$) {9};
+        \node at ($(outt.south west)+(1.5,2.5)$) {9};
+        \node at ($(outt.south west)+(1.5,3.5)$) {10};
+        \node at ($(outt.south west)+(2.5,0.5)$) {10};
+        \node at ($(outt.south west)+(2.5,1.5)$) {7};
+        \node at ($(outt.south west)+(2.5,2.5)$) {-4};
+        \node at ($(outt.south west)+(2.5,3.5)$) {2};
+        \node at ($(outt.south west)+(3.5,0.5)$) {6};
+        \node at ($(outt.south west)+(3.5,1.5)$) {9};
+        \node at ($(outt.south west)+(3.5,2.5)$) {7};
+        \node at ($(outt.south west)+(3.5,3.5)$) {0};
+
+
+    \draw [->, very thick, gray] (inres.east)+(0.5,0) -- node[above]{\textbf{T}} +(2.5,0);
+    \draw [->] (intrans.east)+(0.5,0) -- +(1.5,0);
+    \draw [->] ($(qm.east)+(0.5,0)$) -- (div |- qm) |- ($(div.south)+(0,-0.5)$);
+    \draw [->] ($(qm.east)+(0.5,0)$) -- (div |- qm) -| ($(mul.north)+(0,0.5)$);
+    \draw [->, very thick, gray] ($(div)+(-45:1)$) -- node[above,sloped,near start]{\textbf{Q}} ($(inq.west)+(-0.2,0.4)$);
+    \draw [->] ($(inq.west)+(-0.2,-0.4)$) -- ($(mul)+(45:1)$);
+    \draw [->, very thick, gray] (mul.west)+(-0.5,0) -- node[above,sloped,yshift=3]{$\mathbf{Q^{-1}}$} +(-1.5,0);
+    \draw [->, very thick, gray] (outq.west)+(-0.5,0) -- node[above,sloped,yshift=3]{$\mathbf{T^{-1}}$} +(-2.5,0);
+\end{tikzpicture}

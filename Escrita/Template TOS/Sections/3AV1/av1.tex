@@ -178,7 +178,7 @@ From the basic principles of the previously mentioned blocks, it is possible to 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Encoder Model}
 
-The encoder's objective is to compress a video sequence, turning it into a readable \emph{encoded bitstream}. For this, the previously presented strategies get implemented on a system based on the schematic of figure \ref{fig:basicenc}.
+The encoder's objective is to compress a video sequence, turning it into a readable \emph{encoded bitstream}. To do this, the previously presented strategies get implemented on a system based on the schematic of figure \ref{fig:basicenc}.
 
 \begin{figure}[!htbp]
     \centering
@@ -196,7 +196,7 @@ The \emph{Intra Coding} block, as mentioned previously, deals with the spatial r
 \begin{figure}[!htbp]
     \centering
     \input{Sections/3AV1/Diagrams/intraex.tex}
-    \caption{Directional Intra-prediction Example}
+    \caption{Directional Intra-prediction example}
     \label{fig:intraex}
 \end{figure}
 
@@ -205,11 +205,11 @@ Into the \emph{Inter Coding} block, go two inputs. The currently encoding block,
 \begin{figure}[!htbp]
     \centering
     \input{Sections/3AV1/Diagrams/interex.tex}
-    \caption{Inter-prediction Example}
+    \caption{Inter-prediction example}
     \label{fig:interex}
 \end{figure}
 
-After the prediction stage, the chosen output between the two processes, i.e., the predicted block, gets subtracted by the current block, giving origin to the \emph{residue}. This corresponds to the pixel value differences between the original and predicted blocks. Lower \emph{residues} indicate better prediction stages.
+After the prediction stage, the chosen output between the two processes, i.e., the predicted block, gets subtracted by the current one, giving origin to the \emph{residue}. This corresponds to the pixel value differences between the original and predicted blocks. Lower \emph{residues} indicate more efficient prediction stages.
 
 The next stage, the \emph{Forward Transform}, is the focus of this work. It takes the residue blocks, which may not be the same size of the prediction blocks, and evaluates them according to its spatial frequencies. Its output corresponds to a series of \emph{coefficients}, that are related to the similarity --- or \emph{correlation} --- between the input block and a series of \emph{basis images}. This process is further explained in chapter \ref{chap:trans}.
 
@@ -226,22 +226,38 @@ The wipe out of the least significant coefficients is particularly efficient whe
 
 In most of the cases, this causes that the non-zero coefficients get read first, followed by a sequence of zeros. Such sequence benefits heavily of being encoded with \gls{vlc}, such as \emph{Huffman Tree Codes} or \Gls{cabac}. Off all the processes, this is the one that doesn't introduce further distortion into the encoded sequence, which is the reason it doesn't get included in the \emph{feedback loop}.
 
-The intent of this loop is to get an exact same copy of the frame reconstructed in the decoder. This reconstructed frame gets used as the reference for intra-prediction, or gets put into the reference frame buffer to be used in a later inter-prediction process.
+The intent of this loop is to get an exact same copy of the frame reconstructed in the decoder. This reconstructed frame gets used as the reference for intra-prediction, or gets put into the reference frame buffer to be used in a later inter-prediction process. 
+
+The output of the encoder is the quantized coefficients, as well as the necessary information to recreate the encoded blocks, such as the type of prediction used, the transformation \emph{kernel} [see p.\pageref{par:kernel}], quantization matrix, et al. These encoding parameters are the choices made by the \emph{Control Unit}, which although represented by a block in figure \ref{fig:basicenc}, may not be a local process, independent from all others. 
+
+Since \emph{H.264}, most video codecs standardize the decoding process, specifically, the allowed tools for compressing the video, and how to use them. This means that the encoding process is widely adaptable to the compression objectives, as long as the final product is a bitstream following the norms set on the codec's standard \cite{AV1BitstreamDecoding}. Therefore, the definition of a \emph{Control Unit} is ambiguous in this context, since such unit can simply represent a set of parameters to be used throughout the encoding process\footnote{One such example would be \emph{lossless} compression modes, which use very a concise conditions on each stage, in order to get the least distortion.}, or an algorithm that can change between the different capabilities of the codec, in order to achieve an objective, such as a specific distortion rate, or not surpass a maximum bit rate.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Decoder Model}
+
+As expected, the decoder (figure \ref{fig:basicdec}) does the backwards operation of the encoder on figure \ref{fig:basicenc}. It starts by analyzing the bitstream, separating the control information from the encoded and quantized coefficients.
 
 \begin{figure}[!htbp]
     \centering
     \input{Sections/3AV1/Diagrams/basicDec.tex}
     \caption{Simplified Basic Decoder Model}
-    \label{fig:basicenc}
+    \label{fig:basicdec}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Previous Standards}
+Having the encoding choices performed by the encoder, the decoder returns the \emph{coding redundancy} to the quantized coefficients, on the \emph{Entropy Decoding} stage. This corresponds to a translation from the varying length code used in codification, back into the raw coefficients.
 
-\todo[inline,color=red!40]{*Previous generations}
+The \emph{Inverse Quantization} rescales the maintained coefficients, resulting from the previous \emph{Quantization} stage. With this, it is meant that the same quantization matrix used when dividing the transformed coefficients, in the encoder, is now multiplied by the quantized parameters. It must be kept that this operation does not output an exact copy of the transformation coefficients, as a lot of information is permanently lost in \textbf{Q}. This process can be seen in figure \ref{fig:quant}.
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/3AV1/Diagrams/quant.tex}
+    \caption{Processing of $\protect 4\times 4$ residue block from \emph{transformation} to restoring} 
+    \label{fig:quant}
+\end{figure}
+
+As can also be seen in this figure, the \emph{Inverse Transform} converts the coefficients back into spatial coordinates, therefore getting the restored residue. To obtain the final approximation of the block being decoded, this residue must be added to the same predicted block from the encoder. To do so, the \emph{Intra} or \emph{Inter Prediction} stages act according to the choices made in the encoding process, as to regenerate this block.
+
+In the decoder, the \emph{Control Unit} represents the process that organizes the different stages, according to the choices done in the encoding stage.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{AV1}
