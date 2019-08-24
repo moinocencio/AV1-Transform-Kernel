@@ -17,7 +17,7 @@ In the early years of mechanical television, this desire was pursued by making c
 
 The evolution of \Gls{CMOS} technologies however, led to the downfall of cathode ray tubes, and to the rise of image capture to a digital sensor, that allowed better image captures and lower demands in terms of physical storage space. However, with the desire for higher fidelity video, the quantity of information captured also increased. Whether by increasing the sensor resolution, color bit depth or frame rate, the captured video sequences have increased its size throughout the years. For instance, for a video of $640 \times 360$ (considered as a low resolution), at 30 \gls{fps}, considering each captured color (\GLS{rgb}) is represented with 8 bits, there is approximately 166 Million bits per second (Mbps) of captured information. This means that a short 5 minute video would occupy more than 6 Giga Bytes (GB) of memory. This aspect gets more severe once higher resolutions are considered. For newer standards such as 4K \Gls{UHD} ($3840 \times 2160$) or 8K UHD ($ 7680 \times 4320$), under the same conditions, a ten minute video would occupy 448 GB and 1792 GB of raw data, respectively.
 
-To further aggravate the situation, video consumption got massively adopted on the average consumer level, and continues to grow, both in the average number of hours watched by users and in the resolutions of the video, making the bandwidth used on the visualization of video footage the highest between all other application. With the development of higher video sizes, increase of the average number of connected devices per user and overall market expansion through the number of consumers, this margin will continue to grow \cite[Trends~1~\&~4]{CiscoVisualNetworking}.
+To further aggravate the situation, video consumption got massively adopted on the average consumer level, and continues to grow, both in the average number of watched hours by users and in the resolutions of the video, making the bandwidth used on the visualization of video footage the highest between all other application. With the development of higher video sizes, increase of the average number of connected devices per user and overall market expansion through the number of consumers, this margin will continue to grow. In fact, according to \emph{Cisco}, by 2022, up to 82\% of global IP traffic will be dedicated to video \cite[Trends~1~\&~4]{CiscoVisualNetworking}.
 
 This problem has led to the introduction of a new concept: \emph{Video Compression} \footnote{Also called \textit{Video Coding}.}, which is the process of reducing the size of a video sequence, while still maintaining its playback capabilities. The \Gls{codec} takes advantage of redundant information present on the raw data to reduce the size of the video, without heavily modifying the original picture or its quality. 
 
@@ -41,6 +41,13 @@ Due to the broad access to video, and its influence in a variety of markets (bes
 %\todo[inline,color=green!40]    {*AV1 objective was to be an royalty free alternative to HEVC}
 
 \emph{\gls{av1}} is the most recently released\footnote{Currently, there are other codecs being developed, without official bitstream release} video codec. It was developed as a Joint Development Foundation \cite{JointDevelopmentFoundation} project, under the name of \gls{aomedia} \footnote{Further explained in Chapter \ref{chap:av1}}. This codec took the same objective as its main predecessor, \textit{VP9}, which was to be an open source, royalty free alternative to \gls{mpeg}['s] state of the art video codec, \textit{\gls{HEVC}}.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=\figwidth]{Sections/1Introduction/Images/av1.png}
+    \caption[\emph{AV1} logo]{\emph{AV1} logo \cite{aomediaHome}} 
+    \label{fig:av1}
+\end{figure}
 
 Upon release, \textit{VP9} rivaled \textit{HEVC's} performance. However, soon after, the market demanded higher compression performance, giving origin to consortium of  enterprises that now represent AOM, and to the development of \textit{AV1}, in 2015. The first release of this coding format was made in March 2018, with the first release of its reference software, \textit{\gls{libaom}}, being made three months later, in June 2018.
 

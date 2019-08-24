@@ -1,0 +1,80 @@
+\begin{tikzpicture}[scale=1,>=triangle 60]
+    \tikzset{
+        a/.style={->, thick},
+        sq/.style={draw, rectangle, minimum width=2cm, minimum height=2cm, fill=lightgray, thick}
+    }    
+    
+    \node [sq] (center) {};
+
+    \node at ($(center)+(0:5cm)$) [sq] (heck) {};
+        \draw (heck.south west) rectangle (heck);
+        \draw (heck.west) rectangle (heck.north);
+        \draw (heck) rectangle (heck.south east);
+        \draw (heck) rectangle (heck.north east);
+
+        \draw [a] (center) -- (heck);
+        \draw [a] (heck) to [bend left=20] (center);
+
+    \node at ($(center)+(36:5cm)$) [sq] (heck) {};
+        \draw (heck.south west) rectangle (heck);
+        \draw (heck.west) rectangle (heck.north);
+        \draw (heck.south) rectangle (heck.north east);
+
+        \draw [a] (center) -- (heck);
+
+    \node at ($(center)+(72:5cm)$) [sq] (heck) {};
+        \draw (heck.south west) rectangle (heck.east);
+        \draw (heck.west) rectangle (heck.north);
+        \draw (heck) rectangle (heck.north east);
+
+        \draw [a] (center) -- (heck);
+
+    \node at ($(center)+(106:5cm)$) [sq] (heck) {};
+        \draw (heck.south west) rectangle (heck);
+        \draw (heck.south) rectangle (heck.east);
+        \draw (heck.west) rectangle (heck.north east);
+
+        \draw [a] (center) -- (heck);
+
+    \node at ($(center)+(142:5cm)$) [sq] (heck) {};
+        \draw (heck.south west) rectangle (heck.east);
+        \draw (heck.west) rectangle (heck.north east);
+
+        \draw [a] (center) -- (heck);
+
+    \node at ($(center)+(178:5cm)$) [sq] (heck) {};
+        \draw (heck.south west) rectangle (heck.north);
+        \draw (heck.south) rectangle (heck.north east);
+
+        \draw [a] (center) -- (heck);
+
+    \node at ($(center)+(214:5cm)$) [sq] (heck) {};
+        \draw (heck.south west) rectangle (heck.east);
+        \draw (heck.west) rectangle (heck.north east);
+
+        \draw [a] (center) -- (heck);
+
+    \node at ($(center)+(250:5cm)$) [sq] (heck) {};
+        \draw (heck.south west) rectangle ($(heck.east)+(0,-0.5)$);
+        \draw ($(heck.east)+(0,-0.5)$) rectangle (heck.west);
+        \draw (heck.west) rectangle ($(heck.east)+(0,0.5)$);
+        \draw ($(heck.east)+(0,0.5)$) rectangle (heck.north west);
+
+        \draw [a] (center) -- (heck);
+
+    \node at ($(center)+(286:5cm)$) [sq] (heck) {};
+        \draw (heck.south west) rectangle ($(heck.north)+(-0.5,0)$);
+        \draw ($(heck.north)+(-0.5,0)$) rectangle (heck.south);
+        \draw (heck.south) rectangle ($(heck.north)+(0.5,0)$);
+        \draw ($(heck.north)+(0.5,0)$) rectangle (heck.south east);
+
+        \draw [a] (center) -- (heck);
+
+    \node at ($(center)+(322:5cm)$) [sq] (heck) {};
+        \draw (heck.south west) rectangle (heck.north);
+        \draw (heck.south) rectangle (heck.east);
+        \draw (heck) rectangle (heck.north east);
+
+        \draw [a] (center) -- (heck);
+    
+\end{tikzpicture}

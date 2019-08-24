@@ -58,7 +58,7 @@ The image \ref{fig:noise} gives an example of the dependency with spatial freque
     \begin{subfigure}[c]{\textwidth}
         \centering
         \includegraphics[width=\figwidth]{Sections/3AV1/Diagrams/paisagemOri.jpg}
-        \caption{Original Image \cite{FreepikDownloadNow}}
+        \caption{Original Image \cite{Freepik}}
         \label{subfig:noiseOri}
     \end{subfigure}
     \begin{subfigure}[c]{\textwidth}
@@ -259,15 +259,55 @@ As can also be seen in this figure, the \emph{Inverse Transform} converts the co
 
 In the decoder, the \emph{Control Unit} represents the process that organizes the different stages, according to the choices done in the encoding stage.
 
+\nocite{agostiniDesenvolvimentoArquiteturasAlto2007}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{AV1}
 
-\todo[inline,color=red!70]{\textbf{Review \textit{AV1 Bitstream and Decoding Process}}}
-\todo[inline,color=red!40]{*Development Process}
-\todo[inline,color=red!40]{*AOMedia companies}
-\todo[inline,color=red!40]{*Comparation with past generations}
-\todo[inline,color=red!40]{*Introduction of modules not present on other video codecs}
-\todo[inline,color=red!40]{*Block diagram}
+Being the focus of this work, in the following sections, \emph{AV1} is presented on its most relevant aspects, starting with its development process.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{History and Development}
+
+\nocite{debarghamukherjeeAllThingsRTC2019Opening2019}
+
+The development of this codec started as a need to improve the bandwidth reduction of \emph{VP9}. Therefore, the presentation of \emph{AV1} starts by explaining the guidelines of its predecessor.
+
+\emph{VP9} started with project \emph{Webm}, created by \emph{On2}, which got acquired by \emph{Google} in 2010. This project had the objective of developing the first\footnote{VP8 got openly released after the acquisition of the company, after closing the development process.} open-source, royalty-free video codec. This got support from major video content producers, such as \emph{YouTube}, \emph{Netflix} and \emph{Twitch}, since it represented large savings in licensing payments, from the use of MPEG's standards, which got aggravated from the difficult patenting terms of \emph{HEVC} \cite{streamingmediaHEVCAdvancePatent2015}. After release in 2013, \emph{VP9} got adopted as \emph{YouTube}'s default video codec for video's above \emph{420p}, as well as other web-video consumption services, including \emph{Facebook}.
+
+In 2014, \emph{Google} started working on the next generation of open-source video codecs, \emph{VP10}. However, due to the large interest from other companies which already used the previous standard, in 2015, the \emph{Alliance for Open Media} was created, and the the development made for this standard got inserted into \emph{AV1}. Alongside \emph{Google}, twelve other companies started \emph{AOM}, including two which also had open video encoder projects, which also majorly contributed to the fast development of \emph{AV1}: \emph{Cisco}'s \emph{Thor} and \emph{Mozilla}'s \emph{Daala}. As the time of writing, 42 companies are official members of \emph{AOM}, englobing a wide range of markets, from video streaming services, to hardware producers.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Sections/3AV1/Diagrams/Images/AOM.png}
+    \caption[\emph{Alliance for Open Media} current members]{\emph{Alliance for Open Media} current members \cite{aomediaHome}} 
+    \label{fig:aom}
+\end{figure}
+
+By 2016, \emph{AV1} started, with the objective of reaching 30\% bitrate decrease, in comparison to \emph{VP9}. After the bitstream freeze in March 2018 and deployment of \emph{libaom} soon later, this first objective was fulfilled. However, the compression performance did not atone for the very high compression and decompression times of the reference software. This left a large margin for improvement, which quickly got explored with the development of other compression and decompression algorithms by the \emph{AOM} members, such as \emph{dav1d}, \emph{rav1e}, \emph{SVT-AV1},  among others. This parallel development gave origin to a competition among the corresponding teams, that benefited the adoption of the standard, since it brought a wide range of possibilities. 
+
+With the improvements verified on both encoders and decoders, \emph{AV1} got progressively more adoption from the industry, getting support from most web browsers, as well as uploads of \emph{AV1} encoded videos to streaming platforms \cite{eggeLatestTechnicalBusiness2019}.
+
+Besides the advances in software solutions, shortly after the bitstream freeze, IC development companies started to develop hardware solutions. The focus started by hardware decoders for implementation in mobile devices, but some encoder solutions also have been announced. Although some claims of throughput up to \emph{8k 60fps} have been made, third party performance tests still remain to be published \cite{AllegroDVTIntroduces2019,NGCodecAnnouncesAV1, shilovRealtekDemonstratesRTD2893, RealtekLaunchesWorldwide, SocionextImplementsAV12018}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Encoding Tools}
+
+Although the focus of this work revolves around the Transform stage, in this section, \emph{AV1} is presented on its most relevant aspects. Some analogies are also made with \emph{VP9}'s tools, as to justify the performance increases obtained with the most recent generation, as well as the complexity.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Partitioning}
+
+At the start of the encoding process, an input frame is divided into \emph{superblocks}. These constitute the starting point of the compression of an image.
+
+These blocks may be of $128 \times 128$ pixels, or $64 \times 64$. However, doing operations with such sizes would add complexity, as well as it wouldn't prove to be efficient. Therefore, the \emph{superblock} can be partitioned into various \emph{prediction blocks}. These can range between $128 \times 128$ to $4 \times 4$, including rectangular blocks, with $2:1$ or $4:1$ ratios. The division of these blocks can be done recursive, where a square block divided into 4 square blocks can originate progressively smaller blocks, according to the schematic in figure \ref{fig:partitioning}.
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/3AV1/Diagrams/partitioning.tex}
+    \caption{Description of the recursive partitioning scheme of \emph{AV1}} 
+    \label{fig:partitioning}
+\end{figure}
 
 \input{Sections/3AV1/Diagrams/av1block.tex}
 
