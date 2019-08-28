@@ -188,9 +188,9 @@ It is frequently compared to the \emph{DFT}, due to the similarity of their oper
 \begin{table}[h]
     \centering
     \begin{tabular}{@{}lllll@{}} \toprule
-        \textbf{Step} &      \multicolumn{2}{l}{\textbf{\emph{DFT}}} &      \multicolumn{2}{l}{\textbf{\emph{DCT}}} \\ \hline
-        1 &         \multicolumn{2}{p{0.4\textwidth}}{Repeat $g(n)$ every N points, giving origin to $\widetilde{g}_N(n)$} &         \multicolumn{2}{p{0.4\textwidth}}{Concatenate $g(n)$ with a flipped version of itself, creating a $2N$ sequence, $g_{2N}(n)$, and repeat it, giving origin to $\widetilde{g}_{2N}(n)$}\\ \hline
-        2 &         \multicolumn{2}{p{0.4\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_N$} &         \multicolumn{2}{p{0.4\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_{2N}$}\\ \hline
+        \textbf{Step} &      \multicolumn{2}{c}{\textbf{\emph{DFT}}} &      \multicolumn{2}{c}{\textbf{\emph{DCT}}} \\ \toprule
+        1 &         \multicolumn{2}{p{0.4\textwidth}}{Repeat $g(n)$ every N points, giving origin to $\widetilde{g}_N(n)$} &         \multicolumn{2}{p{0.4\textwidth}}{Concatenate $g(n)$ with a flipped version of itself, creating a $2N$ sequence, $g_{2N}(n)$, and repeat it, giving origin to $\widetilde{g}_{2N}(n)$}\\ 
+        2 &         \multicolumn{2}{p{0.4\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_N$} &         \multicolumn{2}{p{0.4\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_{2N}$}\\ 
         3 &         \multicolumn{2}{p{0.4\textwidth}}{Keep the first $N$ coefficients\, and set all others to $0$} &         \multicolumn{2}{p{0.4\textwidth}}{Keep the first $N$ coefficients, and set all others to $0$}\\ 
         \bottomrule
     \end{tabular}

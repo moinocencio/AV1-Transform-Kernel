@@ -1,0 +1,13 @@
+\begin{tikzpicture}[scale=1, every node/.style={scale=1}, >=triangle 60]
+    \draw[thick] (-0.5,0) -- (12,0) ;
+    \draw[thick,->] (0,-0.5) -- (0,6) node[midway, rotate=90, above, font={\bfseries}]{Average Relative Bitrate};
+    
+    \node at (2,0) [below, font={\bfseries}] (h264) {H.264};
+        \draw [line width=5mm, darkgray] (2,0) -- (2,5)node[font={\bfseries}, yshift=2.5mm]{100\%};
+    \node at (5,0) [below, font={\bfseries}] (h264) {H.265};
+        \draw [line width=5mm, darkgray] (5,0) -- (5,3.5)node[font={\bfseries}, yshift=2.5mm]{70\%};
+    \node at (8,0) [below, font={\bfseries}] (h264) {VP9};
+        \draw [line width=5mm, darkgray] (8,0) -- (8,3.2)node[font={\bfseries}, yshift=2.5mm]{68\%};
+    \node at (11,0) [below, font={\bfseries}] (h264) {AV1};
+        \draw [line width=5mm, blue!70!black] (11,0) -- (11,2.6)node[font={\bfseries}, yshift=2.5mm]{53\%};
+\end{tikzpicture}

@@ -209,6 +209,8 @@ Into the \emph{Inter Coding} block, go two inputs. The currently encoding block,
     \label{fig:interex}
 \end{figure}
 
+In most codecs, the motion vector has a precision below one pixel. This means that the matching block, from the reference frame, may be interpolated from existing pixels. This process is named as \emph{sub-pixel interpolation}, which calculates virtual values between existing pixels. 
+
 After the prediction stage, the chosen output between the two processes, i.e., the predicted block, gets subtracted by the current one, giving origin to the \emph{residue}. This corresponds to the pixel value differences between the original and predicted blocks. Lower \emph{residues} indicate more efficient prediction stages.
 
 The next stage, the \emph{Forward Transform}, is the focus of this work. It takes the residue blocks, which may not be the same size of the prediction blocks, and evaluates them according to its spatial frequencies. Its output corresponds to a series of \emph{coefficients}, that are related to the similarity --- or \emph{correlation} --- between the input block and a series of \emph{basis images}. This process is further explained in chapter \ref{chap:trans}.
@@ -293,6 +295,8 @@ Besides the advances in software solutions, shortly after the bitstream freeze, 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Encoding Tools}
 
+\nocite{chenOverviewCoreCoding2018}
+
 Although the focus of this work revolves around the Transform stage, in this section, \emph{AV1} is presented on its most relevant aspects. Some analogies are also made with \emph{VP9}'s tools, as to justify the performance increases obtained with the most recent generation, as well as the complexity.
 
 %%%%%%%%%%%%%%%%%%%
@@ -309,14 +313,89 @@ These blocks may be of $128 \times 128$ pixels, or $64 \times 64$. However, doin
     \label{fig:partitioning}
 \end{figure}
 
-\input{Sections/3AV1/Diagrams/av1block.tex}
+\emph{VP9} also included a recursive partitioning scheme, but the maximum block size is $64 \times 64$, and each block could only be divided with the $\times 4$ or $2:1$ ratios.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Performance Analysis}
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Intra-prediction}
 
-\todo[inline,color=red!40]{*Compression gains}
-\todo[inline,color=red!40]{*Quality assessment}
-\todo[inline,color=red!40]{*Complexity (general/modules) and timing issues}
+In figure \ref{fig:intraex}, it is presented one of the possible angles from the \emph{directional prediction} mode of \emph{Intra coding}. However, in \emph{AV1}, this stage includes other prediction options, some being revised from previous generations, while others have never been implemented before.
+
+On the \emph{directional mode}, \emph{AV1} improves massively from \emph{VP9}, going from 8 directions to 56. This allows for better maintenance of details, especially on bigger blocks. 
+
+As to the \emph{non-directional predictors}, \emph{VP9} two. In \emph{DC mode}, the pixels  within a block would get replicated as the average of its references. \emph{True Motion mode} would calculate each pixel as the sum of the one above by the one to the left, and subtract the upper-left diagonal, i.e., $y_{(i,j)}=y_{(i,j-1)}+y_{(i-1,j)}-y_{(i-1,j-1)}$. \emph{AV1}'s \emph{Smooth modes} are similar to the previous \emph{DC}, but it has the possibility of calculating the weighted average of the reference pixels, as well as using just one set of references, horizontal or vertical. \emph{TM mode} gave place to \emph{Paeth}, which makes various calculations similar to \emph{TM}, then considering the most fitted prediction. An hardware architecture for this intra-predictor has already been implemented in \cite{correaHighThroughputHardware2019}.
+
+\emph{Pallet mode} also got revised and included in \emph{AV1}. This mode is paired with other prediction techniques, limiting the pixel values to a set of possible colors. \emph{Pallet} as well as \emph{Intra-block copy} are especially designed for artificial video, such as video game footage, since these kind of videos contained a limited set of colors textures. \emph{Intra-block copy} allows for the replication of a intra-predicted block, similarly to the process in inter prediction.
+
+Finally, \emph{AV1} introduces two new intra prediction modes that haven't been implemented in previous generations. These are \emph{Chroma from Luma} and \emph{Recursive-filter Intra Prediction}. The first is easily understandable through its name. The chroma component of a block is calculated through the corresponding luminance values (see \cite{trudeauPredictingChromaLuma2018}). As to the later, it sub-divides a prediction block, and calculates each set of pixels using different filters.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Inter-prediction}
+
+This block got major innovations, as well as improvements to previous generations. Regarding the standard techniques, \emph{AV1} improves in the number of motion vector estimation filters, going from two to four, as well as in the number of sub-pixel filters. While \emph{VP9} allowed for three reference frames, the newer inter predictor allows to choose up to seven per frame, in a set of eight reference frames. This highly increases the necessary memory for encoding and decoding, but allows for finer motion estimation.
+
+As to innovations, \emph{AV1} introduces \emph{Warped motion}, which allows to shape the reference block on a trapezodial manner, \emph{Global motion}, to easily shift an entire frame, as to deal with camera movements, \emph{Wedge mode} which allows to use different prediction schemes in the same block, among others.
+
+Some works have already been published with advances to this stage, such as \cite{dengHardwarefriendlyInterPrediction2017}, as well as hardware implementations \cite{domanskiHighThroughputMultifilterInterpolation2019}.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Transform}
+
+\emph{AV1} follows the innovations made in \emph{VP9}, adding more transformation kernels. Besides the regularly implemented \gls{dct}, the transformation blocks may now be transformed using Identity kernels or \gls{adst} kernels, which can be implemented in two directions. These different options can be used independently in the columns and rows, giving origin to 16 different options of block transformations. This aspect is further explained in chapter \ref{chap:trans}.
+
+As to transform sizes, \emph{AV1} allows for extra flexibility, not fixing any of the block's dimensions to a certain value. This way, the block size can vary between $4 \times 4$ and $64 \times 64$, including rectangular blocks of $2:1$ and $4:1$ ratios.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Quantization}
+
+Although the simplest stage from the encoding/decoding process, \emph{AV1} developed this stage by allowing a wider set of quantization matrixes to be used within the same frame, as well as updating the choosing criteria. While in \emph{VP9} the \emph{Quantization Parameter (QP)} would be calculated considering the chroma components as one, now both channels (Cb and Cr) are considered independently.
+
+Since \emph{AV1} was targeted at web applications, one other innovation was added to this stage, which is an offset to the quantization matrixes. This is particularly effective on applications where a specific target bitrate is to be achieved.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{In-loop Filtering}
+
+Although not represented in figures \ref{fig:basicenc} and \ref{fig:basicdec}, recent codecs include some kind of filtering to reduce compression artifacts. In \emph{VP9} there was included a \emph{Deblocking Filter}, which filtered the entire image, as to reduce the edging artifacts from prediction. \emph{AV1} maintains this filter, reducing the necessary memory to implement it. 
+
+Besides the revision of the old filter, many others are added, such as the \emph{Constrained Directional Enhancement Filter}, that filters the image directly on the prediction blocks' edges, with the same objective of the \emph{Deblocking filter}. Some further explanation of these filters may be found in \cite{norkinFilmGrainSynthesis2018} and \cite{midtskogenAv1ConstrainedDirectional2018}.
+
+%\input{Sections/3AV1/Diagrams/av1block.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Performance Analysis}
+
+\emph{AV1}'s decoding specification hasn't change since the release of the standard and freeze of the bitstream. However, this isn't verified on the implementations of the standard. Even \emph{libaom}, which is intended to serve as a guideline for future implementations, has been severely improved since its release in June 2018. 
+
+Being so, the comparison of \emph{AV1} throughout these developing months has been divided in two major categories: \emph{Quality} and \emph{Timing}. The first depends on the standard itself, and on how the encoding tools are able to compress the video, while maintaining its playback capabilities. Therefore, if the encoding objectives are maintained throughout the development of the encoders/decoders, this parameter should not vary. However, the same cannot be said of the \emph{Timing Performance}, since as more efficient tools get released, it is expected that the time to encode/decode a video gets reduced, as to reach real-time usability.
+
+%\todor{Comparation metrics?}
+
+According to Moscow State University \cite{vatolinMSUCodecComparison2019}, \emph{AV1} achieved its objective of highly reducing the necessary bitrate. On this test, five \emph{1080p} sequences have been encoded using different implementations of \emph{H.264/AVC}, \emph{H.265/HEVC}, \emph{VP9} and \emph{AV1}. The different softwares have been configured on a similar manner, as to encode the sequences with similar quality, and the average bitrate per codec was compared relatively to \emph{H.264}. The results are presented in figure \ref{fig:testqual}.
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/3AV1/Diagrams/testqual.tex}
+    \caption[\emph{AV1} bitrate savings]{\emph{AV1} bitrate savings \cite{vatolinMSUCodecComparison2019}} 
+    \label{fig:testqual}
+\end{figure}
+
+As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1FirstLook2018, GoodNewsAV12019}, it is possible to see the improvements made on \emph{libaom}. In table \ref{tab:testtime} there are presented the encoding times of a 5 second clip, shortly after the reference software was released, August 2018, and in March 2019. Besides the performance of \emph{libaom}, software for \emph{H.264/AVC}, \emph{H.265/HEVC} and \emph{VP9} is also evaluated.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{@{}ccc@{}} \toprule
+        \multirow{2}{*}{\textbf{Codec}}     &      \multicolumn{2}{c}{\textbf{Encoding Time (s)}} \\
+         &    \textbf{2018}  &   \textbf{2019}  \\ \toprule
+        AV1            &    226 080        & 736 \\
+        H.265          &    \multicolumn{2}{c}{289} \\
+        VP9            &    \multicolumn{2}{c}{226} \\
+        H.264          &    \multicolumn{2}{c}{18} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Encoding times of different video encoders, and improvements on \emph{AV1}}
+    \label{tab:testtime}
+\end{table}
+
+From these results, it is possible to conclude that \emph{AV1} is a promising codec, both for its open-source and royalty free usage, as well as its performance.
 
 \clearpage
 \printbibliography[heading=subbibliography]

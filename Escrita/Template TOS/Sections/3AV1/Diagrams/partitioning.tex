@@ -1,80 +1,113 @@
-\begin{tikzpicture}[scale=1,>=triangle 60]
+\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}, >=triangle 60]
     \tikzset{
         a/.style={->, thick},
         sq/.style={draw, rectangle, minimum width=2cm, minimum height=2cm, fill=lightgray, thick}
     }    
     
-    \node [sq] (center) {};
+    \begin{scope}
+        \node [sq] (center) {};
 
-    \node at ($(center)+(0:5cm)$) [sq] (heck) {};
-        \draw (heck.south west) rectangle (heck);
-        \draw (heck.west) rectangle (heck.north);
-        \draw (heck) rectangle (heck.south east);
-        \draw (heck) rectangle (heck.north east);
+        \node at ($(center)+(0:5cm)$) [sq] (heck) {};
+            \draw (heck.south west) rectangle (heck);
+            \draw (heck.west) rectangle (heck.north);
+            \draw (heck) rectangle (heck.south east);
+            \draw (heck) rectangle (heck.north east);
 
-        \draw [a] (center) -- (heck);
-        \draw [a] (heck) to [bend left=20] (center);
+            \draw [a] (center) -- (heck);
+            \draw [a] ($(heck.west)+(0,-1mm)$) to [bend left=22] ($(center.east)+(0,-1mm)$);
 
-    \node at ($(center)+(36:5cm)$) [sq] (heck) {};
-        \draw (heck.south west) rectangle (heck);
-        \draw (heck.west) rectangle (heck.north);
-        \draw (heck.south) rectangle (heck.north east);
+        \node at ($(center)+(36:5cm)$) [sq] (heck) {};
+            \draw (heck.south west) rectangle (heck);
+            \draw (heck.west) rectangle (heck.north);
+            \draw (heck.south) rectangle (heck.north east);
 
-        \draw [a] (center) -- (heck);
+            \draw [a] (center) -- (heck);
 
-    \node at ($(center)+(72:5cm)$) [sq] (heck) {};
-        \draw (heck.south west) rectangle (heck.east);
-        \draw (heck.west) rectangle (heck.north);
-        \draw (heck) rectangle (heck.north east);
+        \node at ($(center)+(72:5cm)$) [sq] (heck) {};
+            \draw (heck.south west) rectangle (heck.east);
+            \draw (heck.west) rectangle (heck.north);
+            \draw (heck) rectangle (heck.north east);
 
-        \draw [a] (center) -- (heck);
+            \draw [a] (center) -- (heck);
 
-    \node at ($(center)+(106:5cm)$) [sq] (heck) {};
-        \draw (heck.south west) rectangle (heck);
-        \draw (heck.south) rectangle (heck.east);
-        \draw (heck.west) rectangle (heck.north east);
+        \node at ($(center)+(106:5cm)$) [sq] (heck) {};
+            \draw (heck.south west) rectangle (heck);
+            \draw (heck.south) rectangle (heck.east);
+            \draw (heck.west) rectangle (heck.north east);
 
-        \draw [a] (center) -- (heck);
+            \draw [a] (center) -- (heck);
 
-    \node at ($(center)+(142:5cm)$) [sq] (heck) {};
-        \draw (heck.south west) rectangle (heck.east);
-        \draw (heck.west) rectangle (heck.north east);
+        \node at ($(center)+(142:5cm)$) [sq] (heck) {};
+            \draw (heck.south west) rectangle (heck.north);
+            \draw (heck.south) rectangle (heck.east);
+            \draw (heck) rectangle (heck.north east);        
 
-        \draw [a] (center) -- (heck);
+            \draw [a] (center) -- (heck);
 
-    \node at ($(center)+(178:5cm)$) [sq] (heck) {};
-        \draw (heck.south west) rectangle (heck.north);
-        \draw (heck.south) rectangle (heck.north east);
+        \node at ($(center)+(178:5cm)$) [sq] (heck) {};
+            \draw [sq] (heck) {};
 
-        \draw [a] (center) -- (heck);
+            \draw [a] (center) -- (heck);
 
-    \node at ($(center)+(214:5cm)$) [sq] (heck) {};
-        \draw (heck.south west) rectangle (heck.east);
-        \draw (heck.west) rectangle (heck.north east);
+        \node at ($(center)+(214:5cm)$) [sq] (heck) {};
+            \draw (heck.south west) rectangle (heck.east);
+            \draw (heck.west) rectangle (heck.north east);
 
-        \draw [a] (center) -- (heck);
+            \draw [a] (center) -- (heck);
 
-    \node at ($(center)+(250:5cm)$) [sq] (heck) {};
-        \draw (heck.south west) rectangle ($(heck.east)+(0,-0.5)$);
-        \draw ($(heck.east)+(0,-0.5)$) rectangle (heck.west);
-        \draw (heck.west) rectangle ($(heck.east)+(0,0.5)$);
-        \draw ($(heck.east)+(0,0.5)$) rectangle (heck.north west);
+        \node at ($(center)+(250:5cm)$) [sq] (heck) {};
+            \draw (heck.south west) rectangle (heck.north);
+            \draw (heck.south) rectangle (heck.north east);      
 
-        \draw [a] (center) -- (heck);
+            \draw [a] (center) -- (heck);
 
-    \node at ($(center)+(286:5cm)$) [sq] (heck) {};
-        \draw (heck.south west) rectangle ($(heck.north)+(-0.5,0)$);
-        \draw ($(heck.north)+(-0.5,0)$) rectangle (heck.south);
-        \draw (heck.south) rectangle ($(heck.north)+(0.5,0)$);
-        \draw ($(heck.north)+(0.5,0)$) rectangle (heck.south east);
+        \node at ($(center)+(286:5cm)$) [sq] (heck) {};
+            \draw (heck.south west) rectangle ($(heck.north)+(-0.5,0)$);
+            \draw ($(heck.north)+(-0.5,0)$) rectangle (heck.south);
+            \draw (heck.south) rectangle ($(heck.north)+(0.5,0)$);
+            \draw ($(heck.north)+(0.5,0)$) rectangle (heck.south east);
 
-        \draw [a] (center) -- (heck);
+            \draw [a] (center) -- (heck);
 
-    \node at ($(center)+(322:5cm)$) [sq] (heck) {};
-        \draw (heck.south west) rectangle (heck.north);
-        \draw (heck.south) rectangle (heck.east);
-        \draw (heck) rectangle (heck.north east);
+        \node at ($(center)+(322:5cm)$) [sq] (heck) {};
+            \draw (heck.south west) rectangle ($(heck.east)+(0,-0.5)$);
+            \draw ($(heck.east)+(0,-0.5)$) rectangle (heck.west);
+            \draw (heck.west) rectangle ($(heck.east)+(0,0.5)$);
+            \draw ($(heck.east)+(0,0.5)$) rectangle (heck.north west);
 
-        \draw [a] (center) -- (heck);
+            \draw [a] (center) -- (heck);
+    \end{scope}
+    
+    \begin{pgfonlayer}{background}
+        \draw[fill=blue!20] 
+            ([shift={(18:0.5cm)}]0,0) arc (18:-18:0.5cm)
+            --
+            ([shift={(-18:7cm)}]0,0) arc (-18:18:7cm) node[above, yshift=2mm, sloped, midway, font={\bfseries\LARGE}]{$\times   4$ division} 
+            -- cycle;
+            
+        \draw[fill=blue!35] 
+            ([shift={(18:0.5cm)}]0,0) arc (18:160:0.5cm)
+            --
+            ([shift={(160:7cm)}]0,0) arc (160:18:7cm) node[below, yshift=-2mm, sloped, midway, font={\bfseries\LARGE}]{T    division} 
+            -- cycle;
+
+        \draw[fill=blue!50] 
+            ([shift={(160:0.5cm)}]0,0) arc (160:196:0.5cm)
+            --
+            ([shift={(196:7cm)}]0,0) arc (196:160:7cm) node[below, yshift=-2mm, sloped, midway, font={\bfseries\LARGE}]{No division} 
+            -- cycle;
+
+        \draw[fill=blue!65] 
+            ([shift={(196:0.5cm)}]0,0) arc (196:268:0.5cm)
+            --
+            ([shift={(268:7cm)}]0,0) arc (268:196:7cm) node[above, yshift=2mm, sloped, midway, font={\bfseries\LARGE}]{2:1 division} 
+            -- cycle; 
+
+        \draw[fill=blue!75] 
+            ([shift={(268:0.5cm)}]0,0) arc (268:342:0.5cm)
+            --
+            ([shift={(342:7cm)}]0,0) arc (342:268:7cm) node[above, yshift=2mm, sloped, midway, font={\bfseries\LARGE}]{4:1 division} 
+            -- cycle; 
+    \end{pgfonlayer}
     
 \end{tikzpicture}
