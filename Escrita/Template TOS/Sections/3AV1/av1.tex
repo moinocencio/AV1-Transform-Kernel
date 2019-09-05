@@ -117,7 +117,7 @@ Making a similar analysis to what was made in section \ref{sssec:spatred}, a ser
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{Sections/3AV1/Diagrams/intercorr.eps}
-    \caption{Cross-correlation between the first and following nice frames of the \emph{Stefan} sequence}
+    \caption{Cross-correlation between the first and following nine frames of the \emph{Stefan} sequence}
     \label{fig:crosscorr}
 \end{figure}
 
@@ -377,7 +377,24 @@ According to Moscow State University \cite{vatolinMSUCodecComparison2019}, \emph
     \label{fig:testqual}
 \end{figure}
 
-As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1FirstLook2018, GoodNewsAV12019}, it is possible to see the improvements made on \emph{libaom}. In table \ref{tab:testtime} there are presented the encoding times of a 5 second clip, shortly after the reference software was released, August 2018, and in March 2019. Besides the performance of \emph{libaom}, software for \emph{H.264/AVC}, \emph{H.265/HEVC} and \emph{VP9} is also evaluated.
+These results may vary greatly with the performed tests, as the encoding tools may prove to be more adequate to certain types of videos. On a different test, performed by \emph{Facebook} \cite{AV1BeatsX2642018}, \emph{AV1} presents a higher performance than the one presented previously, as seen in table \ref{tab:facetest}. Here, videos of various resolutions were encoded with \emph{VP9} and \emph{H.264} with equivalent parameters, and the obtained bitstreams are compared to \emph{AV1}'s, according to \gls{bdrate}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{@{}cccccc@{}} \toprule
+        \multirow{2}{*}{\textbf{Codec}}     &      \multicolumn{5}{c}{\textbf{Resolutions}} \\
+         & \textbf{360p} & \textbf{480p} & \textbf{720p} & \textbf{1080p} & \textbf{Average}\\ \toprule 
+        VP9            &    -29.5\% & -32.5\% & -32.3\% & -35.9\% & -32.5\% \\
+        H.264          &    -43.4\% & -49.3\% & -51.2\% & -57.9\% & -50.3\% \\
+        \bottomrule
+    \end{tabular}
+    \caption[BD-rate of \emph{VP9} and \emph{H.264} codecs, when compared to \emph{AV1} (negative corresponds to bitrate savings)]{BD-rate of \emph{VP9} and \emph{H.264} codecs, when compared to \emph{AV1} (negative corresponds to bitrate savings) \cite{AV1BeatsX2642018}}
+    \label{tab:facetest}
+\end{table}
+
+As it can be seen, as the resolution increases, so does the bitrate savings. This leads to believe that if the same test were to be performed with \emph{4K} and \emph{8K} sequences, higher performances would be verified.
+
+As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1FirstLook2018, GoodNewsAV12019}, it is possible to see the improvements made on \emph{libaom}. In table \ref{tab:testtime} there are presented the encoding times of a 5 second clip, shortly after the reference software was released, August 2018, and in March 2019, under the same conditions. Besides the performance of \emph{libaom}, software for \emph{H.264/AVC}, \emph{H.265/HEVC} and \emph{VP9} is also evaluated.
 
 \begin{table}[h]
     \centering
@@ -394,7 +411,12 @@ As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1F
     \label{tab:testtime}
 \end{table}
 
-From these results, it is possible to conclude that \emph{AV1} is a promising codec, both for its open-source and royalty free usage, as well as its performance.
+From these results, it is possible to conclude that \emph{AV1} is a promising codec. When quality and compression gains are considered, it is already verifiable that the codec presents better performances than its predecessors, in some cases even beating its objective of 30\% increase over \emph{VP9}. However, when considering the timing issues, the results don't prove as optimistic. As the time of writing, the encoding solutions are still far away from a real-time usability. Although, as better software and hardware solutions get developed, this objective may be achieved in the near future.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Complexity Analysis}
+
+
 
 \clearpage
 \printbibliography[heading=subbibliography]

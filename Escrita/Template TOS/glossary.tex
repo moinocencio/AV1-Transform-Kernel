@@ -1,5 +1,5 @@
 \newacronym{HEVC}{HEVC}{High Efficiency Video Coding}
-\newacronym{TV}{TV}{Television}
+\newacronym{TV}{TV}{television}
 \newacronym{CMOS}{CMOS}{Complementary metal–oxide–semiconductor}
 \newacronym{UHD}{UHD}{Ultra-High-Definition}
 \newacronym{CODEC}{Codec}{Encoder-Decoder}
@@ -19,7 +19,9 @@
 \newacronym{vlc}{VLC}{variable length codes}
 \newacronym{cabac}{CABAC}{Context Adaptative Binary Arithmetic Coding}
 \newacronym{jvt}{JVT}{Joint Video Team}
+\newacronym{psnr}{PSNR}{Peak Signal to Noise Ratio}
 %\newacronym{jpeg}{JPEG}{Joint Photographic Experts Group}
+
 
 \newglossaryentry{rgb}{%
   name={RGB},
@@ -65,4 +67,31 @@
   name={H.264/AVC},
   description={Previous state of the art video codec from \gls{jvt}, released in 2007. As to the writing of this work, it is the most used video compression algorithm.}
 }
+
+\newglossaryentry{bdrate}{
+  name={Bjontegaard-Delta rate (BD-rate)},
+  description={Objective quality metric, that evaluates the bitrate savings according to the obtained PSNR}
+}
+
+\newglossaryentry{tld:round}{
+  name={$\mathbf{\nint*{x}}$},
+  description={Round to the nearest integer},
+  sort=round,
+  type=nomenclature
+}
+
+\newglossaryentry{tld:floor}{
+  name={$\mathbf{\nfloor*{x}}$},
+  description={Round to the nearest integer, lower than $x$},
+  sort=floor,
+  type=nomenclature
+}
+
+\newglossaryentry{tld:ceil}{
+  name={$\mathbf{\nceil*{x}}$},
+  description={Round to the nearest integer, greater than $x$},
+  sort=ceil,
+  type=nomenclature
+}
+
 \glsaddall
