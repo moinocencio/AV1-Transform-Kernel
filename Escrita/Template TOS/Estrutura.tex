@@ -21,6 +21,7 @@
 \addbibresource{newBib.bib}
 \usepackage{csquotes}
 \usepackage[acronym,nonumberlist]{glossaries}
+\newglossary[tlg]{nomenclature}{tld}{tdn}{Nomenclature}
 \usepackage{xcolor}
 \usepackage{todonotes}
 \usepackage[bottom]{footmisc}
@@ -47,6 +48,8 @@
 \usepackage{afterpage}
 \usepackage{url}
 \PassOptionsToPackage{hyphens}{url}
+\usepackage{nomencl}
+\makenomenclature   
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % Tikz library and set
@@ -148,6 +151,7 @@
 
 \DeclarePairedDelimiter{\nint}\lfloor\rceil
 \DeclarePairedDelimiter{\nfloor}\lfloor\rfloor
+\DeclarePairedDelimiter{\nceil}\lceil\rceil
 
 \interfootnotelinepenalty=10000         % Change priority for footnotes
 
@@ -189,9 +193,9 @@
 \printnoidxglossary
 \addcontentsline{toc}{chapter}{\glossaryname}
 
-%%%%% Temporary %%%%%
 \cleardoublepage
-\listoftodos
+\printnoidxglossary[type=nomenclature,title=Nomenclature]
+\addcontentsline{toc}{chapter}{Nomenclature}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Introduction

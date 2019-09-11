@@ -27,25 +27,25 @@
 
     \node[inout, it] (start) {Input Block};
 
-    \node[proc, below=1.5cm of start] (get_col) {Get Column $i\_c$};
+    \node[proc, below=1.5cm of start] (get_col) {Get Column \texttt{i\_c}};
       \path (start.south) to node [near end, xshift=2em, text=blue!80!black] {\texttt{i\_c=0}} (get_col);
         \draw [->] (start.south) -- (get_col);
     
-    \node[test, join] (ud_flip) {$ud\_flip$};      
+    \node[test, join] (ud_flip) {\texttt{ud\_flip}};      
 
     \node[proc] (T1) {$T$};
       \path (ud_flip.south) to node [near start, xshift=1em, text=red!80!black] {\texttt{0}} (T1);
           \draw [->] (ud_flip.south) -- (T1);
     
-    \node[test, join] (lr_flip) {$lr\_flip$};   
+    \node[test, join] (lr_flip) {\texttt{lr\_flip}};   
 
     \node[proc] (store1) {Store coefficients};
       \path (lr_flip.south) to node [near start, xshift=1em, text=red!80!black] {\texttt{0}} (store1);
             \draw [->] (lr_flip.south) -- (store1);
 
-    \node[test, join] (i_col) {$i\_c == (size\_col - 1)$};
+    \node[test, join, text width=7em] (i_col) {\texttt{i\_c == (size\_col - 1)}};
 
-    \node[proc,below=2.7cm of i_col] (get_row) {Get Row $i\_r$};
+    \node[proc,below=2.7cm of i_col] (get_row) {Get Row \texttt{i\_r}};
       \path (i_col.south) to node [near end, xshift=2em, yshift=-0.2em, text=blue!80!black] {\texttt{i\_r=0}} (get_row);
       \path (i_col.south) to node [near start, xshift=-1.5em, yshift=0.2cm, text=red!80!black] {\texttt{true}} (get_row);
         \draw [->] (i_col.south) -- (get_row);
@@ -54,7 +54,7 @@
 
     \node[proc, join] (store2) {Store coefficients};
 
-    \node[test, join] (i_row) {$i\_r == (size\_row - 1)$};
+    \node[test, join, text width=7em] (i_row) {\texttt{i\_r == (size\_row - 1)}};
 
     \node[term,line width=0.8mm] (end) {End};      
       \path (i_row.south) to node [near start, xshift=-1.5em, text=red!80!black] {\texttt{true}} (end);
