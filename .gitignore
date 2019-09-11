@@ -247,7 +247,7 @@ TSWLatexianTemp*
 *.y4m
 
 # Ignore libaom and builds
-Developed_Work/Libaom/
+Developed_Work/Libaom/Builds
 
 # Ignore fuse hidden (?)
 *.fuse_hidden*
