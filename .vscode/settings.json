@@ -3,6 +3,9 @@
         "libaom"
     ],
     "files.associations": {
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "aom_config.h": "c",
+        "extern.h": "c",
+        "hybrid_fwd_txfm.h": "c"
     }
 }

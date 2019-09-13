@@ -50,6 +50,8 @@
 #include "third_party/libyuv/include/libyuv/scale.h"
 #endif
 
+#include "extern.h"
+
 /* Swallow warnings about unused results of fread/fwrite */
 static size_t wrap_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) {
   return fread(ptr, size, nmemb, stream);
@@ -2352,6 +2354,8 @@ int main(int argc, const char **argv_) {
     }
   }
 #endif
+
+  printf("\nCumulative Ellapsed Time in Transform Stage: %.2f us -> %.1f % \n", ell_t, (ell_t/streams->cx_time)*100);
 
   if (allocated_raw_shift) aom_img_free(&raw_shift);
   aom_img_free(&raw);
