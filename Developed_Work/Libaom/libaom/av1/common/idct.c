@@ -21,6 +21,10 @@
 #include "av1/common/enums.h"
 #include "av1/common/idct.h"
 
+#include "apps/extern.h"
+
+double ell_t_i = 0;
+
 int av1_get_tx_scale(const TX_SIZE tx_size) {
   const int pels = tx_size_2d[tx_size];
   // Largest possible pels is 4096 (64x64).
@@ -272,6 +276,8 @@ static void init_txfm_param(const MACROBLOCKD *xd, int plane, TX_SIZE tx_size,
 
 static void highbd_inv_txfm_add(const tran_low_t *input, uint8_t *dest,
                                 int stride, const TxfmParam *txfm_param) {
+
+
   assert(av1_ext_tx_used[txfm_param->tx_set_type][txfm_param->tx_type]);
   const TX_SIZE tx_size = txfm_param->tx_size;
   switch (tx_size) {
@@ -366,7 +372,7 @@ void av1_inverse_transform_block(const MACROBLOCKD *xd,
                                  TX_TYPE tx_type, TX_SIZE tx_size, uint8_t *dst,
                                  int stride, int eob, int reduced_tx_set) {
   if (!eob) return;
-
+  gettimeofday(&t1,NULL);
   assert(eob <= av1_get_max_eob(tx_size));
 
   TxfmParam txfm_param;
@@ -379,4 +385,6 @@ void av1_inverse_transform_block(const MACROBLOCKD *xd,
   } else {
     av1_inv_txfm_add(dqcoeff, dst, stride, &txfm_param);
   }
+  gettimeofday(&t2,NULL);
+  ell_t_i += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 }

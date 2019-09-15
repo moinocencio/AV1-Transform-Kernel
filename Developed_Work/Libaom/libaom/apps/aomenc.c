@@ -2355,7 +2355,10 @@ int main(int argc, const char **argv_) {
   }
 #endif
 
-  printf("\nCumulative Ellapsed Time in Transform Stage: %.2f us -> %.1f % \n", ell_t, (ell_t/streams->cx_time)*100);
+  printf("\nCumulative Time in Forward Transform Stage: %.2f us -> %.1f % \n", ell_t_f, (ell_t_f/streams->cx_time)*100);
+  printf("Cumulative Time in Inverse Transform Stage: %.2f us -> %.1f % \n", ell_t_i, (ell_t_i/streams->cx_time)*100);
+  printf("Total Time in Transform Stage: %.2f us -> %.1f % \n", ell_t_f+ell_t_i, (ell_t_f/streams->cx_time)*100+(ell_t_i/streams->cx_time)*100);
+
 
   if (allocated_raw_shift) aom_img_free(&raw_shift);
   aom_img_free(&raw);
