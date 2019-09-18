@@ -372,7 +372,10 @@ void av1_inverse_transform_block(const MACROBLOCKD *xd,
                                  TX_TYPE tx_type, TX_SIZE tx_size, uint8_t *dst,
                                  int stride, int eob, int reduced_tx_set) {
   if (!eob) return;
+
+  //My Tunes: Inverse transform timer
   gettimeofday(&t1,NULL);
+
   assert(eob <= av1_get_max_eob(tx_size));
 
   TxfmParam txfm_param;
@@ -385,6 +388,8 @@ void av1_inverse_transform_block(const MACROBLOCKD *xd,
   } else {
     av1_inv_txfm_add(dqcoeff, dst, stride, &txfm_param);
   }
+
+  //My Tunes: Inverse transform timer
   gettimeofday(&t2,NULL);
   ell_t_i += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 }

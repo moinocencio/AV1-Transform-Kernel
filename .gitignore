@@ -245,6 +245,11 @@ TSWLatexianTemp*
 # Ignore Raw video files
 *.yuv
 *.y4m
+*.7z
+
+# Ignore compiled videos
+*.ivf
+*.webm
 
 # Ignore Builds
 Developed_Work/Libaom/Builds
