@@ -20,6 +20,13 @@
 #include "av1/encoder/av1_fwd_txfm1d.h"
 #include "av1/encoder/av1_fwd_txfm1d_cfg.h"
 
+#include <sys/time.h>
+#include "apps/extern.h"
+
+// My Tunes: timers
+struct timeval t1, t2;
+double ell_t_f = 0;
+
 static INLINE TxfmFunc fwd_txfm_type_to_func(TXFM_TYPE txfm_type) {
   switch (txfm_type) {
     case TXFM_TYPE_DCT4: return av1_fdct4_new;
@@ -61,6 +68,7 @@ static INLINE void fwd_txfm2d_c(const int16_t *input, int32_t *output,
   // My tunes:
   //unsigned int mc, mr;
   //FILE *ttc, *ttr, *rst, *gst;
+  gettimeofday(&t1,NULL);
 
   // Note when assigning txfm_size_col, we use the txfm_size from the
   // row configuration and vice versa. This is intentionally done to
@@ -179,6 +187,9 @@ static INLINE void fwd_txfm2d_c(const int16_t *input, int32_t *output,
       }
     }
   }
+  gettimeofday(&t2,NULL);
+
+  ell_t_f += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 }
 
 void av1_fwd_txfm2d_4x8_c(const int16_t *input, int32_t *output, int stride,

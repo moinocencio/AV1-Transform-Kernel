@@ -17,8 +17,6 @@
 #include "av1/encoder/hybrid_fwd_txfm.h"
 #include "apps/extern.h"
 
-double ell_t_f = 0;
-
 /* 4-point reversible, orthonormal Walsh-Hadamard in 3.5 adds, 0.5 shifts per
    pixel. */
 void av1_fwht4x4_c(const int16_t *input, tran_low_t *output, int stride) {
@@ -286,14 +284,10 @@ static void highbd_fwd_txfm_64x64(const int16_t *src_diff, tran_low_t *coeff,
 void av1_fwd_txfm(const int16_t *src_diff, tran_low_t *coeff, int diff_stride,
                   TxfmParam *txfm_param) {
 
-  gettimeofday(&t1,NULL);
   if (txfm_param->bd == 8)
     av1_lowbd_fwd_txfm(src_diff, coeff, diff_stride, txfm_param);
   else
     av1_highbd_fwd_txfm(src_diff, coeff, diff_stride, txfm_param);
-  gettimeofday(&t2,NULL);
-
-  ell_t_f += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 }
 
 void av1_lowbd_fwd_txfm_c(const int16_t *src_diff, tran_low_t *coeff,

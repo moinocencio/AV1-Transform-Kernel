@@ -17,6 +17,14 @@
 #include "av1/common/av1_inv_txfm1d.h"
 #include "av1/common/av1_inv_txfm1d_cfg.h"
 
+#include <sys/time.h>
+
+#include "apps/extern.h"
+
+// My tunes: Inv Timer
+struct timeval t1, t2;
+double ell_t_i = 0;
+
 void av1_highbd_iwht4x4_16_add_c(const tran_low_t *input, uint8_t *dest8,
                                  int stride, int bd) {
   /* 4-point reversible, orthonormal inverse Walsh-Hadamard in 3.5 adds,
@@ -256,6 +264,10 @@ static INLINE void inv_txfm2d_add_c(const int32_t *input, uint16_t *output,
                                     int stride, TXFM_2D_FLIP_CFG *cfg,
                                     int32_t *txfm_buf, TX_SIZE tx_size,
                                     int bd) {
+
+  //My Tunes: Inverse transform timer
+  gettimeofday(&t1,NULL);
+
   // Note when assigning txfm_size_col, we use the txfm_size from the
   // row configuration and vice versa. This is intentionally done to
   // accurately perform rectangular transforms. When the transform is
@@ -341,6 +353,9 @@ static INLINE void inv_txfm2d_add_c(const int32_t *input, uint16_t *output,
       }
     }
   }
+  //My Tunes: Inverse transform timer
+  gettimeofday(&t2,NULL);
+  ell_t_i += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 }
 
 static INLINE void inv_txfm2d_add_facade(const int32_t *input, uint16_t *output,

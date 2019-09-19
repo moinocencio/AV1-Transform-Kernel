@@ -13,13 +13,10 @@
 #define AV1_ENCODER_HYBRID_FWD_TXFM_H_
 
 #include "config/aom_config.h"
-#include <sys/time.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-struct timeval t1, t2;
 
 void av1_fwd_txfm(const int16_t *src_diff, tran_low_t *coeff, int diff_stride,
                   TxfmParam *txfm_param);

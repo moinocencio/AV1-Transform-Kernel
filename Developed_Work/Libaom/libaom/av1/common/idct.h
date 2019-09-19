@@ -23,10 +23,6 @@
 extern "C" {
 #endif
 
-#include <sys/time.h>
-
-struct timeval t1, t2;
-
 typedef void (*transform_1d)(const tran_low_t *, tran_low_t *);
 
 typedef struct {

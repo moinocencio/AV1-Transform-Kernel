@@ -247,6 +247,9 @@ TSWLatexianTemp*
 *.y4m
 *.7z
 
+# Ignore Test Encodes
+*_test.webm
+
 # Ignore compiled videos
 *.ivf
 *.webm
