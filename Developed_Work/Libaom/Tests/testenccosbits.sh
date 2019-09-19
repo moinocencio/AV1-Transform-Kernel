@@ -58,3 +58,8 @@ echo "16bit Cosine Encode/Decode"
 ./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit16/aomenc -r $res -v $inpath -o $outpath"_16b_enc.webm" -l $limit
 
 /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit16/aomdec $outpath"_16b_enc.webm" --i420 -o $outpath"_16b_dec.y4m"
+
+
+#Retrieve Global Stats
+echo "Retrieve Global Stats"
+./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/PrintStats/aomenc -r $res -v $inpath -o $outpath"_reg_enc.webm" -l $limit
