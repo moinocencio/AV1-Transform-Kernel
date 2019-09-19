@@ -121,8 +121,8 @@ static INLINE void fwd_txfm2d_c(const int16_t *input, int32_t *output,
                 //fclose(rst);
 
     // My tunes: fwd col transform
-    //txfm_func_col(temp_in, temp_out, cos_bit_col, stage_range_col);
-    txfm_func_col(temp_in, temp_out, 16, stage_range_col);
+    txfm_func_col(temp_in, temp_out, cos_bit_col, stage_range_col);
+    //txfm_func_col(temp_in, temp_out, 10, stage_range_col);
 
                 // My Tunes: Transform Test Columns Retrival
                 //ttc = fopen("TransformTestCol.txt","a");
@@ -151,8 +151,8 @@ static INLINE void fwd_txfm2d_c(const int16_t *input, int32_t *output,
   // Rows
   for (r = 0; r < txfm_size_row; ++r) {
     //My tunes: fwd row transform
-    //txfm_func_row(buf + r * txfm_size_col, output + r * txfm_size_col, cos_bit_row, stage_range_row);
-    txfm_func_row(buf + r * txfm_size_col, output + r * txfm_size_col, 16, stage_range_row);
+    txfm_func_row(buf + r * txfm_size_col, output + r * txfm_size_col, cos_bit_row, stage_range_row);
+    //txfm_func_row(buf + r * txfm_size_col, output + r * txfm_size_col, 10, stage_range_row);
     
                 // My Tunes: Transform Test Rows Retrival
                 //temp_in = buf + r * txfm_size_col;
