@@ -8,7 +8,7 @@ limit=100
 usage="$(basename "$0") [-h] [-r n] [-v path] [-o path] [-l n] -- encode video with different cosine representations
 
     -h  display help text    
-    -r  resolutions:    1 - CIF 352x288 (default)
+    -r  resolutions:    1 - CIF 288x352 (default)
                         2 - FHD 1080x1920
     -v  input video path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m)                        
     -o  output path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/waterfalldec)

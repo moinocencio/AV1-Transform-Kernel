@@ -4,7 +4,7 @@
 
 # Choose options
 encpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomenc
-res="-h 352 -w 288"
+res="-h 288 -w 352"
 inpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m
 outpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/waterfall_test.webm
 limit="--limit=100"
