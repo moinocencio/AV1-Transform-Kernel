@@ -28,7 +28,7 @@ while getopts ':he:r:v:o:l:' option; do
        ;;
     r) case $OPTARG in
             "1" )
-                res="-h 352 -w 288"
+                res="-h 288 -w 352"
                 ;;
             "2" )
                 res="-h 1080 -w 1920"

@@ -4,20 +4,21 @@ clear all
 clc
 
 %% Initializers
-v_ori_n = 'waterfall_cif.yuv';      % Name of original raw sequence
-v_dec_n = 'waterfall_normal.yuv';   % Encoded/Decoded normally
-v_dec10b_n = 'waterfall_10b.yuv';  % Encoded/Decoded with 10 bit cosine
-v_dec16b_n = 'waterfall_16b.yuv';  % Encoded/Decoded with 16 bit cosine
+v_ori_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m';      % Name of original raw sequence
+v_dec_n = 'waterfall_reg_dec.y4m';   % Encoded/Decoded normally
+v_dec10b_n = 'waterfall_10b_dec.y4m';  % Encoded/Decoded with 10 bit cosine
+v_dec16b_n = 'waterfall_16b_dec.y4m';  % Encoded/Decoded with 16 bit cosine
 
-vw = 288;
-vh = 352;
-nFrames = 5;
+vw = 352;
+vh = 288;
+nFrames = 10;
 
 %% Open Videos
-v_ori_s = loadFileYuv(v_ori_n,vh,vw,1:nFrames);
-v_dec_s = loadFileYuv(v_dec_n,vh,vw,1:nFrames);
-v_dec10b_s = loadFileYuv(v_dec10b_n,vh,vw,1:nFrames);
-v_dec16b_s = loadFileYuv(v_dec16b_n,vh,vw,1:nFrames);
+v_ori_s = yuv4mpeg2mov(v_ori_n);
+%v_ori_s = loadFileYuv(v_ori_n,vw,vh,1:nFrames);
+v_dec_s = loadFileYuv(v_dec_n,vw,vh,1:nFrames);
+v_dec10b_s = loadFileYuv(v_dec10b_n,vw,vh,1:nFrames);
+v_dec16b_s = loadFileYuv(v_dec16b_n,vw,vh,1:nFrames);
 
 %% Error Mean Square
 e_cum_dec = 0;
@@ -51,6 +52,6 @@ title('10 bit'),xlabel(string(PSNR_dec10b))
 subplot(2,3,3),imshow(v_dec16b_s(3).cdata);
 title('16 bit'),xlabel(string(PSNR_dec16b))
 
-subplot(2,3,4),imshow(e_dec(3).cdata);
-subplot(2,3,5),imshow(e_dec(3).cdata);
-subplot(2,3,6),imshow(e_dec(3).cdata);
+subplot(2,3,4),imshow(255 - e_dec(3).cdata);
+subplot(2,3,5),imshow(255 - e_dec(3).cdata);
+subplot(2,3,6),imshow(255 - e_dec(3).cdata);
