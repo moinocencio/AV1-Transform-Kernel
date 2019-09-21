@@ -259,3 +259,6 @@ Developed_Work/Libaom/Builds
 
 # Ignore fuse hidden (?)
 *.fuse_hidden*
+
+# Encode Stats (some big files)
+Developed_Work/Libaom/Tests/Encode_Stats

@@ -5,9 +5,9 @@ clc
 
 %% Initializers
 v_ori_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m';      % Name of original raw sequence
-v_dec_n = 'waterfall_reg_dec.y4m';   % Encoded/Decoded normally
-v_dec10b_n = 'waterfall_10b_dec.y4m';  % Encoded/Decoded with 10 bit cosine
-v_dec16b_n = 'waterfall_16b_dec.y4m';  % Encoded/Decoded with 16 bit cosine
+v_dec_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_Dec Videos/waterfall_reg_dec.y4m';   % Encoded/Decoded normally
+v_dec10b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_Dec Videos/waterfall_10b_dec.y4m';  % Encoded/Decoded with 10 bit cosine
+v_dec16b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_Dec Videos/waterfall_16b_dec.y4m';  % Encoded/Decoded with 16 bit cosine
 
 vw = 352;
 vh = 288;
