@@ -4,14 +4,14 @@ clear all
 clc
 
 %% Initializers
-v_ori_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m';      % Name of original raw sequence
-v_dec_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_Dec Videos/waterfall_reg_dec.y4m';   % Encoded/Decoded normally
-v_dec10b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_Dec Videos/waterfall_10b_dec.y4m';  % Encoded/Decoded with 10 bit cosine
-v_dec16b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_Dec Videos/waterfall_16b_dec.y4m';  % Encoded/Decoded with 16 bit cosine
+v_ori_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/park_joy_1080p50.y4m';      % Name of original raw sequence
+v_dec_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_Dec Videos/parkjoytest100f_reg_dec.y4m';   % Encoded/Decoded normally
+v_dec10b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_Dec Videos/parkjoytest100f_10b_dec.y4m';  % Encoded/Decoded with 10 bit cosine
+v_dec16b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_Dec Videos/parkjoytest100f_16b_dec.y4m';  % Encoded/Decoded with 16 bit cosine
 
-vw = 352;
-vh = 288;
-nFrames = 10;
+vw = 1920;
+vh = 1080;
+nFrames = 5;
 
 %% Open Videos
 v_ori_s = yuv4mpeg2mov(v_ori_n);

@@ -163,7 +163,7 @@ xlabel('Transform'),ylabel('Relative Use')
 bits = categorical({'10','11','12','13','14','15','16'});
 bits = reordercats(bits,{'10','11','12','13','14','15','16'});
 cum_bit_per = (row_cosbit+col_cosbit)/(length_data*2)*100;
-figure(2)
+figure(3)
 setGraphs();
 b_typ = bar(bits,cum_bit_per,'FaceColor',[0 0.2 0.5]);
 text(1:length(bits),cum_bit_per,compose("%.2f %%",cum_bit_per),'HorizontalAlignment','center',...
