@@ -9,7 +9,8 @@ usage="$(basename "$0") [-h] [-r n] [-v path] [-o path] [-l n] -- encode video w
 
     -h  display help text    
     -r  resolutions:    1 - CIF 288x352 (default)
-                        2 - FHD 1080x1920
+                        2 - HD 720x1280
+                        3 - FHD 1080x1920
     -v  input video path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m)                        
     -o  output path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/waterfalldec)
     -l  number of frames to encode (100 default)"                    

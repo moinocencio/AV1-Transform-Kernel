@@ -4,7 +4,7 @@ clear all
 clc
 
 %% Initializers
-filen = 'TransformStats.txt';
+filen = 'TransformStats_waterfall.txt';
 
 % Libaom Transform Enumerations
 TXFM_TYPE_DCT4 = 0;
@@ -40,7 +40,7 @@ length_data = length(col_size_data);
 % Columns
 col_sizes = zeros(1,5);     % 4 8 16 32 64
 col_types = zeros(1,4);     % DCT ADST FADST IDTX
-col_cosbit = zeros(1,7);   % 10 11 12 13 14 15 16
+col_cosbit = zeros(1,7);    % 10 11 12 13 14 15 16
 
 col_sizes(1) = sum(col_size_data == 4);
 col_sizes(2) = sum(col_size_data == 8);

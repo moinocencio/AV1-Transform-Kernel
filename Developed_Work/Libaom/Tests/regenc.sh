@@ -14,7 +14,9 @@ usage="$(basename "$0") [-h] [-e path] [-r n] [-v path] [-o path] [-l n] -- defa
     -h  display help text
     -e  encoder path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomenc)
     -r  resolutions:    1 - CIF 352x288 (default)
-                        2 - FHD 1080x1920
+                        2 - HD 720x1280
+                        3 - FHD 1080x1920
+                        4 - UHD 2160x4092
     -v  input video path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m)                        
     -o  output path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/waterfall_test.webm)
     -l  number of frames to encode (100 default)"                       
@@ -31,7 +33,13 @@ while getopts ':he:r:v:o:l:' option; do
                 res="-h 288 -w 352"
                 ;;
             "2" )
+                res="-h 720 -w 1280"
+                ;;
+            "3" )
                 res="-h 1080 -w 1920"
+                ;;
+            "4" )
+                res="-h 2160 -w 4092"
                 ;;
             *   )
                 printf "invalid argument\n"
@@ -58,4 +66,4 @@ while getopts ':he:r:v:o:l:' option; do
 done
 shift "$((OPTIND - 1))"
 
-"$encpath" "$inpath" $res -o "$outpath" "$limit" -p 1 --cpu-used=8
+"$encpath" "$inpath" $res -o "$outpath" "$limit" -p 1 --cpu-used=8 
