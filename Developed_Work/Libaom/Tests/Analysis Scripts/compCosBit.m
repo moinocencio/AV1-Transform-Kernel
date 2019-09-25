@@ -4,7 +4,7 @@ clear all
 clc
 
 %% Initializers
-res = 1;
+res = 4;
 switch res
     case 1
         v_ori_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m';      % Name of original raw sequence
@@ -26,27 +26,27 @@ switch res
 
     case 3
         v_ori_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/park_joy_1080p50.y4m';      % Name of original raw sequence
-        v_dec_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/parkjoytest20f_reg_dec.y4m';   % Encoded/Decoded normally
-        v_dec10b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/parkjoytest20f_10b_dec.y4m';  % Encoded/Decoded with 10 bit cosine
-        v_dec16b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/parkjoytest20f_16b_dec.y4m';  % Encoded/Decoded with 16 bit cosine
+        v_dec_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/parkjoy20f_reg_dec.y4m';   % Encoded/Decoded normally
+        v_dec10b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/parkjoy20f_10b_dec.y4m';  % Encoded/Decoded with 10 bit cosine
+        v_dec16b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/parkjoy20f_16b_dec.y4m';  % Encoded/Decoded with 16 bit cosine
 
         vw = 1920;
         vh = 1080;
 
     case 4
-        v_ori_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/Netflix_Crosswalk_4096x2160_60fps_10bit_420.y4m';      % Name of original raw sequence
-        v_dec_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/crosswalk20f_reg_dec.y4m';   % Encoded/Decoded normally
-        v_dec10b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/crosswalk20f_10b_dec.y4m';  % Encoded/Decoded with 10 bit cosine
-        v_dec16b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/crosswalk20f_16b_dec.y4m';  % Encoded/Decoded with 16 bit cosine
+        v_ori_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/in_to_tree_2160p50.y4m';      % Name of original raw sequence
+        v_dec_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/intotree20f_reg_dec.y4m';   % Encoded/Decoded normally
+        v_dec10b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/intotree20f_10b_dec.y4m';  % Encoded/Decoded with 10 bit cosine
+        v_dec16b_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/intotree20f_16b_dec.y4m';  % Encoded/Decoded with 16 bit cosine
 
-        vw = 4092;
+        vw = 3840;
         vh = 2160;
 end
 
 nFrames = 5;
 
 %% Open Videos
-v_ori_s = yuv4mpeg2mov(v_ori_n);
+v_ori_s = yuv4mpeg2mov(v_ori_n,nFrames);
 %v_ori_s = loadFileYuv(v_ori_n,vw,vh,1:nFrames);
 v_dec_s = loadFileYuv(v_dec_n,vw,vh,1:nFrames);
 v_dec10b_s = loadFileYuv(v_dec10b_n,vw,vh,1:nFrames);

@@ -15,7 +15,7 @@
 %example: [mov, fields] = yuv4mpeg2mov('Test.y4m̈́');
 %example: [mov, fields, accepted] = yuv4mpeg2mov('Test.y4m̈́');
 
-function [mov, fields, accepted] = yuv4mpeg2mov(File)
+function [mov, fields, accepted] = yuv4mpeg2mov(File,nFrames)
 
     mov = struct('cdata', [], 'colormap', []);
 
@@ -62,7 +62,7 @@ function [mov, fields, accepted] = yuv4mpeg2mov(File)
         %h = waitbar(0,'Please wait ... ');
         
         %read YUV-Frames
-        for framenumber = 1:frameCount
+        for framenumber = 1:nFrames
             %waitbar(framenumber/frameCount,h);
             
             fread(inFileId, 6, 'uchar');
