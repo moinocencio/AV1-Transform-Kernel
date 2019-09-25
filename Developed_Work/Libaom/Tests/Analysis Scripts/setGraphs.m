@@ -16,4 +16,5 @@ function setGraphs
     % set the tickdirs to go out - need this specific order
     set(    groot, 'DefaultAxesTickDir', 'out');
     set(    groot, 'DefaultAxesTickDirMode', 'manual');
+    colormap(bone(10))
 end
