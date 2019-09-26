@@ -4,10 +4,10 @@ clear
 clc
 
 %% Initializers
-filen_CIF = 'TransformStats_waterfall.txt';
-filen_HD = 'TransformStats_ducks.txt';
-filen_FHD = 'TransformStats_park1080.txt';
-filen_UHD = 'TransformStats_intotree.txt';
+filen_CIF = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TransformStats_waterfall.txt';
+filen_HD = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TransformStats_ducks.txt';
+filen_FHD = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TransformStats_park1080.txt';
+filen_UHD = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TransformStats_intotree.txt';
 
 % Libaom Transform Enumerations
 TXFM_TYPE_DCT4 = 0;
@@ -423,7 +423,7 @@ b_siz(4).CData = 4;
 setGraphs();
 
 xPos = (1:5)-b_siz(1).BarWidth/4*linspace(1.25,-1.25,4)';
-font_s = 12;
+font_s = 16;
 
 text(xPos(1,:),cum_siz_per(1,:)+1,compose("%.2f %%",cum_siz_per(1,:)),'HorizontalAlignment','center',...
     'VerticalAlignment','middle','HorizontalAlignment','left','FontSize',font_s,'Rotation',90)
@@ -457,6 +457,10 @@ cum_typ_per = (row_types+col_types)./(lengths*2)*100;
 figure(2)
 b_typ = bar(types,cum_typ_per',0.9,'FaceColor','flat');
 
+pos=get(gca,'position');  % retrieve the current values
+pos(2)=0.75*pos(2);        % try reducing width 10%
+set(gca,'position',pos);  % write the new values
+
 setGraphs();
 b_typ(1).CData = 1;
 b_typ(2).CData = 2;
@@ -474,8 +478,6 @@ text(xPos(3,:),cum_typ_per(3,:)+1,compose("%.2f %%",cum_typ_per(3,:)),'Horizonta
 text(xPos(4,:),cum_typ_per(4,:)+1,compose("%.2f %%",cum_typ_per(4,:)),'HorizontalAlignment','center',...
     'VerticalAlignment','middle','HorizontalAlignment','left','FontSize',font_s,'Rotation',90)
 
-l = cell(1,4);
-l{1} = 'CIF';l{2} = 'HD';l{3} = 'FHD';l{4} = 'UHD';
 legend(b_typ,l);
 set(gca,'box','off', ...
     'YGrid','on', ...
@@ -513,6 +515,7 @@ text(xPos(3,:),cum_bit_per(3,:)+1,compose("%.2f %%",cum_bit_per(3,:)),'Horizonta
 text(xPos(4,:),cum_bit_per(4,:)+1,compose("%.2f %%",cum_bit_per(4,:)),'HorizontalAlignment','center',...
     'VerticalAlignment','middle','HorizontalAlignment','left','FontSize',font_s,'Rotation',90)
 
+legend(b_cos,l);
 set(gca,'box','off', ...
     'YGrid','on', ...
     'XGrid','off', ...
@@ -524,5 +527,7 @@ ylim([0 100]);
 xlabel('Nº Bits used for cosine'),ylabel('Relative Use')
 
 % Symmetry tests
-fprintf("Nº of square blocks: %i -> %.2f %%\n",square_sizes,square_sizes/length_data*100);
-fprintf("Nº of square types: %i -> %.2f %%\n",square_types,square_types/length_data*100);
+fprintf("CIF Nº of square blocks: %i -> %.2f %%\n",square_sizes(1),square_sizes(1)./lengths(1)*100);
+fprintf("HD Nº of square blocks: %i -> %.2f %%\n",square_sizes(2),square_sizes(2)./lengths(2)*100);
+fprintf("FHD Nº of square blocks: %i -> %.2f %%\n",square_sizes(3),square_sizes(3)./lengths(3)*100);
+fprintf("UHD Nº of square blocks: %i -> %.2f %%\n",square_sizes(4),square_sizes(4)./lengths(4)*100);
