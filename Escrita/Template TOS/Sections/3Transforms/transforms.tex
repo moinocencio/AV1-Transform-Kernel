@@ -334,16 +334,19 @@ This enhancement provides the developer with a high degree of liberty, since the
 %\todo[inline,color=red!40]{AV1 ADST formula}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Integer Transformations}
+\section{Libaom's Integer Transformations}
 \nocite{soo-changpeiIntegerTransformsAnalogous2000}
 
-In battery driven applications, computing power plays an important role. Consequently, any approach that leads to lower computational costs tends to get incorporated into a video codec.
+In battery driven applications, computing power plays an important role. Consequently, any approach that leads to lower computational costs, without compromising the image quality, tends to get incorporated into a video codec.
 
 When considering the transformation stage, a widely used approach is the use of \emph{integer transforms}. The objective of such operations is to maintain the features of floating point transforms, but severely reducing the complexity, decreasing the used operations to arithmetic additions and integer multiplications. In many implementations, the latter are implemented with bitwise shifts and additions.
 
 From the transforms presented throughout section \ref{sec:kernels}, there have been several methods of developing integer counterparts. Most of the fast implementations are based in either \emph{Fast Fourier Transform} algorithms or in the \emph{Walsh-Hadamard Transform} \cite{wolterParallelArchitecturesDiscrete1992,yonghongzengIntegerDCTsFast2001}. \textcolor{red}{Since the objective of this work was to develop a \emph{Transform Co-processor} for \emph{libaom}}, the focus of this section resolves around these kernels. 
 
-Therefore, the reference software was profoundly studied, especially regarding the transformation stage, which is represented in figure \ref{fig:libtrans}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Functioning and Implementation}
+
+The first analysis of this section was made through the study of the transformation stage of the reference software. Its main workflow is represented in figure \ref{fig:libtrans}.
 
 \begin{figure}[!htbp]
     \centering
@@ -354,21 +357,23 @@ Therefore, the reference software was profoundly studied, especially regarding t
 
 This stage is controlled by a configuration set, which is chosen according to the desired encoding objectives. These parameters control the transformation block width and height (\texttt{size\_col} and \texttt{size\_row} \footnote{Each number does not correspond to the number of elements in columns and rows, but rather to the number of rows and columns.}, respectively), the transformation kernels to use in the rows and columns, the precision to use in the sine and/or cosine coefficient approximations, as well as other parameters for overflow control. Associated to the transformation kernel chosen, the variables \texttt{ud\_flip} and \texttt{lr\_flip} are also set. The first one is set to \emph{\texttt{1}} if the block's columns are to be transformed with the \emph{Flip-ADST} kernel. If such choice is applied to the rows, the second variable is, likewise, set to \emph{\texttt{1}}. These variables control if the input rows are flipped vertically, and/or if the coefficients resulting from the column transformation are flipped horizontally \footnote{Here, the notation of \emph{horizontally} or \emph{vertically} is set considering a matrix input block. In the 1D transform implemented in \emph{libaom}, this just means that what would be the last coefficient is now the first, and so on.}.
 
-The choosing of these parameters will not be addressed in this work, since \emph{AV1} allows for a great deal of maneuverability to the designer, as to adjust each encoder/decoder to the desired application. In this regard, \emph{libaom} allows for a high number of configuration options, that dramatically change the parameters chosen in the transformation stage, as well as in the rest of the system.
+The choosing of these parameters will not be addressed in this work, since \emph{AV1} allows for a great deal of maneuverability to the designer, as to adjust each encoder/decoder pair to the desired application. In this regard, \emph{libaom} allows for a high number of configuration options, that dramatically change the parameters chosen in the transformation stage, as well as in the rest of the system.
 
 Throughout the represented process, many of the operations are done with sequential, iterative processes, e.g., the input vector selection or the flipping operations. Such operations would greatly benefit of a hardware implementation, since they are easily parallelizable, as the objectives of \emph{AV1} suggested. \textcolor{red}{However, on this work, the focus relies of the \emph{T} block, i.e., the transformation itself}.
 
-Independently of the transformation kernel, the operation is done sequently, in various stages. In each of these, the corresponding intermediary coefficients get calculated as function of two of the previous calculated coefficients. These, in most of the stages, are multiplied by a specific integer approximation of cosine/sine value. Such approximations, as mentioned previously, depend on the number of bits chosen on which they are represented. The arrays on which the calculated cosine and sine values are stored have 64 and 9 positions, respectively, representing the first quadrant of the trigonometric circle. Each position is calculated according to equations \ref{eq:cos} and \ref{eq:sin}, where $k$ represents the position in the array, and $N$ corresponds to the number of bits. Therefore, \verb|cospi[0]| corresponds to $\cos(0)$, \verb|cospi[63]| is $\cos(63\pi/128)$, and the following positions can also be associated to a certain angle.
+Independently of the transformation kernel, the operation is done sequently, in various stages. In each of these, the corresponding intermediary coefficients get calculated as function of two of the previous calculated coefficients. These, in most of the stages, are multiplied by a specific integer approximation of cosine/sine value. Such approximations, as mentioned previously, depend on the number of bits on which they are represented. 
+
+The arrays on which the calculated cosine and sine values are stored, \texttt{cospi} and \texttt{sinpi}, respectively, are bi-dimensional. The first dimension, $\texttt{N}$,  has 7 positions, where the first corresponds to 10 bit approximations, and the last to 16 bit. The second dimension, $\texttt{k}$, has 64 positions for \texttt{cospi} and 5 for \texttt{sinpi}, representing the first quadrant of the trigonometric circle. Each position is calculated according to equations \ref{eq:cos} and \ref{eq:sin}, where $k$ represents the position in the array, and $N$ corresponds to the number of bits. Therefore, \verb|cospi[N][0]| corresponds to $\cos(0)$, \verb|cospi[N][63]| is $\cos(63\pi/128)$, and the following positions can also be associated to a certain angle.
 
 \begin{equation} \label{eq:cos}
-    \texttt{cospi[k]} = \nint*{2^{N}\cos\left(\frac{k\pi}{128}\right)}
+    \texttt{cospi[N][k]} = \nint*{2^{N}\cos\left(\frac{k\pi}{128}\right)}
 \end{equation}
 
 \begin{equation} \label{eq:sin}
-    \texttt{sinpi[k]} = 2^{N}\nint*{\frac{2}{3}\sqrt{2}\sin\left(\frac{k\pi}{9}\right)}
+    \texttt{sinpi[N][k]} = 2^{N}\nint*{\frac{2}{3}\sqrt{2}\sin\left(\frac{k\pi}{9}\right)}
 \end{equation}
 
-The \texttt{sinpi} array is only used in the shortest length of the \emph{ADST}, which is the reason it only has five positions. All other versions of this kernel use \texttt{cospi} to get the corresponding value.
+The \texttt{sinpi} array is only used in the shortest length of the \emph{ADST}, which is the reason it only has five positions. All other versions of this kernel use \texttt{cospi} to get the desired value.
 
 Most of the temporary coefficients inside each stage are calculated with the function \verb|half_btf|, which performs the operation represented in equation \ref{eq:half_btf}. This function takes the two previously calculated coefficients, two values from the previously introduced arrays, as well as the number of bits used to represent these, and maps the result from the multiplications and sum of the first inputs to the desired number of bits.
 
@@ -426,6 +431,8 @@ Being so, the input also suffers an additional mapping, similar to the operation
 
 With the forward transformations explained and represented graphically, it's easily understandable that the corresponding inverses correspond to the backwards operation in figures \ref{fig:intDCT}, \ref{fig:intIDEN} and \ref{fig:intADST}. With this, it is meant that only the direction of the arrows change, and the corresponding procedure is done right-to-left, i.e., the output's position, \texttt{y}, is now the input.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Performance}
 
 \clearpage
 \printbibliography[heading=subbibliography]

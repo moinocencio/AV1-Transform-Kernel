@@ -110,3 +110,5 @@ b_psnr(3).CData = 3;
 l = cell(1,3);
 l{1} = 'Regular';l{2} = '10 bit';l{3} = '16 bit';
 legend(b_psnr,l);
+
+xlabel('Resolution'),ylabel('PSNR (dB)')
