@@ -407,20 +407,20 @@ Being so, the input also suffers an additional mapping, similar to the operation
     \label{fig:intDCT}
 \end{figure}
 
-\afterpage{
-    \clearpage
-    \begin{landscape}
-        \vspace*{\fill}
-        \begin{figure}[h]
-            \centering
-            \input{Sections/3Transforms/Images/av1_fadst8_new.tex}
-            \caption{Block diagram of \emph{libaom}'s Integer ADST}
-            \label{fig:intADST}
-        \end{figure}
-        \vspace*{\fill}        
-    \end{landscape}
-    \clearpage
-}
+
+\clearpage
+\begin{landscape}
+    \vspace*{\fill}
+    \begin{figure}[h]
+        \centering
+        \input{Sections/3Transforms/Images/av1_fadst8_new.tex}
+        \caption{Block diagram of \emph{libaom}'s Integer ADST}
+        \label{fig:intADST}
+    \end{figure}
+    \vspace*{\fill}        
+\end{landscape}
+\clearpage
+
 
 \begin{figure}[!htbp]
     \centering
@@ -432,7 +432,28 @@ Being so, the input also suffers an additional mapping, similar to the operation
 With the forward transformations explained and represented graphically, it's easily understandable that the corresponding inverses correspond to the backwards operation in figures \ref{fig:intDCT}, \ref{fig:intIDEN} and \ref{fig:intADST}. With this, it is meant that only the direction of the arrows change, and the corresponding procedure is done right-to-left, i.e., the output's position, \texttt{y}, is now the input.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Performance}
+\subsection{Performance and Statistics Analysis}
+
+In order to test the Transformation stage, various encoding and decoding tests were performed on different resolution sequences, some of which details are presented in table \ref{tab:seqs}. These were obtained in \emph{Xiph}'s test media \cite{XiphOrgTest}.
+
+\begin{table}[htpb]
+    \centering
+    \begin{tabular}{@{}ccccc@{}} \toprule
+        \multirow{2}{*}{\textbf{Video}} & \multicolumn{3}{c}{\textbf{Resolution}} \\
+         & \textbf{Height} & \textbf{Width} & \textbf{Label} \\ \toprule 
+        \textit{Waterfall} & 288 & 352 & CIF \\
+        \textit{Ducks take off} & 720 & 1280 & HD \\
+        \textit{Parkjoy} & 1080 & 1920 & FHD \\
+        \textit{Into tree} & 2160 & 3840 & UHD \\
+        \bottomrule
+    \end{tabular}
+    \caption{Sequences used for testing}
+    \label{tab:seqs}
+\end{table}
+
+The reference encoder and decoder, \emph{aomenc} and \emph{aomdec}, were configured using the developer's default configurations, meaning that the compression was achieved with no bitrate objective.
+
+
 
 \clearpage
 \printbibliography[heading=subbibliography]
