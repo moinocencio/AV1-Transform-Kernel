@@ -1,11 +1,11 @@
 #!/bin/bash
 
 res=1
-inpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m
-outpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/waterfall
-limit=100
+inpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/CIF/waterfall_cif.y4m
+outpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/waterfall
+limit=20
 
-usage="$(basename "$0") [-h] [-r n] [-v path] [-o path] [-l n] -- encode video with different cosine representations
+usage="$(basename "$0") [-h] [-r n] [-i path] [-o path] [-l n] -- encode video with different cosine representations and quality objectives
 
     -h  display help text    
     -r  resolutions:    1 - CIF 288x352 (default)
@@ -13,18 +13,18 @@ usage="$(basename "$0") [-h] [-r n] [-v path] [-o path] [-l n] -- encode video w
                         3 - FHD 1080x1920
                         4 - UHD 2160x3840
                         5 - UHD 2160x4096
-    -v  input video path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m)                        
-    -o  output path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/waterfalldec)
-    -l  number of frames to encode (100 default)"                    
+    -i  input video path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m)                        
+    -o  output path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/waterfalldec)
+    -l  number of frames to encode (20 default)"                    
 
-while getopts ':hr:v:o:l:' option; do
+while getopts ':hr:i:o:l:' option; do
   case "$option" in
     h) echo "$usage"
        exit
        ;;
     r) res=$OPTARG
        ;;
-    v) inpath=$OPTARG
+    i) inpath=$OPTARG
        ;;
     o) outpath=$OPTARG
        ;;
@@ -42,22 +42,40 @@ while getopts ':hr:v:o:l:' option; do
 done
 shift "$((OPTIND - 1))"
 
-#Regular encode/decode
-echo "Regular Encode/Decode"
-./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomenc -r $res -v $inpath -o $outpath"_reg_enc.webm" -l $limit
+echo -e "\n\e[1m\e[31mEncoding Test: $inpath\n\e[1m\e[34mHigh Quality Encode\n\e[39mRegular Encode/Decode\e[0m\n" | tee -a /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TestCosBitLog.txt
+./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomenc -r $res -i $inpath -o $outpath"_q5_reg_enc.webm" -l $limit -q 5 2>&1 | tee -a /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TestCosBitLog.txt
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomdec $outpath"_q5_reg_enc.webm" --i420 -o $outpath"_q5_reg_dec.y4m"
 
-/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomdec $outpath"_reg_enc.webm" --i420 -o $outpath"_reg_dec.y4m"
+echo -e "\n\e[1m10bit Encode/Decode\e[0m\n"
+./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit10/aomenc -r $res -i $inpath -o $outpath"_q5_10b_enc.webm" -l $limit -q 5
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit10/aomdec $outpath"_q5_10b_enc.webm" --i420 -o $outpath"_q5_10b_dec.y4m"
 
+echo -e "\n\e[1m16bit Encode/Decode\e[0m\n"
+./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit16/aomenc -r $res -i $inpath -o $outpath"_q5_16b_enc.webm" -l $limit -q 5
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit16/aomdec $outpath"_q5_16b_enc.webm" --i420 -o $outpath"_q5_16b_dec.y4m"
 
-#10bit encode/decode
-echo "10bit Cosine Encode/Decode"
-./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit10/aomenc -r $res -v $inpath -o $outpath"_10b_enc.webm" -l $limit
+##############
+echo -e "\n\e[1m\e[32mLow Quality Encode\n\e[39mRegular Encode/Decode\e[0m\n" | tee -a /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TestCosBitLog.txt
+./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomenc -r $res -i $inpath -o $outpath"_q60_reg_enc.webm" -l $limit -q 60 2>&1 | tee -a /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TestCosBitLog.txt
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomdec $outpath"_q60_reg_enc.webm" --i420 -o $outpath"_q60_reg_dec.y4m"
 
-/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit10/aomdec $outpath"_10b_enc.webm" --i420 -o $outpath"_10b_dec.y4m"
+echo -e "\n\e[1m10bit Encode/Decode\e[0m\n"
+./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit10/aomenc -r $res -i $inpath -o $outpath"_q60_10b_enc.webm" -l $limit -q 60
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit10/aomdec $outpath"_q60_10b_enc.webm" --i420 -o $outpath"_q60_10b_dec.y4m"
 
+echo -e "\n\e[1m16bit Encode/Decode\e[0m\n"
+./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit16/aomenc -r $res -i $inpath -o $outpath"_q60_16b_enc.webm" -l $limit -q 60
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit16/aomdec $outpath"_q60_16b_enc.webm" --i420 -o $outpath"_q60_16b_dec.y4m"
 
-#16bit encode/decode
-echo "16bit Cosine Encode/Decode"
-./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit16/aomenc -r $res -v $inpath -o $outpath"_16b_enc.webm" -l $limit
+##############
+echo -e "\n\e[1m\e[33mMedium Quality Encode\n\e[39mRegular Encode/Decode\e[0m\n" | tee -a /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TestCosBitLog.txt
+./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomenc -r $res -i $inpath -o $outpath"_q25_reg_enc.webm" -l $limit -q 25 2>&1 | tee -a /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TestCosBitLog.txt
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomdec $outpath"_q25_reg_enc.webm" --i420 -o $outpath"_q25_reg_dec.y4m"
 
-/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit16/aomdec $outpath"_16b_enc.webm" --i420 -o $outpath"_16b_dec.y4m"
+echo -e "\n\e[1m10bit Encode/Decode\e[0m\n"
+./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit10/aomenc -r $res -i $inpath -o $outpath"_q25_10b_enc.webm" -l $limit -q 25
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit10/aomdec $outpath"_q25_10b_enc.webm" --i420 -o $outpath"_q25_10b_dec.y4m"
+
+echo -e "\n\e[1m16bit Encode/Decode\e[0m\n"
+./regenc.sh -e /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit16/aomenc -r $res -i $inpath -o $outpath"_q25_16b_enc.webm" -l $limit -q 25
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Cosbit16/aomdec $outpath"_q25_16b_enc.webm" --i420 -o $outpath"_q25_16b_dec.y4m"

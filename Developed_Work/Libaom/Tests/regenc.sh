@@ -7,21 +7,24 @@ encpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Bui
 res="-h 288 -w 352"
 inpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m
 outpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/waterfall_test.webm
-limit="--limit=100"
+limit="--limit=26"
+qual=26
 
-usage="$(basename "$0") [-h] [-e path] [-r n] [-v path] [-o path] [-l n] -- default encoding tests
+usage="$(basename "$0") [-h] [-e path] [-i path] [-r n] [-l n] [-q n] [-o path] -- default encoding tests
 
     -h  display help text
     -e  encoder path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomenc)
+    -i  input video path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m)
     -r  resolutions:    1 - CIF 352x288 (default)
                         2 - HD 720x1280
                         3 - FHD 1080x1920
-                        4 - UHD 2160x4096
-    -v  input video path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/waterfall_cif.y4m)                        
-    -o  output path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/waterfall_test.webm)
-    -l  number of frames to encode (100 default)"                       
+                        4 - UHD 2160x3840                            
+                        5 - UHD 2160x4096   
+    -l  number of frames to encode (20 default)
+    -q  quality level 0 (best) to 63 (worst) (default 26)
+    -o  output path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/waterfall_test.webm)"                       
 
-while getopts ':he:r:v:o:l:' option; do
+while getopts ':he:i:r:l:q:o:' option; do
   case "$option" in
     h) echo "$usage"
        exit
@@ -51,11 +54,13 @@ while getopts ':he:r:v:o:l:' option; do
                 ;;
         esac
        ;;
-    v) inpath=$OPTARG
+    i) inpath=$OPTARG
        ;;
     o) outpath=$OPTARG
        ;;
     l) limit="--limit=$OPTARG"
+       ;;
+    q) qual=$OPTARG
        ;;
     :) printf "missing argument for -${OPTARG}\n" "$OPTARG" >&2
        echo "$usage" >&2
@@ -69,4 +74,4 @@ while getopts ':he:r:v:o:l:' option; do
 done
 shift "$((OPTIND - 1))"
 
-"$encpath" "$inpath" $res -o "$outpath" "$limit" -p 1 --cpu-used=8 --i420
+"$encpath" "$inpath" $res -o "$outpath" "$limit" -p 1 --cpu-used=4 --i420 --q-hist=64 --end-usage=q --cq-level="$qual"
