@@ -16,8 +16,8 @@ h_terms =  ["_q5_reg_dec.y4m" ...       % High Quality encoding termination
             "_q5_10b_dec.y4m" ...
             "_q5_16b_dec.y4m"];
 
-terms =    [m_terms ; ...
-            l_terms ; ...
+terms =    [l_terms ; ...
+            m_terms ; ...
             h_terms];
 
 res =      [288 352; ...                % Video Resolutions
@@ -59,15 +59,18 @@ uhd_p =    ["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libao
 ori_p = [cif_ori_p; hd_ori_p; fhd_ori_p; uhd_ori_p];
 v_p = [cif_p; hd_p; fhd_p; uhd_p];
 
-v_n = split(v_p,'/');
-v_n = squeeze(v_n(:,:,end));        % Video Names
+v_p_s = split(v_p,'/');
+v_n = squeeze(v_p_s(:,:,end));          % Video Names
+v_r = squeeze(v_p_s(:,1,end - 1));      % Video Resolutions
+v_q = ["Medium" "Low" "High"];          % Video Quality
 
 s_t = size(terms);
 s_v = size(ori_p);
 
 %% Get PSNR's
-PSNR = zeros(s_t(1), s_v(1), s_v(2), s_t(2));
-PSNR_m = zeros(s_t(1), s_v(1), s_t(2));
+PSNR = zeros(s_t(1), s_v(1), s_v(2), s_t(2));   % Cos bit per video PSNR
+mPSNR_r = zeros(s_t(1), s_v(1), s_t(2));        % Cos bit per resolution mean PSNR
+mPSNR_q = zeros(s_t(1), s_t(2));                % Cos bit per quality mean PSNR
 
 for i_q = 1:s_t(1)              % Quality Index
     for i_r = 1:s_v(1)          % Resolution Index
@@ -79,45 +82,23 @@ for i_q = 1:s_t(1)              % Quality Index
                                                 res(i_r), ...
                                                 nFrames);                                          
         end
-        PSNR_m(i_q,i_r,:) = mean(squeeze(PSNR(i_q,i_r,:,:)),1);
+        mPSNR_r(i_q,i_r,:) = mean(squeeze(PSNR(i_q,i_r,:,:)),1);
     end
+    mPSNR_q(i_q,:) = mean(squeeze(mPSNR_r(i_q,:,:)),1);
 end
 
-%% Hist
+%% Bar graph
 for i_q = 1:s_t(1)              % Quality Index
-    for i_r = 1:s_v(1)+1          % Resolution Index
-        n_temp = categorical([v_n(i_r,:) "Average"]);
-        n_temp = reordercats(n_temp,[v_n(i_r,:) "Average"]);
-
-        figure(i_q),subplot(1,s_v(1)+1,i_r)
-        bar(n_temp,[squeeze(PSNR(i_q,i_r,:,:)) PSNR_m(i_q,i_r,:)])
+    for i_r = 1:s_v(1)          % Resolution Index
+        figure(i_q),subplot(s_v(1)/2,s_v(1)/2,i_r)
+        makePrettyBar(  [v_n(i_r,:) "Average"], ...
+                        [squeeze(PSNR(i_q,i_r,:,:)) mPSNR_r(i_q,i_r,:)], ...
+                        ["Regular" "10bit" "16bit"], ...
+                        v_r(i) + "Video", "PSNR (dB)");
     end
+    figure(i_q+s_t(1))
+    makePrettyBar(  [v_r "Average"], ...
+                    [squeeze(mPSNR_r(i_q,i_r,:)) mPSNR_q(i_q,:)], ...
+                    ["Regular" "10bit" "16bit"], ...
+                    v_q(i_q) + "Quality", "PSNR (dB)");
 end
-%res = categorical({'CIF','HD','FHD','UHD'});
-%res = reordercats(res,{'CIF','HD','FHD','UHD'});
-%
-%figure(5)
-%b_psnr = bar(res,PSNR,'FaceColor','flat');
-%setGraphs();
-%
-%ylim([min(min(PSNR))-2 max(max(PSNR))+2])
-%
-%font_s = 16;
-%xPos = (1:4)-b_psnr(1).BarWidth/3*linspace(0.9,-0.9,3)';
-%text(xPos(1,:),PSNR(:,1)+0.1,compose("%.2f %%",PSNR(:,1)),'HorizontalAlignment','center',...
-%    'VerticalAlignment','middle','HorizontalAlignment','left','FontSize',font_s,'Rotation',90)
-%text(xPos(2,:),PSNR(:,1)+0.1,compose("%.2f %%",PSNR(:,2)),'HorizontalAlignment','center',...
-%    'VerticalAlignment','middle','HorizontalAlignment','left','FontSize',font_s,'Rotation',90)
-%text(xPos(3,:),PSNR(:,1)+0.1,compose("%.2f %%",PSNR(:,3)),'HorizontalAlignment','center',...
-%    'VerticalAlignment','middle','HorizontalAlignment','left','FontSize',font_s,'Rotation',90)
-%
-%setGraphs();
-%b_psnr(1).CData = 1;
-%b_psnr(2).CData = 2;
-%b_psnr(3).CData = 3;
-%
-%l = cell(1,3);
-%l{1} = 'Regular';l{2} = '10 bit';l{3} = '16 bit';
-%legend(b_psnr,l);
-%
-%xlabel('Resolution'),ylabel('PSNR (dB)')

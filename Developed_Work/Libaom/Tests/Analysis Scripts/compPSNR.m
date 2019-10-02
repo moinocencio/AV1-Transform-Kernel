@@ -1,14 +1,15 @@
-%compPSNR compares PSNR between 3 input videos and its original sequence
-%	v1_p        - Video 1 input path
+function [PSNR, v1, v2, v3, vori] = compPSNR(v1_p, v2_p, v3_p, vori_p, res, nFrames)
+% compPSNR compares PSNR between 3 input videos and its original sequence
+%	
+%   v1_p        - Video 1 input path
 %   v2_p        - Video 2 input path
 %   v3_p        - Video 3 input path
 %   vori_p      - Original Video input path
 %   res         - 2 Size vector with [v_h v_w]
 %   nFrames     - Number of frames to decode
+%
+% Outputs PSNR of 3 input videos, and structures 
 
-%Outputs PSNR of 3 input videos, and structures
-
-function [PSNR, v1, v2, v3, vori] = compPSNR(v1_p, v2_p, v3_p, vori_p, res, nFrames) 
     vori = yuv4mpeg2mov(vori_p,nFrames);
     v1 = loadFileYuv(v1_p,res(2),res(1),1:nFrames);
     v2 = loadFileYuv(v2_p,res(2),res(1),1:nFrames);
