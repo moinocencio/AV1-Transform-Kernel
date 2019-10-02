@@ -3,7 +3,7 @@
 res=1
 inpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/CIF/waterfall_cif.y4m
 outpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/waterfall_stats
-limit=5
+limit=4
 
 usage="$(basename "$0") [-h] [-r n] [-i path] [-o path] [-l n] -- Get Transform Coefficients between different quality encodings
 

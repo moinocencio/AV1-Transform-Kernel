@@ -74,4 +74,4 @@ while getopts ':he:i:r:l:q:o:' option; do
 done
 shift "$((OPTIND - 1))"
 
-"$encpath" "$inpath" $res -o "$outpath" "$limit" -p 1 --cpu-used=4 --i420 --q-hist=64 --end-usage=q --cq-level="$qual"
+"$encpath" "$inpath" $res -o "$outpath" "$limit" -p 1 --cpu-used=8 --i420 --q-hist=64 --end-usage=q --cq-level="$qual"
