@@ -4,13 +4,15 @@ clear all
 clc
 
 %% Constants
-m_terms =  ["_q25_reg_dec.y4m" ...      % Medium Quality encoding termination
-            "_q25_10b_dec.y4m" ...
-            "_q25_16b_dec.y4m"];
+load compCosBitW.mat
 
 l_terms =  ["_q60_reg_dec.y4m" ...      % Low Quality encoding termination
             "_q60_10b_dec.y4m" ...
             "_q60_16b_dec.y4m"];
+
+m_terms =  ["_q25_reg_dec.y4m" ...      % Medium Quality encoding termination
+            "_q25_10b_dec.y4m" ...
+            "_q25_16b_dec.y4m"];
 
 h_terms =  ["_q5_reg_dec.y4m" ...       % High Quality encoding termination
             "_q5_10b_dec.y4m" ...
@@ -62,12 +64,13 @@ v_p = [cif_p; hd_p; fhd_p; uhd_p];
 v_p_s = split(v_p,'/');
 v_n = squeeze(v_p_s(:,:,end));          % Video Names
 v_r = squeeze(v_p_s(:,1,end - 1));      % Video Resolutions
-v_q = ["Medium" "Low" "High"];          % Video Quality
+v_q = ["Low" "Medium" "High"];          % Video Quality
 
 s_t = size(terms);
 s_v = size(ori_p);
 
 %% Get PSNR's
+%{
 PSNR = zeros(s_t(1), s_v(1), s_v(2), s_t(2));   % Cos bit per video PSNR
 mPSNR_r = zeros(s_t(1), s_v(1), s_t(2));        % Cos bit per resolution mean PSNR
 mPSNR_q = zeros(s_t(1), s_t(2));                % Cos bit per quality mean PSNR
@@ -86,21 +89,25 @@ for i_q = 1:s_t(1)              % Quality Index
     end
     mPSNR_q(i_q,:) = mean(squeeze(mPSNR_r(i_q,:,:)),1);
 end
+%}
 
 %% Bar graph
 for i_q = 1:s_t(1)              % Quality Index
     for i_r = 1:s_v(1)          % Resolution Index
-        figure(i_q),subplot(s_v(1)/2,s_v(1)/2,i_r)
-        title(sprintf("%s - %s", v_q(i_q), v_r(i_r)))
-        makePrettyBar(  [v_n(i_r,:) "Average"], ...
-                        [squeeze(PSNR(i_q,i_r,:,:)) mPSNR_r(i_q,i_r,:)], ...
-                        ["Regular" "10bit" "16bit"], ...
-                        v_r(i) + "Video", "PSNR (dB)");
+        %figure('Name', v_q(i_q)+" Videos")
+        %title(sprintf("%s - %s", v_q(i_q), v_r(i_r)))
+        %makePrettyBar(  [v_n(i_r,:) "Average"], ...
+        %                [squeeze(PSNR(i_q,i_r,:,:)); squeeze(mPSNR_r(i_q,i_r,:))'], ...
+        %                ["Regular" "10bit" "16bit"], ...
+        %                v_r(i_r) + " Video", "PSNR (dB)");
     end
-    figure(i_q+s_t(1))
+    figure('Name',v_q(i_q)+" Average")
     title(sprintf("%s Average PSNR", v_q(i_q)))
-    makePrettyBar(  [v_r "Average"], ...
-                    [squeeze(mPSNR_r(i_q,i_r,:)) mPSNR_q(i_q,:)], ...
+    makePrettyBar(  [v_r' "Average"], ...
+                    [squeeze(mPSNR_r(i_q,:,:)); mPSNR_q(i_q,:)], ...
                     ["Regular" "10bit" "16bit"], ...
-                    v_q(i_q) + "Quality", "PSNR (dB)");
+                    v_q(i_q) + " Quality", "PSNR (dB)");
 end
+
+figure('Name','Quality Average')
+makePrettyBar([v_q "Average"],[mPSNR_q; mean(mPSNR_q,1)],["Regular" "10bit" "16bit"],"Quality","PSNR (dB)");

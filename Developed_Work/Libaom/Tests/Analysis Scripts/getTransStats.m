@@ -22,20 +22,20 @@ function v_stats = getTransStats(f_p)
     v_stats.sqSizes= 0;
 
     % Libaom Transform Enumerations
-    TXFM_TYPE_DCT4 = 0;
-    TXFM_TYPE_DCT8 = 1;
-    TXFM_TYPE_DCT16 = 2;
-    TXFM_TYPE_DCT32 = 3;
-    TXFM_TYPE_DCT64 = 4;
-    TXFM_TYPE_ADST4 = 5;
-    TXFM_TYPE_ADST8 = 6;
-    TXFM_TYPE_ADST16 = 7;
-    TXFM_TYPE_IDENTITY4 = 8;
-    TXFM_TYPE_IDENTITY8 = 9;
-    TXFM_TYPE_IDENTITY16 = 10;
-    TXFM_TYPE_IDENTITY32 = 11;
+    TXFM_TYPE_DCT4 = uint8(0);
+    TXFM_TYPE_DCT8 = uint8(1);
+    TXFM_TYPE_DCT16 = uint8(2);
+    TXFM_TYPE_DCT32 = uint8(3);
+    TXFM_TYPE_DCT64 = uint8(4);
+    TXFM_TYPE_ADST4 = uint8(5);
+    TXFM_TYPE_ADST8 = uint8(6);
+    TXFM_TYPE_ADST16 = uint8(7);
+    TXFM_TYPE_IDENTITY4 = uint8(8);
+    TXFM_TYPE_IDENTITY8 = uint8(9);
+    TXFM_TYPE_IDENTITY16 = uint8(10);
+    TXFM_TYPE_IDENTITY32 = uint8(11);
 
-    data = readmatrix(f_p);         % [col_size col_type col_flip col_cosbit | row_size row_type row_flip row_cosbit]
+    data = uint8(readmatrix(f_p));         % [col_size col_type col_flip col_cosbit | row_size row_type row_flip row_cosbit]
 
     v_stats.sizes(1,:) = hist(data(:,1),2.^(2:6));
     v_stats.sizes(2,:) = hist(data(:,6),2.^(2:6));

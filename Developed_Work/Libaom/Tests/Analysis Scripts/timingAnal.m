@@ -81,10 +81,31 @@ for i_r = 1:length(v_r)
     end
 end
 
-ttime_m = time_m(:,:,2) + time_m(:,:,3);
+transtime_m = time_m(:,:,2) + time_m(:,:,3);
+transtime_per = transtime_m./time_m(:,:,1)*100;
 
 %% Timing results
-figure
+figure('Name','Timing Results','NumberTitle','off')
 hold on
-makePrettyBar(v_r,time_m(:,:,1),q_n,'Resolution','Encoding t (s)');
-makePrettyBar(v_r,ttime_m,q_n,'Resolution','Encoding t (s)');
+setGraphs();
+
+x = categorical(v_r);
+x = reordercats(x,v_r);
+bartot = bar(x,time_m(:,:,1), 'FaceColor','flat');
+bartrans = bar(x,transtime_m,'FaceColor','flat');
+xPos = (1:size(transtime_m,1)) - bartrans(1).BarWidth/size(transtime_m,2) * linspace(0.85, -0.85, size(transtime_m,2))';
+for i=1:size(transtime_m,2)    
+    l{i} = q_n(i);
+    bartot(i).CData = i;
+    bartrans(i).CData = i+3;
+    text(   xPos(i,:),time_m(:,i,1)'+10, ...
+        compose("%.1f %%",transtime_per(:,i)), ...
+        'HorizontalAlignment','center',...
+        'VerticalAlignment','middle', ...
+        'HorizontalAlignment','left', ...
+        'FontSize',16, ...
+        'Rotation',90)
+end
+legend(bartot,l,'Location','bestoutside')
+xlabel('Resolution'),ylabel('Time (s)')
+

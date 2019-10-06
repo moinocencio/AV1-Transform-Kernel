@@ -1,14 +1,13 @@
 %% Parser for Global Transform Parameters
 close all
-clear
+clear all
 clc
 
 %% Constants
-terms =["_q25.txt" ...
-        "_q60.txt" ...
-        "_q5.txt"]
-
-%% Input Paths        
+terms =["_q60.txt" ...
+        "_q25.txt" ...
+        "_q5.txt"];
+       
 cif_p =    ["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/CIF/waterfall_stats" ...
             "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/CIF/flower_stats" ...
             "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/CIF/bridge_stats"];
@@ -22,26 +21,32 @@ uhd_p =    ["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libao
             "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/UHD/intotree_stats" ...
             "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/UHD/crowdrun_stats"];            
 
-v_p =  [cif_p(1) cif_p(2) cif_p(3); ...
-        hd_p(1)  hd_p(2)  hd_p(3); ...
-        fhd_p(1) fhd_p(2) fhd_p(3); ...
-        uhd_p(1) uhd_p(2) uhd_p(3)];
+v_p =  [cif_p;
+        hd_p;
+        fhd_p;
+        uhd_p];
 
+clear cif_p hd_p fhd_p uhd_p;
+
+%% Get Statistics
 sizes_p = zeros(length(terms),size(v_p,1),5);
 types_p = zeros(length(terms),size(v_p,1),4);
 cosbit_p = zeros(length(terms),size(v_p,1),7);
 sqsiz_p = zeros(length(terms),size(v_p,1));
 sqtyp_p = zeros(length(terms),size(v_p,1));
 
-for i_q = 1:s_t(1)              % Quality Index
-    for i_r = 1:s_v(1)          % Resolution Index
+vars = who;
+vars = {vars{:} 'i_q' 'i_r' 'i_v' 'vars'};
+
+for i_q = 1:length(terms)             % Quality Index
+    for i_r = 1:size(v_p,1)           % Resolution Index
         l_temp = 0;
         sizes_temp = zeros(2,5);
         types_temp = zeros(2,4);
         cosbit_temp = zeros(2,7);
         sqsiz_temp = 0;
         sqtyp_temp = 0;
-        for i_v = 1:s_v(2)      % Video Index
+        for i_v = 1:size(v_p,2)       % Video Index
             v_temp = getTransStats(v_p(i_r,i_v)+terms(i_q));
 
             l_temp = l_temp + v_temp.length;
@@ -56,11 +61,11 @@ for i_q = 1:s_t(1)              % Quality Index
         cosbit_p(i_q, i_r, :) = sum(cosbit_temp,1)./(l_temp*2)*100;
         sqsiz_p(i_q, i_r) = sqsiz_temp / l_temp;
         sqtyp_p(i_q, i_r) = sqtyp_temp / l_temp;
+        clearvars('-except',vars{:});
     end
 end
 
 %% Histograms
-% Sizes
 for i_q = 1:s_t(1)              % Quality Index
     figure(i_q),
     subplot(2,2,1), makePrettyBar(  ["4","8","16","32","64"], ...
