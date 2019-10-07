@@ -187,11 +187,11 @@ It is frequently compared to the \emph{DFT}, due to the similarity of their oper
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{@{}lllll@{}} \toprule
+    \begin{tabular}{cllll@{}} \toprule
         \textbf{Step} &      \multicolumn{2}{c}{\textbf{\emph{DFT}}} &      \multicolumn{2}{c}{\textbf{\emph{DCT}}} \\ \toprule
-        1 &         \multicolumn{2}{p{0.4\textwidth}}{Repeat $g(n)$ every N points, giving origin to $\widetilde{g}_N(n)$} &         \multicolumn{2}{p{0.4\textwidth}}{Concatenate $g(n)$ with a flipped version of itself, creating a $2N$ sequence, $g_{2N}(n)$, and repeat it, giving origin to $\widetilde{g}_{2N}(n)$}\\ 
-        2 &         \multicolumn{2}{p{0.4\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_N$} &         \multicolumn{2}{p{0.4\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_{2N}$}\\ 
-        3 &         \multicolumn{2}{p{0.4\textwidth}}{Keep the first $N$ coefficients\, and set all others to $0$} &         \multicolumn{2}{p{0.4\textwidth}}{Keep the first $N$ coefficients, and set all others to $0$}\\ 
+        1 &         \multicolumn{2}{p{0.35\textwidth}}{Repeat $g(n)$ every N points, giving origin to $\widetilde{g}_N(n)$} &         \multicolumn{2}{p{0.35\textwidth}}{Concatenate $g(n)$ with a flipped version of itself, creating a $2N$ sequence, $g_{2N}(n)$, and repeat it, giving origin to $\widetilde{g}_{2N}(n)$}\\ 
+        2 &         \multicolumn{2}{p{0.35\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_N$} &         \multicolumn{2}{p{0.35\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_{2N}$}\\ 
+        3 &         \multicolumn{2}{p{0.35\textwidth}}{Keep the first $N$ coefficients\, and set all others to $0$} &         \multicolumn{2}{p{0.35\textwidth}}{Keep the first $N$ coefficients, and set all others to $0$}\\ 
         \bottomrule
     \end{tabular}
     \caption{Similarity between the processes of the        \emph{DFT} and the \emph{DCT}}
@@ -434,26 +434,65 @@ With the forward transformations explained and represented graphically, it's eas
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Performance and Statistics Analysis}
 
-In order to test the Transformation stage, various encoding and decoding tests were performed on different resolution sequences, some of which details are presented in table \ref{tab:seqs}. These were obtained in \emph{Xiph}'s test media \cite{XiphOrgTest}.
+From the obtained understanding of the tools and characteristics of the \emph{Transform} stage, various tests were performed in order to gather information on what were the most commonly used options, and the corresponding impact of such, on encoding performance.
+
+With these tests, it was intended to get to know:
+\begin{itemize}
+    \item the time spent per encode in the \emph{Transform} stage;
+    \item used kernels and sizes;
+    \item bits used on cosine approximation.
+\end{itemize}
+
+For this, \emph{libaom} was modified, in order to retrieve these statistics, without impacting the encoding performance. Namely, the timing test, was performed independently from the others, in order to get an accurate result of the time spent, since the writing of the transformation options would cause a major impact during the transform stage.
+
+The tests were performed on different sequences with various resolutions and encoding difficulties. These were obtained in \emph{Xiph}'s test media \cite{XiphOrgTest}, and are presented in table \ref{tab:seqs}.
 
 \begin{table}[htpb]
     \centering
-    \begin{tabular}{@{}ccccc@{}} \toprule
-        \multirow{2}{*}{\textbf{Video}} & \multicolumn{3}{c}{\textbf{Resolution}} \\
-         & \textbf{Height} & \textbf{Width} & \textbf{Label} \\ \toprule 
-        \textit{Waterfall} & 288 & 352 & CIF \\
-        \textit{Ducks take off} & 720 & 1280 & HD \\
-        \textit{Parkjoy} & 1080 & 1920 & FHD \\
-        \textit{Into tree} & 2160 & 3840 & UHD \\
+    \begin{tabular}{cccc} \toprule
+        \multicolumn{3}{c}{\textbf{Resolution}}                                 & \multirow{2}{*}{\textbf{Sequence Name}} \\
+        \textbf{Label}          & \textbf{Height}       & \textbf{Width}        & \\ \toprule 
+        \multirow{3}{*}{CIF}    & \multirow{3}{*}{288}  & \multirow{3}{*}{352}  & \textit{Waterfall}\\
+                                &                       &                       & \textit{Flower} \\
+                                &                       &                       & \textit{Bridge Close} \\ \hline
+        \multirow{3}{*}{HD}     & \multirow{3}{*}{720}  & \multirow{3}{*}{1280} & \textit{Ducks take off}\\
+                                &                       &                       & \textit{Parkrun} \\        
+                                &                       &                       & \textit{Shields} \\ \hline
+        \multirow{3}{*}{FHD}    & \multirow{3}{*}{1080} & \multirow{3}{*}{1920} & \textit{Parkjoy}\\
+                                &                       &                       & \textit{Dinner} \\
+                                &                       &                       & \textit{Factory} \\ \hline
+        \multirow{3}{*}{UHD}    & \multirow{3}{*}{2160} & \multirow{3}{*}{3840} & \textit{Into tree}\\
+                                &                       &                       & \textit{Old Town Cross} \\
+                                &                       &                       & \textit{Crowd Run} \\ 
         \bottomrule
     \end{tabular}
     \caption{Sequences used for testing}
     \label{tab:seqs}
 \end{table}
 
-The reference encoder and decoder, \emph{aomenc} and \emph{aomdec}, were configured using the developer's default configurations, meaning that the compression was achieved with no bitrate objective.
+As mentioned previously in section \ref{ssse:encmod}, the definition of the encoding objectives greatly impacts the performance of the encoder, both in terms of compression gain, and obtained video quality. These objectives are typically defined according to a certain performance or quality metric. \emph{AV1} reference encoder, \emph{aomenc}, provides four different metrics, corresponding to constant or constrained quality (\emph{q} and \emph{cq}) and constant or varying bitrate (\emph{cbr} and \emph{vbr}). These options allow for the easy adaptation of each encode to the corresponding use case. For instance, for a network application, a certain bit rate objective, or range, is more adequate than the definition of a certain quality, since in this case the obtained bit rate may depend on the scene.
 
+For the performed tests, the variation of used tools and performance was evaluated by varying the desired objective on a constant quality mode, which is controlled through a subjective parameter, \texttt{cq-level}. This may vary between 0 and 63, corresponding the latter to the lowest quality encode. Three different quality parameters were tested, \emph{60, 25,} and \emph{5}, corresponding to a \emph{Low}, \emph{Medium} and \emph{High} quality sets, respectively.
 
+Besides the quality objectives, the encoder was also configured to use the highest computing power, \texttt{cpu-used=8}, as well as a single pass encode, \texttt{passes=1}. These options were set in order to get the lowest encoding times, since their impact on the obtained results didn't justify the added complexity.
+
+The resulting command for configuring \emph{aomenc} for the developed tests, encoding the first 10 frames of each video, becomes
+
+\begin{lstlisting}
+    ./aomenc <INPUT-FILE> -h <HEIGHT> -w <WIDTH> -o <OUTPUT-FILE> --limit=10 -p 1 --cpu-used=8 --i420 --q-hist=64 --end-usage=q --cq-level=<CQ-LEVEL>
+\end{lstlisting}
+
+The results presented in the following sections are derived from the test encodes, which were performed on a \emph{Ryzen 7 2700}, clocked at 3.9GHz.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Timing Analysis}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Sections/3Transforms/Images/TimingAnalysisAvg.eps}
+    \caption{Average encoding and transform time per resolution, on different quality objectives}
+    \label{fig:timeavg}
+\end{figure}
 
 \clearpage
 \printbibliography[heading=subbibliography]

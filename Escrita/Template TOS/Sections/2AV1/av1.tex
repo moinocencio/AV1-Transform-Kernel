@@ -28,7 +28,7 @@ The image perception starts in the human eye, represented in figure \ref{fig:eye
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\figwidth]{Sections/3AV1/Diagrams/eyediagram.png}
+    \includegraphics[width=\figwidth]{Sections/2AV1/Diagrams/eyediagram.png}
     \caption[Representation of an human eye]{Representation of an human eye \cite{AnatomyEyeHuman}}
     \label{fig:eye}
 \end{figure}
@@ -57,13 +57,13 @@ The image \ref{fig:noise} gives an example of the dependency with spatial freque
     \centering
     \begin{subfigure}[c]{\textwidth}
         \centering
-        \includegraphics[width=\figwidth]{Sections/3AV1/Diagrams/paisagemOri.jpg}
+        \includegraphics[width=\figwidth]{Sections/2AV1/Diagrams/paisagemOri.jpg}
         \caption{Original Image \cite{Freepik}}
         \label{subfig:noiseOri}
     \end{subfigure}
     \begin{subfigure}[c]{\textwidth}
         \centering
-        \includegraphics[width=\figwidth]{Sections/3AV1/Diagrams/paisagemNoise.jpg}
+        \includegraphics[width=\figwidth]{Sections/2AV1/Diagrams/paisagemNoise.jpg}
         \caption{Image with added WGN}
         \label{subfig:noise}
     \end{subfigure}
@@ -96,7 +96,7 @@ Taking image \ref{subfig:noiseOri} and calculating its autocorrelation with vari
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{Sections/3AV1/Diagrams/intracorr.eps}
+    \includegraphics[width=\textwidth]{Sections/2AV1/Diagrams/intracorr.eps}
     \caption{Autocorrelation of image \ref{subfig:noiseOri}, with horizontal shifts}
     \label{fig:autocorr}
 \end{figure}
@@ -116,7 +116,7 @@ Making a similar analysis to what was made in section \ref{sssec:spatred}, a ser
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{Sections/3AV1/Diagrams/intercorr.eps}
+    \includegraphics[width=\textwidth]{Sections/2AV1/Diagrams/intercorr.eps}
     \caption{Cross-correlation between the first and following nine frames of the \emph{Stefan} sequence}
     \label{fig:crosscorr}
 \end{figure}
@@ -138,19 +138,19 @@ Typically, a pixel value is represented in one luminance and two chrominance val
     \centering 
         \begin{subfigure}[c]{\textwidth}
             \centering
-            \input{Sections/3AV1/Diagrams/sub444.tex}
+            \input{Sections/2AV1/Diagrams/sub444.tex}
             \caption{4:4:4}
             \label{subfig:444}
         \end{subfigure}
         \begin{subfigure}[c]{\textwidth}
             \centering
-            \input{Sections/3AV1/Diagrams/sub422.tex}
+            \input{Sections/2AV1/Diagrams/sub422.tex}
             \caption{4:2:2}
             \label{subfig:422}
         \end{subfigure}
         \begin{subfigure}[c]{\textwidth}
             \centering
-            \input{Sections/3AV1/Diagrams/sub420.tex}
+            \input{Sections/2AV1/Diagrams/sub420.tex}
             \caption{4:2:0}
             \label{subfig:420}
         \end{subfigure}
@@ -175,13 +175,13 @@ It is known that symbol probability plays a major role in information compressio
 From the basic principles of the previously mentioned blocks, it is possible to integrate them into two complete compression --- \emph{Encoder} --- and decompression --- \emph{Decoder} --- modules.
 
 %%%%%%%%%%%%%%%%%%%
-\subsubsection{Encoder Model}
+\subsubsection{Encoder Model} \label{ssse:encmod}
 
 The encoder's objective is to compress a video sequence, turning it into a readable \emph{encoded bitstream}. To do this, the previously presented strategies get implemented on a system based on the schematic of figure \ref{fig:basicenc}.
 
 \begin{figure}[!htbp]
     \centering
-    \input{Sections/3AV1/Diagrams/basicEnc.tex}
+    \input{Sections/2AV1/Diagrams/basicEnc.tex}
     \caption{Simplified Basic Encoder Model}
     \label{fig:basicenc}
 \end{figure}
@@ -194,7 +194,7 @@ The \emph{Intra Coding} block, as mentioned previously, deals with the spatial r
 
 \begin{figure}[!htbp]
     \centering
-    \input{Sections/3AV1/Diagrams/intraex.tex}
+    \input{Sections/2AV1/Diagrams/intraex.tex}
     \caption{Directional Intra-prediction example}
     \label{fig:intraex}
 \end{figure}
@@ -203,7 +203,7 @@ Into the \emph{Inter Coding} block, go two inputs. The currently encoding block,
 
 \begin{figure}[!htbp]
     \centering
-    \input{Sections/3AV1/Diagrams/interex.tex}
+    \input{Sections/2AV1/Diagrams/interex.tex}
     \caption{Inter-prediction example}
     \label{fig:interex}
 \end{figure}
@@ -220,7 +220,7 @@ The wipe out of the least significant coefficients is particularly efficient whe
 
 \begin{figure}[!htbp]
     \centering
-    \input{Sections/3AV1/Diagrams/zigzag.tex}
+    \input{Sections/2AV1/Diagrams/zigzag.tex}
     \caption{Demonstration of Zig-Zag Scan}
     \label{fig:zigzag}
 \end{figure}
@@ -231,7 +231,7 @@ The intent of this loop is to get an exact same copy of the frame reconstructed 
 
 The output of the encoder is the quantized coefficients, as well as the necessary information to recreate the encoded blocks, such as the type of prediction used, the transformation \emph{kernel} [see p.\pageref{par:kernel}], quantization matrix, et al. These encoding parameters are the choices made by the \emph{Control Unit}, which although represented by a block in figure \ref{fig:basicenc}, may not be a local process, independent from all others. 
 
-Since \emph{H.264}, most video codecs standardize the decoding process, specifically, the allowed tools for compressing the video, and how to use them. This means that the encoding process is widely adaptable to the compression objectives, as long as the final product is a bitstream following the norms set on the codec's standard \cite{AV1BitstreamDecoding}. Therefore, the definition of a \emph{Control Unit} is ambiguous in this context, since such unit can simply represent a set of parameters to be used throughout the encoding process\footnote{One such example would be \emph{lossless} compression modes, which use very a concise conditions on each stage, in order to get the least distortion.}, or an algorithm that can change between the different capabilities of the codec, in order to achieve an objective, such as a specific distortion rate, or not surpass a maximum bit rate.
+Since \emph{H.264}, most video codecs standardize the decoding process, specifically, the allowed tools for compressing the video, and how to use them. This means that the encoding process is widely adaptable to the compression objectives, as long as the final product is a bitstream following the norms set on the codec's standard \cite{AV1BitstreamDecoding}. Therefore, the definition of a \emph{Control Unit} is ambiguous in this context, since such unit can simply represent a set of parameters to be used throughout the encoding process\footnote{One such example would be \emph{lossless} compression modes, which use very a concise conditions on each stage, in order to get the least distortion.}, or an algorithm that can change between the different capabilities of the codec, in order to achieve an objective, such as a specific distortion rate, or not surpass a maximum bit rate. As expected, different objectives may lead to majorly different results, both in the output video, as well as in the used tools.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Decoder Model}
@@ -240,7 +240,7 @@ As expected, the decoder (figure \ref{fig:basicdec}) does the backwards operatio
 
 \begin{figure}[!htbp]
     \centering
-    \input{Sections/3AV1/Diagrams/basicDec.tex}
+    \input{Sections/2AV1/Diagrams/basicDec.tex}
     \caption{Simplified Basic Decoder Model}
     \label{fig:basicdec}
 \end{figure}
@@ -251,7 +251,7 @@ The \emph{Inverse Quantization} rescales the maintained coefficients, resulting 
 
 \begin{figure}[!htbp]
     \centering
-    \input{Sections/3AV1/Diagrams/quant.tex}
+    \input{Sections/2AV1/Diagrams/quant.tex}
     \caption{Processing of $\protect 4\times 4$ residue block from \emph{transformation} to restoring} 
     \label{fig:quant}
 \end{figure}
@@ -280,7 +280,7 @@ In 2014, \emph{Google} started working on the next generation of open-source vid
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=\textwidth]{Sections/3AV1/Diagrams/Images/AOM.png}
+    \includegraphics[width=\textwidth]{Sections/2AV1/Diagrams/Images/AOM.png}
     \caption[\emph{Alliance for Open Media} current members]{\emph{Alliance for Open Media} current members \cite{aomediaHome}} 
     \label{fig:aom}
 \end{figure}
@@ -307,7 +307,7 @@ These blocks may be of $128 \times 128$ pixels, or $64 \times 64$. However, doin
 
 \begin{figure}[!htbp]
     \centering
-    \input{Sections/3AV1/Diagrams/partitioning.tex}
+    \input{Sections/2AV1/Diagrams/partitioning.tex}
     \caption{Description of the recursive partitioning scheme of \emph{AV1}} 
     \label{fig:partitioning}
 \end{figure}
@@ -357,7 +357,7 @@ Although not represented in figures \ref{fig:basicenc} and \ref{fig:basicdec}, r
 
 Besides the revision of the old filter, many others are added, such as the \emph{Constrained Directional Enhancement Filter}, that filters the image directly on the prediction blocks' edges, with the same objective of the \emph{Deblocking filter}. Some further explanation of these filters may be found in \cite{norkinFilmGrainSynthesis2018} and \cite{midtskogenAv1ConstrainedDirectional2018}.
 
-%\input{Sections/3AV1/Diagrams/av1block.tex}
+%\input{Sections/2AV1/Diagrams/av1block.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Performance Analysis}
@@ -372,7 +372,7 @@ According to Moscow State University \cite{vatolinMSUCodecComparison2019}, \emph
 
 \begin{figure}[!htbp]
     \centering
-    \input{Sections/3AV1/Diagrams/testqual.tex}
+    \input{Sections/2AV1/Diagrams/testqual.tex}
     \caption[\emph{AV1} bitrate savings]{\emph{AV1} bitrate savings \cite{vatolinMSUCodecComparison2019}} 
     \label{fig:testqual}
 \end{figure}
@@ -394,7 +394,7 @@ These results may vary greatly with the performed tests, as the encoding tools m
 
 As it can be seen, as the resolution increases, so does the bitrate savings. This leads to believe that if the same test were to be performed with \emph{4K} and \emph{8K} sequences, higher performances would be verified.
 
-As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1FirstLook2018, GoodNewsAV12019}, it is possible to see the improvements made on \emph{libaom}. In table \ref{tab:testtime} there are presented the encoding times of a 5 second clip, shortly after the reference software was released, August 2018, and in March 2019, under the same conditions. Besides the performance of \emph{libaom}, software for \emph{H.264/AVC}, \emph{H.265/HEVC} and \emph{VP9} is also evaluated.
+As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1FirstLook2018, GoodNewsAV12019a}, it is possible to see the improvements made on \emph{libaom}. In table \ref{tab:testtime} there are presented the encoding times of a 5 second clip, shortly after the reference software was released, August 2018, and in March 2019, under the same conditions. Besides the performance of \emph{libaom}, software for \emph{H.264/AVC}, \emph{H.265/HEVC} and \emph{VP9} is also evaluated.
 
 \begin{table}[h]
     \centering

@@ -42,13 +42,19 @@
 \usepackage{booktabs}
 \usetikzlibrary{fadings,shapes,arrows,chains,backgrounds,calc,arrows,arrows.meta,shadows,shapes.geometric, fit, positioning}
 \usepackage{caption,subcaption}
-\usepackage{epstopdf}
+\usepackage{graphicx, epstopdf}
 \usepackage{mathtools, nccmath}
 \usepackage{pdflscape}
 \usepackage{afterpage}
 \usepackage{url}
 \PassOptionsToPackage{hyphens}{url}
-
+\usepackage[toc,page]{appendix}
+\usepackage{listings}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
 %%%%%%%%%%%%%%%%%%%%%%%
 % Tikz library and set
 \include{tikzlib}
@@ -205,7 +211,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % AV1 Video Codec
-\include{Sections/3AV1/av1}
+\include{Sections/2AV1/av1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % AV1 Video Codec
@@ -214,6 +220,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Developed Architecture
 \include{Sections/4DevelopedArchitecture/develWork}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Developed Architecture
+\include{Sections/Annex/appendix}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliografia

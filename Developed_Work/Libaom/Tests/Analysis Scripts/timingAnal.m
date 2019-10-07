@@ -87,7 +87,6 @@ transtime_per = transtime_m./time_m(:,:,1)*100;
 %% Timing results
 figure('Name','Timing Results','NumberTitle','off')
 hold on
-setGraphs();
 
 x = categorical(v_r);
 x = reordercats(x,v_r);
@@ -103,9 +102,9 @@ for i=1:size(transtime_m,2)
         'HorizontalAlignment','center',...
         'VerticalAlignment','middle', ...
         'HorizontalAlignment','left', ...
-        'FontSize',16, ...
-        'Rotation',90)
+        'FontName', 'Helvetica', ...
+        'Rotation',90);
 end
 legend(bartot,l,'Location','bestoutside')
 xlabel('Resolution'),ylabel('Time (s)')
-
+setGraphs();
