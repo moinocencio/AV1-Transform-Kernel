@@ -14,7 +14,7 @@ function bar_g = makePrettyBar(xvals, yvals, leg, xlab, ylab)
 
     bar_g = bar(x,yvals,'FaceColor','flat');
     setGraphs();
-    scale_f = [0 0.3 1 1.1 1.55 1 2.4];
+    scale_f = [0 0.3 0.7 1.1 1.55 1 2.4];
     xPos = (1:size(yvals,1)) - bar_g(1).BarWidth/size(yvals,2) * linspace(scale_f(size(yvals,2))/bar_g(1).BarWidth, -scale_f(size(yvals,2))/bar_g(1).BarWidth, size(yvals,2))';
     l = cell(1,size(yvals,2));
 

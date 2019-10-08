@@ -34,6 +34,7 @@ types_p = zeros(length(terms),size(v_p,1),4);
 cosbit_p = zeros(length(terms),size(v_p,1),7);
 sqsiz_p = zeros(length(terms),size(v_p,1));
 sqtyp_p = zeros(length(terms),size(v_p,1));
+sqkern_p = zeros(length(terms),size(v_p,1));
 
 vars = who;
 vars = {vars{:} 'i_q' 'i_r' 'i_v' 'vars'};
@@ -46,6 +47,7 @@ for i_q = 1:length(terms)             % Quality Index
         cosbit_temp = zeros(2,7);
         sqsiz_temp = 0;
         sqtyp_temp = 0;
+        sqkern_temp = 0;
         for i_v = 1:size(v_p,2)       % Video Index
             v_temp = getTransStats(v_p(i_r,i_v)+terms(i_q));
 
@@ -55,12 +57,14 @@ for i_q = 1:length(terms)             % Quality Index
             cosbit_temp = cosbit_temp + v_temp.cosbit;
             sqsiz_temp = sqsiz_temp + v_temp.sqSizes;
             sqtyp_temp = sqtyp_temp + v_temp.sqTypes;
+            sqkern_temp = sqkern_temp + v_temp.sqKernel;
         end
         sizes_p(i_q, i_r, :) = sum(sizes_temp,1)./(l_temp*2)*100;
         types_p(i_q, i_r, :) = sum(types_temp,1)./(l_temp*2)*100;
         cosbit_p(i_q, i_r, :) = sum(cosbit_temp,1)./(l_temp*2)*100;
         sqsiz_p(i_q, i_r) = sqsiz_temp / l_temp * 100;
         sqtyp_p(i_q, i_r) = sqtyp_temp / l_temp * 100;
+        sqkern_p(i_q, i_r) = sqkern_temp / l_temp * 100;
         clearvars('-except',vars{:});
     end
 end
@@ -109,8 +113,8 @@ figure('Name',"Average Cosine Bits",'units','normalized','outerposition',[0 0 1 
                                                         'Quality', 'Relative Use (\%)');
 
 figure('Name',"Average Square Kernels",'units','normalized','outerposition',[0 0 1 1]),makePrettyBar(  q, ...
-                                                        [squeeze(mean(sqtyp_p,2)) squeeze(mean(sqsiz_p,2))], ...
-                                                        ["Square Size" "Square Kernel"], ...
+                                                        [squeeze(mean(sqtyp_p,2)) squeeze(mean(sqsiz_p,2)) squeeze(mean(sqkern_p,2))], ...
+                                                        ["Square Block" "Square Kernel" "Symmetric"], ...
                                                         'Quality', 'Relative Use (\%)');
 
 ylim([0 110])
