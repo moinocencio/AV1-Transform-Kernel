@@ -20,6 +20,7 @@ function v_stats = getTransStats(f_p)
     v_stats.length = 0;
     v_stats.sqTypes= 0;
     v_stats.sqSizes= 0;
+    v_stats.sqKernel= 0;
 
     % Libaom Transform Enumerations
     TXFM_TYPE_DCT4 = uint8(0);
@@ -61,7 +62,8 @@ function v_stats = getTransStats(f_p)
     v_stats.sizes(1,:) = hist(data_t(:,1),2.^(2:6));
     v_stats.sizes(2,:) = hist(data_t(:,2),2.^(2:6));
 
-    v_stats.sqSizes = sum(data_t(:,1) == data_t(:,2));
+    temp_ts = data_t(:,1) == data_t(:,2);
+    v_stats.sqSizes = sum(temp_ts);
 
     v_stats.length = size(data_t,1);
 
@@ -75,7 +77,10 @@ function v_stats = getTransStats(f_p)
     v_stats.types(2,3) = sum(ismember(data_t(:,3),[TXFM_TYPE_ADST4 TXFM_TYPE_ADST8 TXFM_TYPE_ADST16]).*(data_t(:,4) == 1));
     v_stats.types(2,4) = sum(ismember(data_t(:,3),[TXFM_TYPE_IDENTITY4 TXFM_TYPE_IDENTITY8 TXFM_TYPE_IDENTITY16 TXFM_TYPE_IDENTITY32]));
 
-    v_stats.sqTypes = sum((data_t(:,1) == data_t(:,3)) & (data_t(:,2) == data_t(:,4)));
+    temp_tt = (data_t(:,1) == data_t(:,3)).*(data_t(:,2) == data_t(:,4));
+    v_stats.sqTypes = sum(temp_tt);
+    v_stats.sqKernel = sum(temp_tt.*temp_ts);
+    clear temp_tt temp_ts
 
     data_t = [uint8(readmatrix(f_p, 'Range','D:D')) uint8(readmatrix(f_p, 'Range','I:I'))];
     v_stats.cosbit(1,:) = hist(data_t(:,1),(10:16));

@@ -1,0 +1,158 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.00000,0.04167}%
+\definecolor{mycolor2}{rgb}{0.19444,0.19444,0.31944}%
+\definecolor{mycolor3}{rgb}{0.38889,0.47222,0.51389}%
+\definecolor{mycolor4}{rgb}{0.61458,0.70833,0.70833}%
+\definecolor{mycolor5}{rgb}{0.87153,0.90278,0.90278}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=9.525in,
+height=5.162in,
+at={(1.639in,1.179in)},
+scale only axis,
+bar shift auto,
+every outer x axis line/.append style={black},
+every x tick label/.append style={font=\color{black}},
+every x tick/.append style={black},
+xmin=0.511111111111111,
+xmax=4.48888888888889,
+xtick={1,2,3,4},
+xticklabels={{CIF},{HD},{FHD},{UHD}},
+tick align=outside,
+xlabel={Resolution},
+every outer y axis line/.append style={black},
+every y tick label/.append style={font=\color{black}},
+every y tick/.append style={black},
+ymin=0,
+ymax=5000,
+ylabel={Time (s)},
+axis background/.style={fill=white},
+axis x line*=bottom,
+axis y line*=left,
+ymajorgrids,
+grid style={opacity=0.7},
+legend style={legend cell align=left, align=left, draw=black}
+]
+\addplot[ybar, bar width=0.178, fill=mycolor1, draw=black, area legend] table[row sep=crcr] {%
+1	16.0229273333333\\
+2	269.205333333333\\
+3	297.385666666667\\
+4	1467.241\\
+};
+\addplot[forget plot, color=black] table[row sep=crcr] {%
+0.511111111111111	0\\
+4.48888888888889	0\\
+};
+\addlegendentry{Low}
+
+\addplot[ybar, bar width=0.178, fill=mycolor2, draw=black, area legend] table[row sep=crcr] {%
+1	33.0333333333333\\
+2	458.452333333333\\
+3	525.643666666667\\
+4	4098.61466666667\\
+};
+\addplot[forget plot, color=black] table[row sep=crcr] {%
+0.511111111111111	0\\
+4.48888888888889	0\\
+};
+\addlegendentry{Medium}
+
+\addplot[ybar, bar width=0.178, fill=mycolor3, draw=black, area legend] table[row sep=crcr] {%
+1	43.6593333333333\\
+2	521.340666666667\\
+3	572.146\\
+4	4161.08866666667\\
+};
+\addplot[forget plot, color=black] table[row sep=crcr] {%
+0.511111111111111	0\\
+4.48888888888889	0\\
+};
+\addlegendentry{High}
+
+\addplot[ybar, bar width=0.178, fill=mycolor4, draw=black, area legend] table[row sep=crcr] {%
+1	2.94605566666667\\
+2	63.7677476666667\\
+3	61.8757716666667\\
+4	348.165895666667\\
+};
+\addplot[forget plot, color=black] table[row sep=crcr] {%
+0.511111111111111	0\\
+4.48888888888889	0\\
+};
+\addplot[ybar, bar width=0.178, fill=mycolor5, draw=black, area legend] table[row sep=crcr] {%
+1	6.50318466666667\\
+2	62.5722286666667\\
+3	101.893901333333\\
+4	572.530012666667\\
+};
+\addplot[forget plot, color=black] table[row sep=crcr] {%
+0.511111111111111	0\\
+4.48888888888889	0\\
+};
+\addplot[ybar, bar width=0.178, fill=white, draw=black, area legend] table[row sep=crcr] {%
+1	6.70399266666667\\
+2	59.62973\\
+3	93.2068033333333\\
+4	483.078963\\
+};
+\addplot[forget plot, color=black] table[row sep=crcr] {%
+0.511111111111111	0\\
+4.48888888888889	0\\
+};
+\node[right, align=left, rotate=90]
+at (axis cs:0.773,26.023) {18.4 \%};
+\node[right, align=left, rotate=90]
+at (axis cs:1.773,279.205) {23.7 \%};
+\node[right, align=left, rotate=90]
+at (axis cs:2.773,307.386) {20.8 \%};
+\node[right, align=left, rotate=90]
+at (axis cs:3.773,1477.241) {23.7 \%};
+\node[right, align=left, rotate=90]
+at (axis cs:1,43.033) {19.7 \%};
+\node[right, align=left, rotate=90]
+at (axis cs:2,468.452) {13.6 \%};
+\node[right, align=left, rotate=90]
+at (axis cs:3,535.644) {19.4 \%};
+\node[right, align=left, rotate=90]
+at (axis cs:4,4108.615) {14.0 \%};
+\node[right, align=left, rotate=90]
+at (axis cs:1.227,53.659) {15.4 \%};
+\node[right, align=left, rotate=90]
+at (axis cs:2.227,531.341) {11.4 \%};
+\node[right, align=left, rotate=90]
+at (axis cs:3.227,582.146) {16.3 \%};
+\node[right, align=left, rotate=90]
+at (axis cs:4.227,4171.089) {11.6 \%};
+\end{axis}
+
+\begin{axis}[%
+width=14.229in,
+height=6.854in,
+at={(0in,0in)},
+scale only axis,
+every outer x axis line/.append style={black},
+every x tick label/.append style={font=\color{black}},
+every x tick/.append style={black},
+xmin=0,
+xmax=1,
+tick align=outside,
+every outer y axis line/.append style={black},
+every y tick label/.append style={font=\color{black}},
+every y tick/.append style={black},
+ymin=0,
+ymax=1,
+axis line style={draw=none},
+ticks=none,
+axis x line*=bottom,
+axis y line*=left,
+legend style={legend cell align=left, align=left, draw=black}
+]
+\end{axis}
+\end{tikzpicture}%

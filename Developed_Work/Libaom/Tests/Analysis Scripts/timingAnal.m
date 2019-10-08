@@ -85,26 +85,29 @@ transtime_m = time_m(:,:,2) + time_m(:,:,3);
 transtime_per = transtime_m./time_m(:,:,1)*100;
 
 %% Timing results
-figure('Name','Timing Results','NumberTitle','off')
+h = figure('Name','Timing Results','NumberTitle','off','units','normalized','outerposition',[0 0 1 1]);
 hold on
+setGraphs();
 
 x = categorical(v_r);
 x = reordercats(x,v_r);
-bartot = bar(x,time_m(:,:,1), 'FaceColor','flat');
-bartrans = bar(x,transtime_m,'FaceColor','flat');
+bartot = bar(1:length(x),time_m(:,:,1), 'FaceColor','flat');
+bartrans = bar(1:length(x),transtime_m,'FaceColor','flat');
+xticklabels(x);
 xPos = (1:size(transtime_m,1)) - bartrans(1).BarWidth/size(transtime_m,2) * linspace(0.85, -0.85, size(transtime_m,2))';
 for i=1:size(transtime_m,2)    
     l{i} = q_n(i);
     bartot(i).CData = i;
     bartrans(i).CData = i+3;
     text(   xPos(i,:),time_m(:,i,1)'+10, ...
-        compose("%.1f %%",transtime_per(:,i)), ...
+        compose("%.1f",transtime_per(:,i))+"$\%$", ...
         'HorizontalAlignment','center',...
         'VerticalAlignment','middle', ...
         'HorizontalAlignment','left', ...
-        'FontName', 'Helvetica', ...
+        'FontName', 'Times New Roman', ...
+        'Interpreter','latex',...
         'Rotation',90);
 end
-legend(bartot,l,'Location','bestoutside')
+leg = legend(bartot,l(:),'Location','northwest');
 xlabel('Resolution'),ylabel('Time (s)')
-setGraphs();
+

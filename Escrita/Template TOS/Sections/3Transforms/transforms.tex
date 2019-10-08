@@ -185,7 +185,7 @@ The most commonly used transform, the \emph{DCT}, was published by Ahmed et al. 
 
 It is frequently compared to the \emph{DFT}, due to the similarity of their operation. However, as the name implies, the \emph{DCT} relies on the cosine function to create its basis images, which is a \emph{periodic} and \emph{symmetrically even} function. Therefore, as mentioned by \cite[A. V. Oppenheim]{oppenheimDiscretetimeSignalProcessing1998}, \emph{"Just as the DFT involves an implicit assumption of periodicity, the DCT involves implicit assumptions of both periodicity and even symmetry"}.  This is easily observable once considered the equivalent process of both algorithms. Taking an $N$-point sequence, $g(n)$, the calculation of the \emph{DFT} and \emph{DCT} of such sequence is equivalent to the processes presented at table \ref{tab:DFTDCT}.
 
-\begin{table}[h]
+\begin{table}[!htpb]
     \centering
     \begin{tabular}{cllll@{}} \toprule
         \textbf{Step} &      \multicolumn{2}{c}{\textbf{\emph{DFT}}} &      \multicolumn{2}{c}{\textbf{\emph{DCT}}} \\ \toprule
@@ -202,7 +202,7 @@ The main reason behind the heavy adoption of the \emph{DCT} is its great energy 
 
 Due to the back-to-head repetition seen in figure \ref{subfig:dft}, there is a disruption every $N$ points, which gives origin to high frequency components in the \emph{Fourier} transform. Therefore, the more continuous behavior obtained with the back-to-back repetition of the \emph{DCT} gives origin to more significant low frequency coefficients. However, there are many ways of creating a periodic and symmetric sequence from a finite number of points. This factor has led to the implementation of different versions of the \emph{DCT}, which differ in minor details between themselves. These differences are consequence of the way the symmetry is obtained, which can be observed in figures \ref{subfig:dct1} to \ref{subfig:dct4}. The represented implementations are referred to as \emph{DCT-I} to \emph{DCT-IV}, but other possibilities exist. Their definition depends on the overlapping of points when repeating each sequence.
 
-\begin{figure}[h]
+\begin{figure}[!htpb]
     \centering 
         \begin{subfigure}[c]{\textwidth}
             \centering
@@ -419,10 +419,9 @@ Being so, the input also suffers an additional mapping, similar to the operation
     \end{figure}
     \vspace*{\fill}        
 \end{landscape}
-\clearpage
 
 
-\begin{figure}[!htbp]
+\begin{figure}[htbp]
     \centering
     \input{Sections/3Transforms/Images/av1_identity.tex}
     \caption{Description of the Identity transforms in \emph{libaom}}
@@ -434,7 +433,7 @@ With the forward transformations explained and represented graphically, it's eas
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Performance and Statistics Analysis}
 
-From the obtained understanding of the tools and characteristics of the \emph{Transform} stage, various tests were performed in order to gather information on what were the most commonly used options, and the corresponding impact of such, on encoding performance.
+From the obtained understanding of the tools and characteristics of the \emph{Transform} stage, various tests were performed in order to gather information on what were the most commonly used options, and the corresponding impact of such on encoding performance.
 
 With these tests, it was intended to get to know:
 \begin{itemize}
@@ -443,11 +442,11 @@ With these tests, it was intended to get to know:
     \item bits used on cosine approximation.
 \end{itemize}
 
-For this, \emph{libaom} was modified, in order to retrieve these statistics, without impacting the encoding performance. Namely, the timing test, was performed independently from the others, in order to get an accurate result of the time spent, since the writing of the transformation options would cause a major impact during the transform stage.
+For this, \emph{libaom} was modified in order to retrieve these statistics, without impacting the encoding performance. Namely, the timing test was performed independently from the others, in order to get an accurate result of the time spent, since the writing of the transformation options would cause a major impact during the transform stage.
 
 The tests were performed on different sequences with various resolutions and encoding difficulties. These were obtained in \emph{Xiph}'s test media \cite{XiphOrgTest}, and are presented in table \ref{tab:seqs}.
 
-\begin{table}[htpb]
+\begin{table}[!htpb]
     \centering
     \begin{tabular}{cccc} \toprule
         \multicolumn{3}{c}{\textbf{Resolution}}                                 & \multirow{2}{*}{\textbf{Sequence Name}} \\
@@ -487,12 +486,76 @@ The results presented in the following sections are derived from the test encode
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Timing Analysis}
 
-\begin{figure}[h]
+On the performed \emph{AV1} timing analysis, the main aspect to evaluate was the impact of the time spent on \emph{Transform} stage, for different quality thresholds.
+
+For a certain resolution, it is expected that the time spent on this stage remains approximately constant, regardless of the desired quality. Therefore, the higher the total encoding time, the least impact the \emph{Transform} stage would have.
+
+This result was verified in the performed test, whose results are represented in figure \ref{fig:timeavg}.
+
+\begin{figure}[!htpb]
     \centering
     \includegraphics[width=\textwidth]{Sections/3Transforms/Images/TimingAnalysisAvg.eps}
-    \caption{Average encoding and transform time per resolution, on different quality objectives}
+    \caption[Average encoding and transform time per resolution, on different quality objectives]{Average encoding and transform time per resolution, on different quality objectives (dark colours represent total encoding time, while lighter are the respective time spent on transform stage)}
     \label{fig:timeavg}
 \end{figure}
+
+In this figure, each tall bar corresponds to the average time spent per encode, in each of the resolutions, varying the desired quality objective. The corresponding smaller bar represents the percentage of time spent during transformation, also expressed numerically by the number on top of each bar.
+
+As anticipated, the desired quality of each encode plays an important role in the necessary total time, majorly considering the \emph{Low} to \emph{Medium} quality objectives, since the latter, in average, spends \emph{double} the time of the former. However, once considered the \emph{High} quality set, the encoder takes $14 \%$ more time to encode the same sequence on a \emph{Medium} quality objective.
+
+Although these results represent an interesting analysis from a performance standpoint, for the focus of this work, the most interesting analysis comes from the percentage of time spent during the \emph{Transform} stage. As expected, this time stays roughly the same, independently of the quality objective. However its impact to the total encoding time decreases as the quality increases. 
+
+This aspect leads to conclude that there is a necessity to develop fast and efficient architectures for the \emph{Transform} block, since it corresponds to a relevant percentage of the total encode time, regardless of the quality. And although lower quality encodes benefit more of such improvements when comparing to higher qualities, both cases would gain, since such architecture could be used on a high variety of encoders.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Transform Configuration Set Analysis}
+
+This analysis is divided in different segments, dedicated to each of the transform options analyzed. Some of which, although not entirely relevant to the aim of this work, may prove useful for the implementation of different architectures.
+
+On the distribution of used kernels verified in figure \ref{fig:kernelavg}, the most relevant aspect is the clear dominance of the \emph{DCT} among the others. However, as quality increases, the distribution starts to spread out.
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=\textwidth]{Sections/3Transforms/Images/kernelAvg.eps}
+    \caption{Average distribution of used kernels, for all resolutions, according to the quality threshold}
+    \label{fig:kernelavg}
+\end{figure}
+
+A contrary behavior is verified on the transform vector size. As seen in figure \ref{fig:sizeavg}, as quality increases, the smaller vector sizes (namely the $4$ length vector), get used more frequently. This is easily understandable, as smaller blocks present lower losses during the \emph{Quantization} stage. 
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=\textwidth]{Sections/3Transforms/Images/vectSizAvg.eps}
+    \caption{Average distribution of used kernels, for all resolutions, according to the quality threshold}
+    \label{fig:sizeavg}
+\end{figure}
+
+\textcolor{red}{Although \emph{AV1} supports asymmetric transform blocks, in figure \ref{fig:squareavg} it's possible to verify that the encoder, in most of the block transformations, doesn't take advantage of such, using square blocks, as well as the same kernel for both directions. This behavior remains similar throughout the different resolutions.}
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=\textwidth]{Sections/3Transforms/Images/squareAvg.eps}
+    \caption{Use of square blocks, same kernel for rows and columns, and symmetric kernels, according to the quality threshold}
+    \label{fig:squareavg}
+\end{figure}
+
+This aspect may prove a starting point for improvement of the transform stage, since, as mentioned previously, symmetric transforms may be implemented with \emph{\gls{mm}}. Therefore, using fast \emph{MM} architectures for symmetric blocks, and complementing with the algorithm implemented in \emph{libaom} for asymmetric blocks, the transform time may decrease.
+
+The final analyzed transform option is the number of bits used in the cosine representation. In figure \ref{fig:cosbitavg}, the distribution is represented for the different quality objectives. 
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=\textwidth]{Sections/3Transforms/Images/cosBitAvg.eps}
+    \caption{Different number of bits used on the cosine approximations, throughout different quality sets}
+    \label{fig:cosbitavg}
+\end{figure}
+
+Various conclusions can be derived from this data.
+Firstly, as expected, as quality increases, so does the number of bits for cosine representation, as seen by the increase of the percentage on the $13$ bit representation.
+
+However, most representations hardly get used, since most of the transformations use $13$, $12$, $10$ and, very few times, $11$ bits, without using any of the higher representations (on the performed tests). 
+
+Analyzing this information, it may be thought that the number of bits used in the cosine contributes for the overall quality of the compressed sequence. In the following section, this aspect is tested.
 
 \clearpage
 \printbibliography[heading=subbibliography]
