@@ -101,7 +101,7 @@ for i_q = 1:s_t(1)              % Quality Index
         %                ["Regular" "10bit" "16bit"], ...
         %                v_r(i_r) + " Video", "PSNR (dB)");
     end
-    figure('Name',v_q(i_q)+" Average")
+    figure('Name',v_q(i_q)+" Average",'units','normalized','outerposition',[0 0 1 1])
     title(sprintf("%s Average PSNR", v_q(i_q)))
     makePrettyBar(  [v_r' "Average"], ...
                     [squeeze(mPSNR_r(i_q,:,:)); mPSNR_q(i_q,:)], ...
@@ -109,5 +109,5 @@ for i_q = 1:s_t(1)              % Quality Index
                     v_q(i_q) + " Quality", "PSNR (dB)");
 end
 
-figure('Name','Quality Average')
+figure('Name','Quality Average', 'units','normalized','outerposition',[0 0 1 1])
 makePrettyBar([v_q "Average"],[mPSNR_q; mean(mPSNR_q,1)],["Regular" "10bit" "16bit"],"Quality","PSNR (dB)");

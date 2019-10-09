@@ -484,7 +484,7 @@ The resulting command for configuring \emph{aomenc} for the developed tests, enc
 The results presented in the following sections are derived from the test encodes, which were performed on a \emph{Ryzen 7 2700}, clocked at 3.9GHz.
 
 %%%%%%%%%%%%%%%%%%%
-\subsubsection{Timing Analysis}
+\subsubsection{Timing Analysis} \label{sec:timinganal}
 
 On the performed \emph{AV1} timing analysis, the main aspect to evaluate was the impact of the time spent on \emph{Transform} stage, for different quality thresholds.
 
@@ -508,7 +508,7 @@ Although these results represent an interesting analysis from a performance stan
 This aspect leads to conclude that there is a necessity to develop fast and efficient architectures for the \emph{Transform} block, since it corresponds to a relevant percentage of the total encode time, regardless of the quality. And although lower quality encodes benefit more of such improvements when comparing to higher qualities, both cases would gain, since such architecture could be used on a high variety of encoders.
 
 %%%%%%%%%%%%%%%%%%%
-\subsubsection{Transform Configuration Set Analysis}
+\subsubsection{Configuration Set Analysis}
 
 This analysis is divided in different segments, dedicated to each of the transform options analyzed. Some of which, although not entirely relevant to the aim of this work, may prove useful for the implementation of different architectures.
 
@@ -526,11 +526,11 @@ A contrary behavior is verified on the transform vector size. As seen in figure 
 \begin{figure}[!htpb]
     \centering
     \includegraphics[width=\textwidth]{Sections/3Transforms/Images/vectSizAvg.eps}
-    \caption{Average distribution of used kernels, for all resolutions, according to the quality threshold}
+    \caption{Average distribution of vector sizes, for all resolutions, according to the quality threshold}
     \label{fig:sizeavg}
 \end{figure}
 
-\textcolor{red}{Although \emph{AV1} supports asymmetric transform blocks, in figure \ref{fig:squareavg} it's possible to verify that the encoder, in most of the block transformations, doesn't take advantage of such, using square blocks, as well as the same kernel for both directions. This behavior remains similar throughout the different resolutions.}
+Although \emph{AV1} supports asymmetric transform blocks, in figure \ref{fig:squareavg} it's possible to verify that the encoder, in most of the block transformations, doesn't take advantage of such, using square blocks, as well as the same kernel for both directions. This behavior remains similar throughout the different resolutions.
 
 \begin{figure}[!htpb]
     \centering
@@ -556,6 +556,54 @@ Firstly, as expected, as quality increases, so does the number of bits for cosin
 However, most representations hardly get used, since most of the transformations use $13$, $12$, $10$ and, very few times, $11$ bits, without using any of the higher representations (on the performed tests). 
 
 Analyzing this information, it may be thought that the number of bits used in the cosine contributes for the overall quality of the compressed sequence. In the following section, this aspect is tested.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Quality Analysis}
+
+In this test, besides evaluating the obtained quality for each tested \texttt{cq-level}, the impact of the cosine bits representation also was evaluated. 
+
+To evaluate the impact of the number of bits used in the cosine approximations, \emph{aomenc} was modified to force either 10 or 16 bits throughout the encoding operation, for both forward ($T$) and inverse transformations ($T^{-1}$). \emph{Aomdec} (reference decoder), since it acts according to the specified \emph{Bitstream Decoding Format} \cite{AV1BitstreamDecoding}, it may not be modified. Nonetheless, it uses $12$ bit representation, regardless of the choices made in the decoder.
+
+From the gathered reconstructed sequences, $\hat{g}$, the \gls{psnr} of each one was calculated, according to equation \ref{eq:psnr}.
+
+\begin{equation} \label{eq:psnr}
+    PSNR = 10\;log_{10}\left(\frac{255^2}{E_{ms}}\right)
+\end{equation}
+
+$E_{ms}$ corresponds to the \emph{Mean Squared Error} of the reconstructed video. Considering a single $M \times N$ monochrome frame, this error is given by equation \ref{eq:emsf}.
+
+\begin{equation} \label{eq:emsf}
+    E_{ms} = \frac{1}{MN}\sum^{M-1}_{x=0} \sum^{N-1}_{y=0} \left(g_{x,y} - \hat{g}_{x,y}\right)^2
+\end{equation}
+However, since the test revolves around a sequence of $k$ reconstructed frames, with three chroma channels per bit, $c$, $E_{ms}$ becomes
+
+\begin{equation} \label{eq:emss}
+    E_{ms} = \frac{1}{3kMN}\sum^{M-1}_{x=0} \sum^{N-1}_{y=0} \sum_{c=0}^{3-1} \left(g_{x,y,c} - \hat{g}_{x,y,c}\right)^2
+\end{equation}
+
+The workflow of the performed test is represented in figure \ref{fig:compcosbit}.
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/3Transforms/Images/compcosbitflow.tex}
+    \caption{Description of the test for comparing impact of number of bits in cosine approximations}
+    \label{fig:compcosbit}
+\end{figure}
+
+The average results from all resolutions, for each of the quality objectives is represented in figure \ref{fig:compcosbitavg}.
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=\textwidth]{Sections/3Transforms/Images/compcosbitAvg.eps}
+    \caption{Obtained quality for each of the quality objectives, and comparison with different cosine bits approximation}
+    \label{fig:compcosbitavg}
+\end{figure}
+
+As expected, as \texttt{cq-level} increases, so does the obtained quality. Also, considering the encoding time differences verified in section \ref{sec:timinganal}, the smaller PSNR gap between \emph{Medium} and \emph{High} qualities was also expected.
+
+However, contrary to what was verified in figure \ref{fig:cosbitavg}, the number of bits on cosine approximation doesn't contribute to the obtained quality, regardless of the desired objective. Therefore, it would be safe to assume that the cosine approximations could be fixed on a certain number of bits, without major impact to the video quality.
+
+This factor presents a major point for exploring faster \emph{Transform} block architectures. The architectures in figures \ref{fig:intDCT} and \ref{fig:intADST} highly depend on the \texttt{half\_btf} function (equation \ref{eq:half_btf}), which is adaptable to the number of bits used for cosine, in each block transformation. However, with the use of a fixed number of bits, this function could be simplified, since the multiplications and divisions performed in it could be implemented with a fixed number of shifts and additions.
 
 \clearpage
 \printbibliography[heading=subbibliography]
