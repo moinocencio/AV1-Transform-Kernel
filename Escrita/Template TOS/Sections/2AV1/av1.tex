@@ -214,7 +214,7 @@ After the prediction stage, the chosen output between the two processes, i.e., t
 
 The next stage, the \emph{Forward Transform}, is the focus of this work. It takes the residue blocks, which may not be the same size of the prediction blocks, and evaluates them according to its spatial frequencies. Its output corresponds to a series of \emph{coefficients}, that are related to the similarity --- or \emph{correlation} --- between the input block and a series of \emph{basis images}. This process is further explained in chapter \ref{chap:trans}.
 
-On the \emph{Quantization} stage, the coefficients calculated in \textbf{T} get scaled according to a \emph{Quantization Matrix}. This stage takes advantage of the eye's lower perception to high frequency details, and scales the higher frequency coefficients by a higher value, than the lower, more significant ones. In most of the transformed blocks, this leads that only a few low frequency components are maintained, while the others get nullified, since they are not relevant to the reconstruction of the image. Therefore, this stage is the the one that presents the higher loss, although the previously presented also introduce errors.
+On the \emph{Quantization} stage, the coefficients calculated in \textbf{T} get scaled according to a \emph{Quantization Matrix}. This stage takes advantage of the eye's lower perception to high frequency details, and scales the higher frequency coefficients by a higher value, than the lower, more significant ones. In most of the transformed blocks, this leads that only a few low frequency components are maintained, while the others get nullified, since they are not relevant to the reconstruction of the image. Therefore, this stage is the the one that presents the higher loss, although the previously presented also introduce errors. In most of the encoding processes, this stage has the most direct impact on the obtained quality.
 
 The wipe out of the least significant coefficients is particularly efficient when paired with the last stage before the output, the \emph{Entropy Encoder}. On this block, \textbf{Q}'s output block gets run sequentially via a \emph{zig-zag scan}, which first passes through the lower frequency coefficients, followed by the higher frequency ones. 
 
@@ -394,11 +394,11 @@ These results may vary greatly with the performed tests, as the encoding tools m
 
 As it can be seen, as the resolution increases, so does the bitrate savings. This leads to believe that if the same test were to be performed with \emph{4K} and \emph{8K} sequences, higher performances would be verified.
 
-As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1FirstLook2018, GoodNewsAV12019a}, it is possible to see the improvements made on \emph{libaom}. In table \ref{tab:testtime} there are presented the encoding times of a 5 second clip, shortly after the reference software was released, August 2018, and in March 2019, under the same conditions. Besides the performance of \emph{libaom}, software for \emph{H.264/AVC}, \emph{H.265/HEVC} and \emph{VP9} is also evaluated.
+As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1FirstLook2018a, GoodNewsAV12019}, it is possible to see the improvements made on \emph{libaom}. In table \ref{tab:testtime} there are presented the encoding times of a 5 second clip, shortly after the reference software was released, August 2018, and in March 2019, under the same conditions. Besides the performance of \emph{libaom}, software for \emph{H.264/AVC}, \emph{H.265/HEVC} and \emph{VP9} is also evaluated.
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{@{}ccc@{}} \toprule
+    \begin{tabular}{ccc} \toprule
         \multirow{2}{*}{\textbf{Codec}}     &      \multicolumn{2}{c}{\textbf{Encoding Time (s)}} \\
          &    \textbf{2018}  &   \textbf{2019}  \\ \toprule
         AV1            &    226 080        & 736 \\
@@ -407,7 +407,7 @@ As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1F
         H.264          &    \multicolumn{2}{c}{18} \\
         \bottomrule
     \end{tabular}
-    \caption{Encoding times of different video encoders, and improvements on \emph{AV1}}
+    \caption[Encoding times of different video encoders, and improvements on \emph{AV1}]{Encoding times of different video encoders, and improvements on \emph{AV1} \cite{AV1FirstLook2018a, GoodNewsAV12019}}
     \label{tab:testtime}
 \end{table}
 
@@ -415,5 +415,9 @@ From these results, it is possible to conclude that \emph{AV1} is a promising co
 
 
 \clearpage
+\begingroup
+\raggedright
+\sloppy
 \printbibliography[heading=subbibliography]
+\endgroup
 \addcontentsline{toc}{section}{References}

@@ -7,8 +7,8 @@
 
 \tikzset{
   base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
-  proc/.style={base, rectangle, text width=8em},
-  inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70},
+  proc/.style={base, rectangle, text width=8em, fill=black!10},
+  inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
   term/.style={proc, rounded corners},
   sum/.style={base, circle, inner sep=0pt, radius=0.4cm},
   % coord node style is used for placing corners of connecting lines
@@ -61,22 +61,22 @@
 \begin{pgfonlayer}{background}
     \path (x4.west |- p4.north)+(-5mm,2mm) node (a11) {};
     \path (id4.east |- p4.south)+(5mm,-2mm) node (a21) {};
-    \path[fill=black!10,rounded corners, draw=black!50, dashed]
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
       (a11) rectangle (a21);
 
     \path (x8.west |- p8.north)+(-5mm,2mm) node (a11) {};
     \path (id8.east |- p8.south)+(5mm,-2mm) node (a21) {};
-    \path[fill=black!10,rounded corners, draw=black!50, dashed]
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
     (a11) rectangle (a21);
 
     \path (x16.west |- p16.north)+(-5mm,2mm) node (a11) {};
     \path (id4.east |- p16.south)+(5mm,-2mm) node (a21) {};
-    \path[fill=black!10,rounded corners, draw=black!50, dashed]
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
       (a11) rectangle (a21);
 
     \path (x32.west |- p32.north)+(-5mm,2mm) node (a11) {};
     \path (id4.east |- p32.south)+(5mm,-2mm) node (a21) {};
-    \path[fill=black!10,rounded corners, draw=black!50, dashed]
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
       (a11) rectangle (a21);
 
 \end{pgfonlayer}

@@ -599,11 +599,50 @@ The average results from all resolutions, for each of the quality objectives is 
     \label{fig:compcosbitavg}
 \end{figure}
 
-As expected, as \texttt{cq-level} increases, so does the obtained quality. Also, considering the encoding time differences verified in section \ref{sec:timinganal}, the smaller PSNR gap between \emph{Medium} and \emph{High} qualities was also expected.
+As expected, as \texttt{cq-level} increases, so does the obtained quality. Also, considering the encoding time differences verified in section \ref{sec:timinganal}, the smaller PSNR gap between \emph{Medium} and \emph{High} qualities was also expected. However, the difference between these two parameters depends on the encoded video, as shown in figure \ref{fig:qdiffs}, where the difference between \emph{Medium} and \emph{High} encodes is $2 dB$.
 
-However, contrary to what was verified in figure \ref{fig:cosbitavg}, the number of bits on cosine approximation doesn't contribute to the obtained quality, regardless of the desired objective. Therefore, it would be safe to assume that the cosine approximations could be fixed on a certain number of bits, without major impact to the video quality.
+\begin{figure}[!htpb]
+    \centering 
+        \begin{subfigure}[c]{\textwidth}
+            \centering
+            \includegraphics[height=0.25\textheight]{Sections/3Transforms/Images/lowParkDetail.png}
+            \caption{\texttt{cq-level=60}}
+            \label{subfig:lowq}
+        \end{subfigure}
+        \begin{subfigure}[c]{\textwidth}
+            \centering
+            \includegraphics[height=0.25\textheight]{Sections/3Transforms/Images/medParkDetail.png}
+            \caption{\texttt{cq-level=25}}
+            \label{subfig:medq}
+        \end{subfigure}
+        \begin{subfigure}[c]{\textwidth}
+            \centering
+            \includegraphics[height=0.25\textheight]{Sections/3Transforms/Images/highParkDetail.png}
+            \caption{\texttt{cq-level=5}}
+            \label{subfig:highq}
+        \end{subfigure}
+        \caption{Detail of \emph{Parkjoy} encodes, through different quality objectives}
+    \label{fig:qdiffs}
+\end{figure}
 
-This factor presents a major point for exploring faster \emph{Transform} block architectures. The architectures in figures \ref{fig:intDCT} and \ref{fig:intADST} highly depend on the \texttt{half\_btf} function (equation \ref{eq:half_btf}), which is adaptable to the number of bits used for cosine, in each block transformation. However, with the use of a fixed number of bits, this function could be simplified, since the multiplications and divisions performed in it could be implemented with a fixed number of shifts and additions.
+The differences between obtained PSNRs can be easily explained through analysis of the \emph{Quantization} stage in each quality objective. Looking at the distribution of the \emph{Quantizer/\Gls{qp}} 
+\footnote{Parameter that indicates the \emph{quantization matrix} to use (higher values indicate more severe quantization).}
+throughout the different \texttt{cq-level}'s (figure \ref{fig:quantavg}), it is possible to verify that this stage deeply adapts to the desired quality objective, increasing QP for lower qualities. 
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=\textwidth]{Sections/3Transforms/Images/quantizerAvg.eps}
+    \caption{\emph{Quantizer} distribution on different quality objectives}
+    \label{fig:quantavg}
+\end{figure}
+
+However, the differences in the used QP's don't justify the increased encoding time throughout the different quality objectives, since the \emph{Quantization} stage's complexity shouldn't vary depending on the desired quality, similarly to what happens on the \emph{Transform} stage. The time difference is mainly caused in the higher complexity blocks, the \emph{Inter} and \emph{Intra Prediction} stages, as the encoder adapts the processes in these blocks depending on the desired quality. For instance, there is no need for the encoder to make a exceptionally precise prediction, when most of the transform coefficients are discarded.
+
+Considering now the obtained quality for each of the three different encodes (\emph{Regular}, \emph{10 bit} and \emph{16 bit}), it is possible to observe that the number of bits on cosine approximation doesn't contribute to the obtained quality, regardless of the desired objective, contrary to what was verified in figure \ref{fig:cosbitavg}. Accordingly, it would be safe to assume that the cosine approximations could be fixed on a certain number of bits, without major impact to the video quality.
+
+This factor presents a major point for exploring faster \emph{Transform} block architectures. The architectures in figures \ref{fig:intDCT} and \ref{fig:intADST} are highly dependent on the \texttt{half\_btf} function (equation \ref{eq:half_btf}), which is adaptable to the number of bits used for cosine, in each block transformation. However, with the use of a fixed number of bits, this function could be simplified, since the multiplications and divisions performed in it could be implemented with a fixed number of shifts and additions.
+
+
 
 \clearpage
 \printbibliography[heading=subbibliography]

@@ -7,9 +7,9 @@
 
 \tikzset{
   base/.style={draw, on chain, on grid, align=center, minimum height=4ex},
-  proc/.style={base, rectangle, text width=8em},
-  test/.style={base, diamond, aspect=2, text width=6em},
-  inout/.style={base,draw,trapezium,trapezium left angle=70,trapezium right angle=-70},
+  proc/.style={base, rectangle, text width=8em, fill=black!10},
+  test/.style={base, diamond, aspect=2, text width=6em, fill=black!10},
+  inout/.style={base,draw,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
   term/.style={proc, rounded corners},
   % coord node style is used for placing corners of connecting lines
   coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
@@ -95,14 +95,14 @@
     % Right-bottom corner of the background rectanle
     \path (flip_in.east |- i_col.south)+(+1cm,-0.5cm) node (a21) {};
     % Draw the background
-    \path[fill=black!10,rounded corners, draw=black!50, dashed]
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
       (a11) rectangle (a21);
     \path (a11 |- a21) node (a31) {};
     \path (a11) -- (a31) node[midway, rotate=90, yshift=-0.5cm] (mid_right) {\textbf{Column Transform}};
 
     \path (get_row_left.west |- get_row_left.north)+(-1.5cm,0.8cm) node (a12) {};
     \path (flip_in.east |- i_row.south)+(+1cm,-0.3cm) node (a22) {};
-    \path[fill=black!10,rounded corners, draw=black!50, dashed]
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
       (a12) rectangle (a22);
     \path (a12 |- a22) node (a32) {};
     \path (a12) -- (a32) node[midway, rotate=90, yshift=-0.5cm] (mid_right) {\textbf{Row Transform}};

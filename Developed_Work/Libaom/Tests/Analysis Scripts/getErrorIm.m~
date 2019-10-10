@@ -1,4 +1,4 @@
-function [v, vori, err] = getErrorIm(v_p, vori_p, res, nFrames, invert) 
+function [v, vorierr] = getErrorIm(v_p, vori_p, res, nFrames, invert) 
 % getErrorIm outputs error image of input video with original
 %
 %	v_p         - Video input path

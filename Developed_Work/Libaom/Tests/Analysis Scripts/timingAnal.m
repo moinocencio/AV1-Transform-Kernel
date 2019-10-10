@@ -20,6 +20,7 @@ clc
 totalt_id = '10/10';            % Identifier in string for Total time identification
 ftranst_id = 'Forward';         % Identifier in string for Forward time identification
 itranst_id = 'Inverse';         % Identifier in string for Inverse time identification
+quant_id = 'Quantizer';         % Quantizer histogram identifier
 
 nFrames = 10;                   % Number of encoded frames
 
@@ -64,6 +65,17 @@ invtime_temp = {t{1}{aux_id}};
 invtime_temp = squeeze(split(invtime_temp));
 invtime_temp = invtime_temp(:,7);
 invtime_temp = cellfun(@str2num,invtime_temp)./1e6;
+
+aux_id = find(contains(t{1},quant_id))+1;
+quantq_i = [aux_id(2:3:end)'; aux_id(3:3:end)'; aux_id(1:3:end)'];   % Low Medium High quality start quantizer index
+quanthist = zeros(3,64);
+for i_q = 1:size(quantq_i,1)     % Quality Index        
+    for i_v = 1:size(quantq_i,2)     % Video Index        
+        temp_s = squeeze(split({t{1}{quantq_i(i_q,i_v)+(0:5)}}));
+        quanthist(i_q,cellfun(@str2num,temp_s(:,1))+1) = quanthist(i_q,cellfun(@str2num,temp_s(:,1))+1) + cellfun(@str2num,temp_s(:,4))';
+    end
+end
+quanthist = quanthist(1:3,:)./sum(quanthist,2)*100;
 
 for i_v = 1:numel(v_n)          % Video Index
     for i_q = 1:length(q_n)     % Quality Index        
@@ -111,3 +123,28 @@ end
 leg = legend(bartot,l(:),'Location','northwest');
 xlabel('Resolution'),ylabel('Time (s)')
 
+%% Quantizer Histogram
+h = figure('Name','Quantizer Histogram','NumberTitle','off','units','normalized','outerposition',[0 0 1 1]);
+setGraphs();
+hold on
+
+b_q = bar(0:1,[quanthist(:,1)' ; zeros(1,3)],'FaceColor','flat');
+b_q(1).CData = 1;
+b_q(2).CData = 2;
+b_q(3).CData = 3;
+b_q(1).LineWidth = 0.01;
+b_q(2).LineWidth = 0.01;
+b_q(3).LineWidth = 0.01;
+b_q(1).BarWidth = 1;
+b_q(2).BarWidth = 1;
+b_q(3).BarWidth = 1;
+
+heck = bar(1:63,quanthist(1,2:end),'FaceColor','flat');
+    heck.CData = 1;
+heck = bar(1:63,quanthist(2,2:end),'FaceColor','flat');
+    heck.CData = 2;
+heck = bar(1:63,quanthist(3,2:end),'FaceColor','flat');
+    heck.CData = 3;
+
+legend(b_q,q_n);
+xlabel('Quantizer'),ylabel('Relative Use (\%)')
