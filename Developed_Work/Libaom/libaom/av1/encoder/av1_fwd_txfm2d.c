@@ -133,17 +133,19 @@ static INLINE void fwd_txfm2d_c(const int16_t *input, int32_t *output,
     //txfm_func_col(temp_in, temp_out, 10, stage_range_col);
 
                 // My Tunes: Transform Test Columns Retrival
-                //ttc = fopen("TransformTestCol.txt","a");
-                //fprintf(ttc, "\n%i %i %i | ", txfm_size_col, cfg->txfm_type_col, cos_bit_col);
-                //for (mc = 0; mc < txfm_size_col; ++mc) {
-                //  fprintf(ttc, "%i ", temp_in[mc]);
+                //if(cfg->txfm_type_col == 1) {
+                //  ttc = fopen("TransformInputs.txt","a");
+                //  //fprintf(ttc, "\n%i %i %i | ", txfm_size_col, cfg->txfm_type_col, cos_bit_col);
+                //  for (mc = 0; mc < txfm_size_col; ++mc) {
+                //    fprintf(ttc, "%i ", temp_in[mc]);
+                //  }
+                //  //fprintf(ttc, "| ");
+                //  //for (mc = 0; mc < txfm_size_col; ++mc) {
+                //  //  fprintf(ttc, "%i ", temp_out[mc]);
+                //  //}
+                //  fprintf(ttc, "\n");
+                //  fclose(ttc);
                 //}
-                //fprintf(ttc, "| ");
-                //for (mc = 0; mc < txfm_size_col; ++mc) {
-                //  fprintf(ttc, "%i ", temp_out[mc]);
-                //}
-                //fprintf(ttc, "\n");
-                //fclose(ttc);
 
     av1_round_shift_array(temp_out, txfm_size_row, -shift[1]);
     if (cfg->lr_flip == 0) {
@@ -163,20 +165,22 @@ static INLINE void fwd_txfm2d_c(const int16_t *input, int32_t *output,
     //txfm_func_row(buf + r * txfm_size_col, output + r * txfm_size_col, 10, stage_range_row);
     
                 // My Tunes: Transform Test Rows Retrival
-                //temp_in = buf + r * txfm_size_col;
-                //temp_out = output + r * txfm_size_col;
-                //ttr = fopen("TransformTestRow.txt","a");
-                //fprintf(ttr, "\n%i %i %i | ", txfm_size_row, cfg->txfm_type_row, cos_bit_row);
-                //for (mr = 0; mr < txfm_size_row; ++mr) {
-                //  fprintf(ttr, "%i ", temp_in[mr]);
+                //if(cfg->txfm_type_col == 1) {
+                //  temp_in = buf + r * txfm_size_col;
+                //  temp_out = output + r * txfm_size_col;
+                //  ttr = fopen("TransformInputs.txt","a");
+                //  //fprintf(ttr, "\n%i %i %i | ", txfm_size_row, cfg->txfm_type_row, cos_bit_row);
+                //  for (mr = 0; mr < txfm_size_row; ++mr) {
+                //    fprintf(ttr, "%i ", temp_in[mr]);
+                //  }
+                //  //fprintf(ttr, "| ");
+                //  //for (mr = 0; mr < txfm_size_row; ++mr) {
+                //  //  fprintf(ttr, "%i ", temp_out[mr]);
+                //  //}
+                //  fprintf(ttr, "\n");
+                //  fclose(ttr);
                 //}
-                //fprintf(ttr, "| ");
-                //for (mr = 0; mr < txfm_size_row; ++mr) {
-                //  fprintf(ttr, "%i ", temp_out[mr]);
-                //}
-                //fprintf(ttr, "\n");
-                //fclose(ttr);
-
+                
     av1_round_shift_array(output + r * txfm_size_col, txfm_size_col, -shift[2]);
     if (abs(rect_type) == 1) {
       // Multiply everything by Sqrt2 if the transform is rectangular and the

@@ -341,7 +341,7 @@ In battery driven applications, computing power plays an important role. Consequ
 
 When considering the transformation stage, a widely used approach is the use of \emph{integer transforms}. The objective of such operations is to maintain the features of floating point transforms, but severely reducing the complexity, decreasing the used operations to arithmetic additions and integer multiplications. In many implementations, the latter are implemented with bitwise shifts and additions.
 
-From the transforms presented throughout section \ref{sec:kernels}, there have been several methods of developing integer counterparts. Most of the fast implementations are based in either \emph{Fast Fourier Transform} algorithms or in the \emph{Walsh-Hadamard Transform} \cite{wolterParallelArchitecturesDiscrete1992,yonghongzengIntegerDCTsFast2001}. \textcolor{red}{Since the objective of this work was to develop a \emph{Transform Co-processor} for \emph{libaom}}, the focus of this section resolves around these kernels. 
+From the transforms presented throughout section \ref{sec:kernels}, there have been several methods of developing integer counterparts. Most of the fast implementations are based in either \emph{Fast Fourier Transform} algorithms or in the \emph{Walsh-Hadamard Transform} \cite{wolterParallelArchitecturesDiscrete1992,yonghongzengIntegerDCTsFast2001}. Since the objective of this work was to develop a \emph{Transform Co-processor} for \emph{libaom}, the focus of this section resolves around these kernels. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Functioning and Implementation}
@@ -359,7 +359,7 @@ This stage is controlled by a configuration set, which is chosen according to th
 
 The choosing of these parameters will not be addressed in this work, since \emph{AV1} allows for a great deal of maneuverability to the designer, as to adjust each encoder/decoder pair to the desired application. In this regard, \emph{libaom} allows for a high number of configuration options, that dramatically change the parameters chosen in the transformation stage, as well as in the rest of the system.
 
-Throughout the represented process, many of the operations are done with sequential, iterative processes, e.g., the input vector selection or the flipping operations. Such operations would greatly benefit of a hardware implementation, since they are easily parallelizable, as the objectives of \emph{AV1} suggested. \textcolor{red}{However, on this work, the focus relies of the \emph{T} block, i.e., the transformation itself}.
+Throughout the represented process, many of the operations are done with sequential, iterative processes, e.g., the input vector selection or the flipping operations. Such operations would greatly benefit of a hardware implementation, since they are easily parallelizable, as the objectives of \emph{AV1} suggested. However, on this work, the focus relies of the \emph{T} block, i.e., the transformation itself.
 
 Independently of the transformation kernel, the operation is done sequently, in various stages. In each of these, the corresponding intermediary coefficients get calculated as function of two of the previous calculated coefficients. These, in most of the stages, are multiplied by a specific integer approximation of cosine/sine value. Such approximations, as mentioned previously, depend on the number of bits on which they are represented. 
 
@@ -575,10 +575,10 @@ $E_{ms}$ corresponds to the \emph{Mean Squared Error} of the reconstructed video
 \begin{equation} \label{eq:emsf}
     E_{ms} = \frac{1}{MN}\sum^{M-1}_{x=0} \sum^{N-1}_{y=0} \left(g_{x,y} - \hat{g}_{x,y}\right)^2
 \end{equation}
-However, since the test revolves around a sequence of $k$ reconstructed frames, with three chroma channels per bit, $c$, $E_{ms}$ becomes
+However, since the test revolves around a sequence of $K$ reconstructed frames, with three chroma channels per bit, $c$, $E_{ms}$ becomes
 
 \begin{equation} \label{eq:emss}
-    E_{ms} = \frac{1}{3kMN}\sum^{M-1}_{x=0} \sum^{N-1}_{y=0} \sum_{c=0}^{3-1} \left(g_{x,y,c} - \hat{g}_{x,y,c}\right)^2
+    E_{ms} = \frac{1}{3KMN}\sum^{K-1}_{k=0} \sum^{M-1}_{x=0} \sum^{N-1}_{y=0} \sum_{c=0}^{3-1} \left(g_{k,x,y,c} - \hat{g}_{k,x,y,c}\right)^2
 \end{equation}
 
 The workflow of the performed test is represented in figure \ref{fig:compcosbit}.

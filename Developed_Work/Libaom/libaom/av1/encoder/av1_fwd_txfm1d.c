@@ -75,7 +75,7 @@ void av1_fdct4_new(const int32_t *input, int32_t *output, int8_t cos_bit,
 
 void av1_fdct8_new(const int32_t *input, int32_t *output, int8_t cos_bit,
                    const int8_t *stage_range) {
-  const int32_t size = 8;
+/*  const int32_t size = 8;
   const int32_t *cospi;
 
   int32_t stage = 0;
@@ -156,6 +156,41 @@ void av1_fdct8_new(const int32_t *input, int32_t *output, int8_t cos_bit,
   bf1[6] = bf0[3];
   bf1[7] = bf0[7];
   range_check(stage, input, bf1, size, stage_range[stage]);
+  */
+ int32_t *bf0, *bf1;
+    int32_t step[8];
+
+    // Stage 1
+    bf1 = output;
+    bf1[0] = input[0] + input[4];
+    bf1[4] = input[0] - input[4];
+    bf1[2] = (input[2]>>1) - input[6];
+    bf1[2] = (input[2]>>1) + input[6];
+    bf1[1] = input[5] - input[3] - input[7] - (input[7]>>1);
+    bf1[3] = input[7] + input[1] - input[3] - (input[3]>>1);
+    bf1[5] = input[7] + input[5] + input[1] + (input[5]>>1);
+    bf1[7] = input[3] + input[5] + input[1] + (input[1]>>1);
+
+    // Stage 2
+    bf0 = step;
+    bf0[0] = bf1[0] + bf1[6];
+    bf0[2] = bf1[4] + bf1[2];
+    bf0[4] = bf1[4] - bf1[2];
+    bf0[6] = bf1[0] - bf1[6];
+    bf0[1] = bf1[1] + (bf1[7]>>2);
+    bf0[7] = bf1[7] - (bf1[1]>>2);
+    bf0[3] = bf1[3] + (bf1[5]>>2);
+    bf0[5] = (bf1[3]>>2) - bf1[5];
+
+    // Stage 3
+    bf1[0] = bf0[0] + bf0[7];
+    bf1[1] = bf0[2] + bf0[5];
+    bf1[2] = bf0[4] + bf0[3];
+    bf1[3] = bf0[6] + bf0[1];
+    bf1[4] = bf0[6] - bf0[1];
+    bf1[5] = bf0[4] - bf0[3];
+    bf1[6] = bf0[2] - bf0[5];
+    bf1[7] = bf0[0] - bf0[7];
 }
 
 void av1_fdct16_new(const int32_t *input, int32_t *output, int8_t cos_bit,

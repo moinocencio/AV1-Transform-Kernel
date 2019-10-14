@@ -6,6 +6,9 @@
         "stdlib.h": "c",
         "aom_config.h": "c",
         "extern.h": "c",
-        "hybrid_fwd_txfm.h": "c"
+        "hybrid_fwd_txfm.h": "c",
+        "av1_fwd_txfm1d.h": "c",
+        "av1_txfm.h": "c",
+        "kernels.h": "c"
     }
 }
