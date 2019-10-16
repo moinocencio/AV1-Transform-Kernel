@@ -15,12 +15,12 @@
   coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
   % nmark node style is used for coordinate debugging marks% -------------------------------------------------
   % Connector line styles for different parts of the diagram
-  norm/.style={->, draw},
-  free/.style={->, draw, green3},
-  cong/.style={->, draw, red3},
+  norm/.style={ar, draw},
+  free/.style={ar, draw, green3},
+  cong/.style={ar, draw, red3},
   it/.style={font={\small\itshape}},
-  ar/.style={->},
-  nar/.style={->, red!75!black},
+  ar/.style={->, line width=0.4mm},
+  nar/.style={ar, red!75!black},
   pathcos/.style={font=\small, sloped}
 }
 
@@ -42,14 +42,14 @@
     \node [sum, right=of s2t] (s2) {\textbf{+}};
     \node [sum, right=of s3t] (s3) {\textbf{+}};
 
-        \draw [->] (a1.east) -- (s1);
-        \draw [->] (b1.east) -- (s1);
+        \draw [ar] (a1.east) -- (s1);
+        \draw [ar] (b1.east) -- (s1);
 
-        \draw [->] (a2.east) -- (s2);
+        \draw [ar] (a2.east) -- (s2);
         \draw [nar] (b2.east) -- (s2);
 
         \path (a3.east) to node [pathcos, above, near start] {$\alpha$} (s3.west);
-            \draw [->] (a3.east) -- (s3);
+            \draw [ar] (a3.east) -- (s3);
         \path (b3.east) to node [pathcos, color=red!75!black, below, near start] {$\beta$} (s3.west);
             \draw [nar] (b3.east) -- (s3);
 
@@ -57,9 +57,9 @@
     \node [inout, right=of s2] (c2) {$C$};
     \node [inout, right=of s3] (c3) {$C$};
 
-        \draw [->] (s1) -- (c1);
-        \draw [->] (s2) -- (c2);
-        \draw [->] (s3) -- (c3);
+        \draw [ar] (s1) -- (c1);
+        \draw [ar] (s2) -- (c2);
+        \draw [ar] (s3) -- (c3);
 
     \node [right=3.2cm of c1] (eq1) {$C = A + B$};
     \node [right=3.2cm of c2] (eq2) {$C = A - B$};

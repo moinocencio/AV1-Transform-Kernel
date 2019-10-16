@@ -75,3 +75,5 @@ void av1_idct8(int32_t *input, int32_t *output);
 void fpga_fdct8(int32_t *input, int32_t *output);
 
 void fpga_idct8(int32_t *input, int32_t *output); // DONT USE!
+
+void inttest_fdct8(int32_t *input, int32_t *output);

@@ -17,7 +17,7 @@
 \usepackage{amssymb}
 \usepackage{xspace}% used by \sigla
 \usepackage{lipsum}
-\usepackage[backend=biber, refsection=chapter, sorting=none, url=false, doi=false]{biblatex}
+\usepackage[backend=biber, refsection=chapter, sorting=none, url=false]{biblatex}
 \addbibresource{newBib.bib}
 \usepackage{csquotes}
 \usepackage[acronym,nonumberlist]{glossaries}
@@ -84,27 +84,27 @@ breaklines=true
 {\titlerule\vspace{1ex}\filleft}
 [\vspace{1ex}\titlerule]
 
-\newcommand{\dgrayvline}{\raisebox{-0.5ex}{\tikz\filldraw[darkgray,x=2pt,y=2pt] (0,0) -- ++(0.5,0) -- ++(0,1em) -- ++(-0.5,0) -- cycle;}}
+\newcommand{\dgrayvline}{\raisebox{-3.5mm}{\tikz\draw[darkgray, very thick] (0,0) -- ++(12mm,0) -- ++(0,10mm) -- ++(-12mm,0);}}
 
 \titleformat{\section}[hang]
 {\Large\bfseries}
-{\thesection\hspace{25pt}\dgrayvline\hspace{10pt}}
+{\thesection\hspace{-8.75mm}\dgrayvline\hspace{10pt}}
 {0pt}
 {\Large\bfseries}
 
-\newcommand{\grayvline}{\raisebox{-0.5ex}{\tikz\filldraw[gray,x=2pt,y=2pt] (0,0) -- ++(0.5,0) -- ++(0,1em) -- ++(-0.5,0) -- cycle;}}
+\newcommand{\grayvline}{\raisebox{-3.5mm}{\tikz\draw[gray, very thick] (0,0) -- ++(6mm,0) -- ++(0,10mm) -- ++(-6mm,0);}}
 
 \titleformat{\subsection}[hang]
 {\large\bfseries}
-{\thesubsection\hspace{18pt}\grayvline\hspace{10pt}}
+{\thesubsection\hspace{-2.75mm}\grayvline\hspace{10pt}}
 {0pt}
 {\large\bfseries}
 
-\newcommand{\lgrayvline}{\raisebox{-0.5ex}{\tikz\filldraw[lightgray,x=2pt,y=2pt] (0,0) -- ++(0.5,0) -- ++(0,1em) -- ++(-0.5,0) -- cycle;}}
+\newcommand{\lgrayvline}{\raisebox{-3.5mm}{\tikz\draw[lightgray,very thick] (0,0) -- ++(3mm,0) -- ++(0,10mm) -- ++(-3mm,0);}}
 
 \titleformat{\subsubsection}[hang]
 {\normalsize\bfseries}
-{\thesubsubsection\hspace{10pt}\lgrayvline\hspace{10pt}}
+{\thesubsubsection\hspace{0pt}\lgrayvline\hspace{10pt}}
 {0pt}
 {\normalsize\bfseries}
 
