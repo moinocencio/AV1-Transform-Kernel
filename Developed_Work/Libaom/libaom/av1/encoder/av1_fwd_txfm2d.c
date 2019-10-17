@@ -133,7 +133,7 @@ static INLINE void fwd_txfm2d_c(const int16_t *input, int32_t *output,
     //txfm_func_col(temp_in, temp_out, 10, stage_range_col);
 
                 // My Tunes: Transform Test Columns Retrival
-                //if(cfg->txfm_type_col == 1) {
+                //if(cfg->txfm_type_col == 4) {
                 //  ttc = fopen("TransformInputs.txt","a");
                 //  //fprintf(ttc, "\n%i %i %i | ", txfm_size_col, cfg->txfm_type_col, cos_bit_col);
                 //  for (mc = 0; mc < txfm_size_col; ++mc) {
@@ -165,7 +165,7 @@ static INLINE void fwd_txfm2d_c(const int16_t *input, int32_t *output,
     //txfm_func_row(buf + r * txfm_size_col, output + r * txfm_size_col, 10, stage_range_row);
     
                 // My Tunes: Transform Test Rows Retrival
-                //if(cfg->txfm_type_col == 1) {
+                //if(cfg->txfm_type_col == 4) {
                 //  temp_in = buf + r * txfm_size_col;
                 //  temp_out = output + r * txfm_size_col;
                 //  ttr = fopen("TransformInputs.txt","a");

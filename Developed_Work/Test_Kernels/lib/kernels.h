@@ -68,12 +68,38 @@ static inline int32_t round_shift(int64_t value, int bit);
 static inline int32_t half_btf(int32_t w0, int32_t in0, int32_t w1, int32_t in1,
                                int bit);
 
+void av1_fdct4(const int32_t *input, int32_t *output);
+
 void av1_fdct8(int32_t *input, int32_t *output);
 
+void av1_fdct16(const int32_t *input, int32_t *output);
+
+void av1_fdct32(const int32_t *input, int32_t *output);
+
+void av1_fdct64(const int32_t *input, int32_t *output);
+
+void av1_idct4(const int32_t *input, int32_t *output);
+
 void av1_idct8(int32_t *input, int32_t *output);
+
+void av1_idct16(const int32_t *input, int32_t *output);
+
+void av1_idct32(const int32_t *input, int32_t *output);
+
+void av1_idct64(const int32_t *input, int32_t *output);
+
+void fpga_fdct4(int32_t *input, int32_t *output);
 
 void fpga_fdct8(int32_t *input, int32_t *output);
 
 void fpga_idct8(int32_t *input, int32_t *output); // DONT USE!
 
-void inttest_fdct8(int32_t *input, int32_t *output);
+void slowtest_fdct4(int32_t *input, int32_t *output);
+
+void slowtest_fdct8(int32_t *input, int32_t *output);
+
+void slowtest_fdct16(int32_t *input, int32_t *output);
+
+void slowtest_fdct32(int32_t *input, int32_t *output);
+
+void slowtest_fdct64(int32_t *input, int32_t *output);
