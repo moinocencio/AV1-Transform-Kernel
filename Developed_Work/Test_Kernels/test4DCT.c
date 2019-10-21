@@ -12,7 +12,7 @@
 */
 
 #define SIZE 4
-#define N_VECTORS 1000000000
+#define N_VECTORS 100
 
 int main() {
     int32_t *in_v = malloc(SIZE* sizeof *in_v);
@@ -22,10 +22,11 @@ int main() {
     int32_t *av1_rest_p = malloc(SIZE* sizeof *av1_out_p);
     int32_t *fpga_rest_p = malloc(SIZE* sizeof *fpga_out_p);
     int32_t *test_rest_p = malloc(SIZE* sizeof *test_out_p);
+    int32_t *temp_p = malloc(SIZE* sizeof *temp_p);
     double av1_PSNR, av1_ems_r, fpga_PSNR, fpga_ems_r, test_PSNR, test_ems_r = 0;
     double ell_av1, ell_fpga, ell_test = 0;
     struct timeval t1, t2;
-    uint32_t i = 0;
+    uint32_t i,k  = 0;
 
     FILE *f_p = fopen("TransformInputs.txt","r");
     
@@ -48,7 +49,9 @@ int main() {
 
         gettimeofday(&t1,NULL);
         av1_fdct4(in_v, av1_out_p);
-        av1_idct4(av1_out_p, av1_rest_p);
+        for (k = 0; k < SIZE; k++)
+            temp_p[k] = (int) (av1_out_p[k]/sqrt(2));
+        av1_idct4(temp_p, av1_rest_p);
         gettimeofday(&t2,NULL);
         ell_av1 += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 
@@ -64,6 +67,22 @@ int main() {
         gettimeofday(&t2,NULL);
         ell_test += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
         
+        for (uint8_t k = 0; k < SIZE; k++)
+        {
+            printf("%2d ",in_v[k]);
+        }
+        printf("\n");
+        for (uint8_t k = 0; k < SIZE; k++)
+        {
+            printf("%2d ",av1_rest_p[k]);
+        }
+        printf("\n");
+        for (uint8_t k = 0; k < SIZE; k++)
+        {
+            printf("%2d ",test_rest_p[k]);
+        }
+        printf("\n\n");
+
         for (uint8_t k = 0; k < SIZE; k++)
         {
             av1_ems_r += pow((in_v[k] - av1_rest_p[k]),2);

@@ -7,7 +7,7 @@
 
 \tikzset{
     base/.style={draw, on chain, on grid, align=center},
-    proc/.style={base, rectangle, text width=1.6cm, fill=black!10, minimum height=1.5cm, minimum width=1.5cm,font={\bfseries}},    
+    proc/.style={base, rectangle, text width=2cm, fill=black!10, minimum height=1.5cm, minimum width=1.5cm,font={\bfseries}},    
     frame/.style={base, minimum height=1.5cm, minimum width=2cm, fill=blue!10, thick},
     sub/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!10, minimum height=3.5ex, font={\bfseries}},
     spot/.style={circle, inner sep=0pt, radius=0.4cm, minimum height=2mm, draw},
@@ -66,7 +66,7 @@
 \node [cascaded, below=of regrec] (16bitrec) {16 bit\\Reconstructed};
     \draw[->] (dec.340) --++(0.5cm,0) |- ([xshift=-1.3mm]16bitrec.west);
 
-\node [proc, right=3cm of regrec, fill=black!15] (psnr) {\emph{PSNR}};
+\node [proc, right=3cm of regrec, fill=black!15] (psnr) {Calculate \emph{PSNR}};
     \draw[->] (regrec) -- (psnr);
     \draw[->] (10bitrec) --++(1.5cm,0) |- (psnr.160);
     \draw[->] (16bitrec) --++(1.5cm,0) |- (psnr.200);

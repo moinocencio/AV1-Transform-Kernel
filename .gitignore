@@ -262,4 +262,12 @@ Developed_Work/Libaom/Builds
 
 # Encode Stats (some big files)
 Developed_Work/Libaom/Tests/Encode_Stats
-/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Test_Kernels/*.txt
+Developed_Work/Test_Kernels/*.txt
+Developed_Work/Test_Kernels/*.txt
+
+# Executables
+Developed_Work/Test_Kernels/test4DCT
+Developed_Work/Test_Kernels/test8DCT
+Developed_Work/Test_Kernels/test16DCT
+Developed_Work/Test_Kernels/test32DCT
+Developed_Work/Test_Kernels/test64DCT

@@ -21,7 +21,7 @@
 \newacronym{jvt}{JVT}{Joint Video Team}
 \newacronym{psnr}{PSNR}{Peak Signal to Noise Ratio}
 \newacronym{mm}{MM}{Matrix Multiplication}
-\newacronym{ems}{$E_{ms}$}{Mean Square Error}
+\newacronym[sort=ems]{ems}{$E_{ms}$}{Mean Square Error}
 \newacronym{qp}{QP}{Quantization Parameter}
 %\newacronym{jpeg}{JPEG}{Joint Photographic Experts Group}
 
@@ -94,6 +94,20 @@
   name={$\mathbf{\nceil*{x}}$},
   description={Round to the nearest integer, greater than $x$},
   sort=ceil,
+  type=nomenclature
+}
+
+\newglossaryentry{tld:shiftl}{
+  name={$x<<k$},
+  description={Shift $x$, $k$ bits to the left},
+  sort=shiftl,
+  type=nomenclature
+}
+
+\newglossaryentry{tld:shiftr}{
+  name={$x>>k$},
+  description={Shift $x$, $k$ bits to the right},
+  sort=shiftr,
   type=nomenclature
 }
 
