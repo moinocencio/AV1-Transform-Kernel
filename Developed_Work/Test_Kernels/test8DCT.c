@@ -21,10 +21,11 @@ int main() {
     int32_t *av1_rest_p = malloc(SIZE* sizeof *av1_out_p);
     int32_t *fpga_rest_p = malloc(SIZE* sizeof *fpga_out_p);
     int32_t *test_rest_p = malloc(SIZE* sizeof *test_out_p);
+    int32_t *temp_p = malloc(SIZE* sizeof *temp_p);
     double av1_PSNR, av1_ems_r, fpga_PSNR, fpga_ems_r, test_PSNR, test_ems_r = 0;
     double ell_av1, ell_fpga, ell_test = 0;
     struct timeval t1, t2;
-    uint32_t i = 0;
+    uint32_t i, k = 0;
 
     FILE *f_p = fopen("TransformInputs.txt","r");
     
@@ -47,21 +48,35 @@ int main() {
 
         gettimeofday(&t1,NULL);
         av1_fdct8(in_v, av1_out_p);
-        av1_idct8(av1_out_p, av1_rest_p);
+        for (k = 0; k < SIZE; k++)
+            temp_p[k] = av1_out_p[k]>>1;
+        av1_idct8(temp_p, av1_rest_p);
         gettimeofday(&t2,NULL);
         ell_av1 += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 
         gettimeofday(&t1,NULL);
-        fpga_fdct8(in_v, fpga_out_p);
-        av1_idct8(fpga_out_p, fpga_rest_p);     
-        gettimeofday(&t2,NULL);
-        ell_fpga += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
-
-        gettimeofday(&t1,NULL);
-        slowtest_fdct8(in_v, test_out_p);
-        av1_idct8(test_out_p, test_rest_p);     
+        slowtest_fdct8_sqrt(in_v, test_out_p);
+        for (k = 0; k < SIZE; k++)
+            temp_p[k] = test_out_p[k]>>1;
+        av1_idct8(temp_p, test_rest_p);     
         gettimeofday(&t2,NULL);
         ell_test += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
+        
+        //for (uint8_t k = 0; k < SIZE; k++)
+        //{
+        //    printf("%2d ",in_v[k]);
+        //}
+        //printf("\n");
+        //for (uint8_t k = 0; k < SIZE; k++)
+        //{
+        //    printf("%2d ",av1_rest_p[k]);
+        //}
+        //printf("\n");
+        //for (uint8_t k = 0; k < SIZE; k++)
+        //{
+        //    printf("%2d ",test_rest_p[k]);
+        //}
+        //printf("\n\n");
         
         for (uint8_t k = 0; k < SIZE; k++)
         {
@@ -75,12 +90,12 @@ int main() {
     fpga_ems_r /= (SIZE*(i+1));
     test_ems_r /= (SIZE*(i+1));
 
-    printf("      | AV1_FWD -> AV1_INV | FPGA_FWD -> AV1_INV | TEST_FWD -> AV1_INV |\n"
-           "________________________________________________________________________\n"
-           "EMS   | %19.2f| %20.2f| %20.2f|\n"
-           "t (us)| %19.2e| %20.2e| %20.2e|\n",
-           av1_ems_r, fpga_ems_r, test_ems_r,
-           ell_av1, ell_fpga, ell_test);
+    printf("      | AV1_FWD -> AV1_INV | TEST_FWD -> AV1_INV |\n"
+           "__________________________________________________\n"
+           "EMS   | %19.2f| %20.2f|\n"
+           "t (us)| %19.2e| %20.2e|\n",
+           av1_ems_r, test_ems_r,
+           ell_av1, ell_test);
 
     return fclose(f_p);
 }

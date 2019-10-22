@@ -94,12 +94,14 @@ void fpga_fdct8(int32_t *input, int32_t *output);
 
 void fpga_idct8(int32_t *input, int32_t *output); // DONT USE!
 
-void slowtest_fdct4(int32_t *input, int32_t *output);
+void slowtest_fdct4_sqrt(int32_t *input, int32_t *output);
 
-void slowtest_fdct8(int32_t *input, int32_t *output);
+void slowtest_fdct4_shift(int32_t *input, int32_t *output);
 
-void slowtest_fdct16(int32_t *input, int32_t *output);
+void slowtest_fdct8_sqrt(int32_t *input, int32_t *output);
 
-void slowtest_fdct32(int32_t *input, int32_t *output);
+void slowtest_fdct16_sqrt(int32_t *input, int32_t *output);
 
-void slowtest_fdct64(int32_t *input, int32_t *output);
+void slowtest_fdct32_sqrt(int32_t *input, int32_t *output);
+
+void slowtest_fdct64_sqrt(int32_t *input, int32_t *output);
