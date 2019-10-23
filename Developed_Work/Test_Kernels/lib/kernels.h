@@ -9,11 +9,11 @@
 static const int cos_bit_min = 10;
 static const int cos_bit_max = 16;
 
-static const int NewSqrt2Bits = 12;
-// 2^12 * sqrt(2)
-static const int32_t NewSqrt2 = 5793;
-// 2^12 / sqrt(2)
-static const int32_t NewInvSqrt2 = 2896;
+static const int Newmult2Bits = 12;
+// 2^12 * mult(2)
+static const int32_t Newmult2 = 5793;
+// 2^12 / mult(2)
+static const int32_t NewInvmult2 = 2896;
 
 static const int32_t av1_cospi_arr_data[7][64] = {
   { 1024, 1024, 1023, 1021, 1019, 1016, 1013, 1009, 1004, 999, 993, 987, 980,
@@ -94,14 +94,32 @@ void fpga_fdct8(int32_t *input, int32_t *output);
 
 void fpga_idct8(int32_t *input, int32_t *output); // DONT USE!
 
-void slowtest_fdct4_sqrt(int32_t *input, int32_t *output);
+void slowtest_fdct4_mult(int32_t *input, int32_t *output);
 
 void slowtest_fdct4_shift(int32_t *input, int32_t *output);
 
-void slowtest_fdct8_sqrt(int32_t *input, int32_t *output);
+void butttest_fdct4_mult(int32_t *input, int32_t *output);
 
-void slowtest_fdct16_sqrt(int32_t *input, int32_t *output);
+void slowtest_fdct8_mult(int32_t *input, int32_t *output);
 
-void slowtest_fdct32_sqrt(int32_t *input, int32_t *output);
+void slowtest_fdct8_shift(int32_t *input, int32_t *output);
 
-void slowtest_fdct64_sqrt(int32_t *input, int32_t *output);
+void butttest_fdct8_mult(int32_t *input, int32_t *output);
+
+void slowtest_fdct16_mult(int32_t *input, int32_t *output);
+
+void slowtest_fdct16_shift(int32_t *input, int32_t *output);
+
+void butttest_fdct16_mult(int32_t *input, int32_t *output);
+
+void slowtest_fdct32_mult(int32_t *input, int32_t *output);
+
+void slowtest_fdct32_shift(int32_t *input, int32_t *output);
+
+void butttest_fdct32_mult(const int32_t *input, int32_t *output);
+
+void slowtest_fdct64_mult(int32_t *input, int32_t *output);
+
+void slowtest_fdct64_shift(int32_t *input, int32_t *output);
+
+void butttest_fdct64_mult(const int32_t *input, int32_t *output);

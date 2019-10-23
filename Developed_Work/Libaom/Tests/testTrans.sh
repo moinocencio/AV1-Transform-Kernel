@@ -3,17 +3,19 @@
 # Test AV1 vs My Transforms
 
 # Choose options
-transenc=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/NewTrans/aomenc
+transencmult=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/NewTransMult/aomenc
+transencshift=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/NewTransShift/aomenc
 inpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/HD/720p50_parkrun_ter.y4m
 res=2
 outpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/TransTests/parkrun
 limit=10
 qual=26
 
-usage="$(basename "$0") [-h] [-e path] [-i path] [-r n] [-l n] [-q n] [-o path] -- test transform stages
+usage="$(basename "$0") -- test transform stages
 
     -h  display help text
-    -e  experimental encoder path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/NewTrans/aomenc)
+    -m  multiplier encoder path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/NewTransMult/aomenc)
+    -s  shift encoder path (default /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/NewTransShift/aomenc)
     -i  input video path (default Developed_Work/Libaom/Test_Videos/HD/720p50_parkrun_ter.y4m)
     -r  resolutions:    1 - CIF 352x288 
                         2 - HD 720x1280 (default)
@@ -29,8 +31,10 @@ while getopts ':he:i:r:l:q:o:' option; do
     h) echo "$usage"
        exit
        ;;
-    e) transenc=$OPTARG
+    m) transencmult=$OPTARG
        ;;
+    s) transencshift=$OPTARG
+       ;;       
     r) res=$OPTARG
        ;;
     i) inpath=$OPTARG
@@ -57,6 +61,10 @@ echo -e "\n\e[1m\e[31mRegular Transform Encoding\e[0m"
 ./regenc.sh -i $inpath -r $res -o $outpath"_reg_trans.webm" -q $qual -l $limit
 /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomdec $outpath"_reg_trans.webm" --i420 -o $outpath"_reg_trans.y4m"
 
-echo -e "\n\e[1m\e[32mExperimental Transform Encoding\e[0m"
-./regenc.sh -e $transenc -i $inpath -r $res -o $outpath"_exp_trans.webm" -q $qual -l $limit
-/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomdec $outpath"_exp_trans.webm" --i420 -o $outpath"_exp_trans.y4m"
+echo -e "\n\e[1m\e[32mMultiplier Transform Encoding\e[0m"
+./regenc.sh -e $transencmult -i $inpath -r $res -o $outpath"_mult_trans.webm" -q $qual -l $limit
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomdec $outpath"_mult_trans.webm" --i420 -o $outpath"_mult_trans.y4m"
+
+echo -e "\n\e[1m\e[33mShift Transform Encoding\e[0m"
+./regenc.sh -e $transencshift -i $inpath -r $res -o $outpath"_shift_trans.webm" -q $qual -l $limit
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomdec $outpath"_shift_trans.webm" --i420 -o $outpath"_shift_trans.y4m"
