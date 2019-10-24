@@ -14,7 +14,8 @@
 #define N_VECTORS 1000
 
 int main() {
-    int32_t *in_v = malloc(SIZE* sizeof *in_v);
+    int32_t in_v[SIZE];
+    int32_t *in_v_p = in_v;
 
     int32_t *av1_out_p = malloc(SIZE* sizeof *av1_out_p);
     int32_t *test_out_mult_p = malloc(SIZE* sizeof *test_out_mult_p);
@@ -38,77 +39,77 @@ int main() {
         perror("Error opening file");
         return(-1);
     }
-    char temp_str[200];
+    char temp_str[2000];
 
-    for(i = 0; (fgets(temp_str, 400, f_p) != NULL) && i < N_VECTORS; i++) {
+    for(i = 0; (fgets(temp_str, 2000, f_p) != NULL) && i < N_VECTORS; i++) {
         sscanf( temp_str,"%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
-                &in_v[0], 
-                &in_v[1], 
-                &in_v[2], 
-                &in_v[3], 
-                &in_v[4], 
-                &in_v[5], 
-                &in_v[6], 
-                &in_v[7],
-                &in_v[8],
-                &in_v[9],
-                &in_v[10],
-                &in_v[11],
-                &in_v[12],
-                &in_v[13],
-                &in_v[14],
-                &in_v[15],
-                &in_v[16], 
-                &in_v[17], 
-                &in_v[18], 
-                &in_v[19], 
-                &in_v[20], 
-                &in_v[21], 
-                &in_v[22], 
-                &in_v[23],
-                &in_v[24],
-                &in_v[25],
-                &in_v[26],
-                &in_v[27],
-                &in_v[28],
-                &in_v[29],
-                &in_v[30],
-                &in_v[31],
-                &in_v[32], 
-                &in_v[33], 
-                &in_v[34], 
-                &in_v[35], 
-                &in_v[36], 
-                &in_v[37], 
-                &in_v[38], 
-                &in_v[39],
-                &in_v[40],
-                &in_v[41],
-                &in_v[42],
-                &in_v[43],
-                &in_v[44],
-                &in_v[45],
-                &in_v[46],
-                &in_v[47],
-                &in_v[48], 
-                &in_v[49], 
-                &in_v[50], 
-                &in_v[51], 
-                &in_v[52], 
-                &in_v[53], 
-                &in_v[54], 
-                &in_v[55],
-                &in_v[56],
-                &in_v[57],
-                &in_v[58],
-                &in_v[59],
-                &in_v[60],
-                &in_v[61],
-                &in_v[62],
-                &in_v[63]);
+                &in_v_p[0], 
+                &in_v_p[1], 
+                &in_v_p[2], 
+                &in_v_p[3], 
+                &in_v_p[4], 
+                &in_v_p[5], 
+                &in_v_p[6], 
+                &in_v_p[7],
+                &in_v_p[8],
+                &in_v_p[9],
+                &in_v_p[10],
+                &in_v_p[11],
+                &in_v_p[12],
+                &in_v_p[13],
+                &in_v_p[14],
+                &in_v_p[15],
+                &in_v_p[16], 
+                &in_v_p[17], 
+                &in_v_p[18], 
+                &in_v_p[19], 
+                &in_v_p[20], 
+                &in_v_p[21], 
+                &in_v_p[22], 
+                &in_v_p[23],
+                &in_v_p[24],
+                &in_v_p[25],
+                &in_v_p[26],
+                &in_v_p[27],
+                &in_v_p[28],
+                &in_v_p[29],
+                &in_v_p[30],
+                &in_v_p[31],
+                &in_v_p[32], 
+                &in_v_p[33], 
+                &in_v_p[34], 
+                &in_v_p[35], 
+                &in_v_p[36], 
+                &in_v_p[37], 
+                &in_v_p[38], 
+                &in_v_p[39],
+                &in_v_p[40],
+                &in_v_p[41],
+                &in_v_p[42],
+                &in_v_p[43],
+                &in_v_p[44],
+                &in_v_p[45],
+                &in_v_p[46],
+                &in_v_p[47],
+                &in_v_p[48], 
+                &in_v_p[49], 
+                &in_v_p[50], 
+                &in_v_p[51], 
+                &in_v_p[52], 
+                &in_v_p[53], 
+                &in_v_p[54], 
+                &in_v_p[55],
+                &in_v_p[56],
+                &in_v_p[57],
+                &in_v_p[58],
+                &in_v_p[59],
+                &in_v_p[60],
+                &in_v_p[61],
+                &in_v_p[62],
+                &in_v_p[63]);
 
         gettimeofday(&t1,NULL);
-        av1_fdct64(in_v, av1_out_p);
+        av1_fdct64(in_v_p, av1_out_p);
         for (k = 0; k < SIZE; k++)
             temp_p[k] = av1_out_p[k]>>5;
         av1_idct64(temp_p, av1_rest_p);
@@ -116,7 +117,7 @@ int main() {
         ell_av1 += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 
         gettimeofday(&t1,NULL);
-        slowtest_fdct64_mult(in_v, test_out_mult_p);
+        slowtest_fdct64_mult(in_v_p, test_out_mult_p);
         for (k = 0; k < SIZE; k++)
             temp_p[k] = test_out_mult_p[k]>>5;
         av1_idct64(temp_p, test_rest_mult_p);     
@@ -124,7 +125,7 @@ int main() {
         ell_test_mult += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 
         gettimeofday(&t1,NULL);
-        slowtest_fdct64_shift(in_v, test_out_p);
+        slowtest_fdct64_shift(in_v_p, test_out_p);
         for (k = 0; k < SIZE; k++)
             temp_p[k] = test_out_p[k]>>5;
         av1_idct64(temp_p, test_rest_p);     
@@ -132,7 +133,7 @@ int main() {
         ell_test += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
         
         gettimeofday(&t1,NULL);
-        butttest_fdct64_mult(in_v, test_out_bmult_p);
+        butttest_fdct64_mult(in_v_p, test_out_bmult_p);
         for (k = 0; k < SIZE; k++)
             temp_p[k] = test_out_bmult_p[k]>>5;
         av1_idct64(temp_p, test_rest_bmult_p);     
@@ -141,7 +142,7 @@ int main() {
 
         //for (uint8_t k = 0; k < SIZE; k++)
         //{
-        //    printf("%2d ",in_v[k]);
+        //    printf("%2d ",in_v_p[k]);
         //}
         //printf("\n");
         //for (uint8_t k = 0; k < SIZE; k++)
@@ -159,13 +160,13 @@ int main() {
         //    printf("%2d ",test_rest_bmult_p[k]);
         //}
         //printf("\n\n");
-
+        
         for (uint8_t k = 0; k < SIZE; k++)
         {
-            av1_ems_r += pow((in_v[k] - av1_rest_p[k]),2);
-            test_mult_ems_r += pow((in_v[k] - test_rest_mult_p[k]),2);
-            test_ems_r += pow((in_v[k] - test_rest_p[k]),2);
-            test_bmult_ems_r += pow((in_v[k] - test_rest_bmult_p[k]),2);
+            av1_ems_r += pow((in_v_p[k] - av1_rest_p[k]),2);
+            test_mult_ems_r += pow((in_v_p[k] - test_rest_mult_p[k]),2);
+            test_ems_r += pow((in_v_p[k] - test_rest_p[k]),2);
+            test_bmult_ems_r += pow((in_v_p[k] - test_rest_bmult_p[k]),2);
         }        
     }
 
@@ -176,7 +177,7 @@ int main() {
 
     printf("      | AV1_FWD -> AV1_INV | TEST_FWD_MULT -> AV1_INV | TEST_FWD_SHIFT -> AV1_INV | BUTT_FWD_MULT -> AV1_INV \n"
            "_____________________________________________________________________________________________________________\n"
-           "EMS   | %19.2f| %25.2f| %26.2f| %25.2f|\n"
+           "EMS   | %19.2lf| %25.2lf| %26.2lf| %25.2lf|\n"
            "t (us)| %19.2e| %25.2e| %26.2e| %25.2e|\n",
            av1_ems_r, test_mult_ems_r, test_ems_r, test_bmult_ems_r,
            ell_av1, ell_test_mult, ell_test, ell_bmult);

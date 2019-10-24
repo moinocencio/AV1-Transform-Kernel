@@ -11,10 +11,11 @@
 */
 
 #define SIZE 16
-#define N_VECTORS 10000
+#define N_VECTORS 100000000
 
 int main() {
-    int32_t *in_v = malloc(SIZE* sizeof *in_v);
+    int32_t in_v[SIZE];
+    int32_t *in_v_p = in_v;
 
     int32_t *av1_out_p = malloc(SIZE* sizeof *av1_out_p);
     int32_t *test_out_mult_p = malloc(SIZE* sizeof *test_out_mult_p);
@@ -38,29 +39,29 @@ int main() {
         perror("Error opening file");
         return(-1);
     }
-    char temp_str[200];
+    char temp_str[1000];
 
-    for(i = 0; (fgets(temp_str, 200, f_p) != NULL) && i < N_VECTORS; i++) {
+    for(i = 0; (fgets(temp_str, 1000, f_p) != NULL) && i < N_VECTORS; i++) {
         sscanf( temp_str,"%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
-                &in_v[0], 
-                &in_v[1], 
-                &in_v[2], 
-                &in_v[3], 
-                &in_v[4], 
-                &in_v[5], 
-                &in_v[6], 
-                &in_v[7],
-                &in_v[8],
-                &in_v[9],
-                &in_v[10],
-                &in_v[11],
-                &in_v[12],
-                &in_v[13],
-                &in_v[14],
-                &in_v[15]);
+                &in_v_p[0], 
+                &in_v_p[1], 
+                &in_v_p[2], 
+                &in_v_p[3], 
+                &in_v_p[4], 
+                &in_v_p[5], 
+                &in_v_p[6], 
+                &in_v_p[7],
+                &in_v_p[8],
+                &in_v_p[9],
+                &in_v_p[10],
+                &in_v_p[11],
+                &in_v_p[12],
+                &in_v_p[13],
+                &in_v_p[14],
+                &in_v_p[15]);
         
         gettimeofday(&t1,NULL);
-        av1_fdct16(in_v, av1_out_p);
+        av1_fdct16(in_v_p, av1_out_p);
         for (k = 0; k < SIZE; k++)
             temp_p[k] = av1_out_p[k]>>3;
         av1_idct16(temp_p, av1_rest_p);
@@ -68,7 +69,7 @@ int main() {
         ell_av1 += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 
         gettimeofday(&t1,NULL);
-        slowtest_fdct16_mult(in_v, test_out_mult_p);
+        slowtest_fdct16_mult(in_v_p, test_out_mult_p);
         for (k = 0; k < SIZE; k++)
             temp_p[k] = test_out_mult_p[k]>>3;
         av1_idct16(temp_p, test_rest_mult_p);     
@@ -76,7 +77,7 @@ int main() {
         ell_test_mult += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 
         gettimeofday(&t1,NULL);
-        slowtest_fdct16_shift(in_v, test_out_p);
+        slowtest_fdct16_shift(in_v_p, test_out_p);
         for (k = 0; k < SIZE; k++)
             temp_p[k] = test_out_p[k]>>3;
         av1_idct16(temp_p, test_rest_p);     
@@ -84,7 +85,7 @@ int main() {
         ell_test += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
         
         gettimeofday(&t1,NULL);
-        butttest_fdct16_mult(in_v, test_out_bmult_p);
+        butttest_fdct16_mult(in_v_p, test_out_bmult_p);
         for (k = 0; k < SIZE; k++)
             temp_p[k] = test_out_bmult_p[k]>>3;
         av1_idct16(temp_p, test_rest_bmult_p);     
@@ -93,7 +94,7 @@ int main() {
 
         //for (uint8_t k = 0; k < SIZE; k++)
         //{
-        //    printf("%2d ",in_v[k]);
+        //    printf("%2d ",in_v_p[k]);
         //}
         //printf("\n");
         //for (uint8_t k = 0; k < SIZE; k++)
@@ -114,10 +115,10 @@ int main() {
 
         for (uint8_t k = 0; k < SIZE; k++)
         {
-            av1_ems_r += pow((in_v[k] - av1_rest_p[k]),2);
-            test_mult_ems_r += pow((in_v[k] - test_rest_mult_p[k]),2);
-            test_ems_r += pow((in_v[k] - test_rest_p[k]),2);
-            test_bmult_ems_r += pow((in_v[k] - test_rest_bmult_p[k]),2);
+            av1_ems_r += pow((in_v_p[k] - av1_rest_p[k]),2);
+            test_mult_ems_r += pow((in_v_p[k] - test_rest_mult_p[k]),2);
+            test_ems_r += pow((in_v_p[k] - test_rest_p[k]),2);
+            test_bmult_ems_r += pow((in_v_p[k] - test_rest_bmult_p[k]),2);
         }        
     }
 
@@ -129,7 +130,7 @@ int main() {
     printf("      | AV1_FWD -> AV1_INV | TEST_FWD_MULT -> AV1_INV | TEST_FWD_SHIFT -> AV1_INV | BUTT_FWD_MULT -> AV1_INV \n"
            "_____________________________________________________________________________________________________________\n"
            "EMS   | %19.2f| %25.2f| %26.2f| %25.2f|\n"
-           "t (us)| %19.2e| %25.2e| %26.2e| %25.2f|\n",
+           "t (us)| %19.2e| %25.2e| %26.2e| %25.2e|\n",
            av1_ems_r, test_mult_ems_r, test_ems_r, test_bmult_ems_r,
            ell_av1, ell_test_mult, ell_test, ell_bmult);
 

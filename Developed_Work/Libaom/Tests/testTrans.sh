@@ -5,6 +5,7 @@
 # Choose options
 transencmult=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/NewTransMult/aomenc
 transencshift=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/NewTransShift/aomenc
+transencbuttmult=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/NewTransButtMult/aomenc
 inpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/HD/720p50_parkrun_ter.y4m
 res=2
 outpath=/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/TransTests/parkrun
@@ -68,3 +69,7 @@ echo -e "\n\e[1m\e[32mMultiplier Transform Encoding\e[0m"
 echo -e "\n\e[1m\e[33mShift Transform Encoding\e[0m"
 ./regenc.sh -e $transencshift -i $inpath -r $res -o $outpath"_shift_trans.webm" -q $qual -l $limit
 /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomdec $outpath"_shift_trans.webm" --i420 -o $outpath"_shift_trans.y4m"
+
+echo -e "\n\e[1m\e[34mButterfly Multiplication Transform Encoding\e[0m"
+./regenc.sh -e $transencbuttmult -i $inpath -r $res -o $outpath"_buttmult_trans.webm" -q $qual -l $limit
+/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Builds/Regular/aomdec $outpath"_buttmult_trans.webm" --i420 -o $outpath"_buttmult_trans.y4m"
