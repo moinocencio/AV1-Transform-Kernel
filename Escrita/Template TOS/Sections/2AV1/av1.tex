@@ -4,13 +4,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Basic Principles}
 
-\emph{Video Compression Systems} have been in development for approximately forty years, with the first video codec, \emph{H.120}, being released in 1984. It was composed of basic operations, which didn't correlate to good compression performances. This has lead to a quick downfall of its usage, being aggravated by the release of the \emph{H.261} standard by 1984.
+\emph{Video Compression Systems} have been in development for approximately forty years, with the first video codec, \emph{H.120}, being released in 1984. It was composed of basic operations, which didn't correlate to good compression performances. This has lead to a quick downfall of its usage, being aggravated by the release of the \emph{H.261} standard by 1988.
 
 However, the building blocks on which later standards were based are the same as in the first generations, i.e., the strategies implemented on newer standards exploit the same \emph{redundancies} as previous, less efficient, codecs.
 
-By redundancies, it is meant disposable information to the playback of an image sequence. This concept is the key of video compression. Throughout the years, the enhancement of video codecs was based on the improving the algorithms which can reliably represent a video, while maintaining the least of the original information. In other words, the video sequence is analyzed for predictable/identifiable characteristics, e.g. the movement of a subject or the edge of an object, calculates strategies of predicting nearby pixel values through that information and disposes the unused information. This process is mentioned as \emph{redundancy removal}.
+By redundancies, it is meant disposable information to the playback of an image sequence. This concept is the key of video compression. Throughout the years, the enhancement of video codecs was based on the improving the algorithms which can reliably represent a video, while maintaining the least of the original information. In other words, the video sequence is analyzed for predictable/identifiable characteristics (e.g. the movement of a subject or the edge of an object), identifies strategies of predicting nearby pixel values through that information and removes the disposable. This process is mentioned as \emph{redundancy removal}.
 
-This way, to have a better understanding of the functioning behind video codecs, the mentioned redundancies, and respective origins, are presented. Most of such have origin on the way humans perceive vision, being this the first topic of this chapter.
+This way, to have a better understanding of the functioning behind video codecs, the mentioned redundancies are presented, as well as its origins. Most of such are due to the way humans perceive vision, being this the first topic of this Chapter.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Human Visual System} \label{ssec:hvs}
@@ -24,7 +24,7 @@ This way, to have a better understanding of the functioning behind video codecs,
 
 Most of the compressed/decompressed video nowadays is directed to content visualization by consumers, with the exception of some network-driven image processing applications, such as automatic video surveillance. Therefore, the compression of video sequences has the intent of making changes to the original data, without serious impact to the users' perception. This process is mentioned as the removal of the \emph{Psychovisual redundancy} \cite{shiImageVideoCompression2008}. Therefore, a basic understanding of the visual system can clarify many of the design choices made in video compression applications, and why their use doesn't present much impact on the quality of the image, while greatly reducing its size.
 
-The image perception starts in the human eye, represented in figure \ref{fig:eye}. Its different constituents accomplish different tasks, from focusing, to aperture control. Although their importance to the overall functioning of the eye, the part that matters most to the focus of this work is the innermost membrane, the retina.
+The image perception starts in the human eye, represented in Figure \ref{fig:eye}. Its different constituents accomplish different tasks, from focusing, to aperture control. Although their importance to the overall functioning of the eye, the part that matters most to the focus of this work is the innermost membrane, the retina.
 
 \begin{figure}[h]
     \centering
@@ -33,13 +33,13 @@ The image perception starts in the human eye, represented in figure \ref{fig:eye
     \label{fig:eye}
 \end{figure}
 
-Once the desired image is properly focused by the lens, an inverse version of it is shined on the aforementioned membrane, which is covered by two types of light sensitive cells, the \emph{cones} and \emph{rods}, which transform the observable image into a series of pulses, that get subsequently processed.
+Once the desired image is properly focused by the lens, an inverse version of it is shone on the aforementioned membrane, which is covered by two types of light sensitive cells, the \emph{cones} and \emph{rods}, which transform the observable image into a series of pulses, that get subsequently processed.
 
-The cones are highly sensitive to color, being responsible for the \emph{photonic} or \emph{bright-light} vision. There are three different types of cones, corresponding to the wavelength they are susceptible to. These are the \emph{S}, \emph{M} and \emph{L} cones, being sensitive to, approximately, the blue, green and red light, respectively, making a somewhat similar capture to the RGB color system.
+The \emph{cones} are highly sensitive to color, being responsible for the \emph{photonic} or \emph{bright-light} vision. There are three different types, corresponding to the wavelength they are susceptible to. These are the \emph{S}, \emph{M} and \emph{L} \emph{cones}, being sensitive to, approximately, the blue, green and red light, respectively, making a somewhat similar capture to the RGB color system.
 
-On the other side, rods aren't stimulated by bright light, being more active on low illumination levels. This aspect makes them responsible for giving a rough overview of the field of view. This is called as \emph{scotopic} or \emph{dim-light} vision. These cells are spread more broadly across the retina, while to the cones, which is also observable in the number of cells (approximately 6 million cones, to 100 million rods).
+On the other side, \emph{rods} aren't stimulated by bright light, being more active on low illumination levels. This aspect makes them responsible for giving a rough overview of the field of view. This is called as \emph{scotopic} or \emph{dim-light} vision. These cells are more broadly spread across the retina comparing to the \emph{cones}, which is also observable in the number of cells (approximately 6 million \emph{cones}, to 100 million \emph{rods}).
 
-From this, it's already observable that the human visual system is more sensitive to differences on the luminosity, than to the color of an object \cite{mullenContrastSensitivityHuman1985}, which is a starting point for compressing video, as will be shown later in this chapter. However, many other opportunities come from the processing of the nerve signals, and the \emph{psychovisual} perception that follows.
+From this, it's already observable that the human visual system is more sensitive to differences on the luminosity, than to the color of an object \cite{mullenContrastSensitivityHuman1985}, which is a starting point for compressing video, as will be shown later in this Chapter. However, many other opportunities come from the processing of the nerve signals, and the \emph{psychovisual} perception that follows.
 
 Although more sensitive to \emph{luminance}, there is a threshold to which the difference between two objects --- $\Delta I$ --- can't be discerned. This relation is mentioned as \emph{contrast sensitivity function}, which is roughly approximated with the \emph{Weber's Law}
 
@@ -51,7 +51,7 @@ Analyzing this equation, it's possible to conclude that the darker an object is,
 
 Besides the luminance values, the spatial and temporal frequencies also represent an important role in the perception of such errors. 
 
-The image \ref{fig:noise} gives an example of the dependency with spatial frequency. The first image \ref{subfig:noiseOri} represents the original image, which got added with \gls{wgn}, represented in figure \ref{subfig:noise}. As it is observable, these artifacts are less noticeable on the highly detailed areas (branches and leafs of the tree) than in the smooth ones (sky in the top right corner). The effect of \emph{Weber's law} is also observed if we analyze the effect that the white noise as in the bright sun area, when compared to the darker areas.
+The image \ref{fig:noise} gives an example of the dependency with spatial frequency. The first image \ref{subfig:noiseOri} represents the original image, which got corrupted with \gls{wgn}, represented in Figure \ref{subfig:noise}. As it is observable, these artifacts are less noticeable on the highly detailed areas (branches and leafs of the tree) than in the smooth ones (sky in the top right corner). The effect of \emph{Weber's law} is also observed if we analyze the effect that the white noise as in the bright sun area, when compared to the darker areas.
 
 \begin{figure}[h]
     \centering
@@ -71,9 +71,9 @@ The image \ref{fig:noise} gives an example of the dependency with spatial freque
     \label{fig:noise}
 \end{figure}
 
-Temporal frequency dependency, although more challenging to exemplify, is easily understandable. On a sequence of frames with fast camera, or subject movements, the human eye doesn't have the ability to track details or other artifacts, while in slow moving scenes, it can easily identify errors.
+Temporal frequency dependency, although more challenging to exemplify, is easily understandable. On a sequence of frames with fast movements, either from the camera or the subject, the human eye doesn't have the ability to track details or other artifacts, while in slow moving scenes, it can easily identify errors.
 
-These are some of the "\emph{flaws}" of the human visual system, that get exploited during the compression of video. However, other \emph{redundancies}, inherent from the captured images themselves contribute to the reduction of the video size, as will be described in the following sections.
+These are some of the fragilities of the human visual system that get exploited during the compression of video. However, other \emph{redundancies}, inherent from the captured images themselves contribute to the reduction of the video size, as will be described in the following sections.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Redundancy Exploitation}
@@ -85,7 +85,7 @@ These are some of the "\emph{flaws}" of the human visual system, that get exploi
 %\todo[inline,color=red!40]{*Transform and Quantization}
 %\todo[inline,color=red!40]{*Entropy Coding}
 
-Even though there are countless observable subjects and sceneries, it's unfair to think of a frame as a random sequence of pixels. Objects tend to represent clusters of pixels with roughly the same values, moving objects follow predictable directions, etc. Such characteristics represent redundancies that can be removed.
+Even though there are countless observable subjects and sceneries, it's unfair to think of a frame as a random sequence of pixels. Objects tend to represent clusters of pixels with roughly the same values, moving objects follow predictable directions, etc. Such characteristics represent \emph{redundancies} that can be explored during the compression of said sequence.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Spatial Redundancy} \label{sssec:spatred}
@@ -103,16 +103,16 @@ Taking image \ref{subfig:noiseOri} and calculating its autocorrelation with vari
 
 As it is observable, for shorter shifts, the normalized autocorrelation is very close to 1, since most of the de-correlation comes for the mismatching edges. Although this relation varies depending on the image, it's safe to assume that it is very similar for the majority of the cases.
 
-Such study gives a promising opportunity for compression, since it means that most pixels can be predicted from its neighbors. This aspect as lead to what now is known as \emph{differential} or \emph{predictive} coding.
+Such study gives a promising opportunity for compression, since it means that most pixels can be predicted from its neighbors. This aspect as lead to what is now known as \emph{differential} or \emph{predictive} coding.
 
 On a video compression system, the spatial redundancy is considered in the \emph{intra-prediction} block, which calculates pixels, or pixel blocks, through its surrounds.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Temporal Redundancy}
 
-As expected, a series of consecutive frames, on the same subject, tend to be very similar between each other, especially if considered the $30$ or $60 fps$ desired nowadays. 
+As expected, a series of consecutive frames on the same subject, tend to be very similar between each other, especially if considered the $30$ or $60 fps$ desired nowadays. 
 
-Making a similar analysis to what was made in section \ref{sssec:spatred}, a series of frames of the \emph{Stefan} sequence \cite{YUVSequences} was considered, and the cross correlation between the first and the following nine was calculated, giving origin to the graph in figure \ref{fig:crosscorr}.
+Making a similar analysis to what was made in section \ref{sssec:spatred}, a series of frames of the \emph{Stefan} sequence \cite{YUVSequences} was considered, and the cross correlation between the first and the following nine was calculated, giving origin to the graph in Figure \ref{fig:crosscorr}.
 
 \begin{figure}[h]
     \centering
@@ -128,11 +128,11 @@ The codec takes advantage of this redundancy in the \emph{inter-prediction} stag
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Psychovisual Redundancy}
 
-From the redundancies presented in section \ref{ssec:hvs}, video codecs implement compression measures in various stages.
+As to the redundancies presented in section \ref{ssec:hvs}, these are explored in various stages throughout the video encoder.
 
 The first measure is the \emph{chroma subsampling}, which takes advantage of the lower perception to color, discarding some of the \emph{chroma} samples, depending on the subsampling chosen.
 
-Typically, a pixel value is represented in one luminance and two chrominance values, on the \emph{YCbCr} color space. The subsampling is defined in through the relation of luminance to chroma samples, being the most common the 4:4:4, 4:2:2 and 4:2:0 standards, represented in figure \ref{fig:subsample}. In the first one, no chroma samples are discarded, which means that for each 4 luminance (\emph{Y}) samples, there are 4 \emph{Cb} and 4 \emph{Cr} samples. Correspondingly, in the second standard, for each 4 Y samples, only 2 of each color components are maintained. The last example, although its misleading term, means that only 1 of each 4 chroma samples are kept.
+Typically, a pixel value is represented in one luminance and two chrominance values, on the \emph{YCbCr} color space. The subsampling is defined in through the relation of luminance to chroma samples, being the most common the 4:4:4, 4:2:2 and 4:2:0 standards, represented in Figure \ref{fig:subsample}. In the first one, no chroma samples are discarded, which means that for each 4 luminance (\emph{Y}) samples, there are 4 \emph{Cb} and 4 \emph{Cr} samples. Correspondingly, in the second standard, for each 4 Y samples, only 2 of each color components are maintained. The last example, although its misleading term, means that only 1 of each 4 chroma samples are kept.
 
 \begin{figure}[h]
     \centering 
@@ -177,7 +177,7 @@ From the basic principles of the previously mentioned blocks, it is possible to 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Encoder Model} \label{ssse:encmod}
 
-The encoder's objective is to compress a video sequence, turning it into a readable \emph{encoded bitstream}. To do this, the previously presented strategies get implemented on a system based on the schematic of figure \ref{fig:basicenc}.
+The encoder's objective is to compress a video sequence, turning it into a readable \emph{encoded bitstream}. To do this, the previously presented strategies get implemented on a system based on the schematic of Figure \ref{fig:basicenc}.
 
 \begin{figure}[!htbp]
     \centering
@@ -186,11 +186,11 @@ The encoder's objective is to compress a video sequence, turning it into a reada
     \label{fig:basicenc}
 \end{figure}
 
-The encoding process starts on the \emph{Input Frame}, which can be of two types. \emph{I Frames} are encoded using only the information present in themselves, i.e., using only \emph{Intra Prediction/Coding}, while \emph{P Frames} may use predictive coding from previously encoded frames \footnote{Most video codecs allow that the encoding sequence isn't the same as the temporal sequence. This allows to reference frames displayed next to the one being encoded.}.
+The encoding process starts on the \emph{Input Frame}, which can be of two types. \emph{I Frames} are encoded using only the information present in themselves, i.e., using only \emph{Intra Prediction/Coding}, while \emph{P Frames} may use predictive coding from previously encoded frames \footnote{Most video codecs allow the encoding sequence to be different from the temporal sequence. This allows the currently encoding frame to use reference frames displayed after itself.}.
 
 The input gets split into blocks, which get fed into the two main blocks of a video encoder: the \emph{Intra} and \emph{Inter} Prediction blocks.
 
-The \emph{Intra Coding} block, as mentioned previously, deals with the spatial redundancy, by predicting the current block from the pixels above and to the left of its upper and left edges. The prediction may be done with various algorithms, ranging from calculating the average from the reference pixels, to replicating these according to a certain direction. One such example is presented in figure \ref{fig:intraex}, where pixels B through H get spread across a $4\times 4$ block, diagonally.
+The \emph{Intra Coding} block, as mentioned previously, deals with the spatial redundancy, by predicting the current block from the pixels above and to the left of its upper and left edges. The prediction may be done with various algorithms, ranging from calculating the average from the reference pixels, to replicating these according to a certain direction. One such example is presented in Figure \ref{fig:intraex}, where pixels B through H get spread across a $4\times 4$ block, diagonally.
 
 \begin{figure}[!htbp]
     \centering
@@ -199,7 +199,7 @@ The \emph{Intra Coding} block, as mentioned previously, deals with the spatial r
     \label{fig:intraex}
 \end{figure}
 
-Into the \emph{Inter Coding} block, go two inputs. The currently encoding block, as well as a bank of previously encoded frames, named \emph{Reference Frames}. Firstly, the frames inside the buffer get searched for blocks resembling the former input. Once found, this process generates a \emph{motion vector}, corresponding to the difference between the position of the block found in the reference frame, and the position of the currently encoding block, as shown in figure \ref{fig:interex}.
+Into the \emph{Inter Coding} block, go two inputs. The currently encoding block, as well as a bank of previously encoded frames, named \emph{Reference Frames}. Firstly, the frames inside the buffer get searched for blocks resembling the former input. Once found, this process generates a \emph{motion vector}, corresponding to the difference between the position of the block found in the reference frame, and the position of the currently encoding block, as shown in Figure \ref{fig:interex}.
 
 \begin{figure}[!htbp]
     \centering
@@ -212,9 +212,9 @@ In most codecs, the motion vector has a precision below one pixel. This means th
 
 After the prediction stage, the chosen output between the two processes, i.e., the predicted block, gets subtracted by the current one, giving origin to the \emph{residue}. This corresponds to the pixel value differences between the original and predicted blocks. Lower \emph{residues} indicate more efficient prediction stages.
 
-The next stage, the \emph{Forward Transform}, is the focus of this work. It takes the residue blocks, which may not be the same size of the prediction blocks, and evaluates them according to its spatial frequencies. Its output corresponds to a series of \emph{coefficients}, that are related to the similarity --- or \emph{correlation} --- between the input block and a series of \emph{basis images}. This process is further explained in chapter \ref{chap:trans}.
+The next stage, the \emph{Forward Transform}, is the focus of this work. It takes the residue blocks, which may not be the same size of the prediction blocks, and evaluates them according to its spatial frequencies. Its output corresponds to a series of \emph{coefficients}, that are related to the similarity --- or \emph{correlation} --- between the input block and a series of \emph{basis images}. This process is further explained in Chapter \ref{chap:trans}.
 
-On the \emph{Quantization} stage, the coefficients calculated in \textbf{T} get scaled according to a \emph{Quantization Matrix}. This stage takes advantage of the eye's lower perception to high frequency details, and scales the higher frequency coefficients by a higher value, than the lower, more significant ones. In most of the transformed blocks, this leads that only a few low frequency components are maintained, while the others get nullified, since they are not relevant to the reconstruction of the image. Therefore, this stage is the the one that presents the higher loss, although the previously presented also introduce errors. In most of the encoding processes, this stage has the most direct impact on the obtained quality.
+On the \emph{Quantization} stage, the coefficients calculated in \textbf{T} get scaled according to a \emph{Quantization Matrix}. This stage takes advantage of the eye's lower perception to high frequency details, and scales the higher frequency coefficients by a higher value, than the lower, more significant ones. In most of the transformed blocks, this leads to only a few low frequency components are maintained, while the others get nullified, since they are not relevant to the reconstruction of the image. Therefore, this stage is the the one that presents the higher loss, although the previously presented also introduce errors. In most of the encoding processes, this stage has the most direct impact on the obtained quality.
 
 The wipe out of the least significant coefficients is particularly efficient when paired with the last stage before the output, the \emph{Entropy Encoder}. On this block, \textbf{Q}'s output block gets run sequentially via a \emph{zig-zag scan}, which first passes through the lower frequency coefficients, followed by the higher frequency ones. 
 
@@ -229,14 +229,14 @@ In most of the cases, this causes that the non-zero coefficients get read first,
 
 The intent of this loop is to get an exact same copy of the frame reconstructed in the decoder. This reconstructed frame gets used as the reference for intra-prediction, or gets put into the reference frame buffer to be used in a later inter-prediction process. 
 
-The output of the encoder is the quantized coefficients, as well as the necessary information to recreate the encoded blocks, such as the type of prediction used, the transformation \emph{kernel} [see p.\pageref{par:kernel}], quantization matrix, et al. These encoding parameters are the choices made by the \emph{Control Unit}, which although represented by a block in figure \ref{fig:basicenc}, may not be a local process, independent from all others. 
+The output of the encoder is the quantized coefficients, as well as the necessary information to recreate the encoded blocks, such as the type of prediction used, the transformation \emph{kernel} [see p.\pageref{par:kernel}], quantization matrix, et al. These encoding parameters are the choices made by the \emph{Control Unit}, which although represented by a block in Figure \ref{fig:basicenc}, may not be a local process, independent from all others. 
 
-Since \emph{H.264}, most video codecs standardize the decoding process, specifically, the allowed tools for compressing the video, and how to use them. This means that the encoding process is widely adaptable to the compression objectives, as long as the final product is a bitstream following the norms set on the codec's standard \cite{AV1BitstreamDecoding}. Therefore, the definition of a \emph{Control Unit} is ambiguous in this context, since such unit can simply represent a set of parameters to be used throughout the encoding process\footnote{One such example would be \emph{lossless} compression modes, which use very a concise conditions on each stage, in order to get the least distortion.}, or an algorithm that can change between the different capabilities of the codec, in order to achieve an objective, such as a specific distortion rate, or not surpass a maximum bit rate. As expected, different objectives may lead to majorly different results, both in the output video, as well as in the used tools.
+Since \emph{H.264}, most video codecs standardize the decoding process, specifically the allowed tools for reconstructing the video, and how to use them. This means that the encoding process is widely adaptable to the compression objectives, as long as the final product is a bitstream following the norms set on the codec's standard \cite{AV1BitstreamDecoding}. Therefore, the definition of a \emph{Control Unit} is ambiguous in this context, since such unit can simply represent a set of parameters to be used throughout the encoding process\footnote{One such example would be \emph{lossless} compression modes, which use very a concise conditions on each stage, in order to get the least distortion.}, or an algorithm that can change between the different capabilities of the codec, in order to achieve an objective, such as a specific distortion rate, or not surpass a maximum bit rate. As expected, different objectives may lead to majorly different results, both in the output video, as well as in the used tools.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Decoder Model}
 
-As expected, the decoder (figure \ref{fig:basicdec}) does the backwards operation of the encoder on figure \ref{fig:basicenc}. It starts by analyzing the bitstream, separating the control information from the encoded and quantized coefficients.
+As expected, the decoder (Figure \ref{fig:basicdec}) does the backwards operation of the encoder on Figure \ref{fig:basicenc}. It starts by analyzing the bitstream, separating the control information from the encoded and quantized coefficients.
 
 \begin{figure}[!htbp]
     \centering
@@ -247,7 +247,7 @@ As expected, the decoder (figure \ref{fig:basicdec}) does the backwards operatio
 
 Having the encoding choices performed by the encoder, the decoder returns the \emph{coding redundancy} to the quantized coefficients, on the \emph{Entropy Decoding} stage. This corresponds to a translation from the varying length code used in codification, back into the raw coefficients.
 
-The \emph{Inverse Quantization} rescales the maintained coefficients, resulting from the previous \emph{Quantization} stage. With this, it is meant that the same quantization matrix used when dividing the transformed coefficients, in the encoder, is now multiplied by the quantized parameters. It must be kept that this operation does not output an exact copy of the transformation coefficients, as a lot of information is permanently lost in \textbf{Q}. This process can be seen in figure \ref{fig:quant}.
+The \emph{Inverse Quantization} rescales the maintained coefficients, resulting from the previous \emph{Quantization} stage. With this, it is meant that the same quantization matrix used when dividing the transformed coefficients, in the encoder, is now multiplied by the quantized parameters. It must be kept that this operation does not output an exact copy of the transformation coefficients, as a lot of information is permanently lost in \textbf{Q}. This process can be seen in Figure \ref{fig:quant}.
 
 \begin{figure}[!htbp]
     \centering
@@ -303,7 +303,7 @@ Although the focus of this work revolves around the Transform stage, in this sec
 
 At the start of the encoding process, an input frame is divided into \emph{superblocks}. These constitute the starting point of the compression of an image.
 
-These blocks may be of $128 \times 128$ pixels, or $64 \times 64$. However, doing operations with such sizes would add complexity, as well as it wouldn't prove to be efficient. Therefore, the \emph{superblock} can be partitioned into various \emph{prediction blocks}. These can range between $128 \times 128$ to $4 \times 4$, including rectangular blocks, with $2:1$ or $4:1$ ratios. The division of these blocks can be done recursive, where a square block divided into 4 square blocks can originate progressively smaller blocks, according to the schematic in figure \ref{fig:partitioning}.
+These blocks may be of $128 \times 128$ pixels, or $64 \times 64$. However, doing operations with such sizes would add complexity, as well as it wouldn't prove to be efficient. Therefore, the \emph{superblock} can be partitioned into various \emph{prediction blocks}. These can range between $128 \times 128$ to $4 \times 4$, including rectangular blocks, with $2:1$ or $4:1$ ratios. The division of these blocks can be done recursive, where a square block divided into 4 square blocks can originate progressively smaller blocks, according to the schematic in Figure \ref{fig:partitioning}.
 
 \begin{figure}[!htbp]
     \centering
@@ -317,11 +317,11 @@ These blocks may be of $128 \times 128$ pixels, or $64 \times 64$. However, doin
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Intra-prediction}
 
-In figure \ref{fig:intraex}, it is presented one of the possible angles from the \emph{directional prediction} mode of \emph{Intra coding}. However, in \emph{AV1}, this stage includes other prediction options, some being revised from previous generations, while others have never been implemented before.
+In Figure \ref{fig:intraex}, it is presented one of the possible angles from the \emph{directional prediction} mode of \emph{Intra coding}. However, in \emph{AV1}, this stage includes other prediction options, some being revised from previous generations, while others have never been implemented before.
 
 On the \emph{directional mode}, \emph{AV1} improves massively from \emph{VP9}, going from 8 directions to 56. This allows for better maintenance of details, especially on bigger blocks. 
 
-As to the \emph{non-directional predictors}, \emph{VP9} two. In \emph{DC mode}, the pixels  within a block would get replicated as the average of its references. \emph{True Motion mode} would calculate each pixel as the sum of the one above by the one to the left, and subtract the upper-left diagonal, i.e., $y_{(i,j)}=y_{(i,j-1)}+y_{(i-1,j)}-y_{(i-1,j-1)}$. \emph{AV1}'s \emph{Smooth modes} are similar to the previous \emph{DC}, but it has the possibility of calculating the weighted average of the reference pixels, as well as using just one set of references, horizontal or vertical. \emph{TM mode} gave place to \emph{Paeth}, which makes various calculations similar to \emph{TM}, then considering the most fitted prediction. An hardware architecture for this intra-predictor has already been implemented in \cite{correaHighThroughputHardware2019}.
+As to the \emph{non-directional predictors}, \emph{VP9} includes two different modes. In \emph{DC}, the pixels  within a block would get replicated as the average of its references. \emph{True Motion} (TM) would calculate each pixel as the sum of the one above by the one to the left, and subtract the upper-left diagonal, i.e., $y_{(i,j)}=y_{(i,j-1)}+y_{(i-1,j)}-y_{(i-1,j-1)}$. In comparison, \emph{AV1}'s \emph{Smooth modes} are similar to the previous \emph{DC}, but it has the possibility of calculating the weighted average of the reference pixels, as well as using just one set of references, horizontal or vertical. \emph{TM mode} gave place to \emph{Paeth}, which makes various calculations similar to \emph{TM}, then considering the most fitted prediction. An hardware architecture for this intra-predictor has already been implemented in \cite{correaHighThroughputHardware2019}.
 
 \emph{Pallet mode} also got revised and included in \emph{AV1}. This mode is paired with other prediction techniques, limiting the pixel values to a set of possible colors. \emph{Pallet} as well as \emph{Intra-block copy} are especially designed for artificial video, such as video game footage, since these kind of videos contained a limited set of colors textures. \emph{Intra-block copy} allows for the replication of a intra-predicted block, similarly to the process in inter prediction.
 
@@ -332,14 +332,14 @@ Finally, \emph{AV1} introduces two new intra prediction modes that haven't been 
 
 This block got major innovations, as well as improvements to previous generations. Regarding the standard techniques, \emph{AV1} improves in the number of motion vector estimation filters, going from two to four, as well as in the number of sub-pixel filters. While \emph{VP9} allowed for three reference frames, the newer inter predictor allows to choose up to seven per frame, in a set of eight reference frames. This highly increases the necessary memory for encoding and decoding, but allows for finer motion estimation.
 
-As to innovations, \emph{AV1} introduces \emph{Warped motion}, which allows to shape the reference block on a trapezodial manner, \emph{Global motion}, to easily shift an entire frame, as to deal with camera movements, \emph{Wedge mode} which allows to use different prediction schemes in the same block, among others.
+As to innovations, \emph{AV1} introduces \emph{Warped motion}, which allows to shape the reference block on a trapezodial manner, \emph{Global motion}, to easily shift an entire frame, as to deal with camera movements, and \emph{Wedge mode} which allows to use different prediction schemes in the same block, among others.
 
 Some works have already been published with advances to this stage, such as \cite{dengHardwarefriendlyInterPrediction2017}, as well as hardware implementations \cite{domanskiHighThroughputMultifilterInterpolation2019}.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Transform}
 
-\emph{AV1} follows the innovations made in \emph{VP9}, adding more transformation kernels. Besides the regularly implemented \gls{dct}, the transformation blocks may now be transformed using Identity kernels or \gls{adst} kernels, which can be implemented in two directions. These different options can be used independently in the columns and rows, giving origin to 16 different options of block transformations. This aspect is further explained in chapter \ref{chap:trans}.
+\emph{AV1} follows the innovations made in \emph{VP9}, adding more transformation kernels. Besides the regularly implemented \gls{dct}, the transformation blocks may now be transformed using Identity kernels or \gls{adst} kernels, which can be implemented in two directions. These different options can be used independently in the columns and rows, giving origin to 16 different options of block transformations. This aspect is further explained in Chapter \ref{chap:trans}.
 
 As to transform sizes, \emph{AV1} allows for extra flexibility, not fixing any of the block's dimensions to a certain value. This way, the block size can vary between $4 \times 4$ and $64 \times 64$, including rectangular blocks of $2:1$ and $4:1$ ratios.
 
@@ -368,7 +368,7 @@ Being so, the comparison of \emph{AV1} throughout these developing months has be
 
 %\todor{Comparation metrics?}
 
-According to Moscow State University \cite{vatolinMSUCodecComparison2019}, \emph{AV1} achieved its objective of highly reducing the necessary bitrate. On this test, five \emph{1080p} sequences have been encoded using different implementations of \emph{H.264/AVC}, \emph{H.265/HEVC}, \emph{VP9} and \emph{AV1}. The different softwares have been configured on a similar manner, as to encode the sequences with similar quality, and the average bitrate per codec was compared relatively to \emph{H.264}. The results are presented in figure \ref{fig:testqual}.
+According to Moscow State University \cite{vatolinMSUCodecComparison2019}, \emph{AV1} achieved its objective of highly reducing the necessary bitrate. On this test, five \emph{1080p} sequences have been encoded using different implementations of \emph{H.264/AVC}, \emph{H.265/HEVC}, \emph{VP9} and \emph{AV1}. The different softwares have been configured on a similar manner, as to encode the sequences with similar quality, and the average bitrate per codec was compared relatively to \emph{H.264}. The results are presented in Figure \ref{fig:testqual}.
 
 \begin{figure}[!htbp]
     \centering

@@ -29,9 +29,9 @@ Being purely digital, these methodologies rely on computers and other processors
 
 To amend for these factors, and to increase the reachability of high quality video to as many users as possible, these applications needed to have a viable solution that didn't compromise its usability. Accordingly, a new approach has been implemented on the most recent codec's. Besides the optimization of pure software compression/decompression solutions, there has been a great focus on the development of specialized hardware for such codecs. This solution could redress many of the problems presented previously, making them viable on a mobile implementation, as well as other specialized appliances, since such co-processors usually present a better performance than generic CPUs. This tendency has already been verified on the implementation choices on recent smartphones \cite[p.~14]{scientiamobileMobileOverviewReport}, as well as recent \textit{Nvidia} \gls{gpu} lineups \cite{VideoEncodeDecode2016}.
 
-Since each compression algorithm tend to be very different from its predecessors, either by making changes to its bitstream or functioning principles, each time a new codec is released, there is a need to backup its development with a new set of hardware implementations. This makes the improvement of video compression techniques a continuous effort, in many engineering branches, as the technology needs to keep up with the demands of consumers, in a variety of applications.
+Due to the differences between a certain compression algorithm and its predecessors, either through the changes to the bitstream or functioning principles, each time a new codec is released, there is a need to backup its development with a new set of hardware implementations. This makes the improvement of video compression techniques a continuous effort, in many engineering branches, as the technology needs to keep up with the demands of consumers, in a variety of applications.
 
-Due to the broad access to video, and its influence in a variety of markets (besides video consumption itself), big companies have made investments on the improvement of video quality, and respective compression algorithms. These investments have provoked somewhat of a \emph{"Codec War"}. Since 2010, several video codecs have been deployed, and quickly replaced by a newer version, which presents better compression gains, at a lower quality degradation, such as the replace of \textit{VP8} (released in 2008) with \textit{VP9} (2013).
+Due to the broad access to video, and its influence in a variety of markets (besides video consumption itself), big companies have made investments on the improvement of video quality, and respective compression algorithms. These investments have provoked somewhat of a \emph{"Codec War"}. Since 2010, several video compression algorithms have been deployed, and quickly replaced by a newer version, which presents better compression gains, at a lower quality degradation, such as the replace of \textit{VP8} (released in 2008) with \textit{VP9} (2013).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Scope}
@@ -57,8 +57,7 @@ The desired compression performance was obtained at the cost of a highly complex
 
 Taken these factors, there is a high demand for dedicated hardware architectures, that can speed up the compression/decompression times and reach real-time usability on live-streaming applications, such as video-conferencing, live-content visualization, etc.
 
-\todo[inline,color=red!40]      {*Thesis objectives}
-
+\textcolor{red}{With this work, it is intended to perform a general study of the released software, and try to improve its performance. Due to the overall complexity of the topic, the focus relies on one of its composing blocks, the \emph{Transformation Stage}. This hopes to be achieved through the optimization of the provided software, as well as the development of fast hardware architectures.} 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
