@@ -106,6 +106,12 @@
       (a12) rectangle (a22);
     \path (a12 |- a22) node (a32) {};
     \path (a12) -- (a32) node[midway, rotate=90, yshift=-0.5cm] (mid_right) {\textbf{Row Transform}};
-
+    
+    %% Legend
+    \node[text width=6em,xshift=1.7cm, yshift=-0.95cm, font={\small}] at (a22 |- mid_right) (legend1) {\texttt{i\_c} - Current column index};
+    \node[text width=6em, below=0.4cm of legend1.south west, font={\small}, anchor=west] (legend2) {\texttt{i\_r} - Current Row index};
+    \node[text=red!80!black, below=0.3cm of legend2.south west, font={\small}, anchor=west] (legend3) {Test Output};
+    \node[text=blue!80!black, below=0.2cm of legend3.south west, font={\small}, anchor=west] (legend4) {Condition Set};
+    \draw[thick] ($(legend4.south west)+(-2mm,-2mm)$) rectangle ($(legend1.north east)+(2mm,2mm)$);
   \end{pgfonlayer}
 \end{tikzpicture}
