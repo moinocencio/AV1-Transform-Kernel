@@ -1,6 +1,6 @@
 #!/bin/bash
 
-frames=10
+frames=1
 
 ## Encode
 ## CIF: waterfall
