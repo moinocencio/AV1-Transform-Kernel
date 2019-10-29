@@ -25,7 +25,7 @@ clc
 % Encode of video "K"
 
 %% Constants
-totalt_id = 'frame    1/1';     % Identifier in string for Total time identification
+totalt_id = '10/10';     % Identifier in string for Total time identification
 ftranst_id = 'Forward';         % Identifier in string for Forward time identification
 itranst_id = 'Inverse';         % Identifier in string for Inverse time identification
 
@@ -58,8 +58,8 @@ time_m = zeros(length(t_n),size(v_n,1),length(q_n),3);
 aux_id = contains(t{1},totalt_id);
 ttime_temp = {t{1}{aux_id}};
 ttime_temp = squeeze(split(ttime_temp));
-us_temp = contains(ttime_temp(:,9),'us');
-ttime_temp = ttime_temp(:,8);
+us_temp = contains(ttime_temp(:,140),'us');
+ttime_temp = ttime_temp(:,139);
 ttime_temp = cellfun(@str2num,ttime_temp);
 ttime_temp = (ttime_temp./(1000.^us_temp))./1e3;
 

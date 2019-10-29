@@ -20,7 +20,7 @@ res =      [288 352; ...                     % Video Resolutions
             1080 1920; ...
             2160 3840];
 
-nFrames = 1;            
+nFrames = 10;            
 
 %% Input Paths
 cif_ori_p =["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/CIF/waterfall_cif.y4m" ...
