@@ -6,13 +6,12 @@
 
 /* Compare two implementations of 1D DCT SIZE:
     - AV1 Implementation
-    - "FPGA Implementation of Pipelined 4×4 2-D DCT and IDCT Structure for H.264 Protocol"
 
     Read file with SIZE lengthed input vectors, transform with both implementations and verify differences.
 */
 
 #define SIZE 4
-#define N_VECTORS 100000000
+#define N_VECTORS 1000000
 
 int main() {
     int32_t in_v[SIZE];
@@ -33,6 +32,8 @@ int main() {
     double ell_av1, ell_test_mult, ell_test, ell_bmult = 0;
     struct timeval t1, t2;
     uint32_t i,k  = 0;
+
+    double t_dif;
 
     FILE *f_p = fopen("TransformInputs.txt","r");
     
@@ -116,12 +117,14 @@ int main() {
     test_ems_r /= (SIZE*(i+1));
     test_bmult_ems_r /= (SIZE*(i+1));
 
+    t_dif = ((ell_test_mult - ell_av1)/ell_av1)*100;
+
     printf("      | AV1_FWD -> AV1_INV | TEST_FWD_MULT -> AV1_INV | TEST_FWD_SHIFT -> AV1_INV | BUTT_FWD_MULT -> AV1_INV \n"
            "_____________________________________________________________________________________________________________\n"
            "EMS   | %19.2f| %25.2f| %26.2f| %25.2f|\n"
-           "t (us)| %19.2e| %25.2e| %26.2e| %25.2e|\n",
+           "t (us)| %19.2e| %16.2e (%3.1f%%)| %26.2e| %25.2e|\n",
            av1_ems_r, test_mult_ems_r, test_ems_r, test_bmult_ems_r,
-           ell_av1, ell_test_mult, ell_test, ell_bmult);
+           ell_av1, ell_test_mult, t_dif, ell_test, ell_bmult);
 
     return fclose(f_p);
 }

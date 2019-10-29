@@ -24,6 +24,8 @@ clc
 % ...
 % Encode of video "K"
 
+%load transTimingW.mat
+
 %% Constants
 totalt_id = '10/10';     % Identifier in string for Total time identification
 ftranst_id = 'Forward';         % Identifier in string for Forward time identification
@@ -97,8 +99,9 @@ end
 
 transtime_m = time_m(:,:,:,2) + time_m(:,:,:,3);
 transtime_per = transtime_m./time_m(2,:,:,1)*100;
-transtime_gain = transtime_per(2,:,:)-transtime_per(1,:,:);
-ttime_gain = (time_m(2,:,:,1) - time_m(1,:,:,1))./time_m(1,:,:,1)*100;
+transtime_gain = squeeze(transtime_per(2,:,:)-transtime_per(1,:,:));
+ttime_gain = squeeze((time_m(2,:,:,1) - time_m(1,:,:,1))./time_m(1,:,:,1)*100);
+
 
 %% Timing results
 h = figure('Name','Timing Results','NumberTitle','off','units','normalized','outerposition',[0 0 1 1]);
@@ -113,9 +116,11 @@ bartrans2 = bar(x,squeeze(transtime_m(2,:,:)),'FaceColor', 'flat');
 
 xPos = (1:size(transtime_m,2)) - bartrans1(1).BarWidth/size(transtime_m,3) * linspace(0.85, -0.85, size(transtime_m,3))';
 for i=1:size(transtime_m,3)    
+    bartrans1(i).BarWidth = bartrans1(i).BarWidth*0.9;
+    bartrans2(i).BarWidth = bartrans2(i).BarWidth*0.9;
     bartrans1(i).CData = i;
     bartrans2(i).CData = i+3;
-    text(   xPos(i,:),time_m(2,:,i,1)'+1, ...
+    text(   xPos(i,:),time_m(2,:,i,1)'+30, ...
         compose("%.1f",transtime_gain(:,i))+"$\%$", ...
         'HorizontalAlignment','center',...
         'VerticalAlignment','middle', ...

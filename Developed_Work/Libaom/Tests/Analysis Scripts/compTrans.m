@@ -3,6 +3,8 @@ close all
 clear all 
 clc
 
+load compTransW.mat
+%{
 %% Constants
 reg_terms =["_ttest_reg_trans60.y4m" ...      % Regular transform Termination
             "_ttest_reg_trans25.y4m" ...
@@ -101,5 +103,7 @@ for i_q = 1:s_t(1)              % Quality Index
                     v_q(i_q) + " Quality", "PSNR (dB)");
 end
 %}
+%}  
 figure('Name','Transform Average', 'units','normalized','outerposition',[0 0 1 1])
+setGraphs();
 makePrettyBar(["Low" "Medium" "High" "Average"],[mPSNR_q mean(mPSNR_q,2)]',[v_q],"Quality","PSNR (dB)");
