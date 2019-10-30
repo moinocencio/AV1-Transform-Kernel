@@ -56,7 +56,65 @@ However, due to the rectangular block sizes allowed in \emph{AV1}, the factor $\
 This way, the  transformed outputs are calculated through
 
 \begin{equation}
-    \mathcal{G}(u) = \left(\nint*{\mathbf{F}_K} g(x)\right)>>K, \, 0 < u,x < L
+    \vec{\mathcal{G}} = \left[\nint*{\mathbf{F}_K} \vec{g}\right]>>K
 \end{equation}
 
 For an $L$ length vector, the calculation of the transformed vector implies $L^2$ additions and $L^2$ multiplications, which leads to the main disadvantage of such implementation. For larger vectors, this operation becomes too demanding in terms of memory and complexity.
+
+One other negative aspect of such implementation is that, due to the variation of the transform matrix's coefficients, the obtained error in the rounding and scaling operation also varies with the vector size. The quantization\footnote{Here, quantization refers to the scaling and rounding operation, and not to the the \emph{Q} stage in an encoder.} error, $\Delta_K$, can be calculated as
+
+\begin{equation}
+    \Delta_K = \frac{\max{\left(\sqrt{\frac{L}{2}}\mathbf{F}\right)} - \min{\left(\sqrt{\frac{L}{2}}\mathbf{F}\right)}}{2^K}
+\end{equation}
+
+As it was proven in the previous Chapter that the number of bits in the cosine representation wouldn't greatly impact the quality of the video, the developed architectures used 8 bits for the scaling operation, as to decrease the overhead of the implemented multiplications and shifts. The impact of this choice was evaluated at a later stage.
+
+To evaluate the performance of this first implementation, there was performed a test that measured and compared the elapsed time for both the described architecture, and the corresponding equivalent from \emph{aomenc}. This test injected a fixed sequence of input vectors into each of the \emph{DCT}'s, scaled the vectors in the same manner as the encoder, and then re-transformed the obtained vectors with \emph{AV1}'s \emph{IDCT}. This sequence of operations was timed, and the corresponding results are presented at Table \ref{tab:dcttime}.
+
+\begin{table}[!htpb]
+    \centering
+    \begin{tabular}{ccc} \toprule
+        \multirow{2}{*}{\textbf{Vector Size}} &     \multicolumn{2}{c}{\textbf{Execution Time (ms)}} \\
+         &      \textbf{aomenc's} &      \textbf{MM} \\ \toprule
+        4 &    145 &      98 $(-32.5\%)$ \\ \hline
+        8 &    319 &      215 $(-32.6\%)$ \\ \hline
+        16 &   787 &      583 $(-25.9\%)$ \\ \hline
+        32 &   1917 &     1606 $(-16.2\%)$  \\ \hline
+        64 &   4999  &    5696 $(+14.0\%)$  \\ 
+        \bottomrule
+    \end{tabular}
+    \caption{Comparison of execution time between \emph{aomenc}'s DCT and the described implementation.}
+    \label{tab:dcttime}
+\end{table}
+
+From these results it's easily observable why the currently implemented transforms follow the \emph{butterfly} scheme. Although from sizes $4$ to $32$, the proposed implementation is faster than the current version of \emph{libaom}, the largest transform is slower. This factor, added to the error variation from the scaling operation makes this implementation quite damaging for the overall encoder performance, especially on a constant quality objective, as shown in Table \ref{tab:multresults}. Here, there are presented the timing results of an encoding test, where one encode was made with the standard \emph{aomenc}, the other had the proposed matrix multiplication \emph{DCT}'s. The test encoded the first 15 frames of the \emph{Parkrun} HD sequence, with two different quality objectives. After compression, the encoded video was decoded with \emph{aomdec}, calculating the PSNR of the output video.
+
+\begin{table}[!htpb]
+    \centering
+    \begin{tabular}{cccc} \toprule
+        \multicolumn{2}{c}{\multirow{2}{*}{\textbf{cq-level}}} &     \multicolumn{2}{c}{\textbf{Execution Time (ms)}} \\
+        &   &   \textbf{aomenc's} &      \textbf{MM} \\ \toprule
+         \multirow{3}{*}{\textbf{60}}   & \textbf{Total time (s)}       & 466.5     & 530.8 \\
+                                        & \textbf{\emph{Trans.} time (s)}    & 45.0      & 104.2 \\
+                                        & \textbf{PSNR (dB)}            & 32.39     & 32.38 \\ \hline
+         \multirow{3}{*}{\textbf{5}}    & \textbf{Total time (s)}       & 814.1     & 835.3 \\
+                                        & \textbf{\emph{Trans.} time (s)}    & 60.4      & 98.4 \\
+                                        & \textbf{PSNR (dB)}            & 34.88     & 34.86 \\                                        
+         \bottomrule
+    \end{tabular}
+    \caption{\emph{aomenc}'s encoding time with original vs implemented \emph{DCT}.}
+    \label{tab:multresults}
+\end{table}
+
+As it is observable, to maintain a similar encoding quality, the encoder spends up to $13.8\%$ more time per encode, making such architecture unreliable for implementation on \emph{aomenc}.
+
+Taking this into account, a new approach was employed, using the same \emph{butterfly} scheme as \emph{libaom}'s transforms.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Alternative \emph{Butterfly} Implementation}
+
+%As mentioned previously, \emph{AV1}'s reference \emph{Transform stage} follows the architecture used in many other \emph{DCT} architectures, and expands its use into the \emph{ADST} \cite{wen-hsiungchenFastComputationalAlgorithm1977}. In this work, the authors 
+
+\clearpage
+\printbibliography[heading=subbibliography]
+\addcontentsline{toc}{section}{References}

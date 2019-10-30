@@ -183,11 +183,11 @@ It is frequently compared to the \emph{DFT}, due to the similarity of their oper
 
 \begin{table}[!htpb]
     \centering
-    \begin{tabular}{cllll@{}} \toprule
-        \textbf{Step} &      \multicolumn{2}{c}{\textbf{\emph{DFT}}} &      \multicolumn{2}{c}{\textbf{\emph{DCT}}} \\ \toprule
-        1 &         \multicolumn{2}{p{0.35\textwidth}}{Repeat $g(n)$ every L points, giving origin to $\widetilde{g}_L(n)$} &         \multicolumn{2}{p{0.35\textwidth}}{Concatenate $g(n)$ with a flipped version of itself, creating a $2L$ sequence, $g_{2L}(n)$, and repeat it, giving origin to $\widetilde{g}_{2L}(n)$}\\ 
-        2 &         \multicolumn{2}{p{0.35\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_L$} &         \multicolumn{2}{p{0.35\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_{2L}$}\\ 
-        3 &         \multicolumn{2}{p{0.35\textwidth}}{Keep the first $L$ coefficients\, and set all others to $0$} &         \multicolumn{2}{p{0.35\textwidth}}{Keep the first $L$ coefficients, and set all others to $0$}\\ 
+    \begin{tabular}{cLL} \toprule
+        \textbf{Step} &      \textbf{\emph{DFT}} &      \textbf{\emph{DCT}} \\ \toprule
+        1 &         \multicolumn{1}{m{0.35\textwidth}}{Repeat $g(n)$ every L points, giving origin to $\widetilde{g}_L(n)$} &         \multicolumn{1}{m{0.35\textwidth}}{Concatenate $g(n)$ with a flipped version of itself, creating a $2L$ sequence, $g_{2L}(n)$, and repeat it, giving origin to $\widetilde{g}_{2L}(n)$}\\ \hline
+        2 &         \multicolumn{1}{m{0.35\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_L$} &         \multicolumn{1}{m{0.35\textwidth}}{Calculate the \emph{Fourier} expansion of $\widetilde{g}_{2L}$}\\ \hline
+        3 &         \multicolumn{1}{m{0.35\textwidth}}{Keep the first $L$ coefficients\, and set all others to $0$} &         \multicolumn{1}{m{0.35\textwidth}}{Keep the first $L$ coefficients, and set all others to $0$}\\ 
         \bottomrule
     \end{tabular}
     \caption{Similarity between the processes of the        \emph{DFT} and the \emph{DCT}}
@@ -635,8 +635,6 @@ However, the differences in the used QP's don't justify the increased encoding t
 Considering now the obtained quality for each of the three different encodes (\emph{Regular}, \emph{10 bit} and \emph{16 bit}), it is possible to observe that the number of bits on cosine approximation doesn't contribute to the obtained quality, regardless of the desired objective, contrary to what was verified in Figure \ref{fig:cosbitavg}. Accordingly, it would be safe to assume that the cosine approximations could be fixed on a certain number of bits, without major impact to the video quality.
 
 This factor presents a major point for exploring faster \emph{Transform} block architectures. The architectures in Figures \ref{fig:intDCT} and \ref{fig:intADST} are highly dependent on the \texttt{half\_btf} function (equation \ref{eq:half_btf}), which is adaptable to the number of bits used for cosine, in each block transformation. However, with the use of a fixed number of bits, this function could be simplified, since the multiplications and divisions performed in it could be implemented with a fixed number of shifts and additions.
-
-
 
 \clearpage
 \printbibliography[heading=subbibliography]
