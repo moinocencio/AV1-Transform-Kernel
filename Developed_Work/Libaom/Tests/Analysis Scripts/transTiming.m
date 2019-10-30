@@ -110,18 +110,22 @@ hold on
 
 x = categorical(v_r);
 x = reordercats(x,v_r);
-bartot = bar(x,squeeze(time_m(1,:,:,1)),'FaceColor', [1 1 1],'LineStyle',':','LineWidth',1.5);
+bartot = bar(x,squeeze(time_m(1,:,:,1)),'FaceColor', [1 1 1],'LineStyle',':','LineWidth',2);
 bartrans1 = bar(x,squeeze(time_m(2,:,:,1)),'FaceColor', 'flat');
 bartrans2 = bar(x,squeeze(transtime_m(2,:,:)),'FaceColor', 'flat');
 
 xPos = (1:size(transtime_m,2)) - bartrans1(1).BarWidth/size(transtime_m,3) * linspace(0.85, -0.85, size(transtime_m,3))';
+
+colorm = colormap;
+
 for i=1:size(transtime_m,3)    
     bartrans1(i).BarWidth = bartrans1(i).BarWidth*0.9;
     bartrans2(i).BarWidth = bartrans2(i).BarWidth*0.9;
+    bartot(i).EdgeColor = colorm(i,:);
     bartrans1(i).CData = i;
     bartrans2(i).CData = i+3;
-    text(   xPos(i,:),time_m(2,:,i,1)'+30, ...
-        compose("%.1f",transtime_gain(:,i))+"$\%$", ...
+    text(   xPos(i,:),time_m(1,:,i,1)'+30, ...
+        compose("%.1f",ttime_gain(:,i))+"$\%$", ...
         'HorizontalAlignment','center',...
         'VerticalAlignment','middle', ...
         'HorizontalAlignment','left', ...

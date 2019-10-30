@@ -106,4 +106,4 @@ end
 %}  
 figure('Name','Transform Average', 'units','normalized','outerposition',[0 0 1 1])
 setGraphs();
-makePrettyBar(["Low" "Medium" "High" "Average"],[mPSNR_q mean(mPSNR_q,2)]',[v_q],"Quality","PSNR (dB)");
+makePrettyBar(["Low" "Medium" "High" "Average"],[mPSNR_q mean(mPSNR_q,2)]',["Original" "Alternative"],"Quality","PSNR (dB)");

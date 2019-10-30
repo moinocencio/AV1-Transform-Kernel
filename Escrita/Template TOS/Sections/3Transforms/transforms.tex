@@ -359,14 +359,14 @@ Throughout the represented process, many of the operations are done with sequent
 
 Independently of the transformation kernel, the operation is done sequently, in various stages. In each of these, the corresponding intermediary coefficients get calculated as function of two of the previous calculated coefficients. These, in most of the stages, are multiplied by a specific integer approximation of cosine/sine value. Such approximations, as mentioned previously, depend on the number of bits on which they are represented. 
 
-The arrays on which the calculated cosine and sine values are stored, \texttt{cospi} and \texttt{sinpi}, respectively, are bi-dimensional. The first dimension, $\texttt{N}$,  has 7 positions, where the first corresponds to 10 bit approximations, and the last to 16 bit. The second dimension, $\texttt{k}$, has 64 positions for \texttt{cospi} and 5 for \texttt{sinpi}, representing the first quadrant of the trigonometric circle. Each position is calculated according to equations \ref{eq:cos} and \ref{eq:sin}, where $k$ represents the position in the array, and $N$ corresponds to the number of bits. Therefore, \verb|cospi[N][0]| corresponds to $\cos(0)$, \verb|cospi[N][63]| is $\cos(63\pi/128)$, and the following positions can also be associated to a certain angle.
+The arrays on which the calculated cosine and sine values are stored, \texttt{cospi} and \texttt{sinpi}, respectively, are bi-dimensional. The first dimension, $\texttt{K}$,  has 7 positions, where the first corresponds to 10 bit approximations, and the last to 16 bit. The second dimension, $\texttt{n}$, has 64 positions for \texttt{cospi} and 5 for \texttt{sinpi}, representing the first quadrant of the trigonometric circle. Each position is calculated according to equations \ref{eq:cos} and \ref{eq:sin}, where $n$ represents the position in the array, and $K$ corresponds to the number of bits. Therefore, \verb|cospi[K][0]| corresponds to $\cos(0)$, \verb|cospi[K][63]| is $\cos(63\pi/128)$, and the following positions can also be associated to a certain angle.
 
 \begin{equation} \label{eq:cos}
-    \texttt{cospi[N][k]} = \nint*{2^{N}\cos\left(\frac{k\pi}{128}\right)}
+    \texttt{cospi[K][n]} = \nint*{2^{K}\cos\left(\frac{n\pi}{128}\right)}
 \end{equation}
 
 \begin{equation} \label{eq:sin}
-    \texttt{sinpi[N][k]} = 2^{N}\nint*{\frac{2}{3}\sqrt{2}\sin\left(\frac{k\pi}{9}\right)}
+    \texttt{sinpi[K][n]} = 2^{K}\nint*{\frac{2}{3}\sqrt{2}\sin\left(\frac{n\pi}{9}\right)}
 \end{equation}
 
 The \texttt{sinpi} array is only used in the shortest length of the \emph{ADST}, which is the reason it only has five positions. All other versions of this kernel use \texttt{cospi} to get the desired value.
@@ -374,7 +374,7 @@ The \texttt{sinpi} array is only used in the shortest length of the \emph{ADST},
 Most of the intermediary coefficients inside each stage are calculated with the function \verb|half_btf|, which performs the operation represented in equation \ref{eq:half_btf}. This function takes the two previously calculated coefficients, two values from the previously introduced arrays, as well as the number of bits used to represent these, and maps the result from the multiplications and sum of the first inputs to the desired number of bits.
 
 \begin{equation} \label{eq:half_btf}
-    \texttt{half\_btf(w0, in0, w1, in1, bits)} \quad \widehat{=} \quad \nfloor*{\frac{w_0in_0 + w_1in_1 + 2^{bits -1}}{2^{bits}}}
+    \texttt{half\_btf(w0, in0, w1, in1, K)} \quad \widehat{=} \quad \nfloor*{\frac{w_0\cdot in_0 + w_1\cdot in_1 + 2^{K -1}}{2^{K}}}
 \end{equation}
 
 Although the code implementation is sequential, the \emph{8 length} transformation kernels are represented in Figures \ref{fig:intDCT} and \ref{fig:intADST} as parallel block diagrams, with the diverse stages in series. While \emph{AV1} accepts \emph{transform block} sizes varying between 4 and 64, the method of transformation is similar between the different sizes.
@@ -425,7 +425,7 @@ Being so, the input also suffers an additional mapping, similar to the operation
 With the forward transformations explained and represented graphically, it's easily understandable that the corresponding inverses correspond to the backwards operation in Figures \ref{fig:intIDEN}, \ref{fig:intDCT} and \ref{fig:intADST}. With this, it is meant that only the direction of the arrows change, and the corresponding procedure is done right-to-left, i.e., the output's position, \texttt{y}, is now the input.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Performance and Statistics Analysis}
+\subsection{Performance and Statistics Analysis} \label{ssec:performance}
 
 From the obtained understanding of the tools and characteristics of the \emph{Transform} stage, various tests were performed in order to gather information on what were the most commonly used options, and the corresponding impact of such on encoding performance.
 
@@ -561,18 +561,18 @@ To evaluate the impact of the number of bits used in the cosine approximations, 
 From the gathered reconstructed sequences, $\restor{\mathbf{G}}$, the \gls{psnr} of each one was calculated, according to equation \ref{eq:psnr}.
 
 \begin{equation} \label{eq:psnr}
-    PSNR = 10\;log_{10}\left(\frac{255^2}{E_{ms}}\right)
+    PSNR = 10\;log_{10}\left(\frac{255^2}{MSE}\right)
 \end{equation}
 
-$E_{ms}$ corresponds to the \emph{Mean Squared Error} of the reconstructed video. Considering a single $M \times N$ monochrome frame, this error is given by equation \ref{eq:emsf}.
+$MSE$ corresponds to the \emph{Mean Squared Error} of the reconstructed video. Considering a single $M \times N$ monochrome frame, this error is given by equation \ref{eq:emsf}.
 
 \begin{equation} \label{eq:emsf}
-    E_{ms} = \frac{1}{MN}\sum^{M-1}_{x=0} \sum^{N-1}_{y=0} \left(\mathbf{G_{x,y}} - \restor{\mathbf{G_{x,y}}}\right)^2
+    MSE = \frac{1}{MN}\sum^{M-1}_{x=0} \sum^{N-1}_{y=0} \left(\mathbf{G_{x,y}} - \restor{\mathbf{G_{x,y}}}\right)^2
 \end{equation}
-However, since the test revolves around a sequence of $K$ reconstructed frames, with three chroma channels per bit, $c$, $E_{ms}$ becomes
+However, since the test revolves around a sequence of $K$ reconstructed frames, with three chroma channels per bit, $c$, $MSE$ becomes
 
 \begin{equation} \label{eq:emss}
-    E_{ms} = \frac{1}{3KMN}\sum^{K-1}_{k=0} \sum^{M-1}_{x=0} \sum^{N-1}_{y=0} \sum_{c=0}^{3-1} \left(\mathbf{G_{k,x,y,c}} - \restor{\mathbf{G_{k,x,y,c}}}\right)^2
+    MSE = \frac{1}{3KMN}\sum^{K-1}_{k=0} \sum^{M-1}_{x=0} \sum^{N-1}_{y=0} \sum_{c=0}^{3-1} \left(\mathbf{G_{k,x,y,c}} - \restor{\mathbf{G_{k,x,y,c}}}\right)^2
 \end{equation}
 
 The workflow of the performed test is represented in Figure \ref{fig:compcosbit}.

@@ -1,7 +1,8 @@
 {
     "cSpell.words": [
         "aomenc",
-        "libaom"
+        "libaom",
+        "parallelization"
     ],
     "files.associations": {
         "stdlib.h": "c",

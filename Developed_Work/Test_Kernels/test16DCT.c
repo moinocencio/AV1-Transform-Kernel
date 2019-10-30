@@ -32,7 +32,7 @@ int main() {
     struct timeval t1, t2;
     uint32_t i,k  = 0;
 
-    double t_dif;
+    double t_difmult, t_difbutt;
 
     FILE *f_p = fopen("TransformInputs64.txt","r");
     
@@ -128,14 +128,15 @@ int main() {
     test_ems_r /= (SIZE*(i+1));
     test_bmult_ems_r /= (SIZE*(i+1));
 
-    t_dif = ((ell_test_mult - ell_av1)/ell_av1)*100;
+    t_difmult = ((ell_test_mult - ell_av1)/ell_av1)*100;
+    t_difbutt = ((ell_bmult - ell_av1)/ell_av1)*100;
 
     printf("      | AV1_FWD -> AV1_INV | TEST_FWD_MULT -> AV1_INV | TEST_FWD_SHIFT -> AV1_INV | BUTT_FWD_MULT -> AV1_INV \n"
            "_____________________________________________________________________________________________________________\n"
            "EMS   | %19.2f| %25.2f| %26.2f| %25.2f|\n"
-           "t (us)| %19.2e| %16.2e (%3.1f%%)| %26.2e| %25.2e|\n",
+           "t (us)| %19.2e| %16.2e (%3.1f%%)| %26.2e| %16.2e (%3.1f%%)|\n",
            av1_ems_r, test_mult_ems_r, test_ems_r, test_bmult_ems_r,
-           ell_av1, ell_test_mult, t_dif, ell_test, ell_bmult);
+           ell_av1, ell_test_mult, t_difmult, ell_test, ell_bmult, t_difbutt);
 
     return fclose(f_p);
 }
