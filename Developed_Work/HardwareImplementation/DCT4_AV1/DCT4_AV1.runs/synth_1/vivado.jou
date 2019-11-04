@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Mon Nov  4 18:24:03 2019
+# Process ID: 29521
+# Current directory: /run/media/moinocencio/Data/Tese/TestDCTs/DCT4_AV1/DCT4_AV1.runs/synth_1
+# Command line: vivado -log DCT4.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source DCT4.tcl
+# Log file: /run/media/moinocencio/Data/Tese/TestDCTs/DCT4_AV1/DCT4_AV1.runs/synth_1/DCT4.vds
+# Journal file: /run/media/moinocencio/Data/Tese/TestDCTs/DCT4_AV1/DCT4_AV1.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source DCT4.tcl -notrace
