@@ -255,19 +255,19 @@ TSWLatexianTemp*
 *.webm
 
 # Ignore Builds
-Developed_Work/Libaom/Builds
+DevelopedWork/Libaom/Builds
 
 # Ignore fuse hidden (?)
 *.fuse_hidden*
 
 # Encode Stats (some big files)
-Developed_Work/Libaom/Tests/Encode_Stats
-Developed_Work/Test_Kernels/*.txt
-Developed_Work/Test_Kernels/*.txt
+DevelopedWork/Libaom/Tests/Encode_Stats
+DevelopedWork/Test_Kernels/*.txt
+DevelopedWork/Test_Kernels/*.txt
 
 # Executables
-Developed_Work/Test_Kernels/test4DCT
-Developed_Work/Test_Kernels/test8DCT
-Developed_Work/Test_Kernels/test16DCT
-Developed_Work/Test_Kernels/test32DCT
-Developed_Work/Test_Kernels/test64DCT
+DevelopedWork/Test_Kernels/test4DCT
+DevelopedWork/Test_Kernels/test8DCT
+DevelopedWork/Test_Kernels/test16DCT
+DevelopedWork/Test_Kernels/test32DCT
+DevelopedWork/Test_Kernels/test64DCT

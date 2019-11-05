@@ -1,1212 +1,0 @@
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/CIF/waterfall_cif.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   17640 us 113.38 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   17729 us 169.21 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   17818 us 224.49 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   17898 us 279.36 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   18002 us 333.30 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   18088 us 387.00 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   18163 us 440.46 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   18259 us 492.91 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   18355 us 544.81 fps [ETA  unknown] [K  81649F[K  59839F[K  23133F[K  18667F[K  27969F[K  16881F[K  19539F[K   8835F[K  21321F[K  13225F[K[KPass 1/1 frame   10/10    291058B  232846b/f 6978401b/s   41844 ms (0.24 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 3806343.00 us -> 9.1 % 
-Cumulative Time in Inverse Transform Stage: 1356881.00 us -> 3.2 % 
-Total Time in Transform Stage: 5163224.00 us -> 12.3 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16163 us 123.74 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16254 us 184.57 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16334 us 244.89 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16414 us 304.62 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16492 us 363.81 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16572 us 422.40 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16651 us 480.45 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16729 us 537.99 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16806 us 595.03 fps [ETA  unknown] [K  43015F[K  11064F[K   1373F[K   1101F[K   2234F[K    726F[K   1168F[K    448F[K    594F[K    571F[K[KPass 1/1 frame   10/10     62294B   49835b/f 1493556b/s   30254 ms (0.33 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 2846766.00 us -> 9.4 % 
-Cumulative Time in Inverse Transform Stage: 3130543.00 us -> 10.3 % 
-Total Time in Transform Stage: 5977309.00 us -> 19.8 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16161 us 123.75 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16262 us 184.48 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16345 us 244.72 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16440 us 304.14 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16545 us 362.65 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16643 us 420.60 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16748 us 477.67 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16864 us 533.68 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16937 us 590.42 fps [ETA  unknown] [K   4717F[K    407F[K     54F[K     96F[K    119F[K     56F[K     49F[K     68F[K     44F[K     47F[K[KPass 1/1 frame   10/10      5657B    4525b/f  135614b/s   15468 ms (0.65 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 2449182.00 us -> 15.8 % 
-Cumulative Time in Inverse Transform Stage: 394443.00 us -> 2.6 % 
-Total Time in Transform Stage: 2843625.00 us -> 18.4 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16175 us 123.65 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16322 us 183.80 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16420 us 243.61 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16497 us 303.09 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16572 us 362.06 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16646 us 420.52 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16720 us 478.47 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16801 us 535.68 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16872 us 592.70 fps [ETA  unknown] [K  82787F[K  62424F[K  24033F[K  19409F[K  29127F[K  17445F[K  20477F[K   9189F[K  21951F[K  13825F[K[KPass 1/1 frame   10/10    300667B  240533b/f 7208781b/s   41817 ms (0.24 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 2952278.00 us -> 7.1 % 
-Cumulative Time in Inverse Transform Stage: 1085260.00 us -> 2.6 % 
-Total Time in Transform Stage: 4037538.00 us -> 9.7 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16231 us 123.22 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16324 us 183.78 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16400 us 243.90 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16473 us 303.53 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16548 us 362.58 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16621 us 421.15 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16692 us 479.27 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16776 us 536.48 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16899 us 591.75 fps [ETA  unknown] [K  44690F[K  11591F[K   1374F[K   1109F[K   2359F[K    743F[K   1044F[K    501F[K    518F[K    647F[K[KPass 1/1 frame   10/10     64576B   51660b/f 1548251b/s   30723 ms (0.33 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 2229708.00 us -> 7.3 % 
-Cumulative Time in Inverse Transform Stage: 3280809.00 us -> 10.7 % 
-Total Time in Transform Stage: 5510517.00 us -> 17.9 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16390 us 122.03 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16497 us 181.85 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16577 us 241.30 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16665 us 300.03 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16744 us 358.34 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16820 us 416.17 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16906 us 473.20 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16998 us 529.47 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   17098 us 584.86 fps [ETA  unknown] [K   5019F[K    433F[K     65F[K     77F[K    133F[K     55F[K     51F[K     70F[K     40F[K     51F[K[KPass 1/1 frame   10/10      5994B    4795b/f  143706b/s   14520 ms (0.69 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 1757958.00 us -> 12.1 % 
-Cumulative Time in Inverse Transform Stage: 434526.00 us -> 3.0 % 
-Total Time in Transform Stage: 2192484.00 us -> 15.1 % 
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/CIF/flower_cif.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16213 us 123.36 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16301 us 184.04 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16385 us 244.13 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16468 us 303.62 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16556 us 362.41 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16685 us 419.54 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16779 us 476.79 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16874 us 533.36 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16951 us 589.94 fps [ETA  unknown] [K  78743F[K  71534F[K  23269F[K  22329F[K  25995F[K  17127F[K  26739F[K  21937F[K   8568F[K  20672F[K[KPass 1/1 frame   10/10    316913B  253530b/f 7598301b/s   42485 ms (0.24 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 3242901.00 us -> 7.6 % 
-Cumulative Time in Inverse Transform Stage: 2000799.00 us -> 4.7 % 
-Total Time in Transform Stage: 5243700.00 us -> 12.3 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16301 us 122.69 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16409 us 182.83 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16491 us 242.56 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16568 us 301.79 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16649 us 360.38 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16726 us 418.51 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16801 us 476.16 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16878 us 533.24 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16952 us 589.90 fps [ETA  unknown] [K  45762F[K  27965F[K   7355F[K   7511F[K   9269F[K   3968F[K   8891F[K   6691F[K    816F[K   5929F[K[KPass 1/1 frame   10/10    124157B   99325b/f 2976773b/s   40222 ms (0.25 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 2955153.00 us -> 7.3 % 
-Cumulative Time in Inverse Transform Stage: 2197534.00 us -> 5.5 % 
-Total Time in Transform Stage: 5152687.00 us -> 12.8 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16206 us 123.41 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16297 us 184.08 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16378 us 244.23 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16455 us 303.86 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16534 us 362.89 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16613 us 421.36 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16695 us 479.19 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16777 us 536.45 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16856 us 593.26 fps [ETA  unknown] [K  10275F[K   2955F[K    228F[K    208F[K    540F[K    165F[K    292F[K    150F[K     64F[K    157F[K[KPass 1/1 frame   10/10     15034B   12027b/f  360449b/s   24489 ms (0.41 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 2380705.00 us -> 9.7 % 
-Cumulative Time in Inverse Transform Stage: 1231739.00 us -> 5.0 % 
-Total Time in Transform Stage: 3612444.00 us -> 14.8 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16183 us 123.59 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16271 us 184.38 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16349 us 244.66 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16428 us 304.36 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16503 us 363.57 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16577 us 422.27 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16651 us 480.45 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16722 us 538.21 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16798 us 595.31 fps [ETA  unknown] [K  79180F[K  72491F[K  23560F[K  22759F[K  26233F[K  17463F[K  26850F[K  22254F[K  11186F[K  21187F[K[KPass 1/1 frame   10/10    323163B  258530b/f 7748151b/s   42355 ms (0.24 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 2523024.00 us -> 6.0 % 
-Cumulative Time in Inverse Transform Stage: 2060132.00 us -> 4.9 % 
-Total Time in Transform Stage: 4583156.00 us -> 10.8 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16158 us 123.78 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16250 us 184.62 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16329 us 244.96 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16405 us 304.79 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16483 us 364.01 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16559 us 422.73 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16634 us 480.94 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16708 us 538.66 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16783 us 595.84 fps [ETA  unknown] [K  45945F[K  28450F[K   7582F[K   7580F[K   9512F[K   3989F[K   8972F[K   6969F[K    470F[K   6120F[K[KPass 1/1 frame   10/10    125589B  100471b/f 3011118b/s   40465 ms (0.25 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 2273623.00 us -> 5.6 % 
-Cumulative Time in Inverse Transform Stage: 2173209.00 us -> 5.4 % 
-Total Time in Transform Stage: 4446832.00 us -> 11.0 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16522 us 121.05 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16635 us 180.34 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16714 us 239.32 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16793 us 297.74 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16872 us 355.62 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16970 us 412.49 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   17062 us 468.88 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   17168 us 524.23 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   17257 us 579.47 fps [ETA  unknown] [K  10641F[K   2928F[K    207F[K    218F[K    512F[K    164F[K    338F[K    157F[K     62F[K    165F[K[KPass 1/1 frame   10/10     15392B   12313b/f  369020b/s   23977 ms (0.42 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 1768763.00 us -> 7.4 % 
-Cumulative Time in Inverse Transform Stage: 1278008.00 us -> 5.3 % 
-Total Time in Transform Stage: 3046771.00 us -> 12.7 % 
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/CIF/bridge_close_cif.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16445 us 121.62 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16536 us 181.42 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16618 us 240.70 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16707 us 299.28 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16800 us 357.14 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16885 us 414.57 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16986 us 470.98 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   17072 us 527.18 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   17151 us 583.06 fps [ETA  unknown] [K  75836F[K  82271F[K  35028F[K  29697F[K  38583F[K  30109F[K  35100F[K  24567F[K  33565F[K  31078F[K[KPass 1/1 frame   10/10    415834B  332667b/f 9970039b/s   46178 ms (0.22 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 6172051.00 us -> 13.4 % 
-Cumulative Time in Inverse Transform Stage: 3443349.00 us -> 7.5 % 
-Total Time in Transform Stage: 9615400.00 us -> 20.8 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16653 us 120.10 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16788 us 178.70 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16887 us 236.87 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16983 us 294.41 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   17084 us 351.21 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   17182 us 407.40 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   17279 us 462.99 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   17352 us 518.67 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   17426 us 573.86 fps [ETA  unknown] [K  41651F[K  21193F[K   5103F[K   3293F[K   6328F[K   3586F[K   4802F[K   2504F[K   5853F[K   3035F[K[KPass 1/1 frame   10/10     97348B   77878b/f 2334005b/s   28356 ms (0.35 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 4687352.00 us -> 16.5 % 
-Cumulative Time in Inverse Transform Stage: 3647570.00 us -> 12.9 % 
-Total Time in Transform Stage: 8334922.00 us -> 29.4 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16167 us 123.71 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16252 us 184.59 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16329 us 244.96 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16404 us 304.80 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16480 us 364.08 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16556 us 422.81 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16633 us 480.97 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16707 us 538.70 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16781 us 595.91 fps [ETA  unknown] [K   4140F[K    651F[K     66F[K     62F[K    131F[K     43F[K     48F[K     55F[K     38F[K     31F[K[KPass 1/1 frame   10/10      5265B    4212b/f  126233b/s 7673433 us (1.30 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 2105987.00 us -> 27.4 % 
-Cumulative Time in Inverse Transform Stage: 184106.00 us -> 2.4 % 
-Total Time in Transform Stage: 2290093.00 us -> 29.8 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16094 us 124.27 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16184 us 185.37 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16265 us 245.93 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16349 us 305.83 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16427 us 365.25 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16508 us 424.04 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16586 us 482.33 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16675 us 539.73 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16756 us 596.80 fps [ETA  unknown] [K  76238F[K  85000F[K  36563F[K  30825F[K  40072F[K  31453F[K  36931F[K  25978F[K  35065F[K  33134F[K[KPass 1/1 frame   10/10    431259B  345007b/f 10339870b/s   44487 ms (0.22 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 4589020.00 us -> 10.3 % 
-Cumulative Time in Inverse Transform Stage: 2991883.00 us -> 6.7 % 
-Total Time in Transform Stage: 7580903.00 us -> 17.0 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16074 us 124.42 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16167 us 185.56 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16250 us 246.15 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16329 us 306.20 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   16407 us 365.70 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   16484 us 424.65 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   16560 us 483.09 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   16634 us 541.06 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   16709 us 598.48 fps [ETA  unknown] [K  42299F[K  21991F[K   5048F[K   3361F[K   6332F[K   3536F[K   4881F[K   2532F[K   6318F[K   3241F[K[KPass 1/1 frame   10/10     99539B   79631b/f 2386543b/s   28339 ms (0.35 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 3606741.00 us -> 12.7 % 
-Cumulative Time in Inverse Transform Stage: 3813562.00 us -> 13.5 % 
-Total Time in Transform Stage: 7420303.00 us -> 26.2 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   16640 us 120.19 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   16788 us 178.70 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   16888 us 236.85 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   16987 us 294.34 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   17115 us 350.57 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   17259 us 405.59 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   17414 us 459.40 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   17520 us 513.70 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   17648 us 566.64 fps [ETA  unknown] [K   4246F[K    631F[K     65F[K     72F[K    143F[K     35F[K     43F[K     55F[K     40F[K     33F[K[KPass 1/1 frame   10/10      5363B    4290b/f  128571b/s 6992891 us (1.43 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 1531281.00 us -> 21.9 % 
-Cumulative Time in Inverse Transform Stage: 175684.00 us -> 2.5 % 
-Total Time in Transform Stage: 1706965.00 us -> 24.4 % 
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/HD/720p50_parkrun_ter.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   44702 us 44.74 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   45189 us 66.39 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   45668 us 87.59 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   46141 us 108.36 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   46628 us 128.68 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   47108 us 148.59 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   47593 us 168.09 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   48093 us 187.14 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   48573 us 205.88 fps [ETA  unknown] [K 501656F[K 782127F[K 492802F[K 409312F[K 493573F[K 404953F[K 439092F[K 378478F[K 224715F[K 405113F[K[KPass 1/1 frame   10/10   4531821B 3625456b/f 181272800b/s  531478 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 39510785.00 us -> 7.4 % 
-Cumulative Time in Inverse Transform Stage: 23541813.00 us -> 4.4 % 
-Total Time in Transform Stage: 63052598.00 us -> 11.9 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   44952 us 44.49 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   45451 us 66.01 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   45939 us 87.07 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   46489 us 107.55 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   46933 us 127.84 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   47395 us 147.69 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   47850 us 167.19 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   48324 us 186.24 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   48782 us 204.99 fps [ETA  unknown] [K 179605F[K 391260F[K 183937F[K 130065F[K 184962F[K 126902F[K 142288F[K 107786F[K  55905F[K 117770F[K[KPass 1/1 frame   10/10   1620480B 1296384b/f 64819200b/s  471873 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 32985174.00 us -> 7.0 % 
-Cumulative Time in Inverse Transform Stage: 16647695.00 us -> 3.5 % 
-Total Time in Transform Stage: 49632869.00 us -> 10.5 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   44557 us 44.89 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   45045 us 66.60 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   45501 us 87.91 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   45961 us 108.79 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   46426 us 129.24 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   46899 us 149.26 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   47356 us 168.93 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   47823 us 188.19 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   48371 us 206.74 fps [ETA  unknown] [K    152F[K  58804F[K  10666F[K   2357F[K   9936F[K   1934F[K   4789F[K   1319F[K     63F[K   1457F[K[KPass 1/1 frame   10/10     91477B   73181b/f 3659050b/s  299532 ms (0.03 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 29510426.00 us -> 9.9 % 
-Cumulative Time in Inverse Transform Stage: 31198679.00 us -> 10.4 % 
-Total Time in Transform Stage: 60709105.00 us -> 20.3 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   44932 us 44.51 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   45425 us 66.04 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   45903 us 87.14 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   46391 us 107.78 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   46872 us 128.01 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   47344 us 147.85 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   47809 us 167.33 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   48282 us 186.40 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   48760 us 205.09 fps [ETA  unknown] [K 515493F[K 790705F[K 502906F[K 420156F[K 506481F[K 416892F[K 451524F[K 388060F[K 287110F[K 416969F[K[KPass 1/1 frame   10/10   4696296B 3757036b/f 187851800b/s  480699 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 27693742.00 us -> 5.8 % 
-Cumulative Time in Inverse Transform Stage: 10611826.00 us -> 2.2 % 
-Total Time in Transform Stage: 38305568.00 us -> 8.0 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   44345 us 45.10 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   44816 us 66.94 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   45282 us 88.34 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   45752 us 109.28 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   46220 us 129.81 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   46703 us 149.88 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   47174 us 169.58 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   47640 us 188.92 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   48102 us 207.89 fps [ETA  unknown] [K 190162F[K 402109F[K 188723F[K 134350F[K 190251F[K 131152F[K 147466F[K 111016F[K  65624F[K 121407F[K[KPass 1/1 frame   10/10   1682260B 1345808b/f 67290400b/s  446167 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 23816370.00 us -> 5.3 % 
-Cumulative Time in Inverse Transform Stage: 11059581.00 us -> 2.5 % 
-Total Time in Transform Stage: 34875951.00 us -> 7.8 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   44340 us 45.11 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   44821 us 66.93 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   45411 us 88.08 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   45882 us 108.98 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   46350 us 129.45 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   46809 us 149.54 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   47278 us 169.21 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   47761 us 188.44 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   48229 us 207.34 fps [ETA  unknown] [K    161F[K  61676F[K  10939F[K   2290F[K  10127F[K   2031F[K   5063F[K   1449F[K     61F[K   1473F[K[KPass 1/1 frame   10/10     95270B   76216b/f 3810800b/s  295958 ms (0.03 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 22130099.00 us -> 7.5 % 
-Cumulative Time in Inverse Transform Stage: 32191844.00 us -> 10.9 % 
-Total Time in Transform Stage: 54321943.00 us -> 18.4 % 
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/HD/ducks_take_off_420_720p50.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   45058 us 44.39 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   45559 us 65.85 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   46049 us 86.86 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   46551 us 107.41 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   47050 us 127.52 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   47541 us 147.24 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   47997 us 166.68 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   48485 us 185.62 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   48979 us 204.17 fps [ETA  unknown] [K 763618F[K 985402F[K 411843F[K 365080F[K 462357F[K 362915F[K 410190F[K 334852F[K 289999F[K 362982F[K[KPass 1/1 frame   10/10   4749238B 3799390b/f 189969500b/s  578851 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 49729315.00 us -> 8.6 % 
-Cumulative Time in Inverse Transform Stage: 7743187.00 us -> 1.3 % 
-Total Time in Transform Stage: 57472502.00 us -> 9.9 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   44098 us 45.35 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   44572 us 67.31 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   45125 us 88.64 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   45573 us 109.71 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   46032 us 130.34 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   46555 us 150.36 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   47033 us 170.09 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   47551 us 189.27 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   48079 us 207.99 fps [ETA  unknown] [K 411788F[K 305298F[K  92654F[K  71411F[K 124652F[K  68251F[K  93059F[K  55323F[K  57285F[K  63103F[K[KPass 1/1 frame   10/10   1342824B 1074259b/f 53712950b/s  558048 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 51042352.00 us -> 9.1 % 
-Cumulative Time in Inverse Transform Stage: 31899882.00 us -> 5.7 % 
-Total Time in Transform Stage: 82942234.00 us -> 14.9 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   44920 us 44.52 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   45395 us 66.09 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   45854 us 87.23 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   46328 us 107.93 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   46789 us 128.24 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   47252 us 148.14 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   47714 us 167.67 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   48186 us 186.78 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   48640 us 205.59 fps [ETA  unknown] [K  38628F[K  24954F[K   3024F[K   2019F[K   7634F[K    911F[K   3239F[K    547F[K     60F[K    649F[K[KPass 1/1 frame   10/10     81665B   65332b/f 3266600b/s  358603 ms (0.03 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 40949634.00 us -> 11.4 % 
-Cumulative Time in Inverse Transform Stage: 53530866.00 us -> 14.9 % 
-Total Time in Transform Stage: 94480500.00 us -> 26.3 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   44484 us 44.96 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   44955 us 66.73 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   45417 us 88.07 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   45883 us 108.97 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   46366 us 129.41 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   46813 us 149.53 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   47261 us 169.27 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   47715 us 188.62 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   48180 us 207.56 fps [ETA  unknown] [K 768245F[K 1000655F[K 419340F[K 372041F[K 470115F[K 370312F[K 418648F[K 342193F[K 302061F[K 370321F[K[KPass 1/1 frame   10/10   4833931B 3867144b/f 193357200b/s  554807 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 36882959.00 us -> 6.6 % 
-Cumulative Time in Inverse Transform Stage: 5528998.00 us -> 1.0 % 
-Total Time in Transform Stage: 42411957.00 us -> 7.6 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   44026 us 45.43 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   44514 us 67.39 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   44974 us 88.94 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   45432 us 110.05 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   45895 us 130.73 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   46378 us 150.93 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   46845 us 170.78 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   47310 us 190.23 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   47774 us 209.32 fps [ETA  unknown] [K 419189F[K 324881F[K  97049F[K  74292F[K 130835F[K  71326F[K  96986F[K  57584F[K  59527F[K  66234F[K[KPass 1/1 frame   10/10   1397903B 1118322b/f 55916100b/s  462035 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 32053846.00 us -> 6.9 % 
-Cumulative Time in Inverse Transform Stage: 4926923.00 us -> 1.1 % 
-Total Time in Transform Stage: 36980769.00 us -> 8.0 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   43837 us 45.62 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   44316 us 67.70 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   44805 us 89.28 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   45256 us 110.48 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   45709 us 131.27 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   46167 us 151.62 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   46625 us 171.58 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   47086 us 191.14 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   47673 us 209.76 fps [ETA  unknown] [K  40908F[K  26769F[K   2970F[K   2110F[K   7777F[K    945F[K   3413F[K    586F[K     79F[K    607F[K[KPass 1/1 frame   10/10     86164B   68931b/f 3446550b/s  352705 ms (0.03 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 30847899.00 us -> 8.7 % 
-Cumulative Time in Inverse Transform Stage: 56061731.00 us -> 15.9 % 
-Total Time in Transform Stage: 86909630.00 us -> 24.6 % 
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/HD/720p50_shields_ter.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   43639 us 45.83 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   44134 us 67.97 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   44618 us 89.65 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   45118 us 110.82 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   45600 us 131.58 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   46080 us 151.91 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   46586 us 171.73 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   47060 us 191.25 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   47568 us 210.23 fps [ETA  unknown] [K 501656F[K 588273F[K 341214F[K 290988F[K 381935F[K 285826F[K 321813F[K 233049F[K 342174F[K 287540F[K[KPass 1/1 frame   10/10   3574468B 2859574b/f 142978700b/s  415320 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 33564327.00 us -> 8.1 % 
-Cumulative Time in Inverse Transform Stage: 21305572.00 us -> 5.1 % 
-Total Time in Transform Stage: 54869899.00 us -> 13.2 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   43940 us 45.52 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   44396 us 67.57 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   44850 us 89.19 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   45322 us 110.32 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   45789 us 131.04 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   46246 us 151.36 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   46708 us 171.28 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   47171 us 190.80 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   47637 us 209.92 fps [ETA  unknown] [K 179605F[K 234420F[K  54143F[K  28428F[K  73255F[K  25439F[K  34098F[K   7276F[K  76136F[K   9785F[K[KPass 1/1 frame   10/10    722585B  578068b/f 28903400b/s  335597 ms (0.03 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 28907033.00 us -> 8.6 % 
-Cumulative Time in Inverse Transform Stage: 25185060.00 us -> 7.5 % 
-Total Time in Transform Stage: 54092093.00 us -> 16.1 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   44738 us 44.70 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   45215 us 66.35 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   45688 us 87.55 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   46259 us 108.09 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   46798 us 128.21 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   47341 us 147.86 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   47900 us 167.01 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   48443 us 185.79 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   48994 us 204.11 fps [ETA  unknown] [K    152F[K  27192F[K   1056F[K    374F[K    645F[K    309F[K    410F[K    235F[K     83F[K    320F[K[KPass 1/1 frame   10/10     30776B   24620b/f 1231000b/s  142882 ms (0.07 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 15432737.00 us -> 10.8 % 
-Cumulative Time in Inverse Transform Stage: 18748149.00 us -> 13.1 % 
-Total Time in Transform Stage: 34180886.00 us -> 23.9 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   43403 us 46.08 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   43876 us 68.37 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   44341 us 90.21 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   44804 us 111.60 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   45263 us 132.56 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   45730 us 153.07 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   46198 us 173.17 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   46658 us 192.89 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   47116 us 212.24 fps [ETA  unknown] [K 515493F[K 598949F[K 357938F[K 303045F[K 395794F[K 296666F[K 334246F[K 243207F[K 356589F[K 298878F[K[KPass 1/1 frame   10/10   3700805B 2960644b/f 148032200b/s  351903 ms (0.03 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 21767717.00 us -> 6.2 % 
-Cumulative Time in Inverse Transform Stage: 7366210.00 us -> 2.1 % 
-Total Time in Transform Stage: 29133927.00 us -> 8.3 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   43688 us 45.78 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   44179 us 67.91 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   44640 us 89.61 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   45099 us 110.87 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   45561 us 131.69 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   46018 us 152.11 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   46470 us 172.15 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   46947 us 191.71 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   47404 us 210.95 fps [ETA  unknown] [K 190162F[K 243211F[K  56852F[K  29606F[K  76696F[K  26480F[K  35899F[K   8810F[K  79547F[K  10720F[K[KPass 1/1 frame   10/10    757983B  606386b/f 30319300b/s  357575 ms (0.03 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 23773201.00 us -> 6.6 % 
-Cumulative Time in Inverse Transform Stage: 30697155.00 us -> 8.6 % 
-Total Time in Transform Stage: 54470356.00 us -> 15.2 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   43171 us 46.33 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   43651 us 68.73 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   44105 us 90.69 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   44560 us 112.21 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   45023 us 133.27 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   45470 us 153.95 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   45929 us 174.18 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   46385 us 194.03 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   46845 us 213.47 fps [ETA  unknown] [K    161F[K  28992F[K   1118F[K    372F[K    643F[K    313F[K    360F[K    217F[K     91F[K    221F[K[KPass 1/1 frame   10/10     32488B   25990b/f 1299500b/s  134006 ms (0.07 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 10885186.00 us -> 8.1 % 
-Cumulative Time in Inverse Transform Stage: 18218193.00 us -> 13.6 % 
-Total Time in Transform Stage: 29103379.00 us -> 21.7 % 
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/FHD/dinner_1080p30.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72891 us 27.44 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   74183 us 40.44 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75410 us 53.04 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76643 us 65.24 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   77908 us 77.01 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79156 us 88.43 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80403 us 99.50 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   81650 us 110.23 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   82888 us 120.64 fps [ETA  unknown] [K 227050F[K 165280F[K  12978F[K  12875F[K  26438F[K  11969F[K  17319F[K  10185F[K  86210F[K  26764F[K[KPass 1/1 frame   10/10    597068B  477654b/f 14329620b/s  261457 ms (0.04 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 26339020.00 us -> 10.1 % 
-Cumulative Time in Inverse Transform Stage: 38361973.00 us -> 14.7 % 
-Total Time in Transform Stage: 64700993.00 us -> 24.7 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72834 us 27.46 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   74135 us 40.47 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75436 us 53.03 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76746 us 65.15 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   78053 us 76.87 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79351 us 88.22 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80647 us 99.20 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   81930 us 109.85 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83268 us 120.09 fps [ETA  unknown] [K  25309F[K  18889F[K   2376F[K   2690F[K   4084F[K   2636F[K   2837F[K   2461F[K  10568F[K   6150F[K[KPass 1/1 frame   10/10     78000B   62400b/f 1872000b/s  135833 ms (0.07 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 11380786.00 us -> 8.4 % 
-Cumulative Time in Inverse Transform Stage: 13353299.00 us -> 9.8 % 
-Total Time in Transform Stage: 24734085.00 us -> 18.2 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72693 us 27.51 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   73995 us 40.54 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75317 us 53.11 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76601 us 65.27 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   77917 us 77.01 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79222 us 88.36 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80512 us 99.36 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   81804 us 110.02 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83116 us 120.31 fps [ETA  unknown] [K   2714F[K   1609F[K    320F[K    388F[K    536F[K    371F[K    502F[K    382F[K    181F[K   1125F[K[KPass 1/1 frame   10/10      8128B    6502b/f  195060b/s   95112 ms (0.11 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 5718612.00 us -> 6.0 % 
-Cumulative Time in Inverse Transform Stage: 5217871.00 us -> 5.5 % 
-Total Time in Transform Stage: 10936483.00 us -> 11.5 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   73270 us 27.30 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   74562 us 40.23 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75842 us 52.74 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   77123 us 64.83 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   78401 us 76.53 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79709 us 87.82 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   81021 us 98.74 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   82283 us 109.38 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83574 us 119.65 fps [ETA  unknown] [K 243231F[K 181212F[K  15024F[K  14456F[K  28948F[K  13861F[K  18365F[K  12828F[K  98524F[K  36148F[K[KPass 1/1 frame   10/10    662597B  530077b/f 15902310b/s  257735 ms (0.04 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 19837985.00 us -> 7.7 % 
-Cumulative Time in Inverse Transform Stage: 36327723.00 us -> 14.1 % 
-Total Time in Transform Stage: 56165708.00 us -> 21.8 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72620 us 27.54 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   73950 us 40.57 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75260 us 53.15 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76567 us 65.30 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   77879 us 77.04 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79207 us 88.38 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80525 us 99.35 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   81913 us 109.87 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83218 us 120.17 fps [ETA  unknown] [K  34008F[K  19917F[K   2390F[K   2919F[K   4483F[K   2739F[K   3075F[K   2562F[K  11384F[K   7571F[K[KPass 1/1 frame   10/10     91048B   72838b/f 2185140b/s  143027 ms (0.07 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 9206349.00 us -> 6.4 % 
-Cumulative Time in Inverse Transform Stage: 14707270.00 us -> 10.3 % 
-Total Time in Transform Stage: 23913619.00 us -> 16.7 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72587 us 27.55 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   73893 us 40.60 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75204 us 53.19 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76605 us 65.27 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   77887 us 77.03 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79189 us 88.40 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80505 us 99.37 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   81812 us 110.01 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83135 us 120.29 fps [ETA  unknown] [K   2773F[K   1636F[K    340F[K    417F[K    580F[K    387F[K    515F[K    410F[K    185F[K   1174F[K[KPass 1/1 frame   10/10      8417B    6733b/f  201990b/s   96754 ms (0.10 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 4308626.00 us -> 4.5 % 
-Cumulative Time in Inverse Transform Stage: 5189159.00 us -> 5.4 % 
-Total Time in Transform Stage: 9497785.00 us -> 9.8 % 
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/FHD/factory_1080p30.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72655 us 27.53 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   73894 us 40.60 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75311 us 53.11 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76651 us 65.23 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   77958 us 76.96 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79224 us 88.36 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80474 us 99.41 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   81714 us 110.14 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   82964 us 120.53 fps [ETA  unknown] [K 982795F[K 674475F[K 258132F[K 211888F[K 335921F[K 205612F[K 277362F[K 186052F[K 340710F[K 223540F[K[KPass 1/1 frame   10/10   3696487B 2957189b/f 88715670b/s  667140 ms (0.01 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 57631016.00 us -> 8.6 % 
-Cumulative Time in Inverse Transform Stage: 59551849.00 us -> 8.9 % 
-Total Time in Transform Stage: 117182865.00 us -> 17.6 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   73159 us 27.34 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   74436 us 40.30 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75693 us 52.85 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   77032 us 64.91 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   78315 us 76.61 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79609 us 87.93 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80876 us 98.92 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   82144 us 109.56 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83438 us 119.85 fps [ETA  unknown] [K 437881F[K 147582F[K  22195F[K  18562F[K  39234F[K  18044F[K  25413F[K  14366F[K  42907F[K  17262F[K[KPass 1/1 frame   10/10    783446B  626756b/f 18802680b/s  553426 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 47345506.00 us -> 8.6 % 
-Cumulative Time in Inverse Transform Stage: 73512537.00 us -> 13.3 % 
-Total Time in Transform Stage: 120858043.00 us -> 21.8 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   73271 us 27.30 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   74590 us 40.22 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75873 us 52.72 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   77185 us 64.78 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   78545 us 76.39 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79827 us 87.69 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   81119 us 98.62 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   82430 us 109.18 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83741 us 119.42 fps [ETA  unknown] [K  30736F[K   6521F[K    773F[K    907F[K   1749F[K    943F[K   1412F[K    745F[K    104F[K    773F[K[KPass 1/1 frame   10/10     44663B   35730b/f 1071900b/s  300306 ms (0.03 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 31737585.00 us -> 10.6 % 
-Cumulative Time in Inverse Transform Stage: 36655551.00 us -> 12.2 % 
-Total Time in Transform Stage: 68393136.00 us -> 22.8 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72931 us 27.42 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   74191 us 40.44 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75472 us 53.00 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76770 us 65.13 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   78069 us 76.86 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79380 us 88.18 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80693 us 99.14 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   82065 us 109.67 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83355 us 119.97 fps [ETA  unknown] [K 995059F[K 698248F[K 268236F[K 220532F[K 347900F[K 214556F[K 289952F[K 194975F[K 348866F[K 231547F[K[KPass 1/1 frame   10/10   3809871B 3047896b/f 91436880b/s  665044 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 43940541.00 us -> 6.6 % 
-Cumulative Time in Inverse Transform Stage: 56152172.00 us -> 8.4 % 
-Total Time in Transform Stage: 100092713.00 us -> 15.1 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   74934 us 26.69 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   76250 us 39.34 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   77533 us 51.59 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   79047 us 63.25 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   80374 us 74.65 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   81721 us 85.66 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   83038 us 96.34 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   84585 us 106.40 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   86160 us 116.06 fps [ETA  unknown] [K 446834F[K 157269F[K  22766F[K  19611F[K  41155F[K  19185F[K  26878F[K  15155F[K  43009F[K  18473F[K[KPass 1/1 frame   10/10    810335B  648268b/f 19448040b/s  571854 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 37605563.00 us -> 6.6 % 
-Cumulative Time in Inverse Transform Stage: 77008423.00 us -> 13.5 % 
-Total Time in Transform Stage: 114613986.00 us -> 20.0 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   80680 us 24.79 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   81932 us 36.62 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   83214 us 48.07 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   84504 us 59.17 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   85815 us 69.92 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   87104 us 80.36 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   88375 us 90.52 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   89660 us 100.38 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   90907 us 110.00 fps [ETA  unknown] [K  31888F[K   6936F[K    805F[K    920F[K   1707F[K    923F[K   1400F[K    800F[K    174F[K    797F[K[KPass 1/1 frame   10/10     46350B   37080b/f 1112400b/s  295638 ms (0.03 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 23368812.00 us -> 7.9 % 
-Cumulative Time in Inverse Transform Stage: 37309390.00 us -> 12.6 % 
-Total Time in Transform Stage: 60678202.00 us -> 20.5 % 
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/FHD/park_joy_1080p50.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72736 us 27.50 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   74046 us 40.52 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75258 us 53.15 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76509 us 65.35 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   77768 us 77.15 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79025 us 88.58 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80452 us 99.44 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   81936 us 109.84 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83152 us 120.26 fps [ETA  unknown] [K 1545314F[K 1708749F[K 738942F[K 624143F[K 840944F[K 605648F[K 688514F[K 552430F[K 548970F[K 604566F[K[KPass 1/1 frame   10/10   8458220B 6766576b/f 338328800b/s  778324 ms (0.01 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 62589578.00 us -> 8.0 % 
-Cumulative Time in Inverse Transform Stage: 32418828.00 us -> 4.2 % 
-Total Time in Transform Stage: 95008406.00 us -> 12.2 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72814 us 27.47 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   74106 us 40.48 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75341 us 53.09 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76615 us 65.26 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   77888 us 77.03 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79159 us 88.43 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80443 us 99.45 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   81722 us 110.13 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83028 us 120.44 fps [ETA  unknown] [K 771690F[K 487064F[K 152136F[K 119190F[K 184492F[K 103687F[K 120467F[K  82846F[K  49085F[K  93504F[K[KPass 1/1 frame   10/10   2164161B 1731328b/f 86566400b/s  879714 ms (0.01 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 74422933.00 us -> 8.5 % 
-Cumulative Time in Inverse Transform Stage: 82482744.00 us -> 9.4 % 
-Total Time in Transform Stage: 156905677.00 us -> 17.8 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72977 us 27.41 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   74286 us 40.38 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75599 us 52.91 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76917 us 65.01 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   78223 us 76.70 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79531 us 88.02 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80825 us 98.98 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   82175 us 109.52 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83484 us 119.78 fps [ETA  unknown] [K  77358F[K  40257F[K   6927F[K   4428F[K  11521F[K   3371F[K   5735F[K   2636F[K     58F[K   3396F[K[KPass 1/1 frame   10/10    155687B  124549b/f 6227450b/s  489659 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 47070673.00 us -> 9.6 % 
-Cumulative Time in Inverse Transform Stage: 58697959.00 us -> 12.0 % 
-Total Time in Transform Stage: 105768632.00 us -> 21.6 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72465 us 27.60 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   73763 us 40.67 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75089 us 53.27 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76333 us 65.50 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   77635 us 77.28 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   78936 us 88.68 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80230 us 99.71 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   81515 us 110.41 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   82830 us 120.73 fps [ETA  unknown] [K 1558121F[K 1757389F[K 768683F[K 647487F[K 863214F[K 629146F[K 717560F[K 576347F[K 565297F[K 630847F[K[KPass 1/1 frame   10/10   8714091B 6971272b/f 348563600b/s  743848 ms (0.01 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 46315402.00 us -> 6.2 % 
-Cumulative Time in Inverse Transform Stage: 25530464.00 us -> 3.4 % 
-Total Time in Transform Stage: 71845866.00 us -> 9.7 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   73179 us 27.33 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   74474 us 40.28 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75788 us 52.78 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   77102 us 64.85 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   78400 us 76.53 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79679 us 87.85 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80982 us 98.79 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   82272 us 109.39 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   83575 us 119.65 fps [ETA  unknown] [K 786218F[K 502518F[K 155019F[K 122837F[K 186811F[K 106172F[K 123641F[K  85407F[K  43350F[K  96338F[K[KPass 1/1 frame   10/10   2208311B 1766648b/f 88332400b/s  885328 ms (0.01 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 56912613.00 us -> 6.4 % 
-Cumulative Time in Inverse Transform Stage: 86199079.00 us -> 9.7 % 
-Total Time in Transform Stage: 143111692.00 us -> 16.2 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B   72622 us 27.54 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B   73906 us 40.59 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B   75194 us 53.20 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B   76594 us 65.28 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B   77834 us 77.09 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B   79103 us 88.49 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B   80378 us 99.53 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B   81627 us 110.26 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B   82903 us 120.62 fps [ETA  unknown] [K  80281F[K  43335F[K   7200F[K   4587F[K  12187F[K   3601F[K   5893F[K   2668F[K     92F[K   3580F[K[KPass 1/1 frame   10/10    163424B  130739b/f 6536950b/s  481647 ms (0.02 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 35179343.00 us -> 7.3 % 
-Cumulative Time in Inverse Transform Stage: 59148998.00 us -> 12.3 % 
-Total Time in Transform Stage: 94328341.00 us -> 19.6 % 
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/UHD/old_town_cross_2160p50.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  210507 us 9.50 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  214371 us 13.99 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  218389 us 18.32 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  222232 us 22.50 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  226103 us 26.54 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  230037 us 30.43 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  233996 us 34.19 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  237840 us 37.84 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  241896 us 41.34 fps [ETA  unknown] [K 7075755F[K 9451456F[K 4552788F[K 4143086F[K 4964094F[K 4138609F[K 4507592F[K 4040224F[K 4118072F[K 4168047F[K[KPass 1/1 frame   10/10   51159723B 40927778b/f 2046388900b/s 4246585 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 366492369.00 us -> 8.6 % 
-Cumulative Time in Inverse Transform Stage: 139138980.00 us -> 3.3 % 
-Total Time in Transform Stage: 505631349.00 us -> 11.9 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  207597 us 9.63 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  211459 us 14.19 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  215301 us 18.58 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  219187 us 22.81 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  223047 us 26.90 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  227072 us 30.83 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  230908 us 34.65 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  234726 us 38.34 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  238556 us 41.92 fps [ETA  unknown] [K 4133925F[K 2690987F[K 1179898F[K 800697F[K 1556925F[K 801372F[K 1146601F[K 743586F[K 1381230F[K 794846F[K[KPass 1/1 frame   10/10   15230067B 12184053b/f 609202650b/s 4124909 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 367122488.00 us -> 8.9 % 
-Cumulative Time in Inverse Transform Stage: 72222645.00 us -> 1.8 % 
-Total Time in Transform Stage: 439345133.00 us -> 10.7 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  207785 us 9.63 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  211632 us 14.18 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  215464 us 18.56 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  219296 us 22.80 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  223111 us 26.89 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  226969 us 30.84 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  230779 us 34.67 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  234566 us 38.37 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  238415 us 41.94 fps [ETA  unknown] [K  87267F[K   6407F[K    471F[K    374F[K   1366F[K    403F[K    765F[K    315F[K    267F[K    269F[K[KPass 1/1 frame   10/10     97904B   78323b/f 3916150b/s 1205879 ms (0.01 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 180530533.00 us -> 15.0 % 
-Cumulative Time in Inverse Transform Stage: 102527675.00 us -> 8.5 % 
-Total Time in Transform Stage: 283058208.00 us -> 23.5 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  210293 us 9.51 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  214203 us 14.01 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  218264 us 18.33 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  222234 us 22.50 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  226275 us 26.52 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  230375 us 30.39 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  234441 us 34.12 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  238315 us 37.77 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  242310 us 41.27 fps [ETA  unknown] [K 7159353F[K 9603026F[K 4591249F[K 4218138F[K 5050744F[K 4219932F[K 4548177F[K 4122464F[K 4161898F[K 4242852F[K[KPass 1/1 frame   10/10   51917833B 41534266b/f 2076713300b/s 4084543 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 272409634.00 us -> 6.7 % 
-Cumulative Time in Inverse Transform Stage: 147788808.00 us -> 3.6 % 
-Total Time in Transform Stage: 420198442.00 us -> 10.3 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  209853 us 9.53 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  213780 us 14.03 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  217726 us 18.37 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  221605 us 22.56 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  225519 us 26.61 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  229466 us 30.51 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  233357 us 34.28 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  237244 us 37.94 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  241163 us 41.47 fps [ETA  unknown] [K 4210203F[K 2827906F[K 1256726F[K 864250F[K 1637553F[K 862757F[K 1227647F[K 813601F[K 1404316F[K 873750F[K[KPass 1/1 frame   10/10   15978709B 12782967b/f 639148350b/s 3833344 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 268027377.00 us -> 7.0 % 
-Cumulative Time in Inverse Transform Stage: 40829232.00 us -> 1.1 % 
-Total Time in Transform Stage: 308856609.00 us -> 8.1 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  210441 us 9.50 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  214281 us 14.00 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  218160 us 18.34 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  221988 us 22.52 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  225811 us 26.57 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  229938 us 30.44 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  233792 us 34.22 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  237641 us 37.87 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  241531 us 41.40 fps [ETA  unknown] [K  91154F[K   6724F[K    507F[K    400F[K   1259F[K    349F[K    809F[K    318F[K    306F[K    265F[K[KPass 1/1 frame   10/10    102091B   81672b/f 4083600b/s 1187598 ms (0.01 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 133994946.00 us -> 11.3 % 
-Cumulative Time in Inverse Transform Stage: 110271697.00 us -> 9.3 % 
-Total Time in Transform Stage: 244266643.00 us -> 20.6 % 
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/UHD/in_to_tree_2160p50.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  235637 us 8.49 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  239500 us 12.53 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  243563 us 16.42 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  247384 us 20.21 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  251495 us 23.86 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  255377 us 27.41 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  259428 us 30.84 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  263305 us 34.18 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  267220 us 37.42 fps [ETA  unknown] [K 6298125F[K 8125199F[K 3874057F[K 3392190F[K 4300140F[K 3250364F[K 3823412F[K 3050936F[K 3385299F[K 3328013F[K[KPass 1/1 frame   10/10   42827735B 34262188b/f 1713109400b/s 3459228 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 303513433.00 us -> 8.8 % 
-Cumulative Time in Inverse Transform Stage: 115430596.00 us -> 3.3 % 
-Total Time in Transform Stage: 418944029.00 us -> 12.1 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  209030 us 9.57 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  213076 us 14.08 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  216930 us 18.44 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  221010 us 22.62 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  224856 us 26.68 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  229032 us 30.56 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  232877 us 34.35 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  236819 us 38.00 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  240662 us 41.55 fps [ETA  unknown] [K 3309707F[K 2151195F[K 829155F[K 591107F[K 1170484F[K 559657F[K 808460F[K 521951F[K 823908F[K 546331F[K[KPass 1/1 frame   10/10   11311955B 9049564b/f 452478200b/s 3771119 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 364018680.00 us -> 9.7 % 
-Cumulative Time in Inverse Transform Stage: 324676781.00 us -> 8.6 % 
-Total Time in Transform Stage: 688695461.00 us -> 18.3 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  208590 us 9.59 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  212412 us 14.12 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  216233 us 18.50 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  220081 us 22.72 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  223954 us 26.79 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  227883 us 30.72 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  231854 us 34.50 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  236563 us 38.04 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  241194 us 41.46 fps [ETA  unknown] [K  63411F[K   6297F[K    516F[K    430F[K   1037F[K    453F[K    707F[K    345F[K     96F[K    295F[K[KPass 1/1 frame   10/10     73587B   58869b/f 2943450b/s  987640 ms (0.01 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 148678175.00 us -> 15.1 % 
-Cumulative Time in Inverse Transform Stage: 81187103.00 us -> 8.2 % 
-Total Time in Transform Stage: 229865278.00 us -> 23.3 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  208772 us 9.58 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  212657 us 14.11 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  216484 us 18.48 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  220342 us 22.69 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  224139 us 26.77 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  228260 us 30.67 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  232083 us 34.47 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  235986 us 38.14 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  239856 us 41.69 fps [ETA  unknown] [K 6368985F[K 8326476F[K 3939668F[K 3464625F[K 4425972F[K 3333533F[K 3893227F[K 3124685F[K 3436407F[K 3410993F[K[KPass 1/1 frame   10/10   43724571B 34979656b/f 1748982800b/s 3422712 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 230473660.00 us -> 6.7 % 
-Cumulative Time in Inverse Transform Stage: 137687216.00 us -> 4.0 % 
-Total Time in Transform Stage: 368160876.00 us -> 10.8 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  210040 us 9.52 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  213898 us 14.03 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  217991 us 18.35 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  221876 us 22.54 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  225910 us 26.56 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  229767 us 30.47 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  233711 us 34.23 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  237586 us 37.88 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  241430 us 41.42 fps [ETA  unknown] [K 3386474F[K 2230752F[K 865788F[K 619887F[K 1209912F[K 589371F[K 842205F[K 551598F[K 832270F[K 577728F[K[KPass 1/1 frame   10/10   11705985B 9364788b/f 468239400b/s 3764604 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 278857830.00 us -> 7.4 % 
-Cumulative Time in Inverse Transform Stage: 343163788.00 us -> 9.1 % 
-Total Time in Transform Stage: 622021618.00 us -> 16.5 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  210777 us 9.49 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  214814 us 13.97 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  218646 us 18.29 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  222503 us 22.47 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  226319 us 26.51 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  230256 us 30.40 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  234054 us 34.18 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  237907 us 37.83 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  241768 us 41.36 fps [ETA  unknown] [K  69592F[K   6685F[K    677F[K    439F[K   1088F[K    352F[K    649F[K    470F[K    139F[K    328F[K[KPass 1/1 frame   10/10     80419B   64335b/f 3216750b/s  972761 ms (0.01 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 110546782.00 us -> 11.4 % 
-Cumulative Time in Inverse Transform Stage: 86268400.00 us -> 8.9 % 
-Total Time in Transform Stage: 196815182.00 us -> 20.2 % 
-
-[1m[31mEncoding Test: /run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/UHD/crowd_run_2160p50.y4m
-[1m[31mRegular Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  208866 us 9.58 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  212719 us 14.10 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  216627 us 18.46 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  220496 us 22.68 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  224348 us 26.74 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  228218 us 30.67 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  232101 us 34.47 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  235945 us 38.14 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  239798 us 41.70 fps [ETA  unknown] [K 6521738F[K 8313190F[K 3823767F[K 3451246F[K 4253669F[K 3322716F[K 3668540F[K 3048232F[K 3284486F[K 3326590F[K[KPass 1/1 frame   10/10   43014174B 34411339b/f 1720566950b/s 4677987 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 389817842.00 us -> 8.3 % 
-Cumulative Time in Inverse Transform Stage: 124494318.00 us -> 2.7 % 
-Total Time in Transform Stage: 514312160.00 us -> 11.0 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  210717 us 9.49 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  214784 us 13.97 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  218645 us 18.29 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  222632 us 22.46 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  226490 us 26.49 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  230555 us 30.36 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  234453 us 34.12 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  238287 us 37.77 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  242102 us 41.30 fps [ETA  unknown] [K 3489136F[K 2056004F[K 680986F[K 493058F[K 1020477F[K 450572F[K 611888F[K 330882F[K 821720F[K 399218F[K[KPass 1/1 frame   10/10   10353941B 8283152b/f 414157600b/s 4342503 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 390558388.00 us -> 9.0 % 
-Cumulative Time in Inverse Transform Stage: 186559792.00 us -> 4.3 % 
-Total Time in Transform Stage: 577118180.00 us -> 13.3 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  211902 us 9.44 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  215704 us 13.91 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  219501 us 18.22 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  223348 us 22.39 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  227204 us 26.41 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  231285 us 30.27 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  235127 us 34.02 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  238965 us 37.66 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  242807 us 41.18 fps [ETA  unknown] [K 196745F[K 111596F[K  19475F[K  13519F[K  30663F[K  11443F[K  18511F[K   9963F[K    172F[K  10811F[K[KPass 1/1 frame   10/10    422898B  338318b/f 16915900b/s 2157198 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 241018885.00 us -> 11.2 % 
-Cumulative Time in Inverse Transform Stage: 275600080.00 us -> 12.8 % 
-Total Time in Transform Stage: 516618965.00 us -> 23.9 % 
-
-[1m[34mButterfly Multiplication Transform Encoding[0m
-
-[1mHigh Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  210039 us 9.52 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  213910 us 14.02 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  217787 us 18.37 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  221725 us 22.55 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  225652 us 26.59 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  229581 us 30.49 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  233338 us 34.29 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  237171 us 37.95 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  240971 us 41.50 fps [ETA  unknown] [K 6563210F[K 8477580F[K 3889433F[K 3532847F[K 4343197F[K 3406814F[K 3740929F[K 3128405F[K 3350177F[K 3399567F[K[KPass 1/1 frame   10/10   43832159B 35065727b/f 1753286350b/s 4534239 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   1   : ====                                    	    1 (  4.76%)
-   2   : ====                                    	    1 (  4.76%)
-   3   : ====                                    	    1 (  4.76%)
-   4   : ========                                	    2 (  9.52%)
-   5   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 294593658.00 us -> 6.5 % 
-Cumulative Time in Inverse Transform Stage: 140983071.00 us -> 3.1 % 
-Total Time in Transform Stage: 435576729.00 us -> 9.6 % 
-
-[1mMedium Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  211680 us 9.45 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  215596 us 13.91 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  219346 us 18.24 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  223249 us 22.40 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  227054 us 26.43 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  231172 us 30.28 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  234971 us 34.05 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  238788 us 37.69 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  242611 us 41.22 fps [ETA  unknown] [K 3543216F[K 2145361F[K 708818F[K 511655F[K 1059862F[K 466288F[K 637310F[K 342202F[K 833239F[K 410269F[K[KPass 1/1 frame   10/10   10658220B 8526576b/f 426328800b/s 4387037 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-   6   : ====                                    	    1 (  4.76%)
-  13   : ====                                    	    1 (  4.76%)
-  18   : ====                                    	    1 (  4.76%)
-  23   : ========                                	    2 (  9.52%)
-  25   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 308012009.00 us -> 7.0 % 
-Cumulative Time in Inverse Transform Stage: 222484215.00 us -> 5.1 % 
-Total Time in Transform Stage: 530496224.00 us -> 12.1 % 
-
-[1mLow Quality[0m
-
-Pass 1/1 frame    1/0          0B       0 us 0.00 fpm [ETA  unknown] [KPass 1/1 frame    2/0          0B  213039 us 9.39 fps [ETA  unknown] [KPass 1/1 frame    3/0          0B  216959 us 13.83 fps [ETA  unknown] [KPass 1/1 frame    4/0          0B  221072 us 18.09 fps [ETA  unknown] [KPass 1/1 frame    5/0          0B  225827 us 22.14 fps [ETA  unknown] [KPass 1/1 frame    6/0          0B  229779 us 26.11 fps [ETA  unknown] [KPass 1/1 frame    7/0          0B  233676 us 29.96 fps [ETA  unknown] [KPass 1/1 frame    8/0          0B  237664 us 33.66 fps [ETA  unknown] [KPass 1/1 frame    9/0          0B  241557 us 37.26 fps [ETA  unknown] [KPass 1/1 frame   10/0          0B  245414 us 40.75 fps [ETA  unknown] [K 204735F[K 116453F[K  19983F[K  14449F[K  32237F[K  12140F[K  18925F[K  10350F[K    358F[K  11558F[K[KPass 1/1 frame   10/10    441188B  352950b/f 17647500b/s 2137868 ms (0.00 fps)[K
-
-Quantizer Selection:
-   0   : ========================================	   10 ( 47.62%)
-  42   : ====                                    	    1 (  4.76%)
-  51   : ====                                    	    1 (  4.76%)
-  56   : ====                                    	    1 (  4.76%)
-  58   : ========                                	    2 (  9.52%)
-  60   : ========================                	    6 ( 28.57%)
-
-Cumulative Time in Forward Transform Stage: 181747089.00 us -> 8.5 % 
-Cumulative Time in Inverse Transform Stage: 285450299.00 us -> 13.4 % 
-Total Time in Transform Stage: 467197388.00 us -> 21.9 % 
