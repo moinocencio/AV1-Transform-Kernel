@@ -8,34 +8,33 @@ use IEEE.NUMERIC_STD.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity DCT4 is
-    generic(K   : positive := 8);
+    generic(K   : positive := 8);      -- Number of bits per pixel
     port(   -- Data Inputs
-            dataIn0     : in    std_logic_vector(K - 1 downto 0);
-            dataIn1     : in    std_logic_vector(K - 1 downto 0);
-            dataIn2     : in    std_logic_vector(K - 1 downto 0);
-            dataIn3     : in    std_logic_vector(K - 1 downto 0);
+            dataIn0     : in    std_logic_vector((K+2) - 1 downto 0);
+            dataIn1     : in    std_logic_vector((K+2) - 1 downto 0);
+            dataIn2     : in    std_logic_vector((K+2) - 1 downto 0);
+            dataIn3     : in    std_logic_vector((K+2) - 1 downto 0);
             -- Control Inputs
             res         : in    std_logic;
             en          : in    std_logic;
             clk         : in    std_logic;
             -- Data Outputs
-            dataOut0    : out    std_logic_vector(K - 1 downto 0);
-            dataOut1    : out    std_logic_vector(K - 1 downto 0);
-            dataOut2    : out    std_logic_vector(K - 1 downto 0);
-            dataOut3    : out    std_logic_vector(K - 1 downto 0);
+            dataOut0    : out    std_logic_vector((K+7) - 1 downto 0);
+            dataOut1    : out    std_logic_vector((K+7) - 1 downto 0);
+            dataOut2    : out    std_logic_vector((K+7) - 1 downto 0);
+            dataOut3    : out    std_logic_vector((K+7) - 1 downto 0);
             -- Control Outputs
             validOut    : out   std_logic
     );
 end DCT4;
 
 architecture Behavioral of DCT4 is
-    signal s_dataIn0, s_dataIn1, s_dataIn2, s_dataIn3, s_stg1Out0, s_stg1Out1, s_stg1Out2, s_stg1Out3       :   signed(K downto 0) := (others => '0');
-    signal s_stg2M0, s_stg2M1, s_stg2M21, s_stg2M22, s_stg2M31, s_stg2M32, s_dataOut0, s_dataOut1, s_dataOut2, s_dataOut3       :   signed(2*K downto 0) := (others => '0');
+    signal s_dataIn0, s_dataIn1, s_dataIn2, s_dataIn3           :   signed((K+2) - 1 downto 0) := (others => '0');
+    signal s_stg1Out0, s_stg1Out1, s_stg1Out2, s_stg1Out3       :   signed((K+3) - 1 downto 0) := (others => '0');
+    signal s_stg2M0, s_stg2M1, s_stg2M21, s_stg2M22, s_stg2M31, s_stg2M32       :   signed((K+14) - 1 downto 0) := (others => '0');
+    signal s_dataOut0, s_dataOut1, s_dataOut2, s_dataOut3       :   signed((K+15) - 1 downto 0) := (others => '0');
     signal s_stage1En, s_stage2MEn, s_stage2AEn, s_valOut       :   std_logic := '0';
 
-    constant cos16 : signed(K downto 0) := "011101101";
-    constant cos32 : signed(K downto 0) := "010110101";
-    constant cos48 : signed(K downto 0) := "001100010";
 begin
 
     inSample:   process(clk, en, res)
@@ -72,10 +71,10 @@ begin
                                 s_stg1Out3 <= (others => '0');
                                 s_stage2MEn <= '0';
                             else
-                                s_stg1Out0 <= s_dataIn0 + s_dataIn3;
-                                s_stg1Out1 <= s_dataIn1 + s_dataIn2;
-                                s_stg1Out2 <= s_dataIn1 - s_dataIn2;
-                                s_stg1Out3 <= s_dataIn0 - s_dataIn3;
+                                s_stg1Out0 <= (s_dataIn0((K+2) - 1) & s_dataIn0) + (s_dataIn3((K+2) - 1) & s_dataIn3);
+                                s_stg1Out1 <= (s_dataIn1((K+2) - 1) & s_dataIn1) + (s_dataIn2((K+2) - 1) & s_dataIn2);
+                                s_stg1Out2 <= (s_dataIn1((K+2) - 1) & s_dataIn1) - (s_dataIn2((K+2) - 1) & s_dataIn2);
+                                s_stg1Out3 <= (s_dataIn0((K+2) - 1) & s_dataIn0) - (s_dataIn3((K+2) - 1) & s_dataIn3);
                                 s_stage2MEn <= '1';
                             end if;
                         end if;
@@ -97,12 +96,12 @@ begin
                                 s_stg2M32 <= (others => '0');
                                 s_stage2AEn <= '0';
                             else
-                                s_stg2M0 <= s_stg1Out0*cos32;
-                                s_stg2M1 <= s_stg1Out1*cos32;
-                                s_stg2M21 <= s_stg1Out2*cos48;
-                                s_stg2M22 <= s_stg1Out2*cos16;
-                                s_stg2M31 <= s_stg1Out3*cos48;
-                                s_stg2M32 <= s_stg1Out3*cos16;
+                                s_stg2M0 <= s_stg1Out0*181;
+                                s_stg2M1 <= s_stg1Out1*181;
+                                s_stg2M21 <= s_stg1Out2*98;
+                                s_stg2M22 <= s_stg1Out2*237;
+                                s_stg2M31 <= s_stg1Out3*98;
+                                s_stg2M32 <= s_stg1Out3*237;
                                 s_stage2AEn <= '1';
                             end if;
                         end if;
@@ -122,10 +121,10 @@ begin
                                 s_dataOut3 <= (others => '0');
                                 s_valOut <= '0';
                             else
-                                s_dataOut0 <= s_stg2M0 + s_stg2M1;
-                                s_dataOut1 <= s_stg2M21 + s_stg2M32;
-                                s_dataOut2 <= s_stg2M0 - s_stg2M1;
-                                s_dataOut3 <= s_stg2M31 - s_stg2M22;
+                                s_dataOut0 <= (s_stg2M0((K+12) - 1) & s_stg2M0) + (s_stg2M1((K+12) - 1) & s_stg2M1);
+                                s_dataOut1 <= (s_stg2M21((K+12) - 1) & s_stg2M21) + (s_stg2M32((K+12) - 1) & s_stg2M32);
+                                s_dataOut2 <= (s_stg2M0((K+12) - 1) & s_stg2M0) - (s_stg2M1((K+12) - 1) & s_stg2M1);
+                                s_dataOut3 <= (s_stg2M31((K+12) - 1) & s_stg2M31) - (s_stg2M22((K+12) - 1) & s_stg2M22);
                                 s_valOut <= '1';
                             end if;
                         end if;
@@ -145,10 +144,10 @@ begin
                                 dataOut3 <= (others => '0');
                                 validOut <= '0';
                             else
-                                dataOut0 <= std_logic_vector(s_dataOut0(15 downto 8));
-                                dataOut1 <= std_logic_vector(s_dataOut1(15 downto 8));
-                                dataOut2 <= std_logic_vector(s_dataOut2(15 downto 8));
-                                dataOut3 <= std_logic_vector(s_dataOut3(15 downto 8));
+                                dataOut0 <= std_logic_vector(s_dataOut0((K+15) - 1 downto 8));
+                                dataOut1 <= std_logic_vector(s_dataOut1((K+15) - 1 downto 8));
+                                dataOut2 <= std_logic_vector(s_dataOut2((K+15) - 1 downto 8));
+                                dataOut3 <= std_logic_vector(s_dataOut3((K+15) - 1 downto 8));
                                 validOut <= '1';
                             end if;
                         end if;

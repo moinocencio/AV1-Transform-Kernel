@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="207666666666fs"></ZoomStartTime>
-      <ZoomEndTime time="799666666667fs"></ZoomEndTime>
-      <Cursor1Time time="701000000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1272000000001fs"></ZoomEndTime>
+      <Cursor1Time time="801000000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="146"></ValueColumnWidth>
+      <ValueColumnWidth column_width="130"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="13" />
+   <WVObjectSize size="15" />
    <wvobject type="logic" fp_name="/DCT4_TB/clock_tb">
       <obj_property name="ElementShortName">clock_tb</obj_property>
       <obj_property name="ObjectShortName">clock_tb</obj_property>
@@ -38,21 +38,26 @@
    <wvobject type="group" fp_name="group13">
       <obj_property name="label">DataIn</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="array" fp_name="/DCT4_TB/dataIn0_tb">
-         <obj_property name="ElementShortName">dataIn0_tb[7:0]</obj_property>
-         <obj_property name="ObjectShortName">dataIn0_tb[7:0]</obj_property>
+         <obj_property name="ElementShortName">dataIn0_tb[9:0]</obj_property>
+         <obj_property name="ObjectShortName">dataIn0_tb[9:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/dataIn1_tb">
-         <obj_property name="ElementShortName">dataIn1_tb[7:0]</obj_property>
-         <obj_property name="ObjectShortName">dataIn1_tb[7:0]</obj_property>
+         <obj_property name="ElementShortName">dataIn1_tb[9:0]</obj_property>
+         <obj_property name="ObjectShortName">dataIn1_tb[9:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/dataIn2_tb">
-         <obj_property name="ElementShortName">dataIn2_tb[7:0]</obj_property>
-         <obj_property name="ObjectShortName">dataIn2_tb[7:0]</obj_property>
+         <obj_property name="ElementShortName">dataIn2_tb[9:0]</obj_property>
+         <obj_property name="ObjectShortName">dataIn2_tb[9:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/dataIn3_tb">
-         <obj_property name="ElementShortName">dataIn3_tb[7:0]</obj_property>
-         <obj_property name="ObjectShortName">dataIn3_tb[7:0]</obj_property>
+         <obj_property name="ElementShortName">dataIn3_tb[9:0]</obj_property>
+         <obj_property name="ObjectShortName">dataIn3_tb[9:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group14">
@@ -60,23 +65,23 @@
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
       <wvobject type="array" fp_name="/DCT4_TB/dataOut0_tb">
-         <obj_property name="ElementShortName">dataOut0_tb[7:0]</obj_property>
-         <obj_property name="ObjectShortName">dataOut0_tb[7:0]</obj_property>
+         <obj_property name="ElementShortName">dataOut0_tb[14:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut0_tb[14:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/dataOut1_tb">
-         <obj_property name="ElementShortName">dataOut1_tb[7:0]</obj_property>
-         <obj_property name="ObjectShortName">dataOut1_tb[7:0]</obj_property>
+         <obj_property name="ElementShortName">dataOut1_tb[14:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut1_tb[14:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/dataOut2_tb">
-         <obj_property name="ElementShortName">dataOut2_tb[7:0]</obj_property>
-         <obj_property name="ObjectShortName">dataOut2_tb[7:0]</obj_property>
+         <obj_property name="ElementShortName">dataOut2_tb[14:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut2_tb[14:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/dataOut3_tb">
-         <obj_property name="ElementShortName">dataOut3_tb[7:0]</obj_property>
-         <obj_property name="ObjectShortName">dataOut3_tb[7:0]</obj_property>
+         <obj_property name="ElementShortName">dataOut3_tb[14:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut3_tb[14:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
@@ -89,20 +94,49 @@
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_stg1Out0">
-         <obj_property name="ElementShortName">s_stg1Out0[7:0]</obj_property>
-         <obj_property name="ObjectShortName">s_stg1Out0[7:0]</obj_property>
+         <obj_property name="ElementShortName">s_stg1Out0[10:0]</obj_property>
+         <obj_property name="ObjectShortName">s_stg1Out0[10:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_stg1Out1">
-         <obj_property name="ElementShortName">s_stg1Out1[7:0]</obj_property>
-         <obj_property name="ObjectShortName">s_stg1Out1[7:0]</obj_property>
+         <obj_property name="ElementShortName">s_stg1Out1[10:0]</obj_property>
+         <obj_property name="ObjectShortName">s_stg1Out1[10:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_stg1Out2">
-         <obj_property name="ElementShortName">s_stg1Out2[7:0]</obj_property>
-         <obj_property name="ObjectShortName">s_stg1Out2[7:0]</obj_property>
+         <obj_property name="ElementShortName">s_stg1Out2[10:0]</obj_property>
+         <obj_property name="ObjectShortName">s_stg1Out2[10:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_stg1Out3">
-         <obj_property name="ElementShortName">s_stg1Out3[7:0]</obj_property>
-         <obj_property name="ObjectShortName">s_stg1Out3[7:0]</obj_property>
+         <obj_property name="ElementShortName">s_stg1Out3[10:0]</obj_property>
+         <obj_property name="ObjectShortName">s_stg1Out3[10:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group40">
+      <obj_property name="label">Multiplications</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/DCT4_TB/uut/s_stg2M0">
+         <obj_property name="ElementShortName">s_stg2M0[21:0]</obj_property>
+         <obj_property name="ObjectShortName">s_stg2M0[21:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/DCT4_TB/uut/s_stg2M1">
+         <obj_property name="ElementShortName">s_stg2M1[21:0]</obj_property>
+         <obj_property name="ObjectShortName">s_stg2M1[21:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/DCT4_TB/uut/s_stg2M21">
+         <obj_property name="ElementShortName">s_stg2M21[21:0]</obj_property>
+         <obj_property name="ObjectShortName">s_stg2M21[21:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/DCT4_TB/uut/s_stg2M22">
+         <obj_property name="ElementShortName">s_stg2M22[21:0]</obj_property>
+         <obj_property name="ObjectShortName">s_stg2M22[21:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/DCT4_TB/uut/s_stg2M31">
+         <obj_property name="ElementShortName">s_stg2M31[21:0]</obj_property>
+         <obj_property name="ObjectShortName">s_stg2M31[21:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/DCT4_TB/uut/s_stg2M32">
+         <obj_property name="ElementShortName">s_stg2M32[21:0]</obj_property>
+         <obj_property name="ObjectShortName">s_stg2M32[21:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group26">
@@ -110,23 +144,23 @@
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_dataOut0">
-         <obj_property name="ElementShortName">s_dataOut0[15:0]</obj_property>
-         <obj_property name="ObjectShortName">s_dataOut0[15:0]</obj_property>
+         <obj_property name="ElementShortName">s_dataOut0[22:0]</obj_property>
+         <obj_property name="ObjectShortName">s_dataOut0[22:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_dataOut1">
-         <obj_property name="ElementShortName">s_dataOut1[15:0]</obj_property>
-         <obj_property name="ObjectShortName">s_dataOut1[15:0]</obj_property>
+         <obj_property name="ElementShortName">s_dataOut1[22:0]</obj_property>
+         <obj_property name="ObjectShortName">s_dataOut1[22:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_dataOut2">
-         <obj_property name="ElementShortName">s_dataOut2[15:0]</obj_property>
-         <obj_property name="ObjectShortName">s_dataOut2[15:0]</obj_property>
+         <obj_property name="ElementShortName">s_dataOut2[22:0]</obj_property>
+         <obj_property name="ObjectShortName">s_dataOut2[22:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_dataOut3">
-         <obj_property name="ElementShortName">s_dataOut3[15:0]</obj_property>
-         <obj_property name="ObjectShortName">s_dataOut3[15:0]</obj_property>
+         <obj_property name="ElementShortName">s_dataOut3[22:0]</obj_property>
+         <obj_property name="ObjectShortName">s_dataOut3[22:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
@@ -134,33 +168,33 @@
       <obj_property name="label">s_dataIn</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_dataIn0">
-         <obj_property name="ElementShortName">s_dataIn0[7:0]</obj_property>
-         <obj_property name="ObjectShortName">s_dataIn0[7:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="ElementShortName">s_dataIn0[9:0]</obj_property>
+         <obj_property name="ObjectShortName">s_dataIn0[9:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_dataIn1">
-         <obj_property name="ElementShortName">s_dataIn1[7:0]</obj_property>
-         <obj_property name="ObjectShortName">s_dataIn1[7:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="ElementShortName">s_dataIn1[9:0]</obj_property>
+         <obj_property name="ObjectShortName">s_dataIn1[9:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_dataIn2">
-         <obj_property name="ElementShortName">s_dataIn2[7:0]</obj_property>
-         <obj_property name="ObjectShortName">s_dataIn2[7:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="ElementShortName">s_dataIn2[9:0]</obj_property>
+         <obj_property name="ObjectShortName">s_dataIn2[9:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/DCT4_TB/uut/s_dataIn3">
-         <obj_property name="ElementShortName">s_dataIn3[7:0]</obj_property>
-         <obj_property name="ObjectShortName">s_dataIn3[7:0]</obj_property>
-         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="ElementShortName">s_dataIn3[9:0]</obj_property>
+         <obj_property name="ObjectShortName">s_dataIn3[9:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="logic" fp_name="/DCT4_TB/uut/s_stage1En">
       <obj_property name="ElementShortName">s_stage1En</obj_property>
       <obj_property name="ObjectShortName">s_stage1En</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT4_TB/uut/s_stage2En">
-      <obj_property name="ElementShortName">s_stage2En</obj_property>
-      <obj_property name="ObjectShortName">s_stage2En</obj_property>
+   <wvobject type="logic" fp_name="/DCT4_TB/uut/s_stage2MEn">
+      <obj_property name="ElementShortName">s_stage2MEn</obj_property>
+      <obj_property name="ObjectShortName">s_stage2MEn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/DCT4_TB/uut/s_stage2AEn">
+      <obj_property name="ElementShortName">s_stage2AEn</obj_property>
+      <obj_property name="ObjectShortName">s_stage2AEn</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/DCT4_TB/uut/s_valOut">
       <obj_property name="ElementShortName">s_valOut</obj_property>

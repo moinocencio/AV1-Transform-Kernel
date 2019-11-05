@@ -99,7 +99,7 @@ int main() {
         //printf("\n");
         //for (uint8_t k = 0; k < SIZE; k++)
         //{
-        //    printf("%2d ",test_rest_bmult_p[k]);
+        //    printf("%2d ",test_out_bmult_p[k]);
         //}
         //printf("\n\n");
 

@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Mon Nov  4 18:24:39 2019
+| Date         : Tue Nov  5 19:08:51 2019
 | Host         : abencoado running 64-bit Manjaro Linux
 | Command      : report_utilization -file DCT4_utilization_synth.rpt -pb DCT4_utilization_synth.pb
 | Design       : DCT4
@@ -30,11 +30,11 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |  273 |     0 |     63400 |  0.43 |
-|   LUT as Logic          |  273 |     0 |     63400 |  0.43 |
+| Slice LUTs*             |   10 |     0 |     63400 |  0.02 |
+|   LUT as Logic          |   10 |     0 |     63400 |  0.02 |
 |   LUT as Memory         |    0 |     0 |     19000 |  0.00 |
-| Slice Registers         |  132 |     0 |    126800 |  0.10 |
-|   Register as Flip Flop |  132 |     0 |    126800 |  0.10 |
+| Slice Registers         |  105 |     0 |    126800 |  0.08 |
+|   Register as Flip Flop |  105 |     0 |    126800 |  0.08 |
 |   Register as Latch     |    0 |     0 |    126800 |  0.00 |
 | F7 Muxes                |    0 |     0 |     31700 |  0.00 |
 | F8 Muxes                |    0 |     0 |     15850 |  0.00 |
@@ -55,9 +55,9 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 3     |          Yes |           - |        Reset |
+| 4     |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
-| 129   |          Yes |       Reset |            - |
+| 101   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -77,11 +77,12 @@ Table of Contents
 3. DSP
 ------
 
-+-----------+------+-------+-----------+-------+
-| Site Type | Used | Fixed | Available | Util% |
-+-----------+------+-------+-----------+-------+
-| DSPs      |    0 |     0 |       240 |  0.00 |
-+-----------+------+-------+-----------+-------+
++----------------+------+-------+-----------+-------+
+|    Site Type   | Used | Fixed | Available | Util% |
++----------------+------+-------+-----------+-------+
+| DSPs           |    7 |     0 |       240 |  2.92 |
+|   DSP48E1 only |    7 |       |           |       |
++----------------+------+-------+-----------+-------+
 
 
 4. IO and GT Specific
@@ -90,7 +91,7 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |   68 |     0 |       210 | 32.38 |
+| Bonded IOB                  |  104 |     0 |       210 | 49.52 |
 | Bonded IPADs                |    0 |     0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         6 |  0.00 |
 | PHASER_REF                  |    0 |     0 |         6 |  0.00 |
@@ -146,17 +147,13 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LUT2     |  162 |                 LUT |
-| FDRE     |  129 |        Flop & Latch |
-| CARRY4   |   65 |          CarryLogic |
-| LUT1     |   48 |                 LUT |
-| LUT6     |   40 |                 LUT |
-| IBUF     |   35 |                  IO |
-| OBUF     |   33 |                  IO |
-| LUT4     |   19 |                 LUT |
-| LUT3     |   18 |                 LUT |
-| LUT5     |   10 |                 LUT |
-| FDCE     |    3 |        Flop & Latch |
+| FDRE     |  101 |        Flop & Latch |
+| OBUF     |   61 |                  IO |
+| IBUF     |   43 |                  IO |
+| DSP48E1  |    7 |    Block Arithmetic |
+| LUT2     |    5 |                 LUT |
+| LUT1     |    5 |                 LUT |
+| FDCE     |    4 |        Flop & Latch |
 | BUFG     |    1 |               Clock |
 +----------+------+---------------------+
 
