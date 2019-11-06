@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Wed Nov  6 21:31:26 2019
+# Process ID: 15248
+# Current directory: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.runs/synth_1
+# Command line: vivado -log DCT1632.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source DCT1632.tcl
+# Log file: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.runs/synth_1/DCT1632.vds
+# Journal file: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source DCT1632.tcl -notrace

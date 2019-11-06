@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../DCTAV1.srcs/sources_1/new/DCT432.vhd" \
+"../../../../DCTAV1.srcs/sources_1/new/DCT832.vhd" \
+"../../../../DCTAV1.srcs/sim_1/new/DCT832_TB.vhd" \
+
+# Do not sort compile order
+nosort

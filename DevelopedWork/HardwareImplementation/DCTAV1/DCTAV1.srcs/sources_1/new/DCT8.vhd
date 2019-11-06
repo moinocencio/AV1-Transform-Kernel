@@ -111,6 +111,7 @@ begin
                 end process;
 
     DCT4:       entity work.DCT4(Behavioral)
+                generic map()
                 port map(   dataIn0     =>  s_stg10,
                             dataIn1     =>  s_stg11,
                             dataIn2     =>  s_stg12,

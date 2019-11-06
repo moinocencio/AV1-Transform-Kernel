@@ -13,7 +13,7 @@
 #define N_VECTORS 1000000
 
 int main() {
-    int32_t in_v[SIZE];
+    int32_t in_v[SIZE] = {53, -155, -175, -206, -220, 105, 150, 18};
     int32_t *in_v_p = in_v;
 
     int32_t *av1_out_p = malloc(SIZE* sizeof *av1_out_p);
@@ -43,15 +43,15 @@ int main() {
     char temp_str[200];
 
     for(i = 0; (fgets(temp_str, 200, f_p) != NULL) && i < N_VECTORS; i++) {
-        sscanf( temp_str,"%d %d %d %d %d %d %d %d",
-                &in_v_p[0], 
-                &in_v_p[1], 
-                &in_v_p[2], 
-                &in_v_p[3], 
-                &in_v_p[4], 
-                &in_v_p[5], 
-                &in_v_p[6], 
-                &in_v_p[7]);                
+        //sscanf( temp_str,"%d %d %d %d %d %d %d %d",
+        //        &in_v_p[0], 
+        //        &in_v_p[1], 
+        //        &in_v_p[2], 
+        //        &in_v_p[3], 
+        //        &in_v_p[4], 
+        //        &in_v_p[5], 
+        //        &in_v_p[6], 
+        //        &in_v_p[7]);                
 
         gettimeofday(&t1,NULL);
         av1_fdct8(in_v_p, av1_out_p);
@@ -100,11 +100,11 @@ int main() {
         //    printf("%2d ",test_rest_p[k]);
         //}
         //printf("\n");
-        //for (uint8_t k = 0; k < SIZE; k++)
-        //{
-        //    printf("%2d ",test_rest_bmult_p[k]);
-        //}
-        //printf("\n\n");
+        for (uint8_t k = 0; k < SIZE; k++)
+        {
+            printf("%2d ",test_out_bmult_p[k]);
+        }
+        printf("\n\n");
 
         for (uint8_t k = 0; k < SIZE; k++)
         {

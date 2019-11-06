@@ -13,7 +13,7 @@
 #define N_VECTORS 1000000
 
 int main() {
-    int32_t in_v[SIZE];
+    int32_t in_v[SIZE] = {53, -155, -175, -206, -220, 105, 150, 18};
     int32_t *in_v_p = in_v;
 
     int32_t *av1_out_p = malloc(SIZE* sizeof *av1_out_p);
