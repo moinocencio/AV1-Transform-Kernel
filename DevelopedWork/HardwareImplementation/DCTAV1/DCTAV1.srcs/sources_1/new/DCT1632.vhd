@@ -66,8 +66,8 @@ architecture Behavioral of DCT1632 is
     signal s_stg58, s_stg59, s_stg510, s_stg511, s_stg512, s_stg513, s_stg514, s_stg515       :   integer     := 0;
     signal s_stg6M81, s_stg6M82, s_stg6M91, s_stg6M92, s_stg6M101, s_stg6M102, s_stg6M111, s_stg6M112, s_stg6M121, s_stg6M122, s_stg6M131, s_stg6M132, s_stg6M141, s_stg6M142, s_stg6M151, s_stg6M152       :   integer     := 0;
     signal s_stg6A8, s_stg6A9, s_stg6A10, s_stg6A11, s_stg6A12, s_stg6A13, s_stg6A14, s_stg6A15       :   integer     := 0;
-    signal s_dataOut0, s_dataOut8, s_dataOut4, s_dataOut12, s_dataOut2, s_dataOut10, s_dataOut6, s_dataOut14       :   std_logic_vector(K-1 downto 0)     := (others => '0');
-    signal s_dataOut1, s_dataOut9, s_dataOut5, s_dataOut13, s_dataOut3, s_dataOut11, s_dataOut7, s_dataOut15       :   signed(K-1 downto 0) := (others => '0');
+    signal s_dataOut0, s_dataOut1, s_dataOut2, s_dataOut3, s_dataOut4, s_dataOut5, s_dataOut6, s_dataOut7       :   std_logic_vector(K-1 downto 0)     := (others => '0');
+    signal s_dataOut8, s_dataOut9, s_dataOut10, s_dataOut11, s_dataOut12, s_dataOut13, s_dataOut14, s_dataOut15       :   signed(K-1 downto 0) := (others => '0');
     signal s_stage1En, s_stage2MEn, s_DCT8En, s_stage2AEn, s_stage2DEn, s_stage3En, s_stage4MEn, s_stage4AEn, s_stage4DEn, s_stage5En, s_stage6MEn, s_stage6AEn, s_valOutDCT8, s_outCastEn, s_end16, s_valOut       :   std_logic := '0';
 begin
 
@@ -198,13 +198,13 @@ begin
                             en          =>  s_DCT8En,
                             clk         =>  clk,
                             dataOut0    =>  s_dataOut0,
-                            dataOut1    =>  s_dataOut8,
-                            dataOut2    =>  s_dataOut4,
-                            dataOut3    =>  s_dataOut12,
-                            dataOut4    =>  s_dataOut2,
-                            dataOut5    =>  s_dataOut10,
+                            dataOut1    =>  s_dataOut1,
+                            dataOut2    =>  s_dataOut2,
+                            dataOut3    =>  s_dataOut3,
+                            dataOut4    =>  s_dataOut4,
+                            dataOut5    =>  s_dataOut5,
                             dataOut6    =>  s_dataOut6,
-                            dataOut7    =>  s_dataOut14,
+                            dataOut7    =>  s_dataOut7,
                             validOut    =>  s_valOutDCT8
                         );
 
@@ -330,9 +330,9 @@ begin
                             s_stage4DEn <= '0';
                         elsif(s_stage4AEn = '1') then
                             s_stg4A9  <= s_stg4M141 - s_stg4M92;
-                            s_stg4A10 <= s_stg4M132 - s_stg4M101;
-                            s_stg4A13 <= s_stg4M131 + s_stg4M102;
-                            s_stg4A14 <= s_stg4M142 + s_stg4M92;
+                            s_stg4A10 <= -s_stg4M132 - s_stg4M101;
+                            s_stg4A13 <= s_stg4M131 - s_stg4M102;
+                            s_stg4A14 <= s_stg4M142 + s_stg4M91;
                             s_stage4DEn <= '1';
                         end if;
                     end if;
@@ -458,23 +458,23 @@ begin
                 begin
                     if(rising_edge(clk)) then
                         if(res = '1') then
-                            s_dataOut1  <= (others => '0');
+                            s_dataOut8  <= (others => '0');
                             s_dataOut9  <= (others => '0');
-                            s_dataOut5  <= (others => '0');
-                            s_dataOut13 <= (others => '0');
-                            s_dataOut3  <= (others => '0');
+                            s_dataOut10  <= (others => '0');
                             s_dataOut11 <= (others => '0');
-                            s_dataOut7  <= (others => '0');
+                            s_dataOut12  <= (others => '0');
+                            s_dataOut13 <= (others => '0');
+                            s_dataOut14  <= (others => '0');
                             s_dataOut15 <= (others => '0');
                             s_end16 <= '0';
                         elsif(s_outCastEn = '1') then
-                            s_dataOut1  <= to_signed(s_stg6A8,K);
+                            s_dataOut8  <= to_signed(s_stg6A8,K);
                             s_dataOut9  <= to_signed(s_stg6A9,K);
-                            s_dataOut5  <= to_signed(s_stg6A10,K);
-                            s_dataOut13 <= to_signed(s_stg6A11,K);
-                            s_dataOut3  <= to_signed(s_stg6A12,K);
-                            s_dataOut11 <= to_signed(s_stg6A13,K);
-                            s_dataOut7  <= to_signed(s_stg6A14,K);
+                            s_dataOut10  <= to_signed(s_stg6A10,K);
+                            s_dataOut11 <= to_signed(s_stg6A11,K);
+                            s_dataOut12  <= to_signed(s_stg6A12,K);
+                            s_dataOut13 <= to_signed(s_stg6A13,K);
+                            s_dataOut14  <= to_signed(s_stg6A14,K);
                             s_dataOut15 <= to_signed(s_stg6A15,K);
                             s_end16 <= '1';
                         end if;
@@ -483,6 +483,10 @@ begin
 
     s_valOut    <=  s_valOutDCT8 and s_end16;
 
+    -- The last stage implements the routing of the coefficients to their
+    -- corresponding output. The implemented routes make corrections according 
+    -- to the changes made in the last stage of DCT8
+    
     outReg:     process(clk, res, s_valOut)
                 begin
                     if(rising_edge(clk)) then
@@ -506,21 +510,21 @@ begin
                             validOut <= '0';
                         elsif(s_valOut = '1') then
                             dataOut0 <= s_dataOut0;
-                            dataOut1 <= std_logic_vector(shift_right(s_dataOut1, 8));
-                            dataOut2 <= s_dataOut2;
-                            dataOut3 <= std_logic_vector(shift_right(s_dataOut3, 8));
-                            dataOut4 <= s_dataOut4;
-                            dataOut5 <= std_logic_vector(shift_right(s_dataOut5, 8));
-                            dataOut6 <= s_dataOut6;
-                            dataOut7 <= std_logic_vector(shift_right(s_dataOut7, 8));
-                            dataOut8  <= s_dataOut8;
-                            dataOut9  <= std_logic_vector(shift_right(s_dataOut9, 8));
-                            dataOut10 <= s_dataOut10;
-                            dataOut11 <= std_logic_vector(shift_right(s_dataOut11, 8));
-                            dataOut12 <= s_dataOut12;
-                            dataOut13 <= std_logic_vector(shift_right(s_dataOut13, 8));
-                            dataOut14 <= s_dataOut14;
-                            dataOut15 <= std_logic_vector(shift_right(s_dataOut15, 8));
+                            dataOut1 <= std_logic_vector(shift_right(to_signed(s_stg6A8,K), 8));
+                            dataOut2 <= s_dataOut1;
+                            dataOut3 <= std_logic_vector(shift_right(to_signed(s_stg6A12,K), 8));
+                            dataOut4 <= s_dataOut2;
+                            dataOut5 <= std_logic_vector(shift_right(to_signed(s_stg6A10,K), 8));
+                            dataOut6 <= s_dataOut3;
+                            dataOut7 <= std_logic_vector(shift_right(to_signed(s_stg6A14,K), 8));
+                            dataOut8  <= s_dataOut4;
+                            dataOut9  <= std_logic_vector(shift_right(to_signed(s_stg6A9,K), 8));
+                            dataOut10 <= s_dataOut5;
+                            dataOut11 <= std_logic_vector(shift_right(to_signed(s_stg6A13,K), 8));
+                            dataOut12 <= s_dataOut6;
+                            dataOut13 <= std_logic_vector(shift_right(to_signed(s_stg6A11,K), 8));
+                            dataOut14 <= s_dataOut7;
+                            dataOut15 <= std_logic_vector(shift_right(to_signed(s_stg6A15,K), 8));
                             validOut <= '1';
                         end if;
                     end if;
