@@ -439,7 +439,8 @@ begin
                             s_stg6A13 <= 0;
                             s_stg6A14 <= 0;
                             s_stg6A15 <= 0;
-                            s_outCastEn <= '0';
+                            --s_outCastEn <= '0';
+                            s_end16 <= '0';
                         elsif(s_stage6AEn = '1') then
                             s_stg6A8  <= s_stg6M81 + s_stg6M152;
                             s_stg6A9  <= s_stg6M92 + s_stg6M141;
@@ -449,37 +450,38 @@ begin
                             s_stg6A13 <= s_stg6M131 - s_stg6M102;
                             s_stg6A14 <= s_stg6M142 - s_stg6M91;
                             s_stg6A15 <= s_stg6M151 - s_stg6M82;
-                            s_outCastEn <= '1';
-                        end if;
-                    end if;
-                end process;
-
-    outCast:    process(clk, res, s_outCastEn)
-                begin
-                    if(rising_edge(clk)) then
-                        if(res = '1') then
-                            s_dataOut8  <= (others => '0');
-                            s_dataOut9  <= (others => '0');
-                            s_dataOut10  <= (others => '0');
-                            s_dataOut11 <= (others => '0');
-                            s_dataOut12  <= (others => '0');
-                            s_dataOut13 <= (others => '0');
-                            s_dataOut14  <= (others => '0');
-                            s_dataOut15 <= (others => '0');
-                            s_end16 <= '0';
-                        elsif(s_outCastEn = '1') then
-                            s_dataOut8  <= to_signed(s_stg6A8,K);
-                            s_dataOut9  <= to_signed(s_stg6A9,K);
-                            s_dataOut10  <= to_signed(s_stg6A10,K);
-                            s_dataOut11 <= to_signed(s_stg6A11,K);
-                            s_dataOut12  <= to_signed(s_stg6A12,K);
-                            s_dataOut13 <= to_signed(s_stg6A13,K);
-                            s_dataOut14  <= to_signed(s_stg6A14,K);
-                            s_dataOut15 <= to_signed(s_stg6A15,K);
+                            --s_outCastEn <= '1';
                             s_end16 <= '1';
                         end if;
                     end if;
                 end process;
+
+    --outCast:    process(clk, res, s_outCastEn)
+    --            begin
+    --                if(rising_edge(clk)) then
+    --                    if(res = '1') then
+    --                        s_dataOut8  <= (others => '0');
+    --                        s_dataOut9  <= (others => '0');
+    --                        s_dataOut10  <= (others => '0');
+    --                        s_dataOut11 <= (others => '0');
+    --                        s_dataOut12  <= (others => '0');
+    --                        s_dataOut13 <= (others => '0');
+    --                        s_dataOut14  <= (others => '0');
+    --                        s_dataOut15 <= (others => '0');
+    --                        s_end16 <= '0';
+    --                    elsif(s_outCastEn = '1') then
+    --                        s_dataOut8  <= to_signed(s_stg6A8,K);
+    --                        s_dataOut9  <= to_signed(s_stg6A9,K);
+    --                        s_dataOut10  <= to_signed(s_stg6A10,K);
+    --                        s_dataOut11 <= to_signed(s_stg6A11,K);
+    --                        s_dataOut12  <= to_signed(s_stg6A12,K);
+    --                        s_dataOut13 <= to_signed(s_stg6A13,K);
+    --                        s_dataOut14  <= to_signed(s_stg6A14,K);
+    --                        s_dataOut15 <= to_signed(s_stg6A15,K);
+    --                        s_end16 <= '1';
+    --                    end if;
+    --                end if;
+    --            end process;
 
     s_valOut    <=  s_valOutDCT8 and s_end16;
 
