@@ -262,41 +262,41 @@ begin
                 begin
                     if(rising_edge(clk)) then
                         if(res = '1') then
-                            s_DCT16In0   <= (others => '0');
-                            s_DCT16In1   <= (others => '0');
-                            s_DCT16In2   <= (others => '0');
-                            s_DCT16In3   <= (others => '0');
-                            s_DCT16In4   <= (others => '0');
-                            s_DCT16In5   <= (others => '0');
-                            s_DCT16In6   <= (others => '0');
-                            s_DCT16In7   <= (others => '0');
-                            s_DCT16In8   <= (others => '0');
-                            s_DCT16In9   <= (others => '0');
-                            s_DCT16In10   <= (others => '0');
-                            s_DCT16In11   <= (others => '0');
-                            s_DCT16In12   <= (others => '0');
-                            s_DCT16In13   <= (others => '0');
-                            s_DCT16In14   <= (others => '0');
-                            s_DCT16In15   <= (others => '0');
-                            s_DCT16En    <= '0';
+                            s_DCT16In0  <= (others => '0');
+                            s_DCT16In1  <= (others => '0');
+                            s_DCT16In2  <= (others => '0');
+                            s_DCT16In3  <= (others => '0');
+                            s_DCT16In4  <= (others => '0');
+                            s_DCT16In5  <= (others => '0');
+                            s_DCT16In6  <= (others => '0');
+                            s_DCT16In7  <= (others => '0');
+                            s_DCT16In8  <= (others => '0');
+                            s_DCT16In9  <= (others => '0');
+                            s_DCT16In10 <= (others => '0');
+                            s_DCT16In11 <= (others => '0');
+                            s_DCT16In12 <= (others => '0');
+                            s_DCT16In13 <= (others => '0');
+                            s_DCT16In14 <= (others => '0');
+                            s_DCT16In15 <= (others => '0');
+                            s_DCT16En   <= '0';
                         elsif(s_stage2MEn = '1') then
-                            s_DCT16In0   <=  std_logic_vector(to_signed(s_stg10,K));
-                            s_DCT16In1   <=  std_logic_vector(to_signed(s_stg11,K));
-                            s_DCT16In2   <=  std_logic_vector(to_signed(s_stg12,K));
-                            s_DCT16In3   <=  std_logic_vector(to_signed(s_stg13,K));
-                            s_DCT16In4   <=  std_logic_vector(to_signed(s_stg14,K));
-                            s_DCT16In5   <=  std_logic_vector(to_signed(s_stg15,K));
-                            s_DCT16In6   <=  std_logic_vector(to_signed(s_stg16,K));
-                            s_DCT16In7   <=  std_logic_vector(to_signed(s_stg17,K));
-                            s_DCT16In8   <=  std_logic_vector(to_signed(s_stg18,K));
-                            s_DCT16In9   <=  std_logic_vector(to_signed(s_stg19,K));
-                            s_DCT16In10   <=  std_logic_vector(to_signed(s_stg110,K));
-                            s_DCT16In11   <=  std_logic_vector(to_signed(s_stg111,K));
-                            s_DCT16In12   <=  std_logic_vector(to_signed(s_stg112,K));
-                            s_DCT16In13   <=  std_logic_vector(to_signed(s_stg113,K));
-                            s_DCT16In14   <=  std_logic_vector(to_signed(s_stg114,K));
-                            s_DCT16In15   <=  std_logic_vector(to_signed(s_stg115,K));
-                            s_DCT16En    <= '1';
+                            s_DCT16In0  <=  std_logic_vector(to_signed(s_stg10,K));
+                            s_DCT16In1  <=  std_logic_vector(to_signed(s_stg11,K));
+                            s_DCT16In2  <=  std_logic_vector(to_signed(s_stg12,K));
+                            s_DCT16In3  <=  std_logic_vector(to_signed(s_stg13,K));
+                            s_DCT16In4  <=  std_logic_vector(to_signed(s_stg14,K));
+                            s_DCT16In5  <=  std_logic_vector(to_signed(s_stg15,K));
+                            s_DCT16In6  <=  std_logic_vector(to_signed(s_stg16,K));
+                            s_DCT16In7  <=  std_logic_vector(to_signed(s_stg17,K));
+                            s_DCT16In8  <=  std_logic_vector(to_signed(s_stg18,K));
+                            s_DCT16In9  <=  std_logic_vector(to_signed(s_stg19,K));
+                            s_DCT16In10 <=  std_logic_vector(to_signed(s_stg110,K));
+                            s_DCT16In11 <=  std_logic_vector(to_signed(s_stg111,K));
+                            s_DCT16In12 <=  std_logic_vector(to_signed(s_stg112,K));
+                            s_DCT16In13 <=  std_logic_vector(to_signed(s_stg113,K));
+                            s_DCT16In14 <=  std_logic_vector(to_signed(s_stg114,K));
+                            s_DCT16In15 <=  std_logic_vector(to_signed(s_stg115,K));
+                            s_DCT16En   <= '1';
                         end if;
                     end if;
                 end process;
@@ -548,7 +548,7 @@ begin
                             s_stg4D28 <= 0;
                             s_stg4D29 <= 0;
                             s_stage5En <= '0';
-                        elsif(s_stage2DEn = '1') then
+                        elsif(s_stage4DEn = '1') then
                             s_stg4D18 <= to_integer(shift_right(to_signed(s_stg4A18,K),8));
                             s_stg4D19 <= to_integer(shift_right(to_signed(s_stg4A19,K),8));
                             s_stg4D20 <= to_integer(shift_right(to_signed(s_stg4A20,K),8));
@@ -912,7 +912,7 @@ begin
 
     -- The last stage implements the routing of the coefficients to their
     -- corresponding output. The implemented routes make corrections according 
-    -- to the changes made in the last stage of DCT8
+    -- to the changes made in the last stage of DCT8/16
     
     outReg:     process(clk, res, s_valOut)
                 begin

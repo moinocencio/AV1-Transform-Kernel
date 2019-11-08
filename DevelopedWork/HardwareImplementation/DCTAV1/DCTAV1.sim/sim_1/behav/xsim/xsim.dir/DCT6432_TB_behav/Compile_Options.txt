@@ -1,0 +1,1 @@
+-wto "b26b49d9bda747edb325d8846e3ecc83" --incr --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "secureip" --snapshot "DCT6432_TB_behav" "xil_defaultlib.DCT6432_TB" -log "elaborate.log" 

@@ -106,35 +106,37 @@ begin
                             s_stg2A1 <= 0;
                             s_stg2A2 <= 0;
                             s_stg2A3 <= 0;
-                            s_outCastEn <= '0';
+                            --s_outCastEn <= '0';
+                            s_valOut <= '0';
                         elsif(s_stage2AEn = '1') then
                             s_stg2A0 <= s_stg2M0 + s_stg2M1;
                             s_stg2A1 <= s_stg2M21 + s_stg2M32;
                             s_stg2A2 <= s_stg2M0 - s_stg2M1;
                             s_stg2A3 <= s_stg2M31 - s_stg2M22;
-                            s_outCastEn <= '1';
-                        end if;
-                    end if;
-                end process;
-
-    outCast:    process(clk, res, s_outCastEn)
-                begin
-                    if(rising_edge(clk)) then
-                        if(res = '1') then
-                            s_dataOut0 <= (others => '0');
-                            s_dataOut1 <= (others => '0');
-                            s_dataOut2 <= (others => '0');
-                            s_dataOut3 <= (others => '0');
-                            s_valOut <= '0';
-                        elsif(s_outCastEn = '1') then
-                            s_dataOut0 <= to_signed(s_stg2A0,K);
-                            s_dataOut1 <= to_signed(s_stg2A2,K);
-                            s_dataOut2 <= to_signed(s_stg2A1,K);
-                            s_dataOut3 <= to_signed(s_stg2A3,K);
+                            --s_outCastEn <= '1';
                             s_valOut <= '1';
                         end if;
                     end if;
                 end process;
+
+    --outCast:    process(clk, res, s_outCastEn)
+    --            begin
+    --                if(rising_edge(clk)) then
+    --                    if(res = '1') then
+    --                        s_dataOut0 <= (others => '0');
+    --                        s_dataOut1 <= (others => '0');
+    --                        s_dataOut2 <= (others => '0');
+    --                        s_dataOut3 <= (others => '0');
+    --                        s_valOut <= '0';
+    --                    elsif(s_outCastEn = '1') then
+    --                        s_dataOut0 <= to_signed(s_stg2A0,K);
+    --                        s_dataOut1 <= to_signed(s_stg2A2,K);
+    --                        s_dataOut2 <= to_signed(s_stg2A1,K);
+    --                        s_dataOut3 <= to_signed(s_stg2A3,K);
+    --                        s_valOut <= '1';
+    --                    end if;
+    --                end if;
+    --            end process;
 
     outReg:     process(clk, res, s_valOut)
                 begin
@@ -146,10 +148,14 @@ begin
                             dataOut3 <= (others => '0');
                             validOut <= '0';
                         elsif(s_valOut = '1') then
-                            dataOut0 <= std_logic_vector(shift_right(s_dataOut0, 8));
-                            dataOut1 <= std_logic_vector(shift_right(s_dataOut1, 8));
-                            dataOut2 <= std_logic_vector(shift_right(s_dataOut2, 8));
-                            dataOut3 <= std_logic_vector(shift_right(s_dataOut3, 8));
+                            --dataOut0 <= std_logic_vector(shift_right(s_dataOut0, 8));
+                            dataOut0 <= std_logic_vector(shift_right(to_signed(s_stg2A0,K), 8));
+                            --dataOut1 <= std_logic_vector(shift_right(s_dataOut1, 8));
+                            dataOut1 <= std_logic_vector(shift_right(to_signed(s_stg2A2,K), 8));
+                            --dataOut2 <= std_logic_vector(shift_right(s_dataOut2, 8));
+                            dataOut2 <= std_logic_vector(shift_right(to_signed(s_stg2A1,K), 8));
+                            --dataOut3 <= std_logic_vector(shift_right(s_dataOut3, 8));
+                            dataOut3 <= std_logic_vector(shift_right(to_signed(s_stg2A3,K), 8));
                             validOut <= '1';
                         end if;
                     end if;

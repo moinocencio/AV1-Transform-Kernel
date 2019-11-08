@@ -239,35 +239,37 @@ begin
                             s_stg4A5 <= 0;
                             s_stg4A6 <= 0;
                             s_stg4A7 <= 0;
-                            s_outCastEn <= '0';
+                            --s_outCastEn <= '0';
+                            s_end8 <= '0';
                         elsif(s_stage4AEn = '1') then
                             s_stg4A4 <= s_stg4M41 + s_stg4M72;
                             s_stg4A5 <= s_stg4M52 + s_stg4M61;
                             s_stg4A6 <= s_stg4M62 - s_stg4M51;
                             s_stg4A7 <= s_stg4M71 - s_stg4M42;
-                            s_outCastEn <= '1';
-                        end if;
-                    end if;
-                end process;
-                
-    outCast:    process(clk, res, s_outCastEn)
-                begin
-                    if(rising_edge(clk)) then
-                        if(res = '1') then
-                            s_dataOut1 <= (others => '0');
-                            s_dataOut5 <= (others => '0');
-                            s_dataOut3 <= (others => '0');
-                            s_dataOut7 <= (others => '0');
-                            s_end8 <= '0';
-                        elsif(s_outCastEn = '1') then
-                            s_dataOut1 <= to_signed(s_stg4A4,K);
-                            s_dataOut5 <= to_signed(s_stg4A5,K);
-                            s_dataOut3 <= to_signed(s_stg4A6,K);
-                            s_dataOut7 <= to_signed(s_stg4A7,K);
+                            --s_outCastEn <= '1';
                             s_end8 <= '1';
                         end if;
                     end if;
                 end process;
+                
+    --outCast:    process(clk, res, s_outCastEn)
+    --            begin
+    --                if(rising_edge(clk)) then
+    --                    if(res = '1') then
+    --                        s_dataOut1 <= (others => '0');
+    --                        s_dataOut5 <= (others => '0');
+    --                        s_dataOut3 <= (others => '0');
+    --                        s_dataOut7 <= (others => '0');
+    --                        s_end8 <= '0';
+    --                    elsif(s_outCastEn = '1') then
+    --                        s_dataOut1 <= to_signed(s_stg4A4,K);
+    --                        s_dataOut5 <= to_signed(s_stg4A5,K);
+    --                        s_dataOut3 <= to_signed(s_stg4A6,K);
+    --                        s_dataOut7 <= to_signed(s_stg4A7,K);
+    --                        s_end8 <= '1';
+    --                    end if;
+    --                end if;
+    --            end process;
 
     s_valOut    <=  s_valOutDCT4 and s_end8;
 
@@ -286,13 +288,17 @@ begin
                             validOut <= '0';
                         elsif(s_valOut = '1') then
                             dataOut0 <= s_dataOut0;
-                            dataOut1 <= std_logic_vector(shift_right(s_dataOut1, 8));
+                            --dataOut1 <= std_logic_vector(shift_right(s_dataOut1, 8));
+                            dataOut1 <= std_logic_vector(shift_right(to_signed(s_stg4A4,K), 8));
                             dataOut2 <= s_dataOut2;
-                            dataOut3 <= std_logic_vector(shift_right(s_dataOut3, 8));
+                            --dataOut3 <= std_logic_vector(shift_right(s_dataOut3, 8));
+                            dataOut3 <= std_logic_vector(shift_right(to_signed(s_stg4A6,K), 8));
                             dataOut4 <= s_dataOut4;
-                            dataOut5 <= std_logic_vector(shift_right(s_dataOut5, 8));
+                            --dataOut5 <= std_logic_vector(shift_right(s_dataOut5, 8));
+                            dataOut5 <= std_logic_vector(shift_right(to_signed(s_stg4A5,K), 8));
                             dataOut6 <= s_dataOut6;
-                            dataOut7 <= std_logic_vector(shift_right(s_dataOut7, 8));
+                            --dataOut7 <= std_logic_vector(shift_right(s_dataOut7, 8));
+                            dataOut7 <= std_logic_vector(shift_right(to_signed(s_stg4A7,K), 8));
                             validOut <= '1';
                         end if;
                     end if;

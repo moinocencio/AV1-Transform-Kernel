@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573151702">
-  <File Type="VDS-TIMING-PB" Name="DCT3232_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="DCT3232_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="DCT3232.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="DCT3232_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="DCT3232_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="DCT3232_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="DCT3232.vds"/>
-  <File Type="REPORTS-TCL" Name="DCT3232_reports.tcl"/>
-  <File Type="PA-TCL" Name="DCT3232.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573240107">
+  <File Type="VDS-TIMING-PB" Name="DCT6432_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="DCT6432_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="DCT6432.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="DCT6432_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="DCT6432_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="DCT6432_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="DCT6432.vds"/>
+  <File Type="REPORTS-TCL" Name="DCT6432_reports.tcl"/>
+  <File Type="PA-TCL" Name="DCT6432.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/DCT432.vhd">
@@ -32,11 +32,18 @@
     <File Path="$PSRCDIR/sources_1/new/DCT3232.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/DCT6432.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="DCT3232"/>
+      <Option Name="TopModule" Val="DCT6432"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
