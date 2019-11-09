@@ -347,7 +347,7 @@ begin
                             s_stg4D13 <= 0;
                             s_stg4D14 <= 0;
                             s_stage5En <= '0';
-                        elsif(s_stage2DEn = '1') then
+                        elsif(s_stage4DEn = '1') then
                             s_stg4D9  <= to_integer(shift_right(to_signed(s_stg4A9,K),8));
                             s_stg4D10 <= to_integer(shift_right(to_signed(s_stg4A10,K),8));
                             s_stg4D13 <= to_integer(shift_right(to_signed(s_stg4A13,K),8));

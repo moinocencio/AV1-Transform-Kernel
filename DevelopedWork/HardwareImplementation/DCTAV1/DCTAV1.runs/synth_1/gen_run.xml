@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573240107">
-  <File Type="VDS-TIMING-PB" Name="DCT6432_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="DCT6432_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="DCT6432.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="DCT6432_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="DCT6432_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="DCT6432_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="DCT6432.vds"/>
-  <File Type="REPORTS-TCL" Name="DCT6432_reports.tcl"/>
-  <File Type="PA-TCL" Name="DCT6432.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573311857">
+  <File Type="VDS-TIMING-PB" Name="TransWrapper_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="TransWrapper_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="TransWrapper.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="TransWrapper_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="TransWrapper_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="TransWrapper_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="TransWrapper.vds"/>
+  <File Type="REPORTS-TCL" Name="TransWrapper_reports.tcl"/>
+  <File Type="PA-TCL" Name="TransWrapper.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/DCT432.vhd">
@@ -41,15 +41,23 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/TransWrapper.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="DCT6432"/>
+      <Option Name="TopModule" Val="TransWrapper"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PPRDIR/../../../../SIAE/SIAE/Praticas/T1/Tutorial/Tutorial.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc">
+    <File Path="$PSRCDIR/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc">
       <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../../SIAE/SIAE/Praticas/T1/Vivado_Tutorial/Nexys4_Master.xdc"/>
+        <Attr Name="ImportTime" Val="1572695700"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
       </FileInfo>

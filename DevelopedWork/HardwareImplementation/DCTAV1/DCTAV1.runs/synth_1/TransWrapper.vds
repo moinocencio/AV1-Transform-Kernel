@@ -1,0 +1,653 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sat Nov  9 15:04:20 2019
+# Process ID: 6351
+# Current directory: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.runs/synth_1
+# Command line: vivado -log TransWrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source TransWrapper.tcl
+# Log file: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.runs/synth_1/TransWrapper.vds
+# Journal file: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source TransWrapper.tcl -notrace
+Command: synth_design -top TransWrapper -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 6401 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1666.395 ; gain = 153.719 ; free physical = 1740 ; free virtual = 12634
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'TransWrapper' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/TransWrapper.vhd:151]
+INFO: [Synth 8-638] synthesizing module 'DCT432' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT432.vhd:31]
+	Parameter K bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'DCT432' (1#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT432.vhd:31]
+INFO: [Synth 8-638] synthesizing module 'DCT832' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT832.vhd:39]
+	Parameter K bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'DCT832' (2#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT832.vhd:39]
+INFO: [Synth 8-638] synthesizing module 'DCT1632' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT1632.vhd:55]
+	Parameter K bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'DCT1632' (3#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT1632.vhd:55]
+INFO: [Synth 8-638] synthesizing module 'DCT3232' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT3232.vhd:87]
+	Parameter K bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'DCT3232' (4#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT3232.vhd:87]
+INFO: [Synth 8-638] synthesizing module 'DCT6432' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT6432.vhd:151]
+	Parameter K bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'DCT6432' (5#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT6432.vhd:151]
+INFO: [Synth 8-256] done synthesizing module 'TransWrapper' (6#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/TransWrapper.vhd:151]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1763.145 ; gain = 250.469 ; free physical = 1695 ; free virtual = 12604
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1780.957 ; gain = 268.281 ; free physical = 1676 ; free virtual = 12598
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1780.957 ; gain = 268.281 ; free physical = 1676 ; free virtual = 12598
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc]
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2043.379 ; gain = 0.000 ; free physical = 1049 ; free virtual = 12389
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.45 ; elapsed = 00:00:00.49 . Memory (MB): peak = 2046.348 ; gain = 2.969 ; free physical = 1468 ; free virtual = 12406
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2046.348 ; gain = 533.672 ; free physical = 1694 ; free virtual = 12646
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2046.348 ; gain = 533.672 ; free physical = 1694 ; free virtual = 12646
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2046.348 ; gain = 533.672 ; free physical = 1694 ; free virtual = 12646
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4471] merging register 's_DCT4En_reg' into 's_stage2AEn_reg' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT832.vhd:116]
+INFO: [Synth 8-4471] merging register 's_DCT8En_reg' into 's_stage2AEn_reg' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT1632.vhd:172]
+INFO: [Synth 8-4471] merging register 's_DCT16En_reg' into 's_stage2AEn_reg' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT3232.vhd:281]
+DSP Debug: swapped A/B pins for adder 0x23ea31d0
+DSP Debug: swapped A/B pins for adder 0x23ea4710
+DSP Debug: swapped A/B pins for adder 0x23ea4580
+DSP Debug: swapped A/B pins for adder 0x23ea2b90
+INFO: [Synth 8-4471] merging register 's_DCT32En_reg' into 's_stage2AEn_reg' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.srcs/sources_1/new/DCT6432.vhd:492]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 2046.348 ; gain = 533.672 ; free physical = 1578 ; free virtual = 12547
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+------------------+------------+----------+
+|      |RTL Partition     |Replication |Instances |
++------+------------------+------------+----------+
+|1     |DCT832            |           2|     13501|
+|2     |DCT1632__GCBM0    |           1|     19548|
+|3     |DCT1632__GCBM1    |           1|      5422|
+|4     |DCT3232__GCBM0    |           1|     21279|
+|5     |DCT3232__GCBM1    |           1|      7207|
+|6     |DCT3232__GCBM2    |           1|     12517|
+|7     |DCT3232__GCBM3    |           1|     19403|
+|8     |DCT6432__GCB0     |           1|     18056|
+|9     |DCT6432__GCB1     |           1|      5468|
+|10    |DCT6432__GCB2     |           1|      6877|
+|11    |DCT6432__GCB3     |           1|     10505|
+|12    |DCT6432__GCB4     |           1|     16325|
+|13    |DCT6432__GCB5     |           1|     17334|
+|14    |DCT6432__GCB6     |           1|     19522|
+|15    |DCT6432__GCB7     |           1|     18045|
+|16    |DCT6432__GCB8     |           1|      5145|
+|17    |DCT6432__GCB9     |           1|     17820|
+|18    |DCT6432__GCB10    |           1|     12175|
+|19    |TransWrapper__GC0 |           1|     13664|
++------+------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 369   
+	   3 Input     32 Bit       Adders := 415   
++---Registers : 
+	               32 Bit    Registers := 2026  
+	                1 Bit    Registers := 161   
++---Multipliers : 
+	                 9x32  Multipliers := 318   
+	                 8x32  Multipliers := 96    
+	                 7x32  Multipliers := 34    
+	                 6x32  Multipliers := 16    
+	                 5x32  Multipliers := 2     
++---Muxes : 
+	   6 Input     32 Bit        Muxes := 56    
+	   6 Input      1 Bit        Muxes := 9     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module TransWrapper 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 64    
+	                1 Bit    Registers := 6     
++---Muxes : 
+	   6 Input     32 Bit        Muxes := 56    
+	   6 Input      1 Bit        Muxes := 9     
+Module DCT432__1 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 4     
+	   3 Input     32 Bit       Adders := 4     
++---Registers : 
+	               32 Bit    Registers := 22    
+	                1 Bit    Registers := 5     
++---Multipliers : 
+	                 9x32  Multipliers := 4     
+	                 8x32  Multipliers := 2     
+Module DCT832 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     32 Bit       Adders := 9     
+	   2 Input     32 Bit       Adders := 9     
++---Registers : 
+	               32 Bit    Registers := 50    
+	                1 Bit    Registers := 9     
++---Multipliers : 
+	                 9x32  Multipliers := 8     
+	                 7x32  Multipliers := 2     
+Module DCT1632 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     32 Bit       Adders := 25    
+	   2 Input     32 Bit       Adders := 23    
++---Registers : 
+	               32 Bit    Registers := 124   
+	                1 Bit    Registers := 13    
++---Multipliers : 
+	                 9x32  Multipliers := 18    
+	                 8x32  Multipliers := 8     
+	                 6x32  Multipliers := 2     
+Module DCT3232 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     32 Bit       Adders := 64    
+	   2 Input     32 Bit       Adders := 56    
++---Registers : 
+	               32 Bit    Registers := 296   
+	                1 Bit    Registers := 17    
++---Multipliers : 
+	                 9x32  Multipliers := 48    
+	                 8x32  Multipliers := 14    
+	                 7x32  Multipliers := 6     
+	                 6x32  Multipliers := 2     
+Module DCT6432 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 132   
+	   3 Input     32 Bit       Adders := 156   
++---Registers : 
+	               32 Bit    Registers := 688   
+	                1 Bit    Registers := 21    
++---Multipliers : 
+	                 7x32  Multipliers := 14    
+	                 9x32  Multipliers := 116   
+	                 8x32  Multipliers := 34    
+	                 5x32  Multipliers := 2     
+	                 6x32  Multipliers := 6     
+Module DCT432 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 4     
+	   3 Input     32 Bit       Adders := 4     
++---Registers : 
+	               32 Bit    Registers := 22    
+	                1 Bit    Registers := 5     
++---Multipliers : 
+	                 9x32  Multipliers := 4     
+	                 8x32  Multipliers := 2     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 4 processes.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/s_stg6M111_reg[1]' (FDRE) to 'DCT1632__GCBM1:/s_stg6M111_reg[2]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/s_stg6M111_reg[2]' (FDRE) to 'DCT1632__GCBM1:/s_stg6M111_reg[3]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/s_stg6M111_reg[3]' (FDRE) to 'DCT1632__GCBM1:/s_stg6M121_reg[3]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/s_stg6M121_reg[1]' (FDRE) to 'DCT1632__GCBM1:/s_stg6M121_reg[3]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/s_stg6M121_reg[2]' (FDRE) to 'DCT1632__GCBM1:/s_stg6M121_reg[3]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT1632__GCBM1:/\s_stg6M121_reg[3] )
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut1_reg[23]' (FDRE) to 'DCT1632__GCBM1:/dataOut1_reg[24]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut1_reg[24]' (FDRE) to 'DCT1632__GCBM1:/dataOut1_reg[25]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut1_reg[25]' (FDRE) to 'DCT1632__GCBM1:/dataOut1_reg[26]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut1_reg[26]' (FDRE) to 'DCT1632__GCBM1:/dataOut1_reg[27]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut1_reg[27]' (FDRE) to 'DCT1632__GCBM1:/dataOut1_reg[28]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut1_reg[28]' (FDRE) to 'DCT1632__GCBM1:/dataOut1_reg[29]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut1_reg[29]' (FDRE) to 'DCT1632__GCBM1:/dataOut1_reg[30]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut1_reg[30]' (FDRE) to 'DCT1632__GCBM1:/dataOut1_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut3_reg[23]' (FDRE) to 'DCT1632__GCBM1:/dataOut3_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut3_reg[24]' (FDRE) to 'DCT1632__GCBM1:/dataOut3_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut3_reg[25]' (FDRE) to 'DCT1632__GCBM1:/dataOut3_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut3_reg[26]' (FDRE) to 'DCT1632__GCBM1:/dataOut3_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut3_reg[27]' (FDRE) to 'DCT1632__GCBM1:/dataOut3_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut3_reg[28]' (FDRE) to 'DCT1632__GCBM1:/dataOut3_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut3_reg[29]' (FDRE) to 'DCT1632__GCBM1:/dataOut3_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut3_reg[30]' (FDRE) to 'DCT1632__GCBM1:/dataOut3_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut15_reg[23]' (FDRE) to 'DCT1632__GCBM1:/dataOut15_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut15_reg[24]' (FDRE) to 'DCT1632__GCBM1:/dataOut15_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut15_reg[25]' (FDRE) to 'DCT1632__GCBM1:/dataOut15_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut15_reg[26]' (FDRE) to 'DCT1632__GCBM1:/dataOut15_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut15_reg[27]' (FDRE) to 'DCT1632__GCBM1:/dataOut15_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut15_reg[28]' (FDRE) to 'DCT1632__GCBM1:/dataOut15_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut15_reg[29]' (FDRE) to 'DCT1632__GCBM1:/dataOut15_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut15_reg[30]' (FDRE) to 'DCT1632__GCBM1:/dataOut15_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut13_reg[23]' (FDRE) to 'DCT1632__GCBM1:/dataOut13_reg[24]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut13_reg[24]' (FDRE) to 'DCT1632__GCBM1:/dataOut13_reg[25]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut13_reg[25]' (FDRE) to 'DCT1632__GCBM1:/dataOut13_reg[26]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut13_reg[26]' (FDRE) to 'DCT1632__GCBM1:/dataOut13_reg[27]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut13_reg[27]' (FDRE) to 'DCT1632__GCBM1:/dataOut13_reg[28]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut13_reg[28]' (FDRE) to 'DCT1632__GCBM1:/dataOut13_reg[29]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut13_reg[29]' (FDRE) to 'DCT1632__GCBM1:/dataOut13_reg[30]'
+INFO: [Synth 8-3886] merging instance 'DCT1632__GCBM1:/dataOut13_reg[30]' (FDRE) to 'DCT1632__GCBM1:/dataOut13_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg4M181_reg[1]' (FDRE) to 'DCT3232__GCBM1:/s_stg4M181_reg[2]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg4M181_reg[2]' (FDRE) to 'DCT3232__GCBM1:/s_stg4M291_reg[2]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D25_reg[23]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D25_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D25_reg[24]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D25_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D25_reg[25]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D25_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D25_reg[26]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D25_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D25_reg[27]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D25_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D25_reg[28]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D25_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D25_reg[29]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D25_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D25_reg[30]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D25_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg4M291_reg[1]' (FDRE) to 'DCT3232__GCBM1:/s_stg4M291_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT3232__GCBM1:/\s_stg4M291_reg[2] )
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D22_reg[23]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D22_reg[24]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D22_reg[24]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D22_reg[25]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D22_reg[25]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D22_reg[26]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D22_reg[26]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D22_reg[27]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D22_reg[27]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D22_reg[28]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D22_reg[28]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D22_reg[29]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D22_reg[29]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D22_reg[30]'
+INFO: [Synth 8-3886] merging instance 'DCT3232__GCBM1:/s_stg2D22_reg[30]' (FDRE) to 'DCT3232__GCBM1:/s_stg2D22_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D38_reg[23]' (FDRE) to 'DCT64i_16/s_stg8D38_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D38_reg[24]' (FDRE) to 'DCT64i_16/s_stg8D38_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D38_reg[25]' (FDRE) to 'DCT64i_16/s_stg8D38_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D38_reg[26]' (FDRE) to 'DCT64i_16/s_stg8D38_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D38_reg[27]' (FDRE) to 'DCT64i_16/s_stg8D38_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D38_reg[28]' (FDRE) to 'DCT64i_16/s_stg8D38_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D38_reg[29]' (FDRE) to 'DCT64i_16/s_stg8D38_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D38_reg[30]' (FDRE) to 'DCT64i_16/s_stg8D38_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D57_reg[23]' (FDRE) to 'DCT64i_16/s_stg8D57_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D57_reg[24]' (FDRE) to 'DCT64i_16/s_stg8D57_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D57_reg[25]' (FDRE) to 'DCT64i_16/s_stg8D57_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D57_reg[26]' (FDRE) to 'DCT64i_16/s_stg8D57_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D57_reg[27]' (FDRE) to 'DCT64i_16/s_stg8D57_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D57_reg[28]' (FDRE) to 'DCT64i_16/s_stg8D57_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D57_reg[29]' (FDRE) to 'DCT64i_16/s_stg8D57_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg8D57_reg[30]' (FDRE) to 'DCT64i_16/s_stg8D57_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_16/s_stg10M381_reg[1]' (FDRE) to 'DCT64i_16/s_stg10M381_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT64i_16/\s_stg10M381_reg[2] )
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg4M371_reg[1]' (FDRE) to 'DCT64i_17/s_stg4M371_reg[2]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg4M371_reg[2]' (FDRE) to 'DCT64i_17/s_stg4M581_reg[1]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg4M581_reg[1]' (FDRE) to 'DCT64i_17/s_stg4M581_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT64i_17/\s_stg4M581_reg[2] )
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D50_reg[23]' (FDRE) to 'DCT64i_17/s_stg2D50_reg[24]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D50_reg[24]' (FDRE) to 'DCT64i_17/s_stg2D50_reg[25]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D50_reg[25]' (FDRE) to 'DCT64i_17/s_stg2D50_reg[26]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D50_reg[26]' (FDRE) to 'DCT64i_17/s_stg2D50_reg[27]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D50_reg[27]' (FDRE) to 'DCT64i_17/s_stg2D50_reg[28]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D50_reg[28]' (FDRE) to 'DCT64i_17/s_stg2D50_reg[29]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D50_reg[29]' (FDRE) to 'DCT64i_17/s_stg2D50_reg[30]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D50_reg[30]' (FDRE) to 'DCT64i_17/s_stg2D50_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D45_reg[23]' (FDRE) to 'DCT64i_17/s_stg2D45_reg[24]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D45_reg[24]' (FDRE) to 'DCT64i_17/s_stg2D45_reg[25]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D45_reg[25]' (FDRE) to 'DCT64i_17/s_stg2D45_reg[26]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D45_reg[26]' (FDRE) to 'DCT64i_17/s_stg2D45_reg[27]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D45_reg[27]' (FDRE) to 'DCT64i_17/s_stg2D45_reg[28]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D45_reg[28]' (FDRE) to 'DCT64i_17/s_stg2D45_reg[29]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D45_reg[29]' (FDRE) to 'DCT64i_17/s_stg2D45_reg[30]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D45_reg[30]' (FDRE) to 'DCT64i_17/s_stg2D45_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D42_reg[23]' (FDRE) to 'DCT64i_17/s_stg2D42_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D42_reg[24]' (FDRE) to 'DCT64i_17/s_stg2D42_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D42_reg[25]' (FDRE) to 'DCT64i_17/s_stg2D42_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D42_reg[26]' (FDRE) to 'DCT64i_17/s_stg2D42_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D42_reg[27]' (FDRE) to 'DCT64i_17/s_stg2D42_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D42_reg[28]' (FDRE) to 'DCT64i_17/s_stg2D42_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D42_reg[29]' (FDRE) to 'DCT64i_17/s_stg2D42_reg[31]'
+INFO: [Synth 8-3886] merging instance 'DCT64i_17/s_stg2D42_reg[30]' (FDRE) to 'DCT64i_17/s_stg2D42_reg[31]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT64i_23/\s_stg6M442_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT64i_23/\s_stg10M472_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT1632__GCBM1:/\s_stg6M121_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT64i_17/\s_stg4M371_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT64i_16/\s_stg8M382_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT64i_16/\s_stg6M582_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT64i_16/\s_stg10M381_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT64i_23/\s_stg6M442_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT3232__GCBM1:/\s_stg4M181_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT4/\s_stg2M21_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M41_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT4/\s_stg2M21_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M52_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M91_reg[2] )
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M91_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M101_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M211_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M262_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg8M271_reg[1] )
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M211_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M212_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg8M241_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M281_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M281_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M181_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg8M312_reg[7] )
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M292_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg8M191_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M371_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg10M571_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg8M372_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M372_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg10M561_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M531_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M422_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M421_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M422_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M521_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M522_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M431_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M432_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg10M632_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg10M332_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg10M421_reg[1] )
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg8M421_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg10M532_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M502_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg8M491_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg6M452_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg10M491_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg8M491_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M551_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M401_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M381_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\s_stg4M381_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT4/\s_stg2M21_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DCT4/\s_stg2M21_reg[0] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:08 ; elapsed = 00:01:55 . Memory (MB): peak = 2050.270 ; gain = 537.594 ; free physical = 177 ; free virtual = 10184
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+------------------+------------+----------+
+|      |RTL Partition     |Replication |Instances |
++------+------------------+------------+----------+
+|1     |DCT832            |           4|      7868|
+|2     |DCT1632__GCBM0    |           3|     11878|
+|3     |DCT1632__GCBM1    |           3|      3026|
+|4     |DCT3232__GCBM0    |           2|     12275|
+|5     |DCT3232__GCBM1    |           2|      4536|
+|6     |DCT3232__GCBM2    |           2|      7441|
+|7     |DCT3232__GCBM3    |           2|     11329|
+|8     |DCT6432__GCB0     |           1|     10235|
+|9     |DCT6432__GCB1     |           1|      3391|
+|10    |DCT6432__GCB2     |           1|      4006|
+|11    |DCT6432__GCB3     |           1|      6085|
+|12    |DCT6432__GCB4     |           1|      9355|
+|13    |DCT6432__GCB5     |           1|     10114|
+|14    |DCT6432__GCB6     |           1|     11373|
+|15    |DCT6432__GCB7     |           1|     10459|
+|16    |DCT6432__GCB8     |           1|      2898|
+|17    |DCT6432__GCB9     |           1|     11103|
+|18    |DCT6432__GCB10    |           1|      7348|
+|19    |TransWrapper__GC0 |           1|     11677|
++------+------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:17 ; elapsed = 00:02:05 . Memory (MB): peak = 2050.270 ; gain = 537.594 ; free physical = 125 ; free virtual = 10047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:26 ; elapsed = 00:02:14 . Memory (MB): peak = 2050.270 ; gain = 537.594 ; free physical = 132 ; free virtual = 10036
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+------------------+------------+----------+
+|      |RTL Partition     |Replication |Instances |
++------+------------------+------------+----------+
+|1     |DCT832            |           4|      7868|
+|2     |DCT1632__GCBM0    |           3|     11878|
+|3     |DCT1632__GCBM1    |           3|      2962|
+|4     |DCT3232__GCBM0    |           2|     12275|
+|5     |DCT3232__GCBM1    |           2|      4524|
+|6     |DCT3232__GCBM2    |           2|      7441|
+|7     |DCT3232__GCBM3    |           2|     11209|
+|8     |DCT6432__GCB0     |           1|     10210|
+|9     |DCT6432__GCB1     |           1|      3375|
+|10    |DCT6432__GCB2     |           1|      4002|
+|11    |DCT6432__GCB3     |           1|      6077|
+|12    |DCT6432__GCB4     |           1|      9335|
+|13    |DCT6432__GCB5     |           1|     10066|
+|14    |DCT6432__GCB6     |           1|     11333|
+|15    |DCT6432__GCB7     |           1|     10323|
+|16    |DCT6432__GCB8     |           1|      2897|
+|17    |DCT6432__GCB9     |           1|     11103|
+|18    |DCT6432__GCB10    |           1|      7340|
+|19    |TransWrapper__GC0 |           1|      9467|
++------+------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:45 ; elapsed = 00:02:41 . Memory (MB): peak = 2058.273 ; gain = 545.598 ; free physical = 142 ; free virtual = 9374
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+------------------+------------+----------+
+|      |RTL Partition     |Replication |Instances |
++------+------------------+------------+----------+
+|1     |DCT832            |           1|      5303|
+|2     |DCT1632__GCBM0    |           3|      7661|
+|3     |DCT1632__GCBM1    |           1|      2021|
+|4     |DCT3232__GCBM0    |           2|      7560|
+|5     |DCT3232__GCBM1    |           1|      3361|
+|6     |DCT3232__GCBM2    |           1|      5116|
+|7     |DCT3232__GCBM3    |           2|      7111|
+|8     |DCT6432__GCB0     |           1|      6105|
+|9     |DCT6432__GCB1     |           1|      1867|
+|10    |DCT6432__GCB2     |           1|      2989|
+|11    |DCT6432__GCB3     |           1|      4183|
+|12    |DCT6432__GCB4     |           1|      6623|
+|13    |DCT6432__GCB5     |           1|      6510|
+|14    |DCT6432__GCB6     |           1|      6594|
+|15    |DCT6432__GCB7     |           1|      6204|
+|16    |DCT6432__GCB8     |           1|      2072|
+|17    |DCT6432__GCB9     |           1|      7596|
+|18    |DCT6432__GCB10    |           1|      5064|
+|19    |TransWrapper__GC0 |           1|      5096|
+|20    |DCT832__1         |           1|      5303|
+|21    |DCT832__2         |           1|      5303|
+|22    |DCT1632__GCBM1__1 |           1|      2021|
+|23    |DCT832__3         |           1|      5303|
+|24    |DCT1632__GCBM1__2 |           1|      2021|
+|25    |DCT3232__GCBM1__1 |           1|      3361|
+|26    |DCT3232__GCBM2__1 |           1|      5116|
++------+------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5365] Flop DCT64/s_stg10M471_reg[3] is being inverted and renamed to DCT64/s_stg10M471_reg[3]_inv.
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:02:08 ; elapsed = 00:03:05 . Memory (MB): peak = 2280.680 ; gain = 768.004 ; free physical = 312 ; free virtual = 9320
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:09 ; elapsed = 00:03:07 . Memory (MB): peak = 2280.680 ; gain = 768.004 ; free physical = 314 ; free virtual = 9322
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:15 ; elapsed = 00:03:12 . Memory (MB): peak = 2280.680 ; gain = 768.004 ; free physical = 286 ; free virtual = 9310
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:15 ; elapsed = 00:03:13 . Memory (MB): peak = 2280.680 ; gain = 768.004 ; free physical = 286 ; free virtual = 9311
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:16 ; elapsed = 00:03:14 . Memory (MB): peak = 2280.680 ; gain = 768.004 ; free physical = 286 ; free virtual = 9311
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:17 ; elapsed = 00:03:14 . Memory (MB): peak = 2280.680 ; gain = 768.004 ; free physical = 287 ; free virtual = 9311
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 | 16082|
+|3     |LUT1   |  4217|
+|4     |LUT2   | 48953|
+|5     |LUT3   |  8657|
+|6     |LUT4   |  8252|
+|7     |LUT5   |  6883|
+|8     |LUT6   |  7084|
+|9     |FDRE   | 58369|
+|10    |FDSE   |     1|
+|11    |IBUF   |  2054|
+|12    |OBUF   |  2049|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------------+----------+-------+
+|      |Instance       |Module    |Cells  |
++------+---------------+----------+-------+
+|1     |top            |          | 162602|
+|2     |  DCT16        |DCT1632   |  14979|
+|3     |    DCT8       |DCT832_8  |   5225|
+|4     |      DCT4     |DCT432_9  |   1438|
+|5     |  DCT32        |DCT3232   |  39149|
+|6     |    DCT16      |DCT1632_5 |  14976|
+|7     |      DCT8     |DCT832_6  |   5222|
+|8     |        DCT4   |DCT432_7  |   1438|
+|9     |  DCT4         |DCT432    |   2203|
+|10    |  DCT64        |DCT6432   |  95405|
+|11    |    DCT32      |DCT3232_1 |  38284|
+|12    |      DCT16    |DCT1632_2 |  14976|
+|13    |        DCT8   |DCT832_3  |   5222|
+|14    |          DCT4 |DCT432_4  |   1438|
+|15    |  DCT8         |DCT832    |   5215|
+|16    |    DCT4       |DCT432_0  |   1724|
++------+---------------+----------+-------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:17 ; elapsed = 00:03:14 . Memory (MB): peak = 2280.680 ; gain = 768.004 ; free physical = 287 ; free virtual = 9311
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:08 ; elapsed = 00:03:10 . Memory (MB): peak = 2284.590 ; gain = 506.523 ; free physical = 3251 ; free virtual = 12326
+Synthesis Optimization Complete : Time (s): cpu = 00:02:18 ; elapsed = 00:03:18 . Memory (MB): peak = 2284.590 ; gain = 771.914 ; free physical = 3257 ; free virtual = 12325
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 16082 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2296.688 ; gain = 0.000 ; free physical = 3052 ; free virtual = 12129
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+195 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:02:42 ; elapsed = 00:03:43 . Memory (MB): peak = 2296.688 ; gain = 934.332 ; free physical = 3247 ; free virtual = 12324
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2296.688 ; gain = 0.000 ; free physical = 3247 ; free virtual = 12324
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1/DCTAV1.runs/synth_1/TransWrapper.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:25 ; elapsed = 00:00:23 . Memory (MB): peak = 2320.699 ; gain = 24.012 ; free physical = 3060 ; free virtual = 12311
+INFO: [runtcl-4] Executing : report_utilization -file TransWrapper_utilization_synth.rpt -pb TransWrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Nov  9 15:08:36 2019...
