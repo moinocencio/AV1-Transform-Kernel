@@ -1,14 +1,15 @@
 function [coefs] = DCT4(inVector)
-    coefs = zeros(1,4);
-    t = zeros(1,4);
+    coefs = zeros(2,4);
 
-    t(1) = inVector(1) + inVector(4);
-    t(2) = inVector(2) + inVector(3);
-    t(3) = -inVector(3) + inVector(2);
-    t(4) = -inVector(4) + inVector(1);
+    bf0(0+1) = inVector(0+1) + inVector(3+1);
+    bf0(1+1) = inVector(1+1) + inVector(2+1);
+    bf0(2+1) = -inVector(2+1) + inVector(1+1);
+    bf0(3+1) = -inVector(3+1) + inVector(0+1);
+    coefs(1,:) = bf0;
 
-    coefs(1) = floor(((t(1) + t(2))*181)/2^8);
-    coefs(2) = floor(((t(3)*98) + (t(4)*237))/2^8);
-    coefs(3) = floor(((t(1) - t(2))*181)/2^8);
-    coefs(4) = floor(((t(4)*98) - (t(3)*237))/2^8);
+    bf1(0+1) = floor(((bf0(0+1) + bf0(1+1))*181)/2^8);
+    bf1(1+1) = floor(((bf0(2+1)*98) + (bf0(3+1)*237))/2^8);
+    bf1(2+1) = floor(((bf0(0+1) - bf0(1+1))*181)/2^8);
+    bf1(3+1) = floor(((bf0(3+1)*98) - (bf0(2+1)*237))/2^8);
+    coefs(2,:) = bf1;
 end
