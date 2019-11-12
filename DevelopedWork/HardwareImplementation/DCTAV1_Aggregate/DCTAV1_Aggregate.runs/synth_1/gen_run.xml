@@ -1,92 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573575922">
-  <File Type="VDS-TIMING-PB" Name="DCT_Wrapper_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="DCT_Wrapper_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="DCT_Wrapper.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="DCT_Wrapper_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="DCT_Wrapper_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="DCT_Wrapper_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="DCT_Wrapper.vds"/>
-  <File Type="REPORTS-TCL" Name="DCT_Wrapper_reports.tcl"/>
-  <File Type="PA-TCL" Name="DCT_Wrapper.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573593097">
+  <File Type="VDS-TIMING-PB" Name="DCTCop_wrapper_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="DCTCop_wrapper_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="DCTCop_wrapper.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="DCTCop_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="DCTCop_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="DCTCop_wrapper_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="DCTCop_wrapper.vds"/>
+  <File Type="REPORTS-TCL" Name="DCTCop_wrapper_reports.tcl"/>
+  <File Type="PA-TCL" Name="DCTCop_wrapper.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sim_1/new/DCT16_1_I.vhd">
+    <File Path="$PSRCDIR/sources_1/bd/DCTCop/DCTCop.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/DCTCop/hdl/DCTCop_wrapper.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT16_2_I.vhd">
+    <File Path="$PSRCDIR/sources_1/imports/new/DCT16_1_I.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT16_1_I.vhd"/>
+        <Attr Name="ImportTime" Val="1573489800"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT32_1_I.vhd">
+    <File Path="$PSRCDIR/sources_1/imports/new/DCT16_2_I.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT16_2_I.vhd"/>
+        <Attr Name="ImportTime" Val="1573495974"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT32_2_I.vhd">
+    <File Path="$PSRCDIR/sources_1/imports/new/DCT32_1_I.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT32_1_I.vhd"/>
+        <Attr Name="ImportTime" Val="1573556652"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/DCT32_2_I.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT32_2_I.vhd"/>
+        <Attr Name="ImportTime" Val="1573496416"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/DCT4_I.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT64_1_I.vhd">
+    <File Path="$PSRCDIR/sources_1/imports/new/DCT64_1_I.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT64_1_I.vhd"/>
+        <Attr Name="ImportTime" Val="1573497048"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT64_2_I.vhd">
+    <File Path="$PSRCDIR/sources_1/imports/new/DCT64_2_I.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT64_2_I.vhd"/>
+        <Attr Name="ImportTime" Val="1573558603"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT8_1_I.vhd">
+    <File Path="$PSRCDIR/sources_1/imports/new/DCT8_1_I.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT8_1_I.vhd"/>
+        <Attr Name="ImportTime" Val="1573482328"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT8_2_I.vhd">
+    <File Path="$PSRCDIR/sources_1/imports/new/DCT8_2_I.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT8_2_I.vhd"/>
+        <Attr Name="ImportTime" Val="1573553592"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/DCT_Wrapper.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="DCT_Wrapper"/>
-      <Option Name="TopAutoSet" Val="TRUE"/>
+      <Option Name="TopModule" Val="DCTCop_wrapper"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PSRCDIR/constrs_1/imports/Nexys4_Master_xdc/Nexys4_Master.xdc">
-      <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../../../../Xilinx/Nexys4_Master_xdc/Nexys4_Master.xdc"/>
-        <Attr Name="ImportTime" Val="1378297582"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-      </FileInfo>
-    </File>
     <Config>
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>

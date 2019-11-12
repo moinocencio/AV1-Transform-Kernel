@@ -1,0 +1,25 @@
+vhdl xil_defaultlib  \
+"../../../bd/DCTCop/ip/DCTCop_microblaze_0_0/sim/DCTCop_microblaze_0_0.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/src/DCT16_1_I.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/src/DCT16_2_I.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/src/DCT32_1_I.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/src/DCT32_2_I.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/src/DCT4_I.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/src/DCT64_1_I.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/src/DCT64_2_I.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/src/DCT8_1_I.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/src/DCT8_2_I.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/src/DCT_Wrapper.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/hdl/DCTs_v1_0_S00_AXI.vhd" \
+"../../../bd/DCTCop/ipshared/2e5f/hdl/DCTs_v1_0.vhd" \
+"../../../bd/DCTCop/ip/DCTCop_DCTs_0_0/sim/DCTCop_DCTs_0_0.vhd" \
+"../../../bd/DCTCop/ip/DCTCop_dlmb_v10_0/sim/DCTCop_dlmb_v10_0.vhd" \
+"../../../bd/DCTCop/ip/DCTCop_ilmb_v10_0/sim/DCTCop_ilmb_v10_0.vhd" \
+"../../../bd/DCTCop/ip/DCTCop_dlmb_bram_if_cntlr_0/sim/DCTCop_dlmb_bram_if_cntlr_0.vhd" \
+"../../../bd/DCTCop/ip/DCTCop_ilmb_bram_if_cntlr_0/sim/DCTCop_ilmb_bram_if_cntlr_0.vhd" \
+"../../../bd/DCTCop/ip/DCTCop_microblaze_0_axi_intc_0/sim/DCTCop_microblaze_0_axi_intc_0.vhd" \
+"../../../bd/DCTCop/ip/DCTCop_mdm_1_0/sim/DCTCop_mdm_1_0.vhd" \
+"../../../bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_0/sim/DCTCop_rst_clk_wiz_1_100M_0.vhd" \
+"../../../bd/DCTCop/sim/DCTCop.vhd" \
+
+nosort

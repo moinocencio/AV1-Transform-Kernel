@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="DCTCop_microblaze_0_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_microblaze_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="DCTCop_ilmb_v10_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_ilmb_v10_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="DCTCop_dlmb_v10_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_dlmb_v10_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado" IsOrderedIPRun="true">
+		<Parent Id="DCTCop_ilmb_v10_0_synth_1"/>
+	</Run>
+	<Run Id="DCTCop_mdm_1_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_mdm_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="DCTCop_ilmb_bram_if_cntlr_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_ilmb_bram_if_cntlr_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="DCTCop_lmb_bram_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_lmb_bram_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="DCTCop_dlmb_bram_if_cntlr_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_dlmb_bram_if_cntlr_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="DCTCop_reset_inv_0_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_reset_inv_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="DCTCop_DCT_Kernel_0_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_DCT_Kernel_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="DCTCop_rst_clk_wiz_1_100M_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_rst_clk_wiz_1_100M_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="DCTCop_microblaze_0_axi_intc_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_microblaze_0_axi_intc_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="DCTCop_clk_wiz_1_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_clk_wiz_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="DCTCop_xbar_0_synth_1" LaunchDir="/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_xbar_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+	</Parameters>
+</Runs>
+

@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log DCT_Wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source DCT_Wrapper.tcl
+EAStep vivado -log DCTCop_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source DCTCop_wrapper.tcl

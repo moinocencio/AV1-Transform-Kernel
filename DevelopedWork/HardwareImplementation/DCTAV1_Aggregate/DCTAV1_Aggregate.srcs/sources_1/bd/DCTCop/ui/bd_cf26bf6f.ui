@@ -1,0 +1,44 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace port diff_clock_rtl -pg 1 -lvl 0 -x 0 -y 590 -defaultsOSRD
+preplace port reset -pg 1 -lvl 0 -x 0 -y 710 -defaultsOSRD
+preplace port reset_0 -pg 1 -lvl 0 -x 0 -y 520 -defaultsOSRD
+preplace inst microblaze_0 -pg 1 -lvl 2 -x 630 -y 330 -defaultsOSRD
+preplace inst DCTs_0 -pg 1 -lvl 1 -x 190 -y 160 -defaultsOSRD
+preplace inst microblaze_0_local_memory -pg 1 -lvl 3 -x 1010 -y 340 -defaultsOSRD
+preplace inst microblaze_0_axi_periph -pg 1 -lvl 4 -x 1280 -y 260 -defaultsOSRD
+preplace inst microblaze_0_axi_intc -pg 1 -lvl 5 -x 1600 -y 300 -defaultsOSRD
+preplace inst microblaze_0_xlconcat -pg 1 -lvl 4 -x 1280 -y 70 -defaultsOSRD
+preplace inst mdm_1 -pg 1 -lvl 1 -x 190 -y 330 -defaultsOSRD
+preplace inst clk_wiz_1 -pg 1 -lvl 1 -x 190 -y 600 -defaultsOSRD
+preplace inst rst_clk_wiz_1_100M -pg 1 -lvl 2 -x 630 -y 540 -defaultsOSRD
+preplace inst reset_inv_0 -pg 1 -lvl 1 -x 190 -y 710 -defaultsOSRD
+preplace netloc microblaze_0_intr 1 4 1 1450J 70n
+preplace netloc microblaze_0_Clk 1 0 5 20 400 370 640 890 430 1120 400 1440
+preplace netloc clk_wiz_1_locked 1 1 1 360 580n
+preplace netloc rst_clk_wiz_1_100M_mb_reset 1 1 4 390 650 870 590 NJ 590 1470
+preplace netloc rst_clk_wiz_1_100M_bus_struct_reset 1 2 1 900J 370n
+preplace netloc rst_clk_wiz_1_100M_peripheral_aresetn 1 0 5 40 260 350 660 880J 580 1130 410 1460J
+preplace netloc mdm_1_debug_sys_rst 1 1 1 360 340n
+preplace netloc reset_1 1 0 1 NJ 710
+preplace netloc reset_inv_0_Res 1 0 2 40 530 340J
+preplace netloc reset_0_1 1 0 2 NJ 520 NJ
+preplace netloc microblaze_0_dlmb_1 1 2 1 N 310
+preplace netloc microblaze_0_ilmb_1 1 2 1 N 330
+preplace netloc microblaze_0_axi_dp 1 2 2 870 180 NJ
+preplace netloc microblaze_0_interrupt 1 1 5 380 440 NJ 440 NJ 440 NJ 440 1730
+preplace netloc microblaze_0_intc_axi 1 4 1 N 250
+preplace netloc microblaze_0_debug 1 1 1 NJ 320
+preplace netloc microblaze_0_axi_periph_M01_AXI 1 0 5 30 240 NJ 240 880J 420 NJ 420 1430J
+preplace netloc diff_clock_rtl_1 1 0 1 NJ 590
+levelinfo -pg 1 0 190 630 1010 1280 1600 1750
+pagesize -pg 1 -db -bbox -sgen -140 0 1750 770
+"
+}
+{
+   "da_axi4_cnt":"1",
+   "da_board_cnt":"3",
+   "da_mb_cnt":"1"
+}
