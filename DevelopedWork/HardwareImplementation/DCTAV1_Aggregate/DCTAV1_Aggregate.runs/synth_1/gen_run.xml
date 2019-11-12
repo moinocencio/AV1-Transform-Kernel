@@ -1,17 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573491914">
-  <File Type="VDS-TIMING-PB" Name="DCT16_2_I_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="DCT16_2_I_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="DCT16_2_I.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="DCT16_2_I_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="DCT16_2_I_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="DCT16_2_I_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="DCT16_2_I.vds"/>
-  <File Type="REPORTS-TCL" Name="DCT16_2_I_reports.tcl"/>
-  <File Type="PA-TCL" Name="DCT16_2_I.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573575922">
+  <File Type="VDS-TIMING-PB" Name="DCT_Wrapper_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="DCT_Wrapper_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="DCT_Wrapper.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="DCT_Wrapper_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="DCT_Wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="DCT_Wrapper_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="DCT_Wrapper.vds"/>
+  <File Type="REPORTS-TCL" Name="DCT_Wrapper_reports.tcl"/>
+  <File Type="PA-TCL" Name="DCT_Wrapper.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sim_1/new/DCT16_1_I.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sim_1/new/DCT16_2_I.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sim_1/new/DCT32_1_I.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sim_1/new/DCT32_2_I.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/DCT4_I.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sim_1/new/DCT64_1_I.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sim_1/new/DCT64_2_I.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -19,63 +55,25 @@
     </File>
     <File Path="$PSRCDIR/sim_1/new/DCT8_1_I.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sim_1/new/DCT8_2_I.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/DCT4_I.vhd">
+    <File Path="$PSRCDIR/sources_1/new/DCT_Wrapper.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT16_1_I.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT32_1_I.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT32_2_I.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT64_1_I.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sim_1/new/DCT64_2_I.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="DCT16_2_I"/>
+      <Option Name="TopModule" Val="DCT_Wrapper"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>

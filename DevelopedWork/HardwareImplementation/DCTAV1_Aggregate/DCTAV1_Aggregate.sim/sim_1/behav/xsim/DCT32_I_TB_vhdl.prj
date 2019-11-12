@@ -1,0 +1,13 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../DCTAV1_Aggregate.srcs/sim_1/new/DCT16_1_I.vhd" \
+"../../../../DCTAV1_Aggregate.srcs/sim_1/new/DCT16_2_I.vhd" \
+"../../../../DCTAV1_Aggregate.srcs/sim_1/new/DCT32_1_I.vhd" \
+"../../../../DCTAV1_Aggregate.srcs/sim_1/new/DCT32_2_I.vhd" \
+"../../../../DCTAV1_Aggregate.srcs/sources_1/new/DCT4_I.vhd" \
+"../../../../DCTAV1_Aggregate.srcs/sim_1/new/DCT8_1_I.vhd" \
+"../../../../DCTAV1_Aggregate.srcs/sim_1/new/DCT8_2_I.vhd" \
+"../../../../DCTAV1_Aggregate.srcs/sim_1/new/DCT32_I_TB.vhd" \
+
+# Do not sort compile order
+nosort
