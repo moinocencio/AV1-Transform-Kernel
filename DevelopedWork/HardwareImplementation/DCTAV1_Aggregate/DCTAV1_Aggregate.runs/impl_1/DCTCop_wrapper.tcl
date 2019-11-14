@@ -87,6 +87,7 @@ set rc [catch {
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
   add_files /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/DCTCop.bd
+  read_ip -quiet /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/ip/DCTs_0/DCTs_0.xci
   set_param project.isImplRun false
   set_param project.isImplRun true
   link_design -top DCTCop_wrapper -part xc7a100tcsg324-1
@@ -163,6 +164,27 @@ if {$rc} {
   return -code error $RESULT
 } else {
   end_step route_design
+  unset ACTIVE_STEP 
+}
+
+start_step write_bitstream
+set ACTIVE_STEP write_bitstream
+set rc [catch {
+  create_msg_db write_bitstream.pb
+  set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
+  catch { write_mem_info -force DCTCop_wrapper.mmi }
+  catch { write_bmm -force DCTCop_wrapper_bd.bmm }
+  write_bitstream -force DCTCop_wrapper.bit 
+  catch { write_sysdef -hwdef DCTCop_wrapper.hwdef -bitfile DCTCop_wrapper.bit -meminfo DCTCop_wrapper.mmi -file DCTCop_wrapper.sysdef }
+  catch {write_debug_probes -quiet -force DCTCop_wrapper}
+  catch {file copy -force DCTCop_wrapper.ltx debug_nets.ltx}
+  close_msg_db -file write_bitstream.pb
+} RESULT]
+if {$rc} {
+  step_failed write_bitstream
+  return -code error $RESULT
+} else {
+  end_step write_bitstream
   unset ACTIVE_STEP 
 }
 

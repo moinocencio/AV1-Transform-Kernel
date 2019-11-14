@@ -1,0 +1,46 @@
+/*
+ * DCTs.c
+ *
+ *  Created on: Nov 14, 2019
+ *      Author: moinocencio
+ */
+
+#include "DCTs.h"
+
+void disable_DCTs() {
+	unsigned int t_reg = Xil_In32(DCTSBASEADDR + data_off[64]);
+	Xil_Out32(DCTSBASEADDR + data_off[64], (t_reg & 0xFFFFFFF7));
+}
+
+void enable_DCTs() {
+	unsigned int t_reg = Xil_In32(DCTSBASEADDR + data_off[64]);
+	Xil_Out32(DCTSBASEADDR + data_off[64], (t_reg | 0x8));
+}
+
+void reset_DCTs() {
+	unsigned int t_reg = Xil_In32(DCTSBASEADDR + data_off[64]);
+	Xil_Out32(DCTSBASEADDR + data_off[64], (t_reg | 0x10));
+	Xil_Out32(DCTSBASEADDR + data_off[64], (t_reg & 0xFFFFFFEF));
+}
+
+void load_Data(unsigned int offset, int value){
+	Xil_Out32(DCTSBASEADDR + offset, value);
+}
+
+void sel_vec(unsigned int vecsiz){
+	unsigned int t_reg = Xil_In32(DCTSBASEADDR + data_off[64]);
+	t_reg &= (0xFFFFFFF8);
+	Xil_Out32(DCTSBASEADDR + data_off[64], (t_reg | vecsiz));
+}
+
+int read_Data(unsigned int offset){
+	return Xil_In32(DCTSBASEADDR + offset);
+}
+
+unsigned int get_ValOut() {
+	return (Xil_In32(DCTSBASEADDR + data_off[64]) & 0x01);
+}
+
+unsigned int get_Time() {
+	return (Xil_In32(DCTSBASEADDR + data_off[64])>>1);
+}

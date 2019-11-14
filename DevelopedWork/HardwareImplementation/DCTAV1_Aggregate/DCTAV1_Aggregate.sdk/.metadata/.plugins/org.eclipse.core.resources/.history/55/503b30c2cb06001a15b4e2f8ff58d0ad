@@ -1,0 +1,10 @@
+#ifndef __DCTs_H_
+#define __DCTs_H_
+
+#include "xil_io.h"
+
+#define DCTSBASEADDR 0x44a00000
+
+void disable_DCTs();
+
+#endif

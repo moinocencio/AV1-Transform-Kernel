@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Root MajorVersion="0" MinorVersion="37">
-  <CompositeFile CompositeFileTopName="DCTCop" CanBeSetAsTop="true" CanDisplayChildGraph="true">
+  <CompositeFile CompositeFileTopName="DCTCop" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1573593054"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1573593054"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1573593054"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1573593054"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1573767486"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1573767486"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1573767486"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1573767486"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
-      <File Name="ip/DCTCop_microblaze_0_0/DCTCop_microblaze_0_0.xci" Type="IP">
+      <File Name="ip/DCTCop_microblaze_0_1/DCTCop_microblaze_0_1.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -15,15 +15,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/DCTCop_DCTs_0_0/DCTCop_DCTs_0_0.xci" Type="IP">
-        <Instance HierarchyPath="DCTs_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/DCTCop_dlmb_v10_0/DCTCop_dlmb_v10_0.xci" Type="IP">
+      <File Name="ip/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0_local_memory/dlmb_v10"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -31,7 +23,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/DCTCop_ilmb_v10_0/DCTCop_ilmb_v10_0.xci" Type="IP">
+      <File Name="ip/DCTCop_ilmb_v10_1/DCTCop_ilmb_v10_1.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0_local_memory/ilmb_v10"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -39,7 +31,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/DCTCop_dlmb_bram_if_cntlr_0/DCTCop_dlmb_bram_if_cntlr_0.xci" Type="IP">
+      <File Name="ip/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0_local_memory/dlmb_bram_if_cntlr"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -47,7 +39,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/DCTCop_ilmb_bram_if_cntlr_0/DCTCop_ilmb_bram_if_cntlr_0.xci" Type="IP">
+      <File Name="ip/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_ilmb_bram_if_cntlr_1.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0_local_memory/ilmb_bram_if_cntlr"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -55,7 +47,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/DCTCop_lmb_bram_0/DCTCop_lmb_bram_0.xci" Type="IP">
+      <File Name="ip/DCTCop_lmb_bram_1/DCTCop_lmb_bram_1.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0_local_memory/lmb_bram"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -63,38 +55,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/DCTCop_xbar_0/DCTCop_xbar_0.xci" Type="IP">
-        <Instance HierarchyPath="microblaze_0_axi_periph/xbar"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/DCTCop_microblaze_0_axi_periph_0/DCTCop_microblaze_0_axi_periph_0.xci" Type="IP">
-        <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/DCTCop_microblaze_0_axi_intc_0/DCTCop_microblaze_0_axi_intc_0.xci" Type="IP">
-        <Instance HierarchyPath="microblaze_0_axi_intc"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/DCTCop_microblaze_0_xlconcat_0/DCTCop_microblaze_0_xlconcat_0.xci" Type="IP">
-        <Instance HierarchyPath="microblaze_0_xlconcat"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/DCTCop_mdm_1_0/DCTCop_mdm_1_0.xci" Type="IP">
+      <File Name="ip/DCTCop_mdm_1_1/DCTCop_mdm_1_1.xci" Type="IP">
         <Instance HierarchyPath="mdm_1"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -102,7 +63,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/DCTCop_clk_wiz_1_0/DCTCop_clk_wiz_1_0.xci" Type="IP">
+      <File Name="ip/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1.xci" Type="IP">
         <Instance HierarchyPath="clk_wiz_1"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -110,7 +71,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/DCTCop_rst_clk_wiz_1_100M_0/DCTCop_rst_clk_wiz_1_100M_0.xci" Type="IP">
+      <File Name="ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1.xci" Type="IP">
         <Instance HierarchyPath="rst_clk_wiz_1_100M"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -118,8 +79,32 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/DCTCop_reset_inv_0_0/DCTCop_reset_inv_0_0.xci" Type="IP">
-        <Instance HierarchyPath="reset_inv_0"/>
+      <File Name="ip/DCTCop_DCTs_0_1/DCTCop_DCTs_0_1.xci" Type="IP">
+        <Instance HierarchyPath="DCTs_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/DCTCop_xbar_1/DCTCop_xbar_1.xci" Type="IP">
+        <Instance HierarchyPath="microblaze_0_axi_periph/xbar"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/DCTCop_microblaze_0_axi_periph_1/DCTCop_microblaze_0_axi_periph_1.xci" Type="IP">
+        <Instance HierarchyPath="microblaze_0_axi_periph"/>
+        <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1.xci" Type="IP">
+        <Instance HierarchyPath="axi_uartlite_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

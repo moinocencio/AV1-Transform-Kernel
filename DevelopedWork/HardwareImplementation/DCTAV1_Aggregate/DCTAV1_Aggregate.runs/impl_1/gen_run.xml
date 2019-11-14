@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573593097">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573767861">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BG-DRC" Name="DCTCop_wrapper.drc"/>
   <File Type="BG-BGN" Name="DCTCop_wrapper.bgn"/>
@@ -78,15 +78,8 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/bd/DCTCop/hdl/DCTCop_wrapper.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/imports/new/DCT16_1_I.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT16_1_I.vhd"/>
         <Attr Name="ImportTime" Val="1573489800"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -95,7 +88,6 @@
     </File>
     <File Path="$PSRCDIR/sources_1/imports/new/DCT16_2_I.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT16_2_I.vhd"/>
         <Attr Name="ImportTime" Val="1573495974"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -104,7 +96,6 @@
     </File>
     <File Path="$PSRCDIR/sources_1/imports/new/DCT32_1_I.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT32_1_I.vhd"/>
         <Attr Name="ImportTime" Val="1573556652"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -113,7 +104,6 @@
     </File>
     <File Path="$PSRCDIR/sources_1/imports/new/DCT32_2_I.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT32_2_I.vhd"/>
         <Attr Name="ImportTime" Val="1573496416"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -122,14 +112,12 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/DCT4_I.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/imports/new/DCT64_1_I.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT64_1_I.vhd"/>
         <Attr Name="ImportTime" Val="1573497048"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -138,7 +126,6 @@
     </File>
     <File Path="$PSRCDIR/sources_1/imports/new/DCT64_2_I.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT64_2_I.vhd"/>
         <Attr Name="ImportTime" Val="1573558603"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -147,7 +134,6 @@
     </File>
     <File Path="$PSRCDIR/sources_1/imports/new/DCT8_1_I.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT8_1_I.vhd"/>
         <Attr Name="ImportTime" Val="1573482328"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -156,7 +142,6 @@
     </File>
     <File Path="$PSRCDIR/sources_1/imports/new/DCT8_2_I.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/DCT8_2_I.vhd"/>
         <Attr Name="ImportTime" Val="1573553592"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -165,8 +150,20 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/DCT_Wrapper.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/DCTCop/hdl/DCTCop_wrapper.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/DCTs_0/DCTs_0.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
@@ -199,4 +196,5 @@
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="DCTCop_DCTs_0_1"/>
 </GenRun>

@@ -1,0 +1,62 @@
+/*
+ * DCT_Timing_Anal.c
+ *
+ *      Author: moinocencio
+ *
+ *      Evaluate timing performance of developed architecture
+ */
+
+#include <stdio.h>
+#include "platform.h"
+#include "xil_printf.h"
+#include "DCTs.h"
+
+const int vecIn[64] = {53, -155, -175, -206, -220, 105, 150, 18, 56, -152, -168, -200, -216, 104, 152, 24, 49, -159, -175, -206, -223, 105, 145, 17, 55, -153, -173, -201, -217, 103, 149, 23, 53, -155, -175, -206, -220, 105, 150, 18, 56, -155, -171, -203, -216, 100, 148, 20, 52, -158, -174, -206, -217, 97, 144, 18, 55, -152, -172, -238, -222, 102, 149, 20};
+int vecOut[64];
+const int vecSiz[5] = {4, 8, 16, 32, 64};
+unsigned int DCTtime, InLoadTime, OutReadTime;
+
+int main(){
+
+    init_platform();
+
+	xil_printf("Beginning DCT Timing Analysis\n\r");
+
+	xil_printf("Disabling and Resetting...\n\r");
+	setControlReg(0,0,1,0,0);
+	xil_printf("Number of Load In Cycles: %u\nNumber of DCT Cycles: %u\nNumber of Read Out Cycles: %u\n\r", get_InTime(), get_DCTTime(), get_OutTime());
+	for(int i = 0; i < 5; i++){
+
+		xil_printf("Starting %i Vector Size Test:\nDisabling and Resetting...\n\r", vecSiz[i]);
+		setControlReg(0,0,1,0,0);
+
+		xil_printf("Loading Data...\n\r");
+		setControlReg(0,0,0,1,0);
+		for(int i = 0; i < vecSiz[i]; i++) {
+			load_Data(i,vecIn[i]);
+		}
+		setControlReg(0,0,0,0,0);
+		InLoadTime = get_InTime();
+
+		xil_printf("Enabling and Waiting...\n\r");
+		setControlReg(i,1,0,0,0);
+		while(get_ValOut() == 0);
+
+		xil_printf("Retrieving Data...\n\r");
+		setControlReg(0,0,0,0,1);
+		for(int i = 0; i < vecSiz[i]; i++){
+			vecOut[i] = read_Data(i);
+		}
+		setControlReg(0,0,0,0,0);
+		OutReadTime = get_OutTime();
+		DCTtime = get_DCTTime();
+
+		xil_printf("Number of Load In Cycles: %i\nNumber of DCT Cycles: %i\nNumber of Read Out Cycles: %i\n\r", InLoadTime, DCTtime, OutReadTime);
+	}
+
+	setControlReg(0,0,1,0,0);
+	xil_printf("Exiting...\n\r");
+	cleanup_platform();
+    return 0;
+}
+
