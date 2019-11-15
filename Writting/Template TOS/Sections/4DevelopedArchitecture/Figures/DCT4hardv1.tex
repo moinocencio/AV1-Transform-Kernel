@@ -1,0 +1,32 @@
+\begin{tikzpicture}[%
+    >={Triangle[length=6pt,angle'=28]},
+    start chain=going below,    % General flow is left-to-right
+    node distance=5mm and 20mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    ]
+
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+  reg/.style={base, rectangle, minimum width=2.5em, minimum height=2em,fill=black!15},
+  proc/.style={base, rectangle, minimum width=4em, minimum height=8em, fill=black!15},
+  inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
+  term/.style={proc, rounded corners},
+  sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
+  % coord node style is used for placing corners of connecting lines
+  coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+  % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+  % Connector line styles for different parts of the diagram
+  norm/.style={aar, draw},
+  free/.style={aar, draw, green3},
+  cong/.style={aar, draw, red3},
+  it/.style={font={\small\itshape}},
+  nar/.style={aar, red!75!black},
+  aar/.style={->, line width=0.4mm},
+  pathcos/.style={font=\small, sloped}
+}    
+
+\begin{scope}
+
+
+\end{scope}
+\end{tikzpicture}

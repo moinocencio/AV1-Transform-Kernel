@@ -8,7 +8,9 @@ The previous chapter presented some characteristics of the current state of \emp
 
 In order to undertake these opportunities, and improve the overall encoder performance, new architectures for the studied stage were developed. The first approach was to study possible simplifications of the reference software, through the development and testing of alternative approaches for the provided functions.
 
-The developed implementations tackled the forward \emph{DCT}, since it was the \emph{kernel} that would have the most impact on encoder performance. As the \emph{IDCT} is shared between encoder and decoder, and due to the added complexity, no changes were done to this block, as it acts with accordance with the established standard, as mentioned previously. 
+The developed implementations tackled the forward \emph{DCT}, as it was the \emph{kernel} that would have the most impact on encoder performance. As the \emph{IDCT} is shared between encoder and decoder, and due to the added complexity, no changes were done to this block, as it acts with accordance with the established standard, as mentioned previously. 
+
+All the developed architectures and corresponding tests were written in $C$ programming language, as to maintain the simple integration into \emph{libaom}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Matrix Multiplication Implementation}
@@ -19,7 +21,7 @@ The original integer transform matrix is shown in Equation \ref{eq:matscale}.
 
 \begin{equation} \label{eq:matscale}
     \begin{gathered}
-        \mathbf{F}_{x,u} = \beta(u)\cos\left(\frac{(2x+1)u\pi }{2L}\right)\,0\leq u,x < L \\
+        \mathbf{F}_{x,u} = \beta(u)\cos\left(\frac{(2x+1)u\pi }{2L}\right),\;0\leq u,x < L \\
         \Downarrow \\
         \mathbf{F} = \sqrt{\frac{2}{L}}  \begin{bmatrix}
             \sqrt{\frac{1}{2}}                                  & \sqrt{\frac{1}{2}}                                & \dots & \sqrt{\frac{1}{2}} \\
@@ -30,7 +32,7 @@ The original integer transform matrix is shown in Equation \ref{eq:matscale}.
     \end{gathered}
 \end{equation}
 
-As mentioned previously, the floating point coefficients bring a number of disadvantages on an hardware implementation, from increased calculation overheads, to encoder/decoder mismatches. 
+As mentioned previously, the floating point coefficients bring a number of disadvantages on a hardware implementation, from increased calculation overheads, to encoder/decoder mismatches. 
 
 In order to address these problems, a scale and rounding operation was performed, as shown in Equation \ref{eq:matscale}, where $K$ represents the number of bits of the scaled coefficients.
 
@@ -61,7 +63,7 @@ This way, the  transformed outputs are calculated through
 
 For an $L$ length vector, the calculation of the transformed vector implies $L^2$ additions and $L^2$ multiplications, which leads to the main disadvantage of such implementation. For larger vectors, this operation becomes too demanding in terms of memory and complexity.
 
-One other negative aspect of such implementation is that, due to the variation of the transform matrix's coefficients, the obtained error in the rounding and scaling operation also varies with the vector size. The quantization\footnote{Here, quantization refers to the scaling and rounding operation, and not to the the \emph{Q} stage in an encoder.} error, $\Delta_K$, can be calculated as
+One other negative aspect of such implementation is that, due to the variation of the transform matrix's coefficients, the obtained error in the rounding and scaling operation also varies with the vector size. The quantization\footnote{Here, quantization refers to the scaling and rounding operation, and not to the the \emph{Q} stage in an encoder.} \enlargethispage{-\baselineskip} error, $\Delta_K$, can be calculated as
 
 \begin{equation}
     \Delta_K = \frac{\max{\left(\sqrt{\frac{L}{2}}\mathbf{F}\right)} - \min{\left(\sqrt{\frac{L}{2}}\mathbf{F}\right)}}{2^K}
@@ -69,25 +71,25 @@ One other negative aspect of such implementation is that, due to the variation o
 
 As it was proven in the previous Chapter that the number of bits in the cosine representation wouldn't greatly impact the quality of the video, the developed architectures used 8 bits for the scaling operation, as to decrease the overhead of the implemented multiplications and shifts. The impact of this choice was evaluated at a later stage.
 
-To evaluate the performance of this first implementation, there was performed a test that measured and compared the elapsed time for both the described architecture, and the corresponding equivalent from \emph{aomenc}. This test injected a fixed sequence of input vectors into each of the \emph{DCT}'s, scaled the vectors in the same manner as the encoder, and then re-transformed the obtained vectors with \emph{AV1}'s \emph{IDCT}. This sequence of operations was timed, and the corresponding results are presented at Table \ref{tab:dcttime}.
+To evaluate the performance of this first implementation, a test was performed to measure and compare the elapsed time for both the described architecture, and the corresponding equivalent from \emph{aomenc}. This test injected a fixed sequence of 1 million input vectors into each of the \emph{DCT}'s,  measuring the elapsed cpu time in the operation. The results are in Table \ref{tab:dcttime}.
 
 \begin{table}[!htpb]
     \centering
     \begin{tabular}{ccc} \toprule
         \multirow{2}{*}{\textbf{Vector Size}} &     \multicolumn{2}{c}{\textbf{Execution Time (ms)}} \\
          &      \textbf{aomenc's} &      \textbf{MM} \\ \toprule
-        \textbf{4} &    145 &      98 $(-32.5\%)$ \\ \hline
-        \textbf{8} &    319 &      215 $(-32.6\%)$ \\ \hline
-        \textbf{16} &   787 &      583 $(-25.9\%)$ \\ \hline
-        \textbf{32} &   1917 &     1606 $(-16.2\%)$  \\ \hline
-        \textbf{64} &   4999  &    5696 $(+14.0\%)$  \\ 
+        \textbf{4} &    75 &       36 $(-52\%)$ \\ \hline
+        \textbf{8} &    179 &      66 $(-63\%)$ \\ \hline
+        \textbf{16} &   405 &      174 $(-57\%)$ \\ \hline
+        \textbf{32} &   1039 &     686 $(-33\%)$  \\ \hline
+        \textbf{64} &   3288 &     3590 $(+9\%)$  \\ 
         \bottomrule
     \end{tabular}
     \caption{Comparison of execution time between \emph{aomenc}'s DCT and the matrix multiplication implementation.}
     \label{tab:dcttime}
 \end{table}
 
-From these results it's easily observable why the currently implemented transforms follow the \emph{butterfly} scheme. Although from sizes $4$ to $32$, the proposed implementation is faster than the current version of \emph{libaom}, the largest transform is slower. This factor, added to the error variation from the scaling operation makes this implementation quite damaging for the overall encoder performance, especially on a constant quality objective, as shown in Table \ref{tab:multresults}. Here, there are presented the timing results of an encoding test, where one encode was made with the standard \emph{aomenc}, the other had the proposed matrix multiplication \emph{DCT}'s. The test encoded the first 15 frames of the \emph{Parkrun} HD sequence, with two different quality objectives. After compression, the encoded video was decoded with \emph{aomdec}, calculating the PSNR of the output video.
+From these it's easily observable why the encoder's implemented transforms follow the \emph{butterfly} scheme. Although from sizes $4$ to $32$ the proposed implementation is faster than the current version of \emph{libaom}, the largest transform is slower. This factor, added to the error variation from the scaling operation makes this implementation quite damaging for the overall encoder performance, especially on a constant quality objective, as shown in Table \ref{tab:multresults}. Here, there are presented the timing results of an encoding test, where one encode was made with the standard \emph{aomenc}, the other had the proposed matrix multiplication \emph{DCT}'s. The test encoded the first 15 frames of the \emph{Parkrun} HD sequence, with two different quality objectives. After compression, the encoded video was decoded with \emph{aomdec}, calculating the PSNR of the output video.
 
 \begin{table}[!htpb]
     \centering
@@ -113,14 +115,14 @@ Taking this into account, a new approach was employed, using the same \emph{butt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Alternative \emph{Butterfly} Implementation}
 
-\emph{AV1}'s reference \emph{Transform stage} follows the aforementioned architecture for the DCT, in addition to expanding its use into the \emph{ADST}. In the publishing work \cite{wen-hsiungchenFastComputationalAlgorithm1977}, the authors give good reasons for the heavy adoption of this implementation, claiming that "\emph{The number of computational steps has been shown to be less than \nicefrac{1}{6} of the conventional DCT algorithm employing a 2-sided FFT}". 
+\emph{AV1}'s reference \emph{Transform stage} follows the aforementioned architecture for the DCT, in addition to expanding its use into the \emph{ADST}. In this scheme's publishing paper \cite{wen-hsiungchenFastComputationalAlgorithm1977}, the authors gave good reasons for the heavy adoption of this implementation, claiming that "\emph{The number of computational steps has been shown to be less than \nicefrac{1}{6} of the conventional DCT algorithm employing a 2-sided FFT}". 
 
-This is achieved through a pipelined implementation of the previously shown matrix multiplication, where each stage is calculated as function of the previously calculated intermediary coefficients, as shown in Chapter \ref{chap:trans}. Besides the reduction of complexity, this implementation also uses a fixed bank of \emph{cosine} coefficients (corresponding to \texttt{cospi} in \emph{libaom}), limited between $\cos\left(\nicefrac{\pi}{2}\right) \leq \alpha \leq \cos(0)$, i.e., $0 \leq \alpha \leq 1$. This way, the quantization error produced by the rounding and scaling operation is constant for all vector sizes.
+This is achieved through a pipelined implementation of the previously shown matrix multiplication, where each stage is calculated as function of the previously calculated intermediary coefficients, as shown in Figures \ref{fig:intDCT} and \ref{fig:intADST}. Besides the reduction of complexity, this implementation also uses a fixed bank of \emph{cosine} coefficients (corresponding to \texttt{cospi} in \emph{libaom}), limited between $\cos\left(\nicefrac{\pi}{2}\right) < \alpha \leq \cos(0)$, i.e., $0 < \alpha \leq 1$ \footnote[1]{Zero is excluded from the set, as matrix $\mathbf{F}$ won't have any null element, for any $L$}. This way, the quantization error produced by the rounding and scaling operation is constant for all vector sizes.
 
-To improve upon the reference \emph{DCT}, the developed architecture implemented a similar approach to the previous \emph{MM} architecture, using 8 bits for the scaling of the \emph{cosine} approximations. These values, $cos_{Apr}$ were generated using the same method as \texttt{cospi}, i.e.
+To improve upon the reference \emph{DCT}, the developed architecture implemented a similar approach to the previous \emph{MM} architecture, using 8 bits for the scaling of the \emph{cosine} approximations. These values, $cos_{Apr}$, were generated using the same method as \texttt{cospi}, i.e.
 
 \begin{equation}
-    cos_{Apr} = \nint*{2^8*\cos\left(\frac{k\pi}{128}\right)}
+    cos_{Apr} = \nint*{2^8 \cdot \cos\left(\frac{k\pi}{128}\right)}, \; 0 \leq k \leq 63
 \end{equation}
 
 Comparing the quantization step to the worst case for \emph{libaom}'s \emph{DCT}, with 10 bits
@@ -144,7 +146,7 @@ then it's possible to calculate the \emph{Mean Squared Quantization Error} throu
 
 Although this value might seem discouraging, most of the error introduced in this stage is irrelevant once considered the error created by the encoder's \emph{Quantization} block. With that said, the impact of this approximation might compromise the encoder on higher quality (i.e., lower \emph{Quantizer}) objectives.
 
-The implemented \emph{DCT} also deviates from the reference software in the multiplication of the cosine coefficients. The latter version calculated most of the intermediary functions with the \texttt{half\_btf} function (Equation \ref{eq:half_btf}), which, because the additional $2^(K-1)$, performs a \emph{rounding} (\gls{tld:round}) operation as shown in Equation \ref{eq:alternhalfbtf}
+The implemented \emph{DCT} also deviates from the reference software in the multiplication of the cosine coefficients. The latter version calculated most of the intermediary functions with the \texttt{half\_btf} function (Equation \ref{eq:half_btf}), which, because the additional $2^{(K-1)}$, performs a \emph{rounding} (\gls{tld:round}) operation, as shown in Equation \ref{eq:alternhalfbtf}
 
 \begin{equation} \label{eq:alternhalfbtf}
     \begin{gathered}
@@ -156,27 +158,27 @@ The implemented \emph{DCT} also deviates from the reference software in the mult
 
 On the implemented architecture, the rescaling didn't include the additional factor, and was made just with the right shifting (\gls{tld:shiftr}) by 8 bits, corresponding to the \emph{flooring} operation (\gls{tld:floor}).
 
-The constructed \emph{DCT} architecture underwent the same test as the previous implementation, giving origin to the results from Table \ref{tab:dcttime2}.
+The constructed \emph{DCT} architecture underwent the first test as the previous implementation, giving origin to the results from Table \ref{tab:dcttime2}.
 
 \begin{table}[!htpb]
     \centering
     \begin{tabular}{ccc} \toprule
         \multirow{2}{*}{\textbf{Vector Size}} &     \multicolumn{2}{c}{\textbf{Execution Time (ms)}} \\
          &      \textbf{aomenc's} &      \textbf{Alternative \emph{butterfly}} \\ \toprule
-        \textbf{4} &    142 &      97 $(-31.3\%)$ \\ \hline
-        \textbf{8} &    326 &      229 $(-29.9\%)$ \\ \hline
-        \textbf{16} &   785 &      544 $(-30.7\%)$ \\ \hline
-        \textbf{32} &   1938 &     1320 $(-31.9\%)$  \\ \hline
-        \textbf{64} &   4986  &    3562 $(-28.5\%)$  \\ 
+        \textbf{4} &    75 &       37 $(-51\%)$ \\ \hline
+        \textbf{8} &    179 &      66 $(-63\%)$ \\ \hline
+        \textbf{16} &   405 &      149 $(-63\%)$ \\ \hline
+        \textbf{32} &   1039 &     355 $(-65\%)$  \\ \hline
+        \textbf{64} &   3288  &    1362 $(-58\%)$  \\ 
         \bottomrule
     \end{tabular}
     \caption{Comparison of execution time between \emph{aomenc}'s DCT and the alternative \emph{butterfly} implementation.}
     \label{tab:dcttime2}
 \end{table}
 
-As shown, the developed architecture is approximately $30\%$ for all vector sizes. This is due to the removal of the memory accessing overheads imposed by the access to the \texttt{cospi} array, as well the simplification of the performed operations. 
+As shown, the developed architecture is, on average, $60\%$ faster for all vector sizes. This is due to the removal of the memory accessing overheads imposed by the access to the \texttt{cospi} array, as well the simplification of the performed operations. 
 
-However, the liability of this implementation depends on whether the encoder can maintain the desired quality with the increased error introduced by the quantization of the \emph{cosine} approximations. To verify this factor, the tests presented in Section \ref{ssec:performance} were repeated, once with the original encoder, and other with the encoder with the described alternative version of the \emph{DCT}. The obtained quality and timing results are presented in Figures \ref{fig:buttqual} and \ref{fig:butttime}. In the latter, the dotted lines correspond to time with the original encoder. The percentage above each bar represent the time difference taken by the alternative encoder, relative to the original.
+However, the liability of this implementation depends on whether the encoder can maintain the desired quality with the increased error introduced by the quantization of the \emph{cosine} approximations. To verify this factor, the tests presented in Section \ref{ssec:performance} were repeated, once with the original encoder, and other with the encoder with the described alternative version of the \emph{DCT}. The obtained quality and timing results are presented in Figures \ref{fig:buttqual} and \ref{fig:butttime}, respectively. In the latter, the dotted lines correspond to time with the original encoder. The percentage above each bar represent the time difference taken by the alternative encoder, relative to the original.
 
 \begin{figure}[!htpb]
     \centering
@@ -192,10 +194,58 @@ However, the liability of this implementation depends on whether the encoder can
     \label{fig:butttime}
 \end{figure}
 
-As shown, with the performed changes, the encoding time was, in average, reduced for all quality objectives, while maintaining the output PSNR. These results allow to advance to an efficient hardware implementation, since the obtained architecture can heavily benefit from parallelization and, due to the discarding of the \texttt{cospi} array, would need less memory than the original architecture.
+As shown, with the performed changes, the encoding time was, in average, reduced by $2.9\%$ for all quality objectives, while maintaining the output PSNR, making this a suitable \emph{DCT} implementation for an \emph{AV1} encoder. Although the performance improvement is rather diminishing once considered the full encoding cycle, it is a step toward a possible realtime encoding implementation.
+
+These results allow to advance to a hardware implementation, since the obtained architecture can heavily benefit from parallelization and, due to the discard of the \texttt{cospi} array, would need less memory than the original architecture.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Parallel Hardware Implementation}
+\section{Hardware Implementations}
+
+On the subject of hardware prototyping, \glspl{fpga} have gained massive popularity within developers, both due to its applicability, as well as ease of use. Additionally, in recent years, there have been major developments in software platforms that allow for the synthesis of FPGA designs as \glspl{asic}, such as \emph{Cadence}'s \emph{Genus} or \emph{Synopsys' Design Compiler} \cite{GenusSynthesisSolution, DesignCompilerGraphical}. 
+
+This way, the chosen platform for the development of the hardware architectures was \emph{Xilinx}'s \emph{Vivado}, due to the wide availability of its FPGAs, as well as for the wide support from its community. The designs and test benches were described in \gls{vhdl}.
+
+With an efficient algorithm for each of the supported vector sizes, the first objective was to develop a hardware architecture to implement each of the 1D \emph{DCT}s individually, and group them on a single block at a later stage. With this approach, it was hopped to reach an architecture that englobed all the \emph{DCT} kernels, allowing to easily chose between each of them, depending on the desired choices made in the beginning of the transform stage.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{1D \emph{Butterfly DCT} Hardware Design}
+
+The hardware implementations followed the same scheme as the corresponding software counterparts. By this it is meant that the flow of the input towards the output is done in individual and sequential stages. The main difference between these implementations is that in hardware, all of the intermediary signals within each stage are calculated in parallel. 
+
+However, in order to achieve an efficient hardware implementation, some additional measures must be taken into account, mainly when considering the multiplication of signals by the cosine coefficients and re-scaling.
+
+Consider an hypothetical operation performed in the software version, where two intermediary signals, \texttt{x1} and \texttt{x2}, get multiplied by some constant, added, and finally rescaled. In $C$, this operation is easily described in a single line of code, as shown in Figure \ref{fig:hardsoft}. However, to perform the same operation on an hardware descriptive language, some additional steps must be taken. The seemingly simple operation done in software must be deconstructed in various sequential steps, controlled by a clock signal. The operation shown in this Figure is repeated throughout the various \emph{DCT} implementations in hardware, making it the key to the development of the parallel architectures.
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/4DevelopedArchitecture/Figures/multHardware.tex}
+    \caption{Comparison between software and hardware implementation of multiplication, sum and re-scaling}
+    \label{fig:hardsoft}
+\end{figure}
+
+Due to advances in \emph{VHDL} compilers and supporting libraries, both multiplication, shifts and additions are easily described, on a similar manner to a higher level language. Although on previous generations there would be some added benefits of implementing a multiplication by shifting and adding an input, as shown in Equation \ref{eq:multshift}, the improvements done in most recent years allow for similar architectures to be implemented, with less effort.
+
+\begin{equation} \label{eq:multshift}
+    \texttt{15 * x1} \equiv \texttt{(x1<<3) + (x1<<2) + (x1<<1) + x1}
+\end{equation}
+
+As a final measure to simplify the development process, the \emph{kernels} are implemented using the smaller sizes as a constituting block. As shown in \cite{wen-hsiungchenFastComputationalAlgorithm1977}, all transform sizes greater than $4$ englobe the same sequence of operations as the smaller counterparts, on one subset of its intermediary coefficients. This way, each of the smaller \emph{1D-DCT} blocks may be inserted into the size immediately above it.
+
+Taking these measures into consideration, the development of the 1D transforms becomes similar to all the vector sizes
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/4DevelopedArchitecture/Figures/DCT4hardv1.tex}
+    \caption{1D \emph{DCT 4} implemented in hardware}
+    \label{fig:harddct4v1}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/4DevelopedArchitecture/Figures/DCT8hardv1.tex}
+    \caption{1D \emph{DCT 8} implemented in hardware, with inclusion of \emph{DCT 4}}
+    \label{fig:harddct8v1}
+\end{figure}
 
 \clearpage
 \printbibliography[heading=subbibliography]

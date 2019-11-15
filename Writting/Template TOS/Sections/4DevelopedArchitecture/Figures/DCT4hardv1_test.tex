@@ -1,0 +1,128 @@
+\begin{tikzpicture}[%
+    >={Triangle[length=6pt,angle'=28]},
+    start chain=going below,    % General flow is left-to-right
+    node distance=10mm and 20mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    ]
+
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+  reg/.style={base, rectangle, minimum width=2.5em, minimum height=2em,fill=black!15},
+  proc/.style={base, rectangle, text width=8em,fill=black!15},
+  inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
+  term/.style={proc, rounded corners},
+  sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
+  % coord node style is used for placing corners of connecting lines
+  coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+  % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+  % Connector line styles for different parts of the diagram
+  norm/.style={aar, draw},
+  free/.style={aar, draw, green3},
+  cong/.style={aar, draw, red3},
+  it/.style={font={\small\itshape}},
+  nar/.style={aar, red!75!black},
+  aar/.style={->, line width=0.4mm},
+  pathcos/.style={font=\small, sloped}
+}    
+
+\begin{scope}
+    \foreach \x in {0,...,3}
+        \node[on chain] (dIn\x) {\texttt{dataIn\x}};
+    \node[on chain, below=1.5cmof dIn3.south east, anchor=east] (enIn) {\texttt{enable}};
+    \node[on chain, below=of enIn.south east, anchor=east] (resIn) {\texttt{reset}};
+    \node[on chain, below=of resIn.south east, anchor=east] (clkIn) {\texttt{CLK}};
+    
+    %% Stage 0
+    \foreach \x in {0,...,3}
+        \node [reg, right=of dIn\x] (reg\x) {\texttt{reg0\x}};
+
+
+
+    \node [sum, right=of reg0] (s10) {\textbf{+}};
+    \foreach \x in {1,...,3}
+        \node [sum, right=of reg\x] (s1\x) {\textbf{+}};
+    
+    \draw [aar] (reg0.east) -- (s10);
+    \draw [aar] (reg0.east) -- (s13);         
+    \draw [aar] (reg1.east) -- (s11);
+    \draw [aar] (reg1.east) -- (s12);
+    \draw [aar] (reg2.east) -- (s11);
+    \draw [nar] (reg2.east) -- (s12);         
+    \draw [aar] (reg3.east) -- (s10);
+    \draw [nar] (reg3.east) -- (s13);
+
+    %% Stage 2 Mult
+    \node [reg, above right=of s10] (reg20) {\texttt{*185}};
+    \node [reg, below=4mm of reg20.south] (reg21) {\texttt{*185}};
+    \node [reg, below=4mm of reg21.south] (reg221) {\texttt{*104}};
+    \node [reg, below=4mm of reg221.south] (reg222) {\texttt{*239}};
+    \node [reg, below=4mm of reg222.south] (reg231) {\texttt{*104}};
+    \node [reg, below=4mm of reg231.south] (reg232) {\texttt{*239}};
+
+    \draw[aar] (s10) -- (reg20);
+    \draw[aar] (s11) -- (reg21);
+    \draw[aar] (s12) -- (reg221);
+    \draw[aar] (s12) -- (reg222);
+    \draw[aar] (s13) -- (reg231);
+    \draw[aar] (s13) -- (reg232);
+
+    %% Stage 2 Add
+    \foreach \x in {0,...,3}
+        \node [sum, right=40mm of s1\x] (s2\x) {\textbf{+}};
+    \draw[aar] (reg20) -- (s20);
+    \draw[aar] (reg21) -- (s20);
+    \draw[aar] (reg221) -- (s21);
+    \draw[aar] (reg232) -- (s21);
+    \draw[aar] (reg20) -- (s22);
+    \draw[nar] (reg21) -- (s22);
+    \draw[aar] (reg231) -- (s23);
+    \draw[nar] (reg222) -- (s23);
+
+    %% Stage 2 Shift
+    \foreach \x in {0,...,3}
+        \node [reg, right=of s2\x] (sh\x) {\texttt{>>8}};
+
+
+    \foreach \x in {0,...,3}
+        \node[on chain, right=of sh\x] (dIn\x) {\texttt{dataOut\x}};
+    %%% Stage 2
+    %\node [sum, right=of s10] (s20) {\textbf{+}};
+    %\foreach \x in {1,...,3}
+    %    \node [sum, right=of s1\x] (s2\x) {\textbf{+}};
+%
+    %\draw [aar] (s10.east) -- (s20);
+    %\draw [aar] (s10.east) -- (s23);        
+    %\draw [aar] (s11.east) -- (s21);
+    %\draw [aar] (s11.east) -- (s22);
+    %\draw [aar] (s12.east) -- (s21);
+    %\draw [nar] (s12.east) -- (s22);        
+    %\draw [aar] (s13.east) -- (s20);
+    %\draw [nar] (s13.east) -- (s23);
+
+
+\end{scope}
+
+\begin{pgfonlayer}{background}
+    \path (reg0.west |- reg0.north)+(-2mm,2mm) node (a11) {};
+    \path (reg3.east |- enIn.south)+(2mm,-2mm) node (a21) {};
+    \path[fill=black!5, draw] (a11) rectangle (a21);
+    
+    \path (s10.west |- s10.north)+(-2mm,2mm) node (a11) {};
+    \path (s13.east |- enIn.south)+(2mm,-2mm) node (a21) {};
+    \path[fill=black!5, draw] (a11) rectangle (a21);   
+    
+    \path (reg20.west |- reg20.north)+(-2mm,2mm) node (a11) {};
+    \path (reg232.east |- enIn.south)+(2mm,-2mm) node (a21) {};
+    \path[fill=black!5, draw] (a11) rectangle (a21);    
+
+    \path (s20.west |- s20.north)+(-2mm,2mm) node (a11) {};
+    \path (s23.east |- enIn.south)+(2mm,-2mm) node (a21) {};
+    \path[fill=black!5, draw] (a11) rectangle (a21);   
+
+    \path (sh0.west |- sh0.north)+(-2mm,2mm) node (a11) {};
+    \path (sh3.east |- enIn.south)+(2mm,-2mm) node (a21) {};
+    \path[fill=black!5, draw] (a11) rectangle (a21);   
+    
+\end{pgfonlayer}
+
+\end{tikzpicture}

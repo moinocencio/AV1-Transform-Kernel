@@ -63,33 +63,33 @@ int main() {
         
         gettimeofday(&t1,NULL);
         av1_fdct16(in_v_p, av1_out_p);
-        for (k = 0; k < SIZE; k++)
-            temp_p[k] = av1_out_p[k]>>3;
-        av1_idct16(temp_p, av1_rest_p);
+        //for (k = 0; k < SIZE; k++)
+        //    temp_p[k] = av1_out_p[k]>>3;
+        //av1_idct16(temp_p, av1_rest_p);
         gettimeofday(&t2,NULL);
         ell_av1 += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 
         gettimeofday(&t1,NULL);
         slowtest_fdct16_mult(in_v_p, test_out_mult_p);
-        for (k = 0; k < SIZE; k++)
-            temp_p[k] = test_out_mult_p[k]>>3;
-        av1_idct16(temp_p, test_rest_mult_p);     
+        //for (k = 0; k < SIZE; k++)
+        //    temp_p[k] = test_out_mult_p[k]>>3;
+        //av1_idct16(temp_p, test_rest_mult_p);     
         gettimeofday(&t2,NULL);
         ell_test_mult += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 
         gettimeofday(&t1,NULL);
         slowtest_fdct16_shift(in_v_p, test_out_p);
-        for (k = 0; k < SIZE; k++)
-            temp_p[k] = test_out_p[k]>>3;
-        av1_idct16(temp_p, test_rest_p);     
+        //for (k = 0; k < SIZE; k++)
+        //    temp_p[k] = test_out_p[k]>>3;
+        //av1_idct16(temp_p, test_rest_p);     
         gettimeofday(&t2,NULL);
         ell_test += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
         
         gettimeofday(&t1,NULL);
         butttest_fdct16_mult(in_v_p, test_out_bmult_p);
-        for (k = 0; k < SIZE; k++)
-            temp_p[k] = test_out_bmult_p[k]>>3;
-        av1_idct16(temp_p, test_rest_bmult_p);     
+        //for (k = 0; k < SIZE; k++)
+        //    temp_p[k] = test_out_bmult_p[k]>>3;
+        //av1_idct16(temp_p, test_rest_bmult_p);     
         gettimeofday(&t2,NULL);
         ell_bmult += ((unsigned long long)t2.tv_sec - (unsigned long long)t1.tv_sec)*1000000 + ((unsigned long long)t2.tv_usec - (unsigned long long)t1.tv_usec);
 

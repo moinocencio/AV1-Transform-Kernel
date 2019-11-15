@@ -47,7 +47,7 @@ v_n = [ "waterfall"       "flower"      "bridge"; ...
 q_n = ["Low" "Medium" "High"];
 t_n = ["Regular" "Experimental"];
 
-f_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TestTransLog.txt';
+f_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/Libaom/Tests/Encode_Stats/TestTransLog.txt';
 
 %% Parse Timing Results
 f = fopen(f_n);

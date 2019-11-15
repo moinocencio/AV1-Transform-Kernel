@@ -1,0 +1,73 @@
+\begin{tikzpicture}[%
+    >={Triangle[length=6pt,angle'=28]},
+    start chain=going below,    % General flow is left-to-right
+    node distance=5mm and 16mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    ]
+
+    \tikzset{
+    base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+    proc/.style={base, rectangle, fill=black!10},
+    inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
+    term/.style={proc, rounded corners},
+    sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!10},
+    % coord node style is used for placing corners of connecting lines
+    coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+    % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+    % Connector line styles for different parts of the diagram
+    norm/.style={ar, draw},
+    free/.style={ar, draw, green3},
+    cong/.style={ar, draw, red3},
+    it/.style={font={\small\itshape}},
+    ar/.style={->, line width=0.4mm},
+    nar/.style={ar, red!75!black},
+    pathcos/.style={font=\small, sloped}
+    }
+
+    \begin{scope}        
+
+        \node [inout] (x1) {\texttt{x1}};
+        \node [sum, right=of x1, join] (s1) {$\mathbf{\times}$};
+        \node [proc, above=1cm of s1] (a) {\texttt{a}};
+            \draw[ar] (a) -- (s1);
+
+        \node [inout, below=1cm of x1] (x2) {\texttt{x2}};      
+        \node [sum, right=of x2, join] (s2) {$\mathbf{\times}$};
+        \node [below=1cm of s2, proc] (b) {\texttt{b}};
+            \draw[ar] (b) -- (s2);
+
+        \node [below left=2cm and 1cm of x2, align=center] (clk) {Clock\\Signal};
+            \draw[thick] ($(clk.east)+(0.5,0)$) -- (x2 |- clk.east) -- ++(0,0.5) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) -- ++(0.8,0);
+
+        \path (s1) -- (s2) node[midway, rotate=90] (mid_s) {};
+        \node [sum, right=of mid_s] (s3) {$\mathbf{+}$};
+            \draw[ar] (s1.east) -- (s3);
+            \draw[ar] (s2.east) -- (s3);
+
+        \node[draw, fill=black!10, right=16mm of s3.center, anchor=center] (sh8) {\texttt{>>8}};
+            \draw[ar] (s3) -- (sh8);
+
+        \node[inout, right=of sh8, anchor=center] (y) {\texttt{y}};
+            \draw[ar] (sh8) -- (y);
+
+        \path (x1) -- (x2) node[midway, rotate=90] (mid_x) {};
+        \path (mid_x) -- (y) node[midway, rotate=90] (center) {};        
+        \node[above=3cm of center] (eq) {\texttt{y = (a*x1 + b*x2)>>8;}};        
+    \end{scope}
+
+    \begin{pgfonlayer}{background}
+        \path (clk.west |- a.north)+(-5mm,2mm) node (a11) {};
+        \path (y.east |- clk.south)+(20mm,-2mm) node (a21) {};
+        \path[fill=black!2,rounded corners, draw=black!50, dashed]
+          (a11) rectangle (a21);
+        \path (y.east |- a.north)+(20mm,2mm) node (a22) {};
+            \path (a21) -- (a22) node[midway, rotate=90, yshift=0.5cm] (mid_right) {\textbf{Hardware}};
+
+        \path (clk.west |- eq.north)+(-5mm,7mm) node (a11) {};
+        \path (y.east |- eq.south)+(20mm,-7mm) node (a21) {};
+        \path[fill=black!2,rounded corners, draw=black!50, dashed]
+          (a11) rectangle (a21);
+        \path (y.east |- eq.north)+(20mm,7mm) node (a22) {};
+            \path (a21) -- (a22) node[midway, rotate=90, yshift=0.5cm] (mid_right) {\textbf{Software}};
+    \end{pgfonlayer}
+\end{tikzpicture}
