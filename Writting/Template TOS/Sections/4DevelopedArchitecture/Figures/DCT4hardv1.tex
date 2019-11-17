@@ -1,32 +1,123 @@
 \begin{tikzpicture}[%
     >={Triangle[length=6pt,angle'=28]},
-    start chain=going below,    % General flow is left-to-right
+    start chain=going below ,    % General flow is left-to-right
     node distance=5mm and 20mm, % Global setup of box spacing
     every join/.style={norm},   % Default linetype for connecting boxes
+    scale=0.8, 
+    every node/.style={transform shape}
     ]
 
-\tikzset{
-  base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
-  reg/.style={base, rectangle, minimum width=2.5em, minimum height=2em,fill=black!15},
-  proc/.style={base, rectangle, minimum width=4em, minimum height=8em, fill=black!15},
-  inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
-  term/.style={proc, rounded corners},
-  sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
-  % coord node style is used for placing corners of connecting lines
-  coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
-  % nmark node style is used for coordinate debugging marks% -------------------------------------------------
-  % Connector line styles for different parts of the diagram
-  norm/.style={aar, draw},
-  free/.style={aar, draw, green3},
-  cong/.style={aar, draw, red3},
-  it/.style={font={\small\itshape}},
-  nar/.style={aar, red!75!black},
-  aar/.style={->, line width=0.4mm},
-  pathcos/.style={font=\small, sloped}
-}    
+  \tikzset{
+    base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+    reg/.style={base, rectangle, minimum width=2.5em, minimum height=2em,fill=black!15},
+    proc/.style={base, rectangle, minimum width=4em, minimum height=8em, fill=black!15},
+    inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
+    term/.style={proc, rounded corners},
+    sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
+    % coord node style is used for placing corners of connecting lines
+    coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+    % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+    % Connector line styles for different parts of the diagram
+    norm/.style={aar, draw},
+    free/.style={aar, draw, green3},
+    cong/.style={aar, draw, red3},
+    it/.style={font={\small\itshape}},
+    nar/.style={aar, red!75!black},
+    aar/.style={->, line width=0.4mm},    
+  }    
 
-\begin{scope}
+  \begin{scope}[y=-1cm]
+    \begin{scope}
+      %\draw[step=1cm, very thin, lightgray] (0,0) grid (14,21);
+      
+      %% Inputs
+      \draw [black,very thick] (1,0) circle (1mm) node [right, rotate=90, xshift=1mm] {\texttt{Clock}};
+        \draw [aar] (1,0.1) |- (5,19.5-1);
+        \draw [aar] (1,0.1) |- (5,15.5-1);
+        \draw [aar] (1,0.1) |- (5,11.5-1);
+        \draw [aar] (1,0.1) |- (5,7.5-1);
+        \draw [aar] (1,0.1) |- (5,3.5-1);
+      \draw [black,very thick] (2,0) circle (1mm) node [right, rotate=90, xshift=1mm] {\texttt{Reset}};
+        \draw [aar] (2,0.1) |- (5,19.5-1.5);
+        \draw [aar] (2,0.1) |- (5,15.5-1.5);
+        \draw [aar] (2,0.1) |- (5,11.5-1.5);
+        \draw [aar] (2,0.1) |- (5,7.5-1.5);
+        \draw [aar] (2,0.1) |- (5,3.5-1.5);
+      \draw [black,very thick] (3,0) circle (1mm) node [right, rotate=90, xshift=1mm] {\texttt{Enable}};
+        \draw [aar] (3,0.1) |- (5,1.5);
+      \foreach \x in {0,...,3}
+        \draw [black,very thick] (6+2*\x,0) circle (1mm) node [right, rotate=90, xshift=1mm] (dIn\x) {\texttt{dataIn\x}};
+      
 
+      %% In Register
+      \node (inReg) at (5,2-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Input Register}};
+      \node (enInReg) at (5,2.5-1) [right, font={\small}] {\texttt{en}};
+      \node (resInReg) at (5,3-1) [right, font={\small}] {\texttt{res}};
+      \node (clkInReg) at (5,3.5-1) [right, font={\small}] {\texttt{clk}};
+      \node (valoutInReg) at (5,4.5-1) [right, font={\small}] {\texttt{valOut}};
+        \draw [aar] (5,4.5-1) -- ++(-1,0) |- (5,6.5-1);
 
-\end{scope}
+      %% Stage 1 Sum
+      \node (St1) at (5,6-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 1: Sum}};
+      \node (enSt1) at (5,6.5-1) [right, font={\small}] {\texttt{en}};
+      \node (resSt1) at (5,7-1) [right, font={\small}] {\texttt{res}};
+      \node (clkSt1) at (5,7.5-1) [right, font={\small}] {\texttt{clk}};
+      \node (valoutSt1) at (5,8.5-1) [right, font={\small}] {\texttt{valOut}};
+        \draw [aar] (5,8.5-1) -- ++(-1,0) |- (5,10.5-1);
+
+      %% Stage 2 Mult
+      \node (St2M) at (5,10-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Multiplier}};
+      \node (enSt2M) at (5,10.5-1) [right, font={\small}] {\texttt{en}};
+      \node (resSt2M) at (5,11-1) [right, font={\small}] {\texttt{res}};
+      \node (clkSt2M) at (5,11.5-1) [right, font={\small}] {\texttt{clk}};
+      \node (valoutSt2M) at (5,12.5-1) [right, font={\small}] {\texttt{valOut}};
+        \draw [aar] (5,12.5-1) -- ++(-1,0) |- (5,14.5-1);
+      
+      %% Stage 2 Add
+      \node (St2A) at (5,14-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Sum}};
+      \node (enSt2A) at (5,14.5-1) [right, font={\small}] {\texttt{en}};
+      \node (resSt2A) at (5,15-1) [right, font={\small}] {\texttt{res}};
+      \node (clkSt2A) at (5,15.5-1) [right, font={\small}] {\texttt{clk}};
+      \node (valoutSt2A) at (5,16.5-1) [right, font={\small}] {\texttt{valOut}}; 
+        \draw [aar] (5,16.5-1) -- ++(-1,0) |- (5,18.5-1);
+      
+      %% Stage 2 Shift
+      \node (St2S) at (5,18-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Shift}};
+      \node (enSt2S) at (5,18.5-1) [right, font={\small}] {\texttt{en}};
+      \node (resSt2S) at (5,19-1) [right, font={\small}] {\texttt{res}};
+      \node (clkSt2S) at (5,19.5-1) [right, font={\small}] {\texttt{clk}};
+      \node (valoutSt2S) at (5,20.5-1) [right, font={\small}] {\texttt{valOut}};  
+        \draw [aar] (5,20.5-1) -| (2,20.5); 
+        \draw[line width=0.4mm] (2,20.5) -- ++(0, -0.4cm);
+      
+      %% Outputs
+      \draw [black,very thick] (2,21) circle (1mm) node [left, rotate=90, xshift=-1mm] {\texttt{validOut}};
+      
+      \draw [black,very thick] (6,21) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut0) {\texttt{dataOut0}};
+      \draw [black,very thick] (6+2*1,21) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut2) {\texttt{dataOut2}};
+      \draw [black,very thick] (6+2*2,21) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut1) {\texttt{dataOut1}};
+      \draw [black,very thick] (6+2*3,21) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut3) {\texttt{dataOut3}};
+
+      \foreach \x in {0,...,3} {
+        \draw[aar] (6+2*\x,-1mm) -- ++(0, -0.9cm);
+        \draw[aar] (6+2*\x,4) -- ++(0, -1cm);
+        \draw[aar] (6+2*\x,8) -- ++(0, -1cm);
+        \draw[aar] (6+2*\x,12) -- ++(0, -1cm);
+        \draw[aar] (6+2*\x,16) -- ++(0, -1cm);
+        \draw[aar] (6+2*\x,20) -- ++(0, -0.5cm);
+        \draw[line width=0.4mm] (6+2*\x,20.5) -- ++(0, -0.4cm);
+      }
+    \end{scope}
+    \begin{pgfonlayer}{background}
+      % Left-top corner of the background rectangle
+      \node (a11) at (0,0.5) {};
+      % Right-bottom corner of the background rectanle
+      \node (a21) at (13.5,20.5) {};
+      % Draw the background
+      \path[fill=black!3,rounded corners, draw, very thick]
+        (a11) rectangle (a21);
+      \node (a31) at (1.5,20.5) {};
+      \path (a11) -- (a31) node[midway, rotate=90, yshift=1.3cm, font={\huge}] (mid_right) {\textbf{DCT4}};
+    \end{pgfonlayer}
+  \end{scope}
 \end{tikzpicture}

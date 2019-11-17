@@ -1,144 +1,146 @@
 \begin{tikzpicture}[%
     >={Triangle[length=6pt,angle'=28]},
-    start chain=going below,    % General flow is left-to-right
-    node distance=2mm and 28.8mm, % Global setup of box spacing
+    start chain=going below ,    % General flow is left-to-right
+    node distance=5mm and 20mm, % Global setup of box spacing
     every join/.style={norm},   % Default linetype for connecting boxes
+    scale=0.8, 
+    every node/.style={transform shape},
+    circuit logic US, every circuit symbol/.style={thick}
     ]
 
-\tikzset{
-  base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
-  proc/.style={base, rectangle, text width=8em,fill=black!10},
-  inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
-  term/.style={proc, rounded corners},
-  sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!10},
-  % coord node style is used for placing corners of connecting lines
-  coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
-  % nmark node style is used for coordinate debugging marks% -------------------------------------------------
-  % Connector line styles for different parts of the diagram
-  norm/.style={aar, draw},
-  free/.style={aar, draw, green3},
-  cong/.style={aar, draw, red3},
-  it/.style={font={\small\itshape}},
-  nar/.style={aar, red!75!black},
-  aar/.style={->, line width=0.4mm},
-  pathcos/.style={font=\small, sloped}
-}    
+  \tikzset{
+    base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+    reg/.style={base, rectangle, minimum width=2.5em, minimum height=2em,fill=black!15},
+    proc/.style={base, rectangle, minimum width=4em, minimum height=8em, fill=black!15},
+    inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
+    term/.style={proc, rounded corners},
+    sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
+    % coord node style is used for placing corners of connecting lines
+    coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+    % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+    % Connector line styles for different parts of the diagram
+    norm/.style={aar, draw},
+    free/.style={aar, draw, green3},
+    cong/.style={aar, draw, red3},
+    it/.style={font={\small\itshape}},
+    nar/.style={aar, red!75!black},
+    aar/.style={->, line width=0.4mm},    
+  }    
 
-\begin{scope}
-    %% Stage 1
-    \foreach \x in {0,...,7}
-        \node [inout] (x\x) {\texttt{x\x}};
+  \begin{scope}[y=-1cm]
+    \begin{scope}
+      %\draw[step=1cm, very thin, lightgray] (0,0) grid (14,30);
+      
+      %% Inputs
+      \draw [black,very thick] (1,0) circle (1mm) node [right, rotate=90, xshift=1mm] {\texttt{Clock}};
+        \draw [aar] (1,0.1) |- (9.5,16);
+        \draw [aar] (1,0.1) |- (4,10.5);
+        \draw [aar] (1,0.1) -- (1,8.6) -- ++(7.7,0) |- (9.5,11.5-1);
+        \draw [aar] (1,0.1) |- (4,7.5-1);
+        \draw [aar] (1,0.1) |- (4,3.5-1);
+      \draw [black,very thick] (2,0) circle (1mm) node [right, rotate=90, xshift=1mm] {\texttt{Reset}};
+        \draw [aar] (2,0.1) |- (9.5,15.5);
+        \draw [aar] (2,0.1) |- (4,10);
+        \draw [aar] (2,0.1) -- (2,8.4) -- ++(6.9,0) |- (9.5,11-1);
+        \draw [aar] (2,0.1) |- (4,7.5-1);
+        \draw [aar] (2,0.1) |- (4,3.5-1);
+      \draw [black,very thick] (3,0) circle (1mm) node [right, rotate=90, xshift=1mm] {\texttt{Enable}};
+        \draw [aar] (3,0.1) |- (4,1.5);
+      \foreach \x in {0,...,3}
+        \draw [black,very thick] (5+\x,0) circle (1mm) node [right, rotate=90, xshift=1mm] (dIn\x) {\texttt{dataIn\x}};
+      \foreach \x in {4,...,7}
+        \draw [black,very thick] (6+\x,0) circle (1mm) node [right, rotate=90, xshift=1mm] (dIn\x) {\texttt{dataIn\x}};
 
-    \node [sum, right=of x0] (s10) {\textbf{+}};
-    \foreach \x in {1,...,7}
-        \node [sum] (s1\x) {\textbf{+}};
+      %% In Register
+      \node (inReg) at (5-1,2-1) [draw,thick,minimum width=10cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Input Register}};
+      \node (enInReg) at (5-1,2.5-1) [right, font={\small}] {\texttt{en}};
+      \node (resInReg) at (5-1,3-1) [right, font={\small}] {\texttt{res}};
+      \node (clkInReg) at (5-1,3.5-1) [right, font={\small}] {\texttt{clk}};
+      \node (valoutInReg) at (5-1,4.5-1) [right, font={\small}] {\texttt{valOut}};
+        \draw [aar] (5-1,4.5-1) -- ++(-1,0) |- (5-1,6.5-1);
+
+      %% Stage 1 Sum
+      \node (St1) at (5-1,6-1) [draw,thick,minimum width=10cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 1: Sum}};
+      \node (enSt1) at (5-1,6.5-1) [right, font={\small}] {\texttt{en}};
+      \node (resSt1) at (5-1,7-1) [right, font={\small}] {\texttt{res}};
+      \node (clkSt1) at (5-1,7.5-1) [right, font={\small}] {\texttt{clk}};
+      \node (valoutSt1) at (5-1,8.5-1) [right, font={\small}] {\texttt{valOut}};
+        \draw [aar] (5-1,8.5-1) -- ++(-1,0) |- (5-1,10.5-1);
+        \draw [aar] (5-1,8.5-1) -- ++(-1,0) -- ++(0,0.7) -- ++(6.1,0) |- (9.5,10.5-1);
+
+      %% DCT4
+      \node (DCT4) at (4,9) [draw,thick,minimum width=4.5cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!12, font={\large\bfseries}, align=center] {DCT4};
+      \node (enSt2M) at (5-1,10.5-1) [right, font={\small}] {\texttt{en}};
+      \node (resSt2M) at (5-1,11-1) [right, font={\small}] {\texttt{res}};
+      \node (clkSt2M) at (5-1,11.5-1) [right, font={\small}] {\texttt{clk}};
+      \node (valoutDCT4) at (5-1,12.5-1) [right, font={\small}] {\texttt{valOut}};
     
-    \draw [aar] (x0.east) -- (s10);
-    \draw [aar] (x0.east) -- (s17);         
-    \draw [aar] (x1.east) -- (s11);
-    \draw [aar] (x1.east) -- (s16);
-    \draw [aar] (x2.east) -- (s12);
-    \draw [aar] (x2.east) -- (s15);         
-    \draw [aar] (x3.east) -- (s13);
-    \draw [aar] (x3.east) -- (s14);
-    \draw [aar] (x4.east) -- (s13);
-    \draw [nar] -- (x4.east) -- (s14);
-    \draw [aar] (x5.east) -- (s12);         
-    \draw [nar] -- (x5.east) -- (s15);
-    \draw [aar] (x6.east) -- (s11);
-    \draw [nar] -- (x6.east) -- (s16);
-    \draw [aar] (x7.east) -- (s10);
-    \draw [nar] -- (x7.east) -- (s17);
+      %% Stage 2 Mult
+      \node (St2M) at (9.5,9) [draw,thick,minimum width=4.5cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large\bfseries}, align=center] {Stage 2:\\Multiplier};
+      \node (enSt2M) at (9.5,10.5-1) [right, font={\small}] {\texttt{en}};
+      \node (resSt2M) at (9.5,11-1) [right, font={\small}] {\texttt{res}};
+      \node (clkSt2M) at (9.5,11.5-1) [right, font={\small}] {\texttt{clk}};
+      \node (valoutSt2M) at (9.5,12.5-1) [right, font={\small}] {\texttt{valOut}};
+        \draw [line width=0.4mm] (9.5,12.5-1) -- ++(-0.5,0) -- ++(0,1.5) coordinate (etc);
+    
+      \foreach \x in {0,...,4}
+        \node at (etc) [left, rotate=90, xshift=-1mm, yshift=-\x cm, font={\bfseries}] {...};
 
-    %% Stage 2
-    \node [sum, right=of s10] (s20) {\textbf{+}};
-    \foreach \x in {1,...,7}
-        \node [sum] (s2\x) {\textbf{+}};
+      %% Stage 4 Shift
+      \foreach \x in {0,...,3}
+        \draw [aar] (10+\x,14) -- ++(0,0.5);
+      \draw [aar] (9,14) |- (9.5,15);
+      \node (St4S) at (9.5,14.5) [draw,thick,minimum width=4.5cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large\bfseries}, align=center] {Stage 4:\\Shift};
+      \node (enSt2S) at (9.5,15) [right, font={\small}] {\texttt{en}};
+      \node (resSt2S) at (9.5,15.5) [right, font={\small}] {\texttt{res}};
+      \node (clkSt2S) at (9.5,16) [right, font={\small}] {\texttt{clk}};
+      \node (valoutSt2S) at (9.5,17) [right, font={\small}] {\texttt{valOut}}; 
+        %\draw [aar] (9.5,20.5-1) -| (2-1,20.5); 
+        
+        \node[and gate,inputs={nnnn}, point down] (and1) at (1,18)    {};
+            \draw[aar] (valoutSt2S) -| (and1.input 1);
+            \draw[aar] (valoutDCT4) -| (and1.input 4);
+            \draw[aar] (and1.output) -- (1, 19.5);
+            \draw[line width=0.4mm] (1, 19.5) -- ++(0, 0.4);
 
-    \draw [aar] (s10.east) -- (s20);
-    \draw [aar] (s10.east) -- (s23);        
-    \draw [aar] (s11.east) -- (s21);
-    \draw [aar] (s11.east) -- (s22);
-    \draw [aar] (s12.east) -- (s21);
-    \draw [nar] (s12.east) -- (s22);        
-    \draw [aar] (s13.east) -- (s20);
-    \draw [nar] (s13.east) -- (s23);
-    \draw [aar] (s14.east) -- (s24);
-    \pathcos{s15}{s25}{}{4}{red!75!black}{yshift=-0.1cm, above, near end};
-        \draw [nar] (s15.east) -- (s25);
-    \pathcos{s15}{s26}{}{4}{black}{above, near end, yshift=-0.5mm, xshift=1.8mm};
-        \draw [aar] (s15.east) -- (s26);
-    \pathcos{s16}{s25}{}{4}{black}{above, near start, yshift=-1mm, xshift=-2mm};        
-        \draw [aar] (s16.east) -- (s25);
-    \pathcos{s16}{s26}{}{4}{black}{below, near start, yshift=1mm, xshift=-2mm};
-        \draw [aar] (s16.east) -- (s26);
-    \draw [aar] (s17.east) -- (s27);
+      %% Outputs
+      \draw [black,very thick] (2-1,20) circle (1mm) node [left, rotate=90, xshift=-1mm] {\texttt{validOut}};
+      \draw [black,very thick] (5+0,20) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut0) {\texttt{dataOut0}};
+      \draw [black,very thick] (5+1,20) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut4) {\texttt{dataOut4}};
+      \draw [black,very thick] (5+2,20) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut2) {\texttt{dataOut2}};
+      \draw [black,very thick] (5+3,20) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut6) {\texttt{dataOut6}};
+      
+      \draw [black,very thick] (6+4,20) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut1) {\texttt{dataOut1}};
+      \draw [black,very thick] (6+5,20) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut5) {\texttt{dataOut5}};
+      \draw [black,very thick] (6+6,20) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut3) {\texttt{dataOut3}};
+      \draw [black,very thick] (6+7,20) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut7) {\texttt{dataOut7}};
 
-    %% Stage 3
-    \node [sum, right=of s20] (s30) {\textbf{+}};
-    \foreach \x in {1,...,7}
-        \node [sum] (s3\x) {\textbf{+}};
-
-    \pathcos{s20}{s30}{}{4}{black}{above, near end, yshift=-1mm, xshift=2.5mm};
-        \draw [aar] (s20.east) -- (s30);
-    \pathcos{s20}{s31}{}{4}{black}{above, near end, yshift=-0.5mm, xshift=1.8mm};
-        \draw [aar] (s20.east) -- (s31);
-    \pathcos{s21}{s30}{}{4}{black}{above, near start, yshift=-1mm, xshift=-2mm};        
-        \draw [aar] (s21.east) -- (s30);
-    \pathcos{s21}{s31}{}{4}{red!75!black}{below, near start, yshift=1mm, xshift=-2mm};
-        \draw [nar] (s21.east) -- (s31);
-    \pathcos{s22}{s32}{3}{8}{black}{above, near end, yshift=-1mm, xshift=2.5mm};
-        \draw [aar] (s22.east) -- (s32);
-    \pathcos{s22}{s33}{}{8}{red!75!black}{above, near end, yshift=-0.5mm, xshift=1.8mm};
-        \draw [nar] (s22.east) -- (s33);
-    \pathcos{s23}{s32}{}{8}{black}{above, near start, yshift=-1mm, xshift=-2mm};        
-        \draw [aar] (s23.east) -- (s32);
-    \pathcos{s23}{s33}{3}{8}{black}{below, near start, yshift=1mm, xshift=-2mm};
-        \draw [aar] (s23.east) -- (s33);
-    \draw [aar] (s24.east) -- (s34);
-    \draw [aar] (s24.east) -- (s35);
-    \draw [aar] (s25.east) -- (s34);
-    \draw [nar] (s25.east) -- (s35);
-    \draw [nar] (s26.east) -- (s36);
-    \draw [aar] (s26.east) -- (s37);
-    \draw [aar] (s27.east) -- (s36);
-    \draw [aar] (s27.east) -- (s37);
-
-    %% Stage 4
-    \node [sum, right=of s30] (s40) {\textbf{+}};
-    \foreach \x in {1,...,7}
-        \node [sum] (s4\x) {\textbf{+}};    
-
-    \foreach \x in {0,...,3}
-        \draw [aar] (s3\x.east) -- (s4\x);
-    \pathcos{s34}{s44}{7}{16}{black}{above, near end, yshift=-1mm, xshift=2.5mm};
-        \draw [aar] (s34.east) -- (s44);
-    \pathcos{s34}{s47}{}{16}{red!75!black}{below, near end, yshift=2.6mm, xshift=2.6mm};
-        \draw [nar] (s34.east) -- (s47);
-    \pathcos{s35}{s45}{3}{16}{black}{above, near start, yshift=-1mm, xshift=-3mm};
-        \draw [aar] (s35.east) -- (s45);
-    \pathcos{s35}{s46}{5}{16}{red!75!black}{below, near start, yshift=1mm, xshift=-2.3mm};
-        \draw [nar] (s35.east) -- (s46);        
-    \pathcos{s36}{s45}{5}{16}{black}{below, near end, yshift=0.4mm, xshift=2.5mm};
-        \draw [aar] (s36.east) -- (s45);
-    \pathcos{s36}{s46}{3}{16}{black}{below, near start, yshift=1mm, xshift=-2.3mm};
-        \draw [aar] (s36.east) -- (s46);
-    \pathcos{s37}{s44}{}{16}{black}{above, near end, yshift=-2.5mm, xshift=2.5mm};
-        \draw [aar] (s37.east) -- (s44);        
-    \pathcos{s37}{s47}{7}{16}{black}{below, near end, yshift=1mm, xshift=2.5mm};
-        \draw [aar] (s37.east) -- (s47);
-
-    %% Stage 5
-    \node [inout, right=of s40] (y0) {\texttt{y0}};
-    \foreach \x in {1,...,7}
-        \node [inout] (y\x) {\texttt{y\x}};
-
-    \foreach \x in {0,2,5,7}
-        \draw [aar] (s4\x.east) -- (y\x);
-    \draw [aar] (s41.east) -- (y4.west);
-    \draw [aar] (s44.east) -- (y1.west);
-    \draw [aar] (s43.east) -- (y6.west);
-    \draw [aar] (s46.east) -- (y3.west);
-\end{scope}
-
+      \foreach \x in {0,...,3} {
+        \draw[aar] (5+\x,-1mm) -- ++(0, -0.9cm);
+        \draw[aar] (5+\x,4) -- ++(0, -1cm);
+        \draw[aar] (5+\x,8) -- ++(0, -1cm);
+        \draw[aar] (5+\x,12) -- ++(0, -7.5cm);       
+        \draw[line width=0.4mm] (5+\x,19.5) -- ++(0, -0.4cm);
+      }
+      \foreach \x in {4,...,7} {
+        \draw[aar] (6+\x,-1mm) -- ++(0, -0.9cm);
+        \draw[aar] (6+\x,4) -- ++(0, -1cm);
+        \draw[aar] (6+\x,8) -- ++(0, -1cm);
+        \draw[line width=0.4mm] (6+\x,12) -- ++(0, -1cm);
+        \draw[aar] (6+\x,17.5) -- ++(0, -2cm);
+        \draw[line width=0.4mm] (6+\x,19.5) -- ++(0, -0.4cm);
+      }
+    \end{scope}
+    \begin{pgfonlayer}{background}
+      % Left-top corner of the background rectangle
+      \node (a11) at (0,0.5) {};
+      % Right-bottom corner of the background rectanle
+      \node (a21) at (14.5,19.5) {};
+      % Draw the background
+      \path[fill=black!3,rounded corners, draw, very thick]
+        (a11) rectangle (a21);
+      \node (a31) at (1.5,19.5) {};
+      \path (a11) -- (a31) node[midway, rotate=90, yshift=1.3cm, font={\huge}] (mid_right) {\textbf{DCT8}};
+    \end{pgfonlayer}
+  \end{scope}
 \end{tikzpicture}

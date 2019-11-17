@@ -25,7 +25,6 @@
     }
 
     \begin{scope}        
-
         \node [inout] (x1) {\texttt{x1}};
         \node [sum, right=of x1, join] (s1) {$\mathbf{\times}$};
         \node [proc, above=1cm of s1] (a) {\texttt{a}};
@@ -36,8 +35,15 @@
         \node [below=1cm of s2, proc] (b) {\texttt{b}};
             \draw[ar] (b) -- (s2);
 
-        \node [below left=2cm and 1cm of x2, align=center] (clk) {Clock\\Signal};
-            \draw[thick] ($(clk.east)+(0.5,0)$) -- (x2 |- clk.east) -- ++(0,0.5) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) -- ++(0.8,0);
+        \node [below left=3.5cm and 1cm of x2, align=center, font={\bfseries}] (clk) {Clock\\Signal};
+            \draw[thick] ($(clk.east)+(0.5,0)$) -- (x2 |- clk.east) -- ++(0,0.5) coordinate (inReg) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) coordinate (mult) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) coordinate (sum) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) coordinate (shift) -- ++(0.8,0) -- ++(0,-0.5) -- ++(0.8,0) -- ++(0,0.5) coordinate (out) -- ++(0.8,0);
+        
+        \node[align=center,anchor=north, font={\bfseries\small}, yshift=21mm, draw=darkgray, thin] (lab1) at (mult) {Multiply};
+            \draw[dashed] (mult) --(lab1);
+        \node[align=center,anchor=north, font={\bfseries\small}, yshift=14mm, draw=darkgray, thin] (lab2) at (sum) {Sum};
+            \draw[dashed] (sum) --(lab2);
+        \node[align=center,anchor=north, font={\bfseries\small}, yshift=7mm, draw=darkgray, thin] (lab3) at (shift) {Shift};
+            \draw[dashed] (shift) --(lab3);
 
         \path (s1) -- (s2) node[midway, rotate=90] (mid_s) {};
         \node [sum, right=of mid_s] (s3) {$\mathbf{+}$};

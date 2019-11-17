@@ -119,14 +119,15 @@ begin
     --           wait for 200us;          
     --        end process;
                    
-    en:     process
-            begin
-                en_tb <= '1';       
-                wait;
-            end process;
+--    en:     process
+--            begin
+--                en_tb <= '1';       
+--                wait;
+--            end process;
                     
     dataIn: process
             begin
+                en_tb <= '0';                       
                 dataIn0_tb      <= X"FFFFFFFF";
                 dataIn1_tb      <= X"FFFFFFFF";
                 dataIn2_tb      <= X"FFFFFFFF";
@@ -144,6 +145,8 @@ begin
                 dataIn14_tb     <= X"00000001";            
                 dataIn15_tb     <= X"00000001";            
                 reset_tb <= '0';
+                wait for 400us;
+                en_tb <= '1';       
                 wait for 2000us;
                 reset_tb <= '1';
                 wait for 200us;
