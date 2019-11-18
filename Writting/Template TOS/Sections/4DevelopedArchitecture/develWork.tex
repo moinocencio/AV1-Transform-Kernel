@@ -201,9 +201,9 @@ These results allow to advance to a hardware implementation, since the obtained 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hardware Implementations}
 
-On the subject of hardware prototyping, \glspl{fpga} have gained massive popularity within developers, both due to its applicability, as well as ease of use. Additionally, in recent years, there have been major developments in software platforms that allow for the synthesis of FPGA designs as \glspl{asic}, such as \emph{Cadence}'s \emph{Genus} or \emph{Synopsys' Design Compiler} \cite{GenusSynthesisSolution, DesignCompilerGraphical}. 
+On the subject of hardware prototyping, \glspl{fpga} have gained massive popularity within developers, both because of its applicability, as well as ease of use. Additionally, in recent years, there have been major developments in software platforms that allow for the synthesis of FPGA designs as \glspl{asic}, such as \emph{Cadence}'s \emph{Genus} or \emph{Synopsys' Design Compiler} \cite{GenusSynthesisSolution, DesignCompilerGraphical}. 
 
-This way, the chosen platform for the development of the hardware architectures was \emph{Xilinx}'s \emph{Vivado}, due to the wide availability of its FPGAs, as well as for the wide support from its community. The designs and test benches were described in \gls{vhdl}.
+This way, the chosen platform for the development of the hardware architectures was \emph{Xilinx}'s \emph{Vivado}, due to the wide availability of its FPGAs, as well as for the wide support from its community. For the focus of this work, the target of the designs was \emph{Digillent}'s \emph{Nexys 4 Artix 7 FPGA} \cite{NexysArtix7FPGA}. Although this system is not the most adequate if a full encoder integration is desired, it allows to easily test the applicability of the developed architectures. The designs and test benches were described in \gls{vhdl}.
 
 With an efficient algorithm for each of the supported vector sizes, the first objective was to develop a hardware architecture to implement each of the 1D \emph{DCT}s individually, and group them on a single block at a later stage. Two different architectures were developed. The first implements each of the \emph{DCT} blocks individually, while the latter uses sub-blocks of each \emph{DCT}, in order to achieve the final result. These architectures are explained in the following Sections.
 
@@ -254,7 +254,7 @@ A simplified version of \emph{DCT4}'s hardware implementation is represented in 
     \label{fig:harddct4v1}
 \end{figure}
 
-All data signals and corresponding internal registers are represented with 32 bits. Although this increases the necessary footprint, this measure simplifies the development and integration between different transforms. Nonetheless, some additional measures were taken in the hardware description files, in order to easily change the number of used bits (\emph{\gls{genmap}}), at a later stage.
+All data signals and corresponding internal registers are represented with 32 bits, exemplified by the thicker lines. Although this increases the necessary footprint, this measure simplifies the development and integration between different transforms. Nonetheless, some additional measures were taken in the hardware description files, in order to easily change the number of used bits (\emph{\gls{genmap}}), at a later stage.
 
 As a final measure to simplify the development process, the \emph{kernels} are implemented using the smaller sizes as a constituting block. As shown in \cite{wen-hsiungchenFastComputationalAlgorithm1977}, all transform sizes greater than $4$ englobe the same sequence of operations as the smaller counterparts, on one subset of its intermediary coefficients. This way, each of the smaller \emph{1D-DCT} blocks may be inserted into the size immediately above it.
 
@@ -274,9 +274,51 @@ Nonetheless, in order to draw conclusions as to the correct functioning of the i
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/fullDCTv1.tex}
-    \caption{First version of the complete \emph{DCT} kernel}
+    \caption{First version of the complete \emph{DCT} wrapper}
     \label{fig:fullv1}
 \end{figure}
+
+Besides the previously shown 32 bit \texttt{dataIn}'s, \texttt{Clock}, \texttt{Reset} and \texttt{Enable}, this implementation adds an additional \texttt{Select} input. This signal flags the system on which \emph{DCT} should be calculated.
+
+As shown, this wrapper uses all the individual kernels independently, depending on the \textbf{Control Unit} to generate the correct enable signals (\texttt{DCTXEn}), according to the selected \emph{DCT}. This block is also tasked with the redirection of the kernel's calculated coefficients (\texttt{DCTXoK}) and valid output signal (\texttt{DCTXvo}) to the system's outputs (\texttt{dataOutK} and \texttt{validOut}).
+
+To validate this design, a VHDL test bench was built and simulated in \emph{Vivado}. It generates a vector of 32 bit integers, as well as the four control signals, injects them into the developed architecture, and receives the outputs. In \ref{fig:v1timing} there is represented one of the timing tests made, where the selected size was 8. It shows the internal signals for the full architecture, as well as \emph{DCT8}.
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/4DevelopedArchitecture/Figures/v1timing.tex}
+    \caption{Timming diagram for first \emph{DCT} kernel}
+    \label{fig:v1timing}
+\end{figure}
+
+From this test, it is observable that the desired functioning of the internal stages is achieved. The input gets sequentially pipelined through the various stages, getting a valid output 13 clock cycles after the enabling of the system. This behavior was also verified for the other vector sizes, although the delay until getting the output varies.
+
+However, even though the correct functioning of the developed architecture is verified, its applicability isn't verified yet. To draw conclusions, this design must first be synthesized into the \emph{FPGA}, which provides metrics as to the chip's utilization, power draw, timing characteristics, etc.
+
+The utilization results of this design's synthesis into an \emph{Artix 7} FPGA are presented in Table \ref{tab:v1results}. 
+
+\begin{table}[!htpb]
+    \centering
+    \begin{tabular}{ccc} \toprule
+        \multirow{2}{*}{\textbf{DCT Size}} &     \multicolumn{2}{c}{\textbf{Utilization}} \\
+         &      \textbf{Slice LUTs} &      \textbf{Slice Registers} \\ \toprule
+        \textbf{4} &    1125 $(1.77\%)$ &       636 $(0.50\%)$ \\ \hline
+        \textbf{8} &    2428 $(3.83\%)$ &       2087 $(1.65\%)$ \\ \hline
+        \textbf{16} &   7103 $(11.20\%)$ &      5702 $(4.50\%)$ \\ \hline
+        \textbf{32} &   19148 $(30.20\%)$ &     14257 $(11.24\%)$  \\ \hline
+        \textbf{64} &   45996 $(72.55\%)$  &    34146 $(26.93\%)$  \\ \bottomrule        
+        \textbf{Wrapper} & 75805 $(119.57\%)$ & 58370 $(46.03\%)$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{First developed architecture's utilization in number of LUTs, Registers and percentage of \emph{Artix 7} utilization}
+    \label{tab:v1results}
+\end{table}
+
+As observable, this design uses more resources than what are available on the system's FPGA. This result, as mentioned previously was expected, due to the repetition of the smaller blocks on the different stages. The final architecture, effectively had five instances of the \emph{DCT4}, four \emph{DCT8}s, and so on. 
+
+Since this design is not synthesizable on the target hardware, no other results can be drawn, nor would they be applicable. However, on a more resourceful kit, this design could have been implemented, since there were no \gls{floorplaning} errors.
+
+Nonetheless, this architecture allowed to draw conclusions as to the correct functioning of the \emph{DCT}'s internal stages, and served as the basis for the following, more successful, architecture.
 
 \clearpage
 \printbibliography[heading=subbibliography]

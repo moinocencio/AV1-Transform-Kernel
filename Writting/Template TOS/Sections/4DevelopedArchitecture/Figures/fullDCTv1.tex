@@ -1,0 +1,201 @@
+\begin{tikzpicture}[%
+    >={Triangle[length=6pt,angle'=28]},
+    start chain=going below ,    % General flow is left-to-right
+    node distance=5mm and 20mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    scale=0.8, 
+    every node/.style={transform shape},
+    circuit logic US, every circuit symbol/.style={thick}
+    ]
+
+  \tikzset{
+    base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+    reg/.style={base, rectangle, minimum width=2.5em, minimum height=2em,fill=black!15},
+    proc/.style={base, rectangle, minimum width=4em, minimum height=8em, fill=black!15},
+    inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
+    term/.style={proc, rounded corners},
+    sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
+    % coord node style is used for placing corners of connecting lines
+    coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+    % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+    % Connector line styles for different parts of the diagram
+    norm/.style={aar, draw},
+    ar32/.style={->, line width=0.8mm},   
+    b32/.style={line width=0.8mm},    
+    ar1/.style={->, line width=0.4mm}  
+  }    
+
+  \begin{scope}[y=-1cm]
+    \begin{scope}
+      %\draw[step=1cm, very thin, lightgray] (0,0) grid (14,20);            
+        
+        %% Inputs/Outputs
+
+        % IN/OUT 0-3
+        \foreach \x in {0,...,3}
+            \draw [black,very thick] (0,1+0.5*\x) circle (1mm) node [left, xshift=-1mm] (dIn\x) {\texttt{dataIn\x}};      
+        \node at (0,3) [anchor=east, rotate=90, font={\bfseries}] {...};
+            
+            \foreach \x in {0,...,3} {
+                \draw[ar32] (0.1,1+0.5*\x) -- ++(1.9,0);                
+            }
+            \draw[ar32] (1,1) |- (2,4.5);
+                \node at (1.5,5) [anchor=east, rotate=90, font={\bfseries}] {...};
+            \draw[ar32] (1,4.5) |- (2,8);
+                \node at (1.5,8.5) [anchor=east, rotate=90, font={\bfseries}] {...};
+            \draw[ar32] (1,8) |- (2,11.5);
+                \node at (1.5,12) [anchor=east, rotate=90, font={\bfseries}] {...};
+            \draw[ar32] (1,11.5) |- (2,15);
+                \node at (1.5,15.5) [anchor=east, rotate=90, font={\bfseries}] {...};
+
+            \draw[ar32] (6.5,1) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT4o0} -- ++(1.5,0);
+            \node at (7,1) [anchor=east, rotate=90, font={\bfseries}] {...};
+            \draw[ar32] (6.5,2) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT4o3} -- ++(1.5,0);
+            \draw[ar1] (6.5,2.5) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT4vo} -- ++(1.5,0);
+
+
+        % IN 7/DCT8
+        \draw [black,very thick] (0,6) circle (1mm) node [left, xshift=-1mm] (dIn7) {\texttt{dataIn7}};      
+            \node at (0.25,6.5) [anchor=east, rotate=90, font={\bfseries}] {...};
+
+                \draw[ar32] (0.1,6) -- ++(1.9,0);
+                \draw[ar32] (0.5,6) -- ++(0,0.5);
+
+                \draw[ar32] (6.5,4.5) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT8o0} -- ++(1.5,0);
+                \node at (7,4.5) [anchor=east, rotate=90, font={\bfseries}] {...};
+                \draw[ar32] (6.5,5.5) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT8o7} -- ++(1.5,0);
+                \draw[ar1] (6.5,6) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT8vo} -- ++(1.5,0);
+
+        % IN 15/DCT16
+        \draw [black,very thick] (0,9.5) circle (1mm) node [left, xshift=-1mm] (dIn15) {\texttt{dataIn15}};      
+            \node at (0.25,10) [anchor=east, rotate=90, font={\bfseries}] {...};
+
+                \draw[ar32] (0.1,9.5) -- ++(1.9,0);
+                \draw[ar32] (0.5,9.5) -- ++(0,0.5);
+
+                \draw[ar32] (6.5,8) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT16o0} -- ++(1.5,0);
+                \node at (7,8) [anchor=east, rotate=90, font={\bfseries}] {...};
+                \draw[ar32] (6.5,9) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT16o15} -- ++(1.5,0);
+                \draw[ar1] (6.5,9.5) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT16vo} -- ++(1.5,0);
+
+        % IN 31/DCT32
+        \draw [black,very thick] (0,13) circle (1mm) node [left, xshift=-1mm] (dIn31) {\texttt{dataIn31}};      
+            \node at (0.25,13.5) [anchor=east, rotate=90, font={\bfseries}] {...};
+
+                \draw[ar32] (0.1,13) -- ++(1.9,0);
+                \draw[ar32] (0.5,13) -- ++(0,0.5);
+
+                \draw[ar32] (6.5,11.5) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT32o0} -- ++(1.5,0);
+                \node at (7,11.5) [anchor=east, rotate=90, font={\bfseries}] {...};
+                \draw[ar32] (6.5,12.5) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT32o31} -- ++(1.5,0);
+                \draw[ar1] (6.5,13) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT32vo} -- ++(1.5,0);
+
+        % IN 63/DCT64
+        \draw [black,very thick] (0,16.5) circle (1mm) node [left, xshift=-1mm] (dIn63) {\texttt{dataIn63}};      
+
+                \draw[ar32] (0.1,16.5) -- ++(1.9,0);
+            
+                \draw[ar32] (6.5,15) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT64o0} -- ++(1.5,0);
+                \node at (7,15) [anchor=east, rotate=90, font={\bfseries}] {...};
+                \draw[ar32] (6.5,16) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT64o63} -- ++(1.5,0);
+                \draw[ar1] (6.5,16.5) node [above, font={\small\ttfamily}, align=center, xshift=0.75cm] {DCT64vo} -- ++(1.5,0);
+
+        % Clock
+        \draw [black,very thick] (0,18) circle (1mm) node [left, xshift=-1mm] (clk) {\texttt{Clock}};            
+            \draw[ar1] (0.1,18) -- (2.2,18) -- (2.2,3.5) -| (3,3);
+            \draw[ar1] (2.2,7) -| (3,6.5);
+            \draw[ar1] (2.2,10.5) -| (3,10);
+            \draw[ar1] (2.2,14) -| (3,13.5);
+            \draw[ar1] (2.2,17.5) -| (3,17);
+            \draw[ar1] (2.2,18) -- (8,18);
+        
+        % Reset
+        \draw [black,very thick] (0,18.5) circle (1mm) node [left, xshift=-1mm] (res) {\texttt{Reset}};
+            \draw[ar1] (0.1,18.5) -- (2.5,18.5) -- (2.5,3.8) -| (3.5,3);
+            \draw[ar1] (2.5,7.3) -| (3.5,6.5);
+            \draw[ar1] (2.5,10.8) -| (3.5,10);
+            \draw[ar1] (2.5,14.3) -| (3.5,13.5);
+            \draw[ar1] (2.5,17.8) -| (3.5,17);
+            \draw[ar1] (2.5,18.5) -- (8,18.5);
+
+        % Enable
+        \draw [black,very thick] (0,19) circle (1mm) node [left, xshift=-1mm] (enin) {\texttt{Enable}};
+            \draw[ar1] (0.1,19) -- (8,19);
+            
+            \draw[ar1] (8,3.5) node [above, font={\small\ttfamily}, align=center, xshift=-0.75cm] {DCT4En} -| (4,3) ;
+            \draw[ar1] (8,7) node [above, font={\small\ttfamily}, align=center, xshift=-0.75cm] {DCT8En} -| (4,6.5);
+            \draw[ar1] (8,10.5) node [above, font={\small\ttfamily}, align=center, xshift=-0.75cm] {DCT16En} -| (4,10);
+            \draw[ar1] (8,14) node [above, font={\small\ttfamily}, align=center, xshift=-0.75cm] {DCT32En} -| (4,13.5);
+            \draw[ar1] (8,17.5) node [above, font={\small\ttfamily}, align=center, xshift=-0.75cm] {DCT64En} -| (4,17);
+
+        % Select
+        \draw [black,very thick] (0,19.5) circle (1mm) node [left, xshift=-1mm] (selin) {\texttt{Select}};
+            \draw[ar1] (0.1,19.5) -- (8,19.5) node [midway, below, font={\small\ttfamily}] {3};
+            \draw[line width=0.4mm] (3.9,19.6) -- (4.1,19.4);
+
+        %% Outputs
+        \foreach \x in {0,...,3} {
+            \draw [black,very thick] (14,7.5+0.5*\x) circle (1mm) node [right, xshift=1mm] (dout\x) {\texttt{dataOut\x}};      
+            \draw [ar32] (12.5,7.5+0.5*\x) -- (13.9,7.5+0.5*\x);      
+        }
+
+        \node at (14,10) [anchor=east, rotate=90, font={\bfseries}] {...};
+        \foreach \x in {0,...,3} {
+            \draw [black,very thick] (14,11.5+0.5*\x) circle (1mm) node [right, xshift=1mm] (dout6\x) {\texttt{dataOut6\x}};      
+            \draw [ar32] (12.5,11.5+0.5*\x) -- (13.9,11.5+0.5*\x);      
+        }
+
+        \draw [black,very thick] (14,14.5) circle (1mm) node [right, xshift=1mm] (valOut) {\texttt{validOut}};      
+            \draw [ar32] (12.5,14.5) -- (13.9,14.5);      
+
+
+    %% DCT 4
+    \node (DCT4) at (2,0.5) [draw,thick,minimum width=4.5cm,minimum height=2.5cm, rounded corners, anchor=north west, fill=black!12, font={\large\bfseries}, align=center] {DCT4};
+    \node (enSt2M) at (DCT4.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-1cm] {\texttt{clk}};
+    \node (resSt2M) at (DCT4.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-1.5cm] {\texttt{res}};
+    \node (clkSt2M) at (DCT4.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-2cm] {\texttt{en}};
+    \node (valoutDCT4) at (DCT4.south east) [left, yshift=0.5cm, font={\small}] {\texttt{valOut}};
+
+    %% DCT 8
+    \node (DCT8) at (2,4) [draw,thick,minimum width=4.5cm,minimum height=2.5cm, rounded corners, anchor=north west, fill=black!12, font={\large\bfseries}, align=center] {DCT8};
+    \node (enSt2M) at (DCT8.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-1cm] {\texttt{clk}};
+    \node (resSt2M) at (DCT8.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-1.5cm] {\texttt{res}};
+    \node (clkSt2M) at (DCT8.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-2cm] {\texttt{en}};
+    \node (valoutDCT8) at (DCT8.south east) [left, yshift=0.5cm, font={\small}] {\texttt{valOut}};
+
+    %% DCT 16
+    \node (DCT16) at (2,7.5) [draw,thick,minimum width=4.5cm,minimum height=2.5cm, rounded corners, anchor=north west, fill=black!12, font={\large\bfseries}, align=center] {DCT16};
+    \node (enSt2M) at (DCT16.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-1cm] {\texttt{clk}};
+    \node (resSt2M) at (DCT16.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-1.5cm] {\texttt{res}};
+    \node (clkSt2M) at (DCT16.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-2cm] {\texttt{en}};
+    \node (valoutDCT16) at (DCT16.south east) [left, yshift=0.5cm, font={\small}] {\texttt{valOut}};
+
+    %% DCT 32
+    \node (DCT32) at (2,11) [draw,thick,minimum width=4.5cm,minimum height=2.5cm, rounded corners, anchor=north west, fill=black!12, font={\large\bfseries}, align=center] {DCT32};
+    \node (enSt2M) at (DCT32.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-1cm] {\texttt{clk}};
+    \node (resSt2M) at (DCT32.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-1.5cm] {\texttt{res}};
+    \node (clkSt2M) at (DCT32.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-2cm] {\texttt{en}};
+    \node (valoutDCT32) at (DCT32.south east) [left, yshift=0.5cm, font={\small}] {\texttt{valOut}};
+
+    %% DCT 64
+    \node (DCT64) at (2,14.5) [draw,thick,minimum width=4.5cm,minimum height=2.5cm, rounded corners, anchor=north west, fill=black!12, font={\large\bfseries}, align=center] {DCT64};
+    \node (enSt2M) at (DCT64.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-1cm] {\texttt{clk}};
+    \node (resSt2M) at (DCT64.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-1.5cm] {\texttt{res}};
+    \node (clkSt2M) at (DCT64.south west) [rotate=90, xshift=1mm, right, font={\small}, yshift=-2cm] {\texttt{en}};
+    \node (valoutDCT32) at (DCT64.south east) [left, yshift=0.5cm, font={\small}] {\texttt{valOut}};
+
+    %% Select
+    \node (sel) at (8,0.5) [draw,thick,minimum width=4.5cm,minimum height=19.5cm, rounded corners, anchor=north west, fill=black!5, font={\large\bfseries}, align=center] {Control\\Unit};
+    \node (selclk) at (sel.south west) [xshift=1mm, yshift=20mm, right, font={\small}] {\texttt{clk}};
+    \node (selres) at (sel.south west) [xshift=1mm, yshift=15mm, right, font={\small}] {\texttt{res}};
+    \node (selen) at (sel.south west) [xshift=1mm, yshift=10mm, right, font={\small}] {\texttt{en}};
+    \node (selin) at (sel.south west) [xshift=1mm, yshift=5mm, right, font={\small}] {\texttt{sel}};
+
+
+
+    \end{scope}
+    \begin{pgfonlayer}{background}
+      
+    \end{pgfonlayer}
+  \end{scope}
+\end{tikzpicture}

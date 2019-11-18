@@ -3,100 +3,397 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="DCT1632_TB_behav.wdb" id="1">
+      <db_ref path="TransWrapper_TB_behav.wdb" id="1">
          <top_modules>
-            <top_module name="DCT1632_TB" />
+            <top_module name="TransWrapper_TB" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="120660834864674fs"></ZoomEndTime>
-      <Cursor1Time time="1000000000fs"></Cursor1Time>
+      <ZoomEndTime time="4320000000001fs"></ZoomEndTime>
+      <Cursor1Time time="940000000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="199"></NameColumnWidth>
-      <ValueColumnWidth column_width="82"></ValueColumnWidth>
+      <ValueColumnWidth column_width="74"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="20" />
-   <wvobject type="logic" fp_name="/DCT1632_TB/clock_tb">
-      <obj_property name="ElementShortName">clock_tb</obj_property>
-      <obj_property name="ObjectShortName">clock_tb</obj_property>
+   <WVObjectSize size="30" />
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/reset_tb">
-      <obj_property name="ElementShortName">reset_tb</obj_property>
-      <obj_property name="ObjectShortName">reset_tb</obj_property>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/en">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/en_tb">
-      <obj_property name="ElementShortName">en_tb</obj_property>
-      <obj_property name="ObjectShortName">en_tb</obj_property>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/res">
+      <obj_property name="ElementShortName">res</obj_property>
+      <obj_property name="ObjectShortName">res</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/valout_tb">
-      <obj_property name="ElementShortName">valout_tb</obj_property>
-      <obj_property name="ObjectShortName">valout_tb</obj_property>
+   <wvobject type="array" fp_name="/TransWrapper_TB/uut/sel">
+      <obj_property name="ElementShortName">sel[2:0]</obj_property>
+      <obj_property name="ObjectShortName">sel[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/validOut">
+      <obj_property name="ElementShortName">validOut</obj_property>
+      <obj_property name="ObjectShortName">validOut</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group35">
+      <obj_property name="label">DataOut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut0">
+         <obj_property name="ElementShortName">dataOut0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut0[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut1">
+         <obj_property name="ElementShortName">dataOut1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut1[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut2">
+         <obj_property name="ElementShortName">dataOut2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut2[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut3">
+         <obj_property name="ElementShortName">dataOut3[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut3[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut4">
+         <obj_property name="ElementShortName">dataOut4[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut4[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut5">
+         <obj_property name="ElementShortName">dataOut5[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut5[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut6">
+         <obj_property name="ElementShortName">dataOut6[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut6[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut7">
+         <obj_property name="ElementShortName">dataOut7[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut7[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut8">
+         <obj_property name="ElementShortName">dataOut8[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut8[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut9">
+         <obj_property name="ElementShortName">dataOut9[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut9[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut10">
+         <obj_property name="ElementShortName">dataOut10[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut10[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut11">
+         <obj_property name="ElementShortName">dataOut11[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut11[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut12">
+         <obj_property name="ElementShortName">dataOut12[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut12[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut13">
+         <obj_property name="ElementShortName">dataOut13[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut13[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut14">
+         <obj_property name="ElementShortName">dataOut14[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut14[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut15">
+         <obj_property name="ElementShortName">dataOut15[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut15[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut16">
+         <obj_property name="ElementShortName">dataOut16[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut16[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut17">
+         <obj_property name="ElementShortName">dataOut17[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut17[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut18">
+         <obj_property name="ElementShortName">dataOut18[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut18[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut19">
+         <obj_property name="ElementShortName">dataOut19[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut19[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut20">
+         <obj_property name="ElementShortName">dataOut20[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut20[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut21">
+         <obj_property name="ElementShortName">dataOut21[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut21[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut22">
+         <obj_property name="ElementShortName">dataOut22[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut22[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut23">
+         <obj_property name="ElementShortName">dataOut23[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut23[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut24">
+         <obj_property name="ElementShortName">dataOut24[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut24[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut25">
+         <obj_property name="ElementShortName">dataOut25[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut25[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut26">
+         <obj_property name="ElementShortName">dataOut26[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut26[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut27">
+         <obj_property name="ElementShortName">dataOut27[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut27[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut28">
+         <obj_property name="ElementShortName">dataOut28[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut28[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut29">
+         <obj_property name="ElementShortName">dataOut29[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut29[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut30">
+         <obj_property name="ElementShortName">dataOut30[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut30[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut31">
+         <obj_property name="ElementShortName">dataOut31[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut31[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut32">
+         <obj_property name="ElementShortName">dataOut32[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut32[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut33">
+         <obj_property name="ElementShortName">dataOut33[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut33[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut34">
+         <obj_property name="ElementShortName">dataOut34[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut34[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut35">
+         <obj_property name="ElementShortName">dataOut35[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut35[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut36">
+         <obj_property name="ElementShortName">dataOut36[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut36[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut37">
+         <obj_property name="ElementShortName">dataOut37[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut37[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut38">
+         <obj_property name="ElementShortName">dataOut38[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut38[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut39">
+         <obj_property name="ElementShortName">dataOut39[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut39[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut40">
+         <obj_property name="ElementShortName">dataOut40[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut40[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut41">
+         <obj_property name="ElementShortName">dataOut41[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut41[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut42">
+         <obj_property name="ElementShortName">dataOut42[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut42[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut43">
+         <obj_property name="ElementShortName">dataOut43[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut43[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut44">
+         <obj_property name="ElementShortName">dataOut44[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut44[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut45">
+         <obj_property name="ElementShortName">dataOut45[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut45[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut46">
+         <obj_property name="ElementShortName">dataOut46[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut46[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut47">
+         <obj_property name="ElementShortName">dataOut47[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut47[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut48">
+         <obj_property name="ElementShortName">dataOut48[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut48[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut49">
+         <obj_property name="ElementShortName">dataOut49[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut49[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut50">
+         <obj_property name="ElementShortName">dataOut50[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut50[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut51">
+         <obj_property name="ElementShortName">dataOut51[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut51[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut52">
+         <obj_property name="ElementShortName">dataOut52[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut52[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut53">
+         <obj_property name="ElementShortName">dataOut53[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut53[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut54">
+         <obj_property name="ElementShortName">dataOut54[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut54[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut55">
+         <obj_property name="ElementShortName">dataOut55[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut55[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut56">
+         <obj_property name="ElementShortName">dataOut56[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut56[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut57">
+         <obj_property name="ElementShortName">dataOut57[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut57[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut58">
+         <obj_property name="ElementShortName">dataOut58[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut58[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut59">
+         <obj_property name="ElementShortName">dataOut59[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut59[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut60">
+         <obj_property name="ElementShortName">dataOut60[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut60[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut61">
+         <obj_property name="ElementShortName">dataOut61[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut61[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut62">
+         <obj_property name="ElementShortName">dataOut62[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut62[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/TransWrapper_TB/uut/dataOut63">
+         <obj_property name="ElementShortName">dataOut63[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataOut63[31:0]</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="divider62" type="divider">
       <obj_property name="label">Internal Signals</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="BkColor">#FFD700</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_stage1En">
-      <obj_property name="ElementShortName">s_stage1En</obj_property>
-      <obj_property name="ObjectShortName">s_stage1En</obj_property>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/s_DCT4En">
+      <obj_property name="ElementShortName">s_DCT4En</obj_property>
+      <obj_property name="ObjectShortName">s_DCT4En</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_stage2MEn">
-      <obj_property name="ElementShortName">s_stage2MEn</obj_property>
-      <obj_property name="ObjectShortName">s_stage2MEn</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_DCT8En">
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/s_DCT8En">
       <obj_property name="ElementShortName">s_DCT8En</obj_property>
       <obj_property name="ObjectShortName">s_DCT8En</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_stage2AEn">
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/s_DCT16En">
+      <obj_property name="ElementShortName">s_DCT16En</obj_property>
+      <obj_property name="ObjectShortName">s_DCT16En</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/s_DCT32En">
+      <obj_property name="ElementShortName">s_DCT32En</obj_property>
+      <obj_property name="ObjectShortName">s_DCT32En</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/s_DCT64En">
+      <obj_property name="ElementShortName">s_DCT64En</obj_property>
+      <obj_property name="ObjectShortName">s_DCT64En</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/s_DCT4ValOut">
+      <obj_property name="ElementShortName">s_DCT4ValOut</obj_property>
+      <obj_property name="ObjectShortName">s_DCT4ValOut</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/s_DCT8ValOut">
+      <obj_property name="ElementShortName">s_DCT8ValOut</obj_property>
+      <obj_property name="ObjectShortName">s_DCT8ValOut</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/s_DCT16ValOut">
+      <obj_property name="ElementShortName">s_DCT16ValOut</obj_property>
+      <obj_property name="ObjectShortName">s_DCT16ValOut</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/s_DCT32ValOut">
+      <obj_property name="ElementShortName">s_DCT32ValOut</obj_property>
+      <obj_property name="ObjectShortName">s_DCT32ValOut</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/s_DCT64ValOut">
+      <obj_property name="ElementShortName">s_DCT64ValOut</obj_property>
+      <obj_property name="ObjectShortName">s_DCT64ValOut</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider82" type="divider">
+      <obj_property name="label">DCT8 Signals</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_stage1En">
+      <obj_property name="ElementShortName">s_stage1En</obj_property>
+      <obj_property name="ObjectShortName">s_stage1En</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_stage2MEn">
+      <obj_property name="ElementShortName">s_stage2MEn</obj_property>
+      <obj_property name="ObjectShortName">s_stage2MEn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_DCT4En">
+      <obj_property name="ElementShortName">s_DCT4En</obj_property>
+      <obj_property name="ObjectShortName">s_DCT4En</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_stage2AEn">
       <obj_property name="ElementShortName">s_stage2AEn</obj_property>
       <obj_property name="ObjectShortName">s_stage2AEn</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_stage2DEn">
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_stage2DEn">
       <obj_property name="ElementShortName">s_stage2DEn</obj_property>
       <obj_property name="ObjectShortName">s_stage2DEn</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_stage3En">
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_stage3En">
       <obj_property name="ElementShortName">s_stage3En</obj_property>
       <obj_property name="ObjectShortName">s_stage3En</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_stage4MEn">
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_stage4MEn">
       <obj_property name="ElementShortName">s_stage4MEn</obj_property>
       <obj_property name="ObjectShortName">s_stage4MEn</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_stage4AEn">
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_stage4AEn">
       <obj_property name="ElementShortName">s_stage4AEn</obj_property>
       <obj_property name="ObjectShortName">s_stage4AEn</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_stage4DEn">
-      <obj_property name="ElementShortName">s_stage4DEn</obj_property>
-      <obj_property name="ObjectShortName">s_stage4DEn</obj_property>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_valOutDCT4">
+      <obj_property name="ElementShortName">s_valOutDCT4</obj_property>
+      <obj_property name="ObjectShortName">s_valOutDCT4</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_stage5En">
-      <obj_property name="ElementShortName">s_stage5En</obj_property>
-      <obj_property name="ObjectShortName">s_stage5En</obj_property>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_outCastEn">
+      <obj_property name="ElementShortName">s_outCastEn</obj_property>
+      <obj_property name="ObjectShortName">s_outCastEn</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_stage6MEn">
-      <obj_property name="ElementShortName">s_stage6MEn</obj_property>
-      <obj_property name="ObjectShortName">s_stage6MEn</obj_property>
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_end8">
+      <obj_property name="ElementShortName">s_end8</obj_property>
+      <obj_property name="ObjectShortName">s_end8</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_stage6AEn">
-      <obj_property name="ElementShortName">s_stage6AEn</obj_property>
-      <obj_property name="ObjectShortName">s_stage6AEn</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_valOutDCT8">
-      <obj_property name="ElementShortName">s_valOutDCT8</obj_property>
-      <obj_property name="ObjectShortName">s_valOutDCT8</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_end16">
-      <obj_property name="ElementShortName">s_end16</obj_property>
-      <obj_property name="ObjectShortName">s_end16</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/DCT1632_TB/uut/s_valOut">
+   <wvobject type="logic" fp_name="/TransWrapper_TB/uut/DCT8/s_valOut">
       <obj_property name="ElementShortName">s_valOut</obj_property>
       <obj_property name="ObjectShortName">s_valOut</obj_property>
    </wvobject>

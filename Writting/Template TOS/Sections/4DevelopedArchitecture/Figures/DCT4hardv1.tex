@@ -18,12 +18,14 @@
     coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
     % nmark node style is used for coordinate debugging marks% -------------------------------------------------
     % Connector line styles for different parts of the diagram
-    norm/.style={aar, draw},
-    free/.style={aar, draw, green3},
-    cong/.style={aar, draw, red3},
+    norm/.style={ar32, draw},
+    free/.style={ar32, draw, green3},
+    cong/.style={ar32, draw, red3},
     it/.style={font={\small\itshape}},
-    nar/.style={aar, red!75!black},
-    aar/.style={->, line width=0.4mm},    
+    nar/.style={ar32, red!75!black},
+    ar32/.style={->, line width=0.8mm},   
+    b32/.style={line width=0.8mm},    
+    ar1/.style={->, line width=0.4mm}  
   }    
 
   \begin{scope}[y=-1cm]
@@ -32,91 +34,92 @@
       
       %% Inputs
       \draw [black,very thick] (1,0) circle (1mm) node [right, rotate=90, xshift=1mm] {\texttt{Clock}};
-        \draw [aar] (1,0.1) |- (5,19.5-1);
-        \draw [aar] (1,0.1) |- (5,15.5-1);
-        \draw [aar] (1,0.1) |- (5,11.5-1);
-        \draw [aar] (1,0.1) |- (5,7.5-1);
-        \draw [aar] (1,0.1) |- (5,3.5-1);
+        %\draw [ar32] (1,0.1) |- (5,19.5-1);
+        \draw [ar1] (1,0.1) |- (5,15.5-1);
+        \draw [ar1] (1,0.1) |- (5,11.5-1);
+        \draw [ar1] (1,0.1) |- (5,7.5-1);
+        \draw [ar1] (1,0.1) |- (5,3.5-1);
       \draw [black,very thick] (2,0) circle (1mm) node [right, rotate=90, xshift=1mm] {\texttt{Reset}};
-        \draw [aar] (2,0.1) |- (5,19.5-1.5);
-        \draw [aar] (2,0.1) |- (5,15.5-1.5);
-        \draw [aar] (2,0.1) |- (5,11.5-1.5);
-        \draw [aar] (2,0.1) |- (5,7.5-1.5);
-        \draw [aar] (2,0.1) |- (5,3.5-1.5);
+        %\draw [ar32] (2,0.1) |- (5,19.5-1.5);
+        \draw [ar1] (2,0.1) |- (5,15.5-1.5);
+        \draw [ar1] (2,0.1) |- (5,11.5-1.5);
+        \draw [ar1] (2,0.1) |- (5,7.5-1.5);
+        \draw [ar1] (2,0.1) |- (5,3.5-1.5);
       \draw [black,very thick] (3,0) circle (1mm) node [right, rotate=90, xshift=1mm] {\texttt{Enable}};
-        \draw [aar] (3,0.1) |- (5,1.5);
+        \draw [ar1] (3,0.1) |- (5,1.5);
       \foreach \x in {0,...,3}
-        \draw [black,very thick] (6+2*\x,0) circle (1mm) node [right, rotate=90, xshift=1mm] (dIn\x) {\texttt{dataIn\x}};
-      
+        \draw [black,very thick] (6+2*\x,0) circle (1mm) node [right, rotate=90, xshift=1mm] (dIn\x) {\texttt{dataIn\x}};      
 
       %% In Register
-      \node (inReg) at (5,2-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Input Register}};
+      \node (inReg) at (5,2-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 1: Sum}};
       \node (enInReg) at (5,2.5-1) [right, font={\small}] {\texttt{en}};
       \node (resInReg) at (5,3-1) [right, font={\small}] {\texttt{res}};
       \node (clkInReg) at (5,3.5-1) [right, font={\small}] {\texttt{clk}};
       \node (valoutInReg) at (5,4.5-1) [right, font={\small}] {\texttt{valOut}};
-        \draw [aar] (5,4.5-1) -- ++(-1,0) |- (5,6.5-1);
+        \draw [ar1] (5,4.5-1) -- ++(-1,0) |- (5,6.5-1);
 
       %% Stage 1 Sum
-      \node (St1) at (5,6-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 1: Sum}};
+      \node (St1) at (5,6-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Multiplier}};
       \node (enSt1) at (5,6.5-1) [right, font={\small}] {\texttt{en}};
       \node (resSt1) at (5,7-1) [right, font={\small}] {\texttt{res}};
       \node (clkSt1) at (5,7.5-1) [right, font={\small}] {\texttt{clk}};
       \node (valoutSt1) at (5,8.5-1) [right, font={\small}] {\texttt{valOut}};
-        \draw [aar] (5,8.5-1) -- ++(-1,0) |- (5,10.5-1);
+        \draw [ar1] (5,8.5-1) -- ++(-1,0) |- (5,10.5-1);
 
       %% Stage 2 Mult
-      \node (St2M) at (5,10-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Multiplier}};
+      \node (St2M) at (5,10-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Sum}};
       \node (enSt2M) at (5,10.5-1) [right, font={\small}] {\texttt{en}};
       \node (resSt2M) at (5,11-1) [right, font={\small}] {\texttt{res}};
       \node (clkSt2M) at (5,11.5-1) [right, font={\small}] {\texttt{clk}};
       \node (valoutSt2M) at (5,12.5-1) [right, font={\small}] {\texttt{valOut}};
-        \draw [aar] (5,12.5-1) -- ++(-1,0) |- (5,14.5-1);
+        \draw [ar1] (5,12.5-1) -- ++(-1,0) |- (5,14.5-1);
       
       %% Stage 2 Add
-      \node (St2A) at (5,14-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Sum}};
+      \node (St2A) at (5,14-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Shift}};
       \node (enSt2A) at (5,14.5-1) [right, font={\small}] {\texttt{en}};
       \node (resSt2A) at (5,15-1) [right, font={\small}] {\texttt{res}};
       \node (clkSt2A) at (5,15.5-1) [right, font={\small}] {\texttt{clk}};
       \node (valoutSt2A) at (5,16.5-1) [right, font={\small}] {\texttt{valOut}}; 
-        \draw [aar] (5,16.5-1) -- ++(-1,0) |- (5,18.5-1);
+        \draw [ar1] (5,15.5) -| (2,16.5);
+        \draw [line width=0.4mm] (2,16.5) -- ++(0,0.4);
+
       
-      %% Stage 2 Shift
-      \node (St2S) at (5,18-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Shift}};
-      \node (enSt2S) at (5,18.5-1) [right, font={\small}] {\texttt{en}};
-      \node (resSt2S) at (5,19-1) [right, font={\small}] {\texttt{res}};
-      \node (clkSt2S) at (5,19.5-1) [right, font={\small}] {\texttt{clk}};
-      \node (valoutSt2S) at (5,20.5-1) [right, font={\small}] {\texttt{valOut}};  
-        \draw [aar] (5,20.5-1) -| (2,20.5); 
-        \draw[line width=0.4mm] (2,20.5) -- ++(0, -0.4cm);
+      %%% Stage 2 Shift
+      %\node (St2S) at (5,18-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Shift}};
+      %\node (enSt2S) at (5,18.5-1) [right, font={\small}] {\texttt{en}};
+      %\node (resSt2S) at (5,19-1) [right, font={\small}] {\texttt{res}};
+      %\node (clkSt2S) at (5,19.5-1) [right, font={\small}] {\texttt{clk}};
+      %\node (valoutSt2S) at (5,20.5-1) [right, font={\small}] {\texttt{valOut}};  
+      %  \draw [ar32] (5,20.5-1) -| (2,20.5); 
+      %  \draw[line width=0.4mm] (2,20.5) -- ++(0, -0.4cm);
       
       %% Outputs
-      \draw [black,very thick] (2,21) circle (1mm) node [left, rotate=90, xshift=-1mm] {\texttt{validOut}};
+      \draw [black,very thick] (2,17) circle (1mm) node [left, rotate=90, xshift=-1mm] {\texttt{validOut}};
       
-      \draw [black,very thick] (6,21) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut0) {\texttt{dataOut0}};
-      \draw [black,very thick] (6+2*1,21) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut2) {\texttt{dataOut2}};
-      \draw [black,very thick] (6+2*2,21) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut1) {\texttt{dataOut1}};
-      \draw [black,very thick] (6+2*3,21) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut3) {\texttt{dataOut3}};
+      \draw [black,very thick] (6,17) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut0) {\texttt{dataOut0}};
+      \draw [black,very thick] (6+2*1,17) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut2) {\texttt{dataOut2}};
+      \draw [black,very thick] (6+2*2,17) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut1) {\texttt{dataOut1}};
+      \draw [black,very thick] (6+2*3,17) circle (1mm) node [left, rotate=90, xshift=-1mm] (dOut3) {\texttt{dataOut3}};
 
       \foreach \x in {0,...,3} {
-        \draw[aar] (6+2*\x,-1mm) -- ++(0, -0.9cm);
-        \draw[aar] (6+2*\x,4) -- ++(0, -1cm);
-        \draw[aar] (6+2*\x,8) -- ++(0, -1cm);
-        \draw[aar] (6+2*\x,12) -- ++(0, -1cm);
-        \draw[aar] (6+2*\x,16) -- ++(0, -1cm);
-        \draw[aar] (6+2*\x,20) -- ++(0, -0.5cm);
-        \draw[line width=0.4mm] (6+2*\x,20.5) -- ++(0, -0.4cm);
+        \draw[ar32] (6+2*\x,-1mm) -- ++(0, -0.9cm);
+        \draw[ar32] (6+2*\x,4) -- ++(0, -1cm);
+        \draw[ar32] (6+2*\x,8) -- ++(0, -1cm);
+        \draw[ar32] (6+2*\x,12) -- ++(0, -1cm);
+        \draw[ar32] (6+2*\x,16) -- ++(0, -0.5cm);
+        %\draw[ar32] (6+2*\x,20) -- ++(0, -0.5cm);
+        \draw[b32] (6+2*\x,16.5) -- ++(0, -0.4cm);
       }
     \end{scope}
     \begin{pgfonlayer}{background}
       % Left-top corner of the background rectangle
       \node (a11) at (0,0.5) {};
       % Right-bottom corner of the background rectanle
-      \node (a21) at (13.5,20.5) {};
+      \node (a21) at (13.5,16.5) {};
       % Draw the background
       \path[fill=black!3,rounded corners, draw, very thick]
         (a11) rectangle (a21);
-      \node (a31) at (1.5,20.5) {};
+      \node (a31) at (1.5,16.5) {};
       \path (a11) -- (a31) node[midway, rotate=90, yshift=1.3cm, font={\huge}] (mid_right) {\textbf{DCT4}};
     \end{pgfonlayer}
   \end{scope}

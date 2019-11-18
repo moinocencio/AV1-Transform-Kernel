@@ -1,0 +1,73 @@
+\begin{tikztimingtable}
+    \texttt{Clock}              & H 2{C} N(RH) 8{C} N(EH) 32{C} \\
+    \texttt{Select}             & U 42D{\texttt{"001"}}  \\
+    \texttt{Reset}              & L 3H 39L  \\
+    \texttt{Enable}             & 2L 41H  \\
+    \texttt{dataIn(0-63)}       & U 42D{\texttt{[1,0,...,0]}}  \\
+    \\
+    \texttt{DCT4En}             & 2U 41L  \\
+    \texttt{DCT8En}             & 2U 4L 37H  \\
+    \texttt{DCT16En}            & 2U 41L  \\
+    \texttt{DCT32En}            & 2U 41L  \\
+    \texttt{DCT64En}            & 2U 41L  \\
+    \\
+    \texttt{DCT4vo}             & 2U 41L  \\
+    \texttt{DCT8vo}             & 2U 26L 15H  \\
+    \texttt{DCT16vo}            & 2U 41L  \\
+    \texttt{DCT32vo}            & 2U 41L  \\
+    \texttt{DCT64vo}            & 2U 41L  \\
+    \\
+    \texttt{Stage1En}           & 2U 6L 35H \\
+    \texttt{DCT4En}             & 2U 8L 33H  \\
+    \texttt{Stage2MEn}          & 2U 10L 31H  \\
+    \texttt{Stage2AEn}          & 2U 12L 29H  \\
+    \texttt{Stage2SEn}          & 2U 14L 27H  \\
+    \texttt{Stage3En}           & 2U 16L 25H  \\
+    \texttt{Stage4MEn}          & 2U 18L 23H  \\
+    \texttt{Stage4AEn}          & 2U 20L 21H  \\
+    \texttt{Stage4SEn}          & 2U 22L 19H \\
+    \texttt{DCT4ValOut}         & 2U 20L 21H  \\
+    \texttt{validOut}           & 2U 24L 17H \\
+    \\
+    \texttt{validOut}           & 2U 28L 13H\\
+    \texttt{dataOut(0-63)}            & 2U 28D{\texttt{[0,0,...,0]}} 13D{\texttt{[5,0,0,0,0,0,0,0,'-',...,'-']}} \\
+  \extracode
+    %\tablerules
+    \begin{pgfonlayer}{background}
+        \begin{scope}[semitransparent,semithick]
+          \vertlines[lightgray]{2,4,...,43}
+        \end{scope}
+
+        % Left-top corner of the background rectangle
+        \node (a11) at (-10.5,4) {};
+        % Right-bottom corner of the background rectanle
+        \node (a21) at (43.5,-9) {};
+        % Draw the background
+        \path[rounded corners, draw=darkgray, dashed]
+            (a11) rectangle (a21);
+        \node (a31) at (a21 -| a11) {};
+        \path (a11) -- (a31) node[midway, rotate=90, yshift=-0.3cm, font={\rmfamily\bfseries{}}] (mid_right) {\textbf{Input}};
+
+        % Left-top corner of the background rectangle
+        \node (a11) at (-10.5,-9.5) {};
+        % Right-bottom corner of the background rectanle
+        \node (a21) at (43.5,-32.5) {};
+        % Draw the background
+        \path[rounded corners, draw=darkgray, dashed]
+            (a11) rectangle (a21);
+        \node (a31) at (a11 |- a21) {};
+        \path (a11) -- (a31) node[midway, rotate=90, yshift=-0.5cm, font={\rmfamily\bfseries{}}, align=center] (mid_right) {Wrapper\\Signals};
+
+        % Left-top corner of the background rectangle
+        \node (a11) at (-10.5,-33) {};
+        % Right-bottom corner of the background rectanle
+        \node (a21) at (43.5,-57) {};
+        % Draw the background
+        \path[rounded corners, draw=darkgray, dashed]
+            (a11) rectangle (a21);
+        \node (a31) at (a11 |- a21) {};
+        \path (a11) -- (a31) node[midway, rotate=90, yshift=-0.3cm, font={\rmfamily\bfseries{}}, align=center] (mid_right) {\emph{DCT8} Signals};
+
+    \end{pgfonlayer}
+
+\end{tikztimingtable}

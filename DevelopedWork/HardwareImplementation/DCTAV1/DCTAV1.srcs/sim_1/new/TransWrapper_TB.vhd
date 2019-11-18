@@ -310,7 +310,7 @@ begin
                     
     dataIn: process
             begin
-                sel_tb             <= "100";
+                sel_tb          <= "100";
                 dataIn0_tb      <= X"FFFFFFFF";
                 dataIn1_tb      <= X"FFFFFFFF";
                 dataIn2_tb      <= X"FFFFFFFF";
@@ -448,7 +448,7 @@ begin
                 wait for 6000us;
                 reset_tb <= '1';
                 wait for 250us;
-                sel_tb             <= "000";
+                sel_tb             <= "001";
                 dataIn0_tb      <= X"00000035";
                 dataIn1_tb      <= X"FFFFFF65";
                 dataIn2_tb      <= X"FFFFFF51";
