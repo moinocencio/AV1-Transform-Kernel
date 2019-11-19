@@ -210,7 +210,7 @@ With an efficient algorithm for each of the supported vector sizes, the first ob
 With this approach, it was hopped to reach an architecture that englobed all the \emph{DCT} kernels, allowing to easily chose between each of them, depending on the desired choices made in the beginning of the transform stage.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{\emph{Individual 1D DCT} Hardware Design}
+\subsection{\emph{Individual 1D DCTs} Design}
 
 The hardware implementations followed the same scheme as the corresponding software counterparts. By this it is meant that the flow of the input towards the output is done in individual and sequential stages. The main difference between these implementations is that in hardware, all of the intermediary signals within each stage are calculated in parallel. 
 
@@ -245,29 +245,29 @@ In order to ensure the correct pipelining of the \emph{Transform} process, each 
 
 All blocks are controlled by the same \emph{clock} and \emph{reset} signals. The first triggers the internal processes on its ascending flank. The latter signals all internal registers to be put to 0 (its initial stage).
 
-A simplified version of \emph{DCT4}'s hardware implementation is represented in Figure \ref{fig:harddct4v1}. In here, the direction of the arrow represents if the corresponding signal is a \emph{input} or \emph{output}. The numbering of the output coefficients is done accordingly to the software implementation.
+A simplified version of \textbf{DCT4}'s hardware implementation is represented in Figure \ref{fig:harddct4v1}. In here, the direction of the arrow represents if the corresponding signal is a \emph{input} or \emph{output}. The numbering of the output coefficients is done accordingly to the software implementation.
 
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/DCT4hardv1.tex}
-    \caption{1D \emph{DCT 4} hardware implementation}
+    \caption{1D \emph{\textbf{DCT4}} hardware implementation}
     \label{fig:harddct4v1}
 \end{figure}
 
 All data signals and corresponding internal registers are represented with 32 bits, exemplified by the thicker lines. Although this increases the necessary footprint, this measure simplifies the development and integration between different transforms. Nonetheless, some additional measures were taken in the hardware description files, in order to easily change the number of used bits (\emph{\gls{genmap}}), at a later stage.
 
-As a final measure to simplify the development process, the \emph{kernels} are implemented using the smaller sizes as a constituting block. As shown in \cite{wen-hsiungchenFastComputationalAlgorithm1977}, all transform sizes greater than $4$ englobe the same sequence of operations as the smaller counterparts, on one subset of its intermediary coefficients. This way, each of the smaller \emph{1D-DCT} blocks may be inserted into the size immediately above it.
+As a final measure to simplify the development process, the \emph{kernels} are implemented using the smaller sizes as a constituting block. As shown in Wen-Hsiung Chen's work \cite{wen-hsiungchenFastComputationalAlgorithm1977}, all transform sizes greater than $4$ englobe the same sequence of operations as the smaller counterparts, on one subset of its intermediary coefficients. This way, each of the smaller \emph{1D-DCT} blocks may be inserted into the size immediately above it.
 
-As an example, \emph{DCT8}'s hardware implementation is represented in Figure \ref{fig:harddct8v1}. There, it is observable that the architecture is similarly composed of the same blocks as the previous implementation. However, after the first summing stage, the first four intermediary coefficients are input into \emph{DCT4}. 
+As an example, \textbf{DCT8}'s hardware implementation is represented in Figure \ref{fig:harddct8v1}. There, it is observable that the architecture is similarly composed of the same blocks as the previous implementation. However, after the first summing stage, the first four intermediary coefficients are input into \textbf{DCT4}. 
 
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/DCT8hardv1.tex}
-    \caption{Simplified 1D \emph{DCT 8} hardware implementation, with inclusion of \emph{DCT 4}}
+    \caption{Simplified 1D \textbf{DCT8} hardware implementation, with inclusion of \textbf{DCT4}}
     \label{fig:harddct8v1}
 \end{figure}
 
-In the same manner, \emph{DCT16} includes \emph{DCT8}, which, as shown, also includes the four input version. This approach causes the smaller blocks to be repeated throughout the various larger architectures, making this approach highly inefficient from the chip's utilization standpoint.
+In the same manner, \textbf{DCT16} includes \textbf{DCT8}, which, as shown, also includes the four input version. This approach causes the smaller blocks to be repeated throughout the various larger architectures, making this approach highly inefficient from the chip's utilization standpoint.
 
 Nonetheless, in order to draw conclusions as to the correct functioning of the internal stages, as well as to see possible gains from the following implementations, the architecture from Figure \ref{fig:fullv1} was developed.
 
@@ -278,22 +278,22 @@ Nonetheless, in order to draw conclusions as to the correct functioning of the i
     \label{fig:fullv1}
 \end{figure}
 
-Besides the previously shown 32 bit \texttt{dataIn}'s, \texttt{Clock}, \texttt{Reset} and \texttt{Enable}, this implementation adds an additional \texttt{Select} input. This signal flags the system on which \emph{DCT} should be calculated.
+Besides the previously shown 32 bit \texttt{dataIn}'s, \texttt{Clock}, \texttt{Reset} and \texttt{Enable}, this implementation adds an additional \texttt{Select} input. This signal flags the system on which \emph{\textbf{DCT}} should be enabled.
 
 As shown, this wrapper uses all the individual kernels independently, depending on the \textbf{Control Unit} to generate the correct enable signals (\texttt{DCTXEn}), according to the selected \emph{DCT}. This block is also tasked with the redirection of the kernel's calculated coefficients (\texttt{DCTXoK}) and valid output signal (\texttt{DCTXvo}) to the system's outputs (\texttt{dataOutK} and \texttt{validOut}).
 
-To validate this design, a VHDL test bench was built and simulated in \emph{Vivado}. It generates a vector of 32 bit integers, as well as the four control signals, injects them into the developed architecture, and receives the outputs. In \ref{fig:v1timing} there is represented one of the timing tests made, where the selected size was 8. It shows the internal signals for the full architecture, as well as \emph{DCT8}.
+To validate this design, a VHDL test bench was built and simulated in \emph{Vivado}. It generates a vector of 32 bit integers, as well as the four control signals, injects them into the developed architecture, and receives the outputs. In \ref{fig:v1timing} there is represented one of the timing tests made, where the selected size was 8. It shows the internal signals for the full architecture, as well as the selected block, \textbf{DCT8}.
 
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/v1timing.tex}
-    \caption{Timming diagram for first \emph{DCT} kernel}
+    \caption{Timing diagram for first \emph{DCT} wrapper}
     \label{fig:v1timing}
 \end{figure}
 
 From this test, it is observable that the desired functioning of the internal stages is achieved. The input gets sequentially pipelined through the various stages, getting a valid output 13 clock cycles after the enabling of the system. This behavior was also verified for the other vector sizes, although the delay until getting the output varies.
 
-However, even though the correct functioning of the developed architecture is verified, its applicability isn't verified yet. To draw conclusions, this design must first be synthesized into the \emph{FPGA}, which provides metrics as to the chip's utilization, power draw, timing characteristics, etc.
+However, even though the correct functioning of the developed architecture is verified, its applicability isn't verified yet. To draw conclusions, this design must first be synthesized into the FPGA which provides metrics as to the chip's utilization, power draw, timing characteristics, etc.
 
 The utilization results of this design's synthesis into an \emph{Artix 7} FPGA are presented in Table \ref{tab:v1results}. 
 
@@ -314,11 +314,45 @@ The utilization results of this design's synthesis into an \emph{Artix 7} FPGA a
     \label{tab:v1results}
 \end{table}
 
-As observable, this design uses more resources than what are available on the system's FPGA. This result, as mentioned previously was expected, due to the repetition of the smaller blocks on the different stages. The final architecture, effectively had five instances of the \emph{DCT4}, four \emph{DCT8}s, and so on. 
+As observable, this design uses more resources than what are available on the system's FPGA. This result, as mentioned previously was expected, due to the repetition of the smaller blocks on the different stages. The final architecture, effectively had five instances of the \textbf{DCT4}, four \textbf{DCT8}s, and so on. 
 
-Since this design is not synthesizable on the target hardware, no other results can be drawn, nor would they be applicable. However, on a more resourceful kit, this design could have been implemented, since there were no \gls{floorplaning} errors.
+Since this design is not synthesizable on the target hardware, no other results can be drawn, nor would they be applicable. However, on a more resourceful kit, this design could have been implemented, since there were no \emph{\gls{floorplaning}} errors.
 
-Nonetheless, this architecture allowed to draw conclusions as to the correct functioning of the \emph{DCT}'s internal stages, and served as the basis for the following, more successful, architecture.
+Nonetheless, this architecture allowed to draw conclusions as to the correct functioning of the \emph{DCT}'s internal stages, and served as the basis for the following architecture.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\emph{Interdependent 1D DCTs} Design}
+
+This next version's main objective was the reduction of necessary resources for FPGA implementation. The strategy taken was to avoid the repetition of the internal DCT stages, i.e., the final architecture should have a single instance of each of the previously shown internal stages throughout the entire design. 
+
+To achieve this, each individual \textbf{DCTX} apart from \textbf{DCT4} was divided in sections. \textbf{DCTX\_P1} is composed of the first stage of each individual kernel, corresponding to the first summing/rotation. Correspondingly, \textbf{DCTX\_P2} groups all the following stages, from multiplications, sums and shifts, apart from the steps taken by the smaller \textbf{DCT$\nicefrac{X}{2}$} implementations. Figure \ref{fig:dct8iv} gives an exemplification of this sectioning, for the previous implementation of \textbf{DCT8}. All bocks are controlled by the same clock and reset signals. For simplification purposes, these signals wont be displayed in the following Figures.
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/4DevelopedArchitecture/Figures/DCT8divv2.tex}
+    \caption{Exemplification of the individual kernel's division for the second implementation}
+    \label{fig:dct8iv}
+\end{figure}
+
+It is important to note that \textbf{DCT8\_P2} inputs and \texttt{en} are hardwired to the bottom four outputs and \texttt{valOut} of \textbf{DCT8\_P1}, respectively. Similar connections are done throughout the whole architecture, as each of the \textbf{DCTX\_P2} stages will always process outputs from the corresponding \textbf{P1} stages. However, the latter may be injected with the systems \texttt{dataIn}'s, or with intermediary coefficients from previous stages. This behavior is shown in later in this Section.
+
+Depending on the selected size, the input data is injected into one of the \textbf{P1} stages or directly into \textbf{DCT4}. The interconnection of the internal blocks, and corresponding flow of the intermediary coefficients is dealt by a \textbf{Control Unit}, different from the one from the previous implementation. In this case, this block has a much higher input/output count, as it must control which signals go into each stage, to generate the correct final coefficients as if the \texttt{dataIn}'s passed through a single \textbf{DCT} block. Besides the coefficients, also the intermediary enable signals are dependent of the central unit, since the interconnection of the \texttt{valOut/en} pairs is dependent on the selected vector size.
+
+A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented.
+
+\clearpage
+\begin{landscape}
+    \vspace*{\fill}
+    \begin{figure}[!htbp]
+        \centering
+        \input{Sections/4DevelopedArchitecture/Figures/fullDCTv2.tex}
+        \caption{Simplified architecture of the second version of the full \emph{DCT} wrapper}
+        \label{fig:fullv2}
+    \end{figure}
+    \vspace*{\fill}        
+\end{landscape}
+
+
 
 \clearpage
 \printbibliography[heading=subbibliography]

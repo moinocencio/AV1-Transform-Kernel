@@ -1,0 +1,128 @@
+\begin{tikzpicture}[%
+    >={Triangle[length=6pt,angle'=28]},
+    start chain=going below ,    % General flow is left-to-right
+    node distance=5mm and 20mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    scale=0.6, 
+    every node/.style={transform shape},
+    circuit logic US, every circuit symbol/.style={thick}
+    ]
+
+  \tikzset{
+    base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+    reg/.style={base, rectangle, minimum width=2.5em, minimum height=2em,fill=black!15},
+    proc/.style={base, rectangle, minimum width=4em, minimum height=8em, fill=black!15},
+    inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
+    term/.style={proc, rounded corners},
+    sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
+    % coord node style is used for placing corners of connecting lines
+    coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+    % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+    % Connector line styles for different parts of the diagram
+    norm/.style={ar32, draw},
+    free/.style={ar32, draw, green3},
+    cong/.style={ar32, draw, red3},
+    it/.style={font={\itshape}},
+    nar/.style={ar32, red!75!black},
+    ar32/.style={->, line width=0.8mm},   
+    b32/.style={line width=0.8mm},    
+    ar1/.style={->, line width=0.4mm},
+    b1/.style={line width=0.4mm}
+  }    
+
+  \begin{scope}[y=-1cm]
+    \begin{scope}
+      %\draw[step=1cm, very thin, lightgray] (0,0) grid (14,30);
+      
+      %% Stage 1 Sum
+      \node (St1) at (5-1,6-1) [draw,thick,minimum width=10cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 1: Sum}};
+      \node (enSt1) at (5-1,6.5-1) [right, font={}] {\texttt{en}};
+        \draw [black,very thick] (2.5,5.5) circle (1mm) node [left, xshift=-1mm] {\texttt{DCT8\_P1en}};
+        \draw [ar1] (2.6,5.5) -- (4,5.5);
+      \node (resSt1) at (5-1,7-1) [right, font={}] {\texttt{res}};
+      \node (clkSt1) at (5-1,7.5-1) [right, font={}] {\texttt{clk}};
+      \node (valoutSt1) at (5-1,8.5-1) [right, font={}] {\texttt{valOut}};
+        \draw [ar1] (4,7.5) -- (3.4,7.5);
+        \draw [black,very thick] (2.5,7.5) circle (1mm) node [left, xshift=-1mm] {\texttt{DCT8\_P1vo}};
+        \draw [ar1] (4,7.5) -- (3.4,7.5);
+        \draw [b1] (3.4,7.5) -- (2.6,7.5);
+        \draw [ar1] (3,7.5) -- ++(0,1.5) -- ++(5.5,0) |- (9.5,10);
+        %\draw [ar1] (5-1,8.5-1) -- ++(-1,0) |- (5-1,10.5-1);
+        %\draw [ar1] (5-1,8.5-1) -- ++(-1,0) -- ++(0,0.7) -- ++(6.1,0) |- (9.5,10.5-1);
+
+      %% DCT4
+      \node (DCT4) at (4,12) [draw,thick,minimum width=4.5cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!12, font={\large\bfseries}, align=center] {DCT4};
+      \node (enSt2M) at (4,12.5) [right, font={}] {\texttt{en}};
+        \draw [black,very thick] (3,12.5) circle (1mm) node [left, xshift=-1mm] {\texttt{DCT4En}};
+        \draw [b1] (3.1,12.5) -- (4,12.5);
+      \node (resSt2M) at (4,13) [right, font={}] {\texttt{res}};
+      \node (clkSt2M) at (4,13.5) [right, font={}] {\texttt{clk}};
+      \node (valoutDCT4) at (4,14.5) [right, font={}] {\texttt{valOut}};
+        \draw [black,very thick] (3,14.5) circle (1mm) node [left, xshift=-1mm] {\texttt{DCT4vo}};
+        \draw [b1] (4,14.5) -- (3.1,14.5);
+    
+      %% Stage 2 Mult
+      \node (St2M) at (9.5,9.5) [draw,thick,minimum width=4.5cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large\bfseries}, align=center] {Stage 2:\\Multiplier};
+      \node (enSt2M) at (9.5,10) [right, font={}] {\texttt{en}};
+      \node (resSt2M) at (9.5,10.5) [right, font={}] {\texttt{res}};
+      \node (clkSt2M) at (9.5,11) [right, font={}] {\texttt{clk}};
+      \node (valoutSt2M) at (9.5,12) [right, font={}] {\texttt{valOut}};
+        \draw [ar1] (9.5,12) -- ++(-0.5,0) -- ++(0,1) coordinate (etc);
+    
+      \foreach \x in {0,...,4}
+        \node at (etc) [left, rotate=90, xshift=-1mm, yshift=-\x cm, font={\bfseries}] {...};
+
+      %% Stage 4 Shift
+      \foreach \x in {0,...,3}
+        \draw [ar32] (10+\x,14) -- ++(0,0.5);
+      \draw [ar1] (9,14) |- (9.5,15);
+      \node (St4S) at (9.5,14.5) [draw,thick,minimum width=4.5cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large\bfseries}, align=center] {Stage 4:\\Shift};
+      \node (enSt2S) at (9.5,15) [right, font={}] {\texttt{en}};
+      \node (resSt2S) at (9.5,15.5) [right, font={}] {\texttt{res}};
+      \node (clkSt2S) at (9.5,16) [right, font={}] {\texttt{clk}};
+      \node (valoutSt2S) at (9.5,17) [right, font={}] {\texttt{valOut}}; 
+        \draw [ar1] (9.5,17) -- (8.7,17);
+        \draw [black,very thick] (8,17) circle (1mm) node [left, xshift=-1mm] {\texttt{DCT8\_P2vo}};
+        \draw [b1] (8.1,17) -- (8.7,17);
+
+      
+      \foreach \x in {0,...,3} {
+        \draw [black,very thick] (5+\x,4) circle (1mm) node [right, rotate=90, xshift=1mm] {\texttt{DCT8\_P1in\x}};
+        \draw[ar32] (5+\x,4.1) -- ++(0, -0.9cm);
+        \draw[ar32] (5+\x,8) -- (5+\x, 8.6);
+        \draw [black,very thick] (5+\x,9.5) circle (1mm) node [left, rotate=90, xshift=-1mm] {\texttt{DCT8\_P1o\x}};
+        \draw[b32] (5+\x, 8.6) -- (5+\x,9.4);
+      }
+      \foreach \x in {4,...,7} {
+        \draw [black,very thick] (6+\x,4) circle (1mm) node [right, rotate=90, xshift=1mm] {\texttt{DCT8\_P1in\x}};
+        \draw[ar32] (6+\x,4.1) -- ++(0, -0.9cm);
+        \draw[ar32] (6+\x,8) -- (6+\x,9.5);
+        \draw[ar32] (6+\x,12.5) -- ++(0, -0.5cm);
+        \draw[ar32] (6+\x,17.5) -- (6+\x,18);
+        \draw [black,very thick] (6+\x,18.5) circle (1mm) node [left, rotate=90, xshift=-1mm] {\texttt{DCT8\_P2o\x}};
+        \draw [b32] (6+\x,18) -- (6+\x,18.4);
+      }
+    \end{scope}
+    \begin{pgfonlayer}{background}
+      % Left-top corner of the background rectangle
+      \node (a11) at (8.7,8.9) {};
+      % Right-bottom corner of the background rectanle
+      \node (a21) at (14.4,18) {};
+      % Draw the background
+      \path[fill=black!3,rounded corners, draw, very thick]
+        (a11) rectangle (a21);
+      \node (a31) at (a21 |- a11) {};
+      \path (a21) -- (a31) node[midway, rotate=90, yshift=-0.7cm, font={\huge}] (mid_right) {\textbf{DCT8\_P2}};
+
+      % Left-top corner of the background rectangle
+      \node (a11) at (3.4,4.4) {};
+      % Right-bottom corner of the background rectanle
+      \node (a21) at (14.6,8.6) {};
+      % Draw the background
+      \path[fill=black!3,rounded corners, draw, very thick]
+        (a11) rectangle (a21);
+      \node (a31) at (a21 |- a11) {};
+      \path (a21) -- (a31) node[midway, rotate=90, yshift=-0.7cm, font={\huge}] (mid_right) {\textbf{DCT8\_P1}};
+    \end{pgfonlayer}
+  \end{scope}
+\end{tikzpicture}
