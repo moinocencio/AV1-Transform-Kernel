@@ -1,0 +1,152 @@
+\begin{tikzpicture}[%
+    >={Triangle[length=4pt,angle'=40]},
+    start chain=going below ,    % General flow is left-to-right
+    node distance=5mm and 20mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    scale=0.43, 
+    every node/.style={transform shape},
+    circuit logic US, every circuit symbol/.style={thick}
+    ]
+
+  \tikzset{
+    base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+    reg/.style={base, rectangle, minimum width=2.5em, minimum height=2em,fill=black!15},
+    proc/.style={draw,thick, rounded corners, anchor=north west, fill=black!12, font={\Large\bfseries}, align=center},
+    inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
+    term/.style={proc, rounded corners},
+    sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
+    % coord node style is used for placing corners of connecting lines
+    coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+    % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+    % Connector line styles for different parts of the diagram
+    norm/.style={aar, draw},
+    ar4/.style={lavenderblue, ->, line width=0.7mm},   
+    ar8/.style={glaucous, ->, line width=0.7mm},   
+    ar16/.style={bluegray, ->, line width=0.7mm},   
+    ar32/.style={aurometalsaurus, ->, line width=0.7mm},   
+    ar64/.style={coolblack, ->, line width=0.7mm},   
+    ctrl4/.style={lavenderblue, <-, line width=0.4mm, densely dotted},   
+    ctrl8/.style={glaucous, <-, line width=0.4mm, densely dotted},   
+    ctrl16/.style={bluegray, <-, line width=0.4mm, densely dotted},   
+    ctrl32/.style={aurometalsaurus, <-, line width=0.4mm, densely dotted},   
+    ctrl64/.style={coolblack , <-, line width=0.4mm, densely dotted},   
+    b32/.style={line width=0.8mm},    
+    ar1/.style={->, line width=0.4mm},
+    b1/.style={line width=0.4mm}  
+  }    
+
+  \begin{scope}[y=-1cm]
+    \begin{scope}
+      %%\draw[step=1cm, very thin, lightgray] (-9,-3) grid (21,17);           
+      
+        %% Control Unit
+        \node at (-8.5,-3) [proc, minimum width=31cm, minimum height=5cm, fill=black!5, font={\huge\bfseries}] (control) {Control Unit};
+            \draw[ar4] (-9.3,-2.5) node [left, xshift=-1mm, font={\large\ttfamily}, align=center, black] {sel="000"\\DCT4} -- ++(0.8,0);
+            \draw[ar8] (-9.3,-1.5) node [left, xshift=-1mm, font={\large\ttfamily}, align=center, black] {sel="001"\\DCT8} -- ++(0.8,0);
+            \draw[ar16] (-9.3,-0.5)node [left, xshift=-1mm, font={\large\ttfamily}, align=center, black] {sel="010"\\DCT16}  -- ++(0.8,0);
+            \draw[ar32] (-9.3,0.5) node [left, xshift=-1mm, font={\large\ttfamily}, align=center, black] {sel="011"\\DCT32} -- ++(0.8,0);
+            \draw[ar64] (-9.3,1.5) node [left, xshift=-1mm, font={\large\ttfamily}, align=center, black] {sel="100"\\DCT64} -- ++(0.8,0);
+            \draw[ar64]  ([yshift=-20mm] control.east) -- ++(0.8,0);
+            \draw[ar32]  ([yshift=-10mm] control.east) -- ++(0.8,0);
+            \draw[ar16] ([yshift=0mm] control.east)   -- ++(0.8,0);
+            \draw[ar8] ([yshift=10mm] control.east)  -- ++(0.8,0);
+            \draw[ar4] ([yshift=20mm] control.east)  -- ++(0.8,0);
+
+        %% DCT4
+        \node at (14,3) [proc, minimum width=4cm, minimum height=2cm] (DCT4) {DCT4};
+            \draw[ar4, <-]  ([yshift=-8mm] DCT4.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar4] ([yshift=-8mm] DCT4.east) coordinate (a) -| ([xshift=4mm] a |- control.south);
+            \draw[ar8, <-]  ([yshift=-4mm] DCT4.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar8] ([yshift=-4mm] DCT4.east) coordinate (a) -| ([xshift=4mm] a |- control.south);
+            \draw[ar16, <-]  ([yshift=0mm] DCT4.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar16] ([yshift=0mm] DCT4.east) coordinate (a) -| ([xshift=4mm] a |- control.south);
+            \draw[ar32, <-]  ([yshift=4mm] DCT4.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar32] ([yshift=4mm] DCT4.east) coordinate (a) -| ([xshift=4mm] a |- control.south);
+            \draw[ar64, <-]  ([yshift=8mm] DCT4.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar64] ([yshift=8mm] DCT4.east) coordinate (a) -| ([xshift=4mm] a |- control.south);
+            \draw[ctrl4] ([xshift=8mm] DCT4.north) -- ([xshift=8mm] DCT4.north |- control.south);
+            \draw[ctrl8] ([xshift=4mm] DCT4.north) -- ([xshift=4mm] DCT4.north |- control.south);
+            \draw[ctrl16] ([xshift=0mm] DCT4.north) -- ([xshift=0mm] DCT4.north |- control.south);
+            \draw[ctrl32] ([xshift=-4mm] DCT4.north) -- ([xshift=-4mm] DCT4.north |- control.south);
+            \draw[ctrl64] ([xshift=-8mm] DCT4.north) -- ([xshift=-8mm] DCT4.north |- control.south);
+
+        %% DCT8_P2
+        \node at (14,6) [proc, minimum width=4cm, minimum height=2cm] (DCT82) {DCT8\_P2};
+            \draw[ar8, <-]  ([yshift=-4mm] DCT82.west) coordinate (a)  -| ([xshift=-10mm] a |- control.south);
+            \draw[ar8] ([yshift=-4mm] DCT82.east) coordinate (a) -| ([xshift=8mm] a |- control.south);
+            \draw[ar16, <-]  ([yshift=0mm] DCT82.west) coordinate (a)  -| ([xshift=-10mm] a |- control.south);
+            \draw[ar16] ([yshift=0mm] DCT82.east) coordinate (a) -| ([xshift=8mm] a |- control.south);
+            \draw[ar32, <-]  ([yshift=4mm] DCT82.west) coordinate (a)  -| ([xshift=-10mm] a |- control.south);
+            \draw[ar32] ([yshift=4mm] DCT82.east) coordinate (a) -| ([xshift=8mm] a |- control.south);
+            \draw[ar64, <-]  ([yshift=8mm] DCT82.west) coordinate (a)  -| ([xshift=-10mm] a |- control.south);
+            \draw[ar64] ([yshift=8mm] DCT82.east) coordinate (a) -| ([xshift=8mm] a |- control.south);
+
+        %% DCT8_P1
+        \node at (9,3) [proc, minimum width=3cm, minimum height=5cm] (DCT81) {DCT8\_P1};
+            \draw[ar8, <-]  ([yshift=-4mm] DCT81.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar8] ([yshift=-4mm] DCT81.east) coordinate (a) -| ([xshift=5mm] a |- control.south);
+            \draw[ar16, <-]  ([yshift=0mm] DCT81.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar16] ([yshift=0mm] DCT81.east) coordinate (a) -| ([xshift=5mm] a |- control.south);
+            \draw[ar32, <-]  ([yshift=4mm] DCT81.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar32] ([yshift=4mm] DCT81.east) coordinate (a) -| ([xshift=5mm] a |- control.south);
+            \draw[ar64, <-]  ([yshift=8mm] DCT81.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar64] ([yshift=8mm] DCT81.east) coordinate (a) -| ([xshift=5mm] a |- control.south);
+            \draw[ctrl8] ([xshift=4mm] DCT81.north) -- ([xshift=4mm] DCT81.north |- control.south);
+            \draw[ctrl16] ([xshift=0mm] DCT81.north) -- ([xshift=0mm] DCT81.north |- control.south);
+            \draw[ctrl32] ([xshift=-4mm] DCT81.north) -- ([xshift=-4mm] DCT81.north |- control.south);
+            \draw[ctrl64] ([xshift=-8mm] DCT81.north) -- ([xshift=-8mm] DCT81.north |- control.south);
+
+        %% DCT16_P2
+        \node at (9,9) [proc, minimum width=9cm, minimum height=2cm] (DCT162) {DCT16\_P2};
+            \draw[ar16, <-]  ([yshift=0mm] DCT162.west) coordinate (a)  -| ([xshift=-10mm] a |- control.south);
+            \draw[ar16] ([yshift=0mm] DCT162.east) coordinate (a) -| ([xshift=12mm] a |- control.south);
+            \draw[ar32, <-]  ([yshift=4mm] DCT162.west) coordinate (a)  -| ([xshift=-10mm] a |- control.south);
+            \draw[ar32] ([yshift=4mm] DCT162.east) coordinate (a) -| ([xshift=12mm] a |- control.south);
+            \draw[ar64, <-]  ([yshift=8mm] DCT162.west) coordinate (a)  -| ([xshift=-10mm] a |- control.south);
+            \draw[ar64] ([yshift=8mm] DCT162.east) coordinate (a) -| ([xshift=12mm] a |- control.south);
+
+        %% DCT16_P1
+        \node at (4,3) [proc, minimum width=3cm, minimum height=8cm] (DCT161) {DCT16\_P1};
+            \draw[ar16, <-]  ([yshift=0mm] DCT161.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar16] ([yshift=0mm] DCT161.east) coordinate (a) -| ([xshift=5mm] a |- control.south);
+            \draw[ar32, <-]  ([yshift=4mm] DCT161.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar32] ([yshift=4mm] DCT161.east) coordinate (a) -| ([xshift=5mm] a |- control.south);
+            \draw[ar64, <-]  ([yshift=8mm] DCT161.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar64] ([yshift=8mm] DCT161.east) coordinate (a) -| ([xshift=5mm] a |- control.south);
+            \draw[ctrl16] ([xshift=0mm] DCT161.north) -- ([xshift=0mm] DCT161.north |- control.south);
+            \draw[ctrl32] ([xshift=-4mm] DCT161.north) -- ([xshift=-4mm] DCT161.north |- control.south);
+            \draw[ctrl64] ([xshift=-8mm] DCT161.north) -- ([xshift=-8mm] DCT161.north |- control.south);
+
+        %% DCT32_P2
+        \node at (4,12) [proc, minimum width=14cm, minimum height=2cm] (DCT322) {DCT32\_P2};
+            \draw[ar32, <-]  ([yshift=4mm] DCT322.west) coordinate (a)  -| ([xshift=-10mm] a |- control.south);
+            \draw[ar32] ([yshift=4mm] DCT322.east) coordinate (a) -| ([xshift=16mm] a |- control.south);
+            \draw[ar64, <-]  ([yshift=8mm] DCT322.west) coordinate (a)  -| ([xshift=-10mm] a |- control.south);
+            \draw[ar64] ([yshift=8mm] DCT322.east) coordinate (a) -| ([xshift=16mm] a |- control.south);
+
+        %% DCT32_P1
+        \node at (-1,3) [proc, minimum width=3cm, minimum height=11cm] (DCT321) {DCT32\_P1};
+            \draw[ar32, <-]  ([yshift=4mm] DCT321.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar32] ([yshift=4mm] DCT321.east) coordinate (a) -| ([xshift=5mm] a |- control.south);
+            \draw[ar64, <-]  ([yshift=8mm] DCT321.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar64] ([yshift=8mm] DCT321.east) coordinate (a) -| ([xshift=5mm] a |- control.south);
+            \draw[ctrl32] ([xshift=-4mm] DCT321.north) -- ([xshift=-4mm] DCT321.north |- control.south);
+            \draw[ctrl64] ([xshift=-8mm] DCT321.north) -- ([xshift=-8mm] DCT321.north |- control.south);
+
+        %% DCT64_P2
+        \node at (-1,15) [proc, minimum width=19cm, minimum height=2cm] (DCT642) {DCT64\_P2};
+            \draw[ar64, <-]  ([yshift=8mm] DCT642.west) coordinate (a)  -| ([xshift=-10mm] a |- control.south);
+            \draw[ar64] ([yshift=8mm] DCT642.east) coordinate (a) -| ([xshift=20mm] a |- control.south);
+
+        %% DCT64_P1
+        \node at (-6,3) [proc, minimum width=3cm, minimum height=14cm] (DCT641) {DCT64\_P1};
+            \draw[ar64, <-]  ([yshift=8mm] DCT641.west) coordinate (a)  -| ([xshift=-5mm] a |- control.south);
+            \draw[ar64] ([yshift=8mm] DCT641.east) coordinate (a) -| ([xshift=5mm] a |- control.south);
+            \draw[ctrl64] ([xshift=-8mm] DCT641.north) -- ([xshift=-8mm] DCT641.north |- control.south);
+        
+    \end{scope}
+    \begin{pgfonlayer}{background}
+      
+    \end{pgfonlayer}
+  \end{scope}
+\end{tikzpicture}

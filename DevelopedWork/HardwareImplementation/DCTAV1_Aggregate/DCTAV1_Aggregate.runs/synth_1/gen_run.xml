@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573767858">
-  <File Type="VDS-TIMING-PB" Name="DCTCop_wrapper_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="DCTCop_wrapper_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="DCTCop_wrapper.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="DCTCop_wrapper_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="DCTCop_wrapper_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="DCTCop_wrapper_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="DCTCop_wrapper.vds"/>
   <File Type="REPORTS-TCL" Name="DCTCop_wrapper_reports.tcl"/>
   <File Type="PA-TCL" Name="DCTCop_wrapper.tcl"/>
+  <File Type="RDS-DCP" Name="DCTCop_wrapper.dcp"/>
+  <File Type="RDS-RDS" Name="DCTCop_wrapper.vds"/>
+  <File Type="RDS-UTIL-PB" Name="DCTCop_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="DCTCop_wrapper_utilization_synth.rpt"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/bd/DCTCop/DCTCop.bd">

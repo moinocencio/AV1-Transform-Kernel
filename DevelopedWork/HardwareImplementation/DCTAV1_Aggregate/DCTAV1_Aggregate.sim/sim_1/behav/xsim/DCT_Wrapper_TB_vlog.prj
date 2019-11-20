@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/c923" --include "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/ec67/hdl" \
+"../../../../DCTAV1_Aggregate.ip_user_files/bd/DCTCop/ip/DCTCop_lmb_bram_1/sim/DCTCop_lmb_bram_1.v" \
+"../../../../DCTAV1_Aggregate.ip_user_files/bd/DCTCop/ip/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1_clk_wiz.v" \
+"../../../../DCTAV1_Aggregate.ip_user_files/bd/DCTCop/ip/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1.v" \
+"../../../../DCTAV1_Aggregate.ip_user_files/bd/DCTCop/ip/DCTCop_xbar_1/sim/DCTCop_xbar_1.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -203,7 +203,7 @@ These results allow to advance to a hardware implementation, since the obtained 
 
 On the subject of hardware prototyping, \glspl{fpga} have gained massive popularity within developers, both because of its applicability, as well as ease of use. Additionally, in recent years, there have been major developments in software platforms that allow for the synthesis of FPGA designs as \glspl{asic}, such as \emph{Cadence}'s \emph{Genus} or \emph{Synopsys' Design Compiler} \cite{GenusSynthesisSolution, DesignCompilerGraphical}. 
 
-This way, the chosen platform for the development of the hardware architectures was \emph{Xilinx}'s \emph{Vivado}, due to the wide availability of its FPGAs, as well as for the wide support from its community. For the focus of this work, the target of the designs was \emph{Digillent}'s \emph{Nexys 4 Artix 7 FPGA} \cite{NexysArtix7FPGA}. Although this system is not the most adequate if a full encoder integration is desired, it allows to easily test the applicability of the developed architectures. The designs and test benches were described in \gls{vhdl}.
+This way, the chosen platform for the development of the hardware architectures was \emph{Xilinx}'s \emph{Vivado}, due to the wide availability of its FPGAs, as well as for the wide support from its community. For the focus of this work, the target of the designs was \emph{Digillent}'s \emph{Nexys 4 Artix 7 FPGA} \cite{NexysArtix7FPGA}, at $100MHz$ clock. Although this system is not the most adequate if a full encoder integration is desired, it allows to easily test the applicability of the developed architectures. The designs and test benches were described in \gls{vhdl}.
 
 With an efficient algorithm for each of the supported vector sizes, the first objective was to develop a hardware architecture to implement each of the 1D \emph{DCT}s individually, and group them on a single block at a later stage. Two different architectures were developed. The first implements each of the \emph{DCT} blocks individually, while the latter uses sub-blocks of each \emph{DCT}, in order to achieve the final result. These architectures are explained in the following Sections.
 
@@ -287,11 +287,11 @@ To validate this design, a VHDL test bench was built and simulated in \emph{Viva
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/v1timing.tex}
-    \caption{Timing diagram for first \emph{DCT} wrapper}
+    \caption{Timing diagram for a test run on the first \emph{DCT} wrapper}
     \label{fig:v1timing}
 \end{figure}
 
-From this test, it is observable that the desired functioning of the internal stages is achieved. The input gets sequentially pipelined through the various stages, getting a valid output 13 clock cycles after the enabling of the system. This behavior was also verified for the other vector sizes, although the delay until getting the output varies.
+From this test, it is observable that the desired functioning of the internal stages is achieved. The input gets sequentially pipelined through the various stages, getting a valid output 12 clock cycles after the enabling of the system. This behavior was also verified for the other vector sizes, although the delay until getting the output varies.
 
 However, even though the correct functioning of the developed architecture is verified, its applicability isn't verified yet. To draw conclusions, this design must first be synthesized into the FPGA which provides metrics as to the chip's utilization, power draw, timing characteristics, etc.
 
@@ -334,13 +334,12 @@ To achieve this, each individual \textbf{DCTX} apart from \textbf{DCT4} was divi
     \label{fig:dct8iv}
 \end{figure}
 
-It is important to note that \textbf{DCT8\_P2} inputs and \texttt{en} are hardwired to the bottom four outputs and \texttt{valOut} of \textbf{DCT8\_P1}, respectively. Similar connections are done throughout the whole architecture, as each of the \textbf{DCTX\_P2} stages will always process outputs from the corresponding \textbf{P1} stages. However, the latter may be injected with the systems \texttt{dataIn}'s, or with intermediary coefficients from previous stages. This behavior is shown in later in this Section.
+It is important to note that \textbf{DCT8\_P2} inputs and \texttt{en} are hardwired to the bottom four outputs and \texttt{valOut} of \textbf{DCT8\_P1}, respectively. Similar connections are done throughout the whole architecture, as each of the \textbf{DCTX\_P2} stages will always process outputs from the corresponding \textbf{P1} stages. However, the latter may be injected with the systems \texttt{dataIn}'s, or with intermediary coefficients from previous stages. %This behavior is shown in later in this Section.
 
 Depending on the selected size, the input data is injected into one of the \textbf{P1} stages or directly into \textbf{DCT4}. The interconnection of the internal blocks, and corresponding flow of the intermediary coefficients is dealt by a \textbf{Control Unit}, different from the one from the previous implementation. In this case, this block has a much higher input/output count, as it must control which signals go into each stage, to generate the correct final coefficients as if the \texttt{dataIn}'s passed through a single \textbf{DCT} block. Besides the coefficients, also the intermediary enable signals are dependent of the central unit, since the interconnection of the \texttt{valOut/en} pairs is dependent on the selected vector size.
 
-A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented.
+A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented. As mentioned previously, the system is composed of a single instance of each of the intermediary stages. This makes the achieved architecture similar to a single \textbf{DCT64} block from the first version. In other words, the largest block from the previous implementation had the same set of internal blocks as the newer \emph{Wrapper},
 
-\clearpage
 \begin{landscape}
     \vspace*{\fill}
     \begin{figure}[!htbp]
@@ -352,6 +351,75 @@ A simplified version of the achieved architecture is represented in Figure \ref{
     \vspace*{\fill}        
 \end{landscape}
 
+\noindent
+but instantiated in a different manner. In this case, since all the internal intermediary points are accessible by the \textbf{Control Unit}, all the smaller transformations can be calculated with a single kernel of size 64. Figure \ref{fig:v2datapath} demonstrates this behavior. Depending on the selected vector size, the data is sequenced by different blocks, as shown by the different colored lines. The dotted lines represent the enable signals which will be activated at some point of the transformation process.
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/4DevelopedArchitecture/Figures/v2datapath.tex}
+    \caption{Flow of \texttt{dataIn} according to the selected vector size}
+    \label{fig:v2datapath}
+\end{figure}
+
+This architecture was subjected to the same test bench as the previous version. In Figure \ref{fig:v2timing} it is represented one of the tests, where 16 was the selected size. In this case, there are no internal signals represented, only being shown the most relevant of the ones accessible by the \textbf{Control Unit}, for this case. 
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/4DevelopedArchitecture/Figures/v2timing.tex}
+    \caption{Timing diagram for a test run on the second \emph{DCT} wrapper}
+    \label{fig:v2timing}
+\end{figure}
+
+As it is observable, the central block handles the direction of intermediary coefficients and enable signals between the internal blocks, according to the selected size. The final stage taken by it is the re-organization of each of the \textbf{P2} stages' outputs. The timing performance results are presented at a later in this section.
+
+Given the desired behavior was achieved, the architecture was synthesized and implemented on the hardware kit, being the system's characteristics presented in Table \ref{tab:v2results}.
+
+\begin{table}[!htpb]
+    \centering
+    \begin{tabular}{cccc} \toprule
+        \multirow{2}{*}{\textbf{Block}}     & \multicolumn{2}{c}{\textbf{Utilization}}              & \multirow{2}{*}{\textbf{Approx. Power (mW)}}   \\
+                                            & \textbf{Slice LUTs}      & \textbf{Slice Registers}   &                                                \\ \toprule
+        \textbf{DCT4}                       & 1077 $(1.70\%)$          & 507 $(0.40\%)$             & $1$ \\
+        \textbf{DCT8\_P1}                   & 709 $(1.12\%)$           & 257 $(0.20\%)$             & $<1$ \\
+        \textbf{DCT8\_P2}                   & 1064 $(1.68\%)$          & 717 $(0.57\%)$             & $1$ \\
+        \textbf{DCT16\_P1}                  & 128 $(2.03\%)$           & 513 $(0.40\%)$             & $1$ \\
+        \textbf{DCT16\_P2}                  & 386 $(6.09\%)$           & 2150 $(1.70\%)$            & $6$ \\
+        \textbf{DCT32\_P1}                  & 306 $(4.83\%)$           & 1025 $(0.81\%)$            & $2$ \\
+        \textbf{DCT32\_P2}                  & 909 $(14.34\%)$          & 5624 $(4.44\%)$            & $9$ \\
+        \textbf{DCT64\_P1}                  & 612 $(9.66\%)$           & 2049 $(1.62\%)$            & $3$ \\
+        \textbf{DCT64\_P2}                  & 2234 $(35.24\%)$         & 14000 $(11.04\%)$          & $19$ \\ \bottomrule
+        \textbf{Wrapper}                    & 50039 $(78.93\%)$        & 32352 $(25.51\%)$          & $50$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Second developed architecture's utilization and estimated power consumption}
+    \label{tab:v2results}
+\end{table}
+
+From these results, it is possible to conclude that the achieved implementation is applicable in the target hardware, given that the architecture occupies approximately 80\% of the available resources. Besides this, it is also possible to get an estimation of the power consumed during operation. As to the system's maximum operating frequency, it can be approximated using the \gls{wns}. This measure represents the lowest delay to meet the design's requirements, i.e., taking the system's longest clock propagation path, if it were increased by WNS, the timing constraints would still be met. Therefore, considering $T$ as the current operating clock's period, an estimation of the maximum operating frequency may be calculated by Equation \ref{eq:maxf}.
+
+\begin{equation} \label{eq:maxf}
+    f_{Max} = \frac{1}{T-WNS} = \frac{1}{10\cdot 10^{-9} - 0.188\cdot 10^{-9}} = 101.9\,MHz
+\end{equation}
+
+As seen, the design is already close to the maximum operating frequency, for the provided objectives. Hence, if a different set of design constraints were to be provided, this frequency might increase.
+
+Taking the obtained results, the following step was the integration of the design on a system more resembling of a complete encoder.
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{\emph{Microblaze} Integration} \label{sec:microblaze}
+
+Considering the system presented on Figure \ref{fig:basicenc} (page \pageref{fig:basicenc}, \emph{Simplified Basic Encoder Model}), it would be safe to assume that, if it were to be implemented in hardware, the \textbf{Control Unit} would be implemented on a generic CPU, controlling the surrounding blocks, such as the presented \emph{DCT Wrapper}. Such an architecture would allow for a complex software, such as \emph{libaom}, to be massively simplified, as most of the complex calculations would be run on specialized co-processors, while leaving the system's controlling and decision-making processes to be run on a central unit.
+
+\begin{itemize}
+    \item This would be too much to ask on the target hardware
+    \item Similar implementation with a single DCT block
+    \item description of microblaze
+    \item AXI4 Memory mapped interface
+    \item Description of interaction with registers
+    \item increase in utilization
+    \item performed tests
+    \item timing results
+\end{itemize}
 
 
 \clearpage

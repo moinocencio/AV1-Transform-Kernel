@@ -39,7 +39,7 @@
 \usepackage{gensymb}
 \usepackage{tabularx}
 \usepackage{booktabs}
-\usetikzlibrary{fadings,shapes,arrows,chains,backgrounds,calc,arrows,arrows.meta,shadows,shapes.geometric, fit, positioning, circuits.logic.US, circuits}
+\usetikzlibrary{fadings,shapes,arrows,chains,backgrounds,calc,arrows,arrows.meta,shadows,shapes.geometric, fit, positioning, circuits.logic.US, circuits, decorations.markings}
 \usepackage{tikz-timing}[2009/05/15]
 \usepackage{caption,subcaption}
 \usepackage{graphicx, epstopdf}
@@ -174,6 +174,12 @@ breaklines=true
 \newcommand{\pathcos}[6]{\path (#1.east) to node [pathcos, color=#5, #6] {$\sfrac{#3\pi}{#4}$} (#2.west)}
 
 \newcommand{\restor}[1]{\underset{*}{#1}}
+
+\definecolor{lavenderblue}{rgb}{0.8, 0.8, 1.0}
+\definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
+\definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
+\definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
+\definecolor{coolblack}{rgb}{0.0, 0.18, 0.39}
 
 %%%%%%%%%%%%%%%%%%%%
 % Carregar Glossário

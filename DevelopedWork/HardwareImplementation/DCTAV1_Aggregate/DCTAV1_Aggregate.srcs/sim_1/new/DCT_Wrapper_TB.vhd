@@ -322,7 +322,7 @@ begin
                     
     dataIn: process
             begin
-                sel_tb          <= "000";
+                sel_tb          <= "010";
                 dataIn0_tb      <= X"00000035";
                 dataIn1_tb      <= X"FFFFFF65";
                 dataIn2_tb      <= X"FFFFFF51";

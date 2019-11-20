@@ -1,74 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1573767861">
-  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="BG-DRC" Name="DCTCop_wrapper.drc"/>
-  <File Type="BG-BGN" Name="DCTCop_wrapper.bgn"/>
-  <File Type="BITSTR-SYSDEF" Name="DCTCop_wrapper.sysdef"/>
-  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
-  <File Type="BITSTR-LTX" Name="DCTCop_wrapper.ltx"/>
-  <File Type="BITSTR-MMI" Name="DCTCop_wrapper.mmi"/>
-  <File Type="BITSTR-BMM" Name="DCTCop_wrapper_bd.bmm"/>
-  <File Type="BITSTR-NKY" Name="DCTCop_wrapper.nky"/>
-  <File Type="BITSTR-RBT" Name="DCTCop_wrapper.rbt"/>
-  <File Type="BITSTR-MSK" Name="DCTCop_wrapper.msk"/>
-  <File Type="BG-BIN" Name="DCTCop_wrapper.bin"/>
-  <File Type="BG-BIT" Name="DCTCop_wrapper.bit"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="DCTCop_wrapper_bus_skew_postroute_physopted.rpx"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="DCTCop_wrapper_bus_skew_postroute_physopted.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="DCTCop_wrapper_bus_skew_postroute_physopted.rpt"/>
-  <File Type="RDI-RDI" Name="DCTCop_wrapper.vdi"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="DCTCop_wrapper_timing_summary_postroute_physopted.rpx"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="DCTCop_wrapper_timing_summary_postroute_physopted.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="DCTCop_wrapper_timing_summary_postroute_physopted.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="DCTCop_wrapper_postroute_physopt_bb.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="DCTCop_wrapper_postroute_physopt.dcp"/>
-  <File Type="ROUTE-BUS-SKEW" Name="DCTCop_wrapper_bus_skew_routed.rpt"/>
-  <File Type="ROUTE-CLK" Name="DCTCop_wrapper_clock_utilization_routed.rpt"/>
-  <File Type="ROUTE-SIMILARITY" Name="DCTCop_wrapper_incremental_reuse_routed.rpt"/>
-  <File Type="ROUTE-TIMING-RPX" Name="DCTCop_wrapper_timing_summary_routed.rpx"/>
-  <File Type="ROUTE-TIMING-PB" Name="DCTCop_wrapper_timing_summary_routed.pb"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="DCTCop_wrapper_timing_summary_routed.rpt"/>
-  <File Type="ROUTE-STATUS-PB" Name="DCTCop_wrapper_route_status.pb"/>
-  <File Type="ROUTE-STATUS" Name="DCTCop_wrapper_route_status.rpt"/>
-  <File Type="ROUTE-PWR-RPX" Name="DCTCop_wrapper_power_routed.rpx"/>
-  <File Type="ROUTE-PWR-SUM" Name="DCTCop_wrapper_power_summary_routed.pb"/>
-  <File Type="ROUTE-PWR" Name="DCTCop_wrapper_power_routed.rpt"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="DCTCop_wrapper_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="DCTCop_wrapper_methodology_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="DCTCop_wrapper_methodology_drc_routed.rpt"/>
   <File Type="ROUTE-DRC-RPX" Name="DCTCop_wrapper_drc_routed.rpx"/>
-  <File Type="ROUTE-DRC-PB" Name="DCTCop_wrapper_drc_routed.pb"/>
-  <File Type="ROUTE-DRC" Name="DCTCop_wrapper_drc_routed.rpt"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="DCTCop_wrapper_routed_bb.dcp"/>
-  <File Type="ROUTE-DCP" Name="DCTCop_wrapper_routed.dcp"/>
-  <File Type="ROUTE-ERROR-DCP" Name="DCTCop_wrapper_routed_error.dcp"/>
-  <File Type="PHYSOPT-TIMING" Name="DCTCop_wrapper_timing_summary_physopted.rpt"/>
-  <File Type="PHYSOPT-DRC" Name="DCTCop_wrapper_drc_physopted.rpt"/>
-  <File Type="PHYSOPT-DCP" Name="DCTCop_wrapper_physopt.dcp"/>
-  <File Type="POSTPLACE-PWROPT-TIMING" Name="DCTCop_wrapper_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="DCTCop_wrapper_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="DCTCop_wrapper_power_routed.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="DCTCop_wrapper_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="DCTCop_wrapper_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="DCTCop_wrapper_route_status.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="DCTCop_wrapper_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="DCTCop_wrapper_postroute_physopt_bb.dcp"/>
+  <File Type="RDI-RDI" Name="DCTCop_wrapper.vdi"/>
+  <File Type="BITSTR-LTX" Name="DCTCop_wrapper.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="DCTCop_wrapper.sysdef"/>
+  <File Type="BG-BGN" Name="DCTCop_wrapper.bgn"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="ROUTE-BUS-SKEW" Name="DCTCop_wrapper_bus_skew_routed.rpt"/>
   <File Type="POSTPLACE-PWROPT-DCP" Name="DCTCop_wrapper_postplace_pwropt.dcp"/>
-  <File Type="PLACE-TIMING" Name="DCTCop_wrapper_timing_summary_placed.rpt"/>
   <File Type="PLACE-PRE-SIMILARITY" Name="DCTCop_wrapper_incremental_reuse_pre_placed.rpt"/>
-  <File Type="PLACE-SIMILARITY" Name="DCTCop_wrapper_incremental_reuse_placed.rpt"/>
   <File Type="PLACE-CTRL" Name="DCTCop_wrapper_control_sets_placed.rpt"/>
   <File Type="PLACE-UTIL-PB" Name="DCTCop_wrapper_utilization_placed.pb"/>
   <File Type="PLACE-UTIL" Name="DCTCop_wrapper_utilization_placed.rpt"/>
-  <File Type="PLACE-CLK" Name="DCTCop_wrapper_clock_utilization_placed.rpt"/>
   <File Type="PLACE-IO" Name="DCTCop_wrapper_io_placed.rpt"/>
   <File Type="PLACE-DCP" Name="DCTCop_wrapper_placed.dcp"/>
-  <File Type="PWROPT-TIMING" Name="DCTCop_wrapper_timing_summary_pwropted.rpt"/>
-  <File Type="PWROPT-DRC" Name="DCTCop_wrapper_drc_pwropted.rpt"/>
   <File Type="PWROPT-DCP" Name="DCTCop_wrapper_pwropt.dcp"/>
-  <File Type="OPT-TIMING" Name="DCTCop_wrapper_timing_summary_opted.rpt"/>
   <File Type="OPT-HWDEF" Name="DCTCop_wrapper.hwdef"/>
-  <File Type="OPT-METHODOLOGY-DRC" Name="DCTCop_wrapper_methodology_drc_opted.rpt"/>
-  <File Type="OPT-DRC" Name="DCTCop_wrapper_drc_opted.rpt"/>
-  <File Type="OPT-DCP" Name="DCTCop_wrapper_opt.dcp"/>
-  <File Type="INIT-TIMING" Name="DCTCop_wrapper_timing_summary_init.rpt"/>
-  <File Type="ROUTE-BUS-SKEW-RPX" Name="DCTCop_wrapper_bus_skew_routed.rpx"/>
-  <File Type="REPORTS-TCL" Name="DCTCop_wrapper_reports.tcl"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="DCTCop_wrapper_bus_skew_routed.pb"/>
   <File Type="PA-TCL" Name="DCTCop_wrapper.tcl"/>
+  <File Type="BITSTR-MSK" Name="DCTCop_wrapper.msk"/>
+  <File Type="ROUTE-TIMING-PB" Name="DCTCop_wrapper_timing_summary_routed.pb"/>
+  <File Type="PHYSOPT-DCP" Name="DCTCop_wrapper_physopt.dcp"/>
+  <File Type="BITSTR-RBT" Name="DCTCop_wrapper.rbt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="DCTCop_wrapper_timing_summary_routed.rpx"/>
+  <File Type="REPORTS-TCL" Name="DCTCop_wrapper_reports.tcl"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="DCTCop_wrapper_bus_skew_routed.rpx"/>
+  <File Type="OPT-DCP" Name="DCTCop_wrapper_opt.dcp"/>
+  <File Type="OPT-DRC" Name="DCTCop_wrapper_drc_opted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="DCTCop_wrapper_routed_error.dcp"/>
+  <File Type="BG-DRC" Name="DCTCop_wrapper.drc"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="DCTCop_wrapper_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-DCP" Name="DCTCop_wrapper_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="DCTCop_wrapper_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="DCTCop_wrapper_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="DCTCop_wrapper_drc_routed.pb"/>
+  <File Type="BG-BIT" Name="DCTCop_wrapper.bit"/>
+  <File Type="ROUTE-STATUS-PB" Name="DCTCop_wrapper_route_status.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="DCTCop_wrapper_methodology_drc_routed.rpt"/>
+  <File Type="BG-BIN" Name="DCTCop_wrapper.bin"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="DCTCop_wrapper_timing_summary_routed.rpt"/>
+  <File Type="BITSTR-NKY" Name="DCTCop_wrapper.nky"/>
+  <File Type="BITSTR-BMM" Name="DCTCop_wrapper_bd.bmm"/>
+  <File Type="ROUTE-CLK" Name="DCTCop_wrapper_clock_utilization_routed.rpt"/>
+  <File Type="BITSTR-MMI" Name="DCTCop_wrapper.mmi"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/bd/DCTCop/DCTCop.bd">

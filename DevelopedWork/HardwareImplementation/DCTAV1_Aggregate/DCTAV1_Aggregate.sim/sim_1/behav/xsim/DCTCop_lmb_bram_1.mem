@@ -1,0 +1,16 @@
+// Mem file initialization records.
+//
+// SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+// Vivado v2019.1 (64-bit)
+// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Created on Wednesday November 20, 2019 - 03:05:10 pm, from:
+//
+//     Map file     - /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/DCTCop.bmm
+//     Data file(s) - /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_microblaze_0_1/data/mb_bootloop_le.elf
+//
+// Address space 'DCTCop_microblaze_0.DCTCop_microblaze_0_local_memory_lmb_bram_ADDR_SPACE', bit lane [31:0].
+//
+// Bus width = 32 bits, number of bus blocks = 1.
+
+@00000000
+    B8000000

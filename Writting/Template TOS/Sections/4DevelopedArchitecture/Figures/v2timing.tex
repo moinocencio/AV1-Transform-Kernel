@@ -1,0 +1,83 @@
+\begin{tikztimingtable}
+    \texttt{Clock}              & H 2{C} N(RH) 8{C} N(EH) 32{C} \\
+    \texttt{Select}             & U 42D{\texttt{"010"}}  \\
+    \texttt{Reset}              & L 3H 39L  \\
+    \texttt{Enable}             & 2L 41H  \\
+    \texttt{dataIn(0-63)}       & U 42D{\texttt{[53,-155,...,20]}}  \\
+    \\
+    \texttt{DCT4en}             & 2U 12L 29H \\
+    \texttt{DCT8\_P1en}         & 2U 8L 33H \\
+    \texttt{DCT16\_P1en}        & 2U 4L 37H  \\
+    \texttt{DCT32\_P1en}        & 2U 41L  \\
+    \texttt{DCT64\_P1en}        & 2U 41L  \\
+    \\
+    \texttt{DCT4in(0-3)}             & 2U 12D{\texttt{[0,...0]}} 29D{\texttt{[151,-5,-134,-842]}} \\
+    \texttt{DCT8\_P1in(0-7)}         & 2U 8D{\texttt{[0,...0]}} 33D{\texttt{[77,-3,...,74]}} \\
+    \texttt{DCT16\_P1in(0-15)}        & 2U 4D{\texttt{[0,...0]}} 37D{\texttt{[53,-155,...,24]}}  \\
+    \\
+    \texttt{DCT4vo}             & 2U 20L 21H \\
+    \texttt{DCT8\_P1vo}         & 2U 10L 31H \\
+    \texttt{DCT8\_P2vo}         & 2U 22L 19H \\
+    \texttt{DCT16\_P1vo}        & 2U 6L 35H \\
+    \texttt{DCT16\_P2vo}        & 2U 28L 13H \\
+    \\
+    \texttt{DCT4out(0-3)}            & 2U 20D{\texttt{[0,...,0]}} 21D{\texttt{[-600,-399,979,282]}} \\
+    \texttt{DCT8\_P1out(0-7)}        & 2U 10D{\texttt{[0,...,0]}} 31D{\texttt{[4,4,4,4,0,0,0,0]}} \\
+    \texttt{DCT8\_P2out(0-3)}        & 2U 22D{\texttt{[0,...,0]}} 19D{\texttt{[-4,-1,12,-4]}} \\
+    \texttt{DCT16\_P1out(0-15)}       & 2U 6D{\texttt{[0,...,0]}}  35D{\texttt{[77,-3,...,29]}}  \\
+    \texttt{DCT16\_P2out(0-7)}       & 2U 28D{\texttt{[0,...,0]}} 13D{\texttt{[-316,245,...,16]}}  \\
+    %\\
+    %\texttt{Stage1En}           & 2U 6L 35H \\
+    %\texttt{DCT4En}             & 2U 8L 33H  \\
+    %\texttt{Stage2MEn}          & 2U 10L 31H  \\
+    %\texttt{Stage2AEn}          & 2U 12L 29H  \\
+    %\texttt{Stage2SEn}          & 2U 14L 27H  \\
+    %\texttt{Stage3En}           & 2U 16L 25H  \\
+    %\texttt{Stage4MEn}          & 2U 18L 23H  \\
+    %\texttt{Stage4AEn}          & 2U 20L 21H  \\
+    %\texttt{Stage4SEn}          & 2U 22L 19H \\
+    %\texttt{DCT4ValOut}         & 2U 20L 21H  \\
+    %\texttt{validOut}           & 2U 24L 17H \\
+    \\
+    \texttt{validOut}               & 2U 30L 11H\\
+    \texttt{dataOut(0-63)}          & 2U 30D{\texttt{[0,0,...,0]}} 11D{\texttt{[-600,-316,...,16,'-',...]}} \\
+  \extracode
+    %\tablerules
+    \begin{pgfonlayer}{background}
+        \begin{scope}[semitransparent,semithick]
+          \vertlines[lightgray]{2,4,...,43}
+        \end{scope}
+%
+        %% Left-top corner of the background rectangle
+        %\node (a11) at (-10.5,4) {};
+        %% Right-bottom corner of the background rectanle
+        %\node (a21) at (43.5,-9) {};
+        %% Draw the background
+        %\path[rounded corners, draw=darkgray, dashed]
+        %    (a11) rectangle (a21);
+        %\node (a31) at (a21 -| a11) {};
+        %\path (a11) -- (a31) node[midway, rotate=90, yshift=-0.3cm, font={\rmfamily\bfseries{}}] (mid_right) {\textbf{Input}};
+%
+        %% Left-top corner of the background rectangle
+        %\node (a11) at (-10.5,-9.5) {};
+        %% Right-bottom corner of the background rectanle
+        %\node (a21) at (43.5,-32.5) {};
+        %% Draw the background
+        %\path[rounded corners, draw=darkgray, dashed]
+        %    (a11) rectangle (a21);
+        %\node (a31) at (a11 |- a21) {};
+        %\path (a11) -- (a31) node[midway, rotate=90, yshift=-0.5cm, font={\rmfamily\bfseries{}}, align=center] (mid_right) {Wrapper\\Signals};
+%
+        %% Left-top corner of the background rectangle
+        %\node (a11) at (-10.5,-33) {};
+        %% Right-bottom corner of the background rectanle
+        %\node (a21) at (43.5,-57) {};
+        %% Draw the background
+        %\path[rounded corners, draw=darkgray, dashed]
+        %    (a11) rectangle (a21);
+        %\node (a31) at (a11 |- a21) {};
+        %\path (a11) -- (a31) node[midway, rotate=90, yshift=-0.3cm, font={\rmfamily\bfseries{}}, align=center] (mid_right) {\emph{DCT8} Signals};
+
+    \end{pgfonlayer}
+
+\end{tikztimingtable}
