@@ -1,0 +1,48 @@
+\begin{tikzpicture}[%
+    >={Triangle[length=6pt,angle'=28]},
+    start chain=going below ,    % General flow is left-to-right
+    node distance=5mm and 20mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    scale=0.6, 
+    every node/.style={transform shape},
+    circuit logic US, every circuit symbol/.style={thick}
+    ]
+
+  \tikzset{
+    base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+    reg/.style={base, rectangle, minimum width=2.5em, minimum height=2em,fill=black!15},
+    proc/.style={draw,thick, rounded corners, anchor=north west, fill=black!12, font={\Large\bfseries}, align=center},
+    inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
+    term/.style={proc, rounded corners},
+    sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
+    % coord node style is used for placing corners of connecting lines
+    coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+    % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+    % Connector line styles for different parts of the diagram
+    norm/.style={aar, draw},
+    ar32/.style={->, line width=0.8mm},   
+    b32/.style={line width=0.8mm},    
+    ar1/.style={->, line width=0.4mm},
+    b1/.style={line width=0.4mm}  
+  }    
+
+  \begin{scope}[y=-1cm]
+    \begin{scope}
+      \draw[step=1cm, very thin, lightgray] (0,0) grid (17,21);           
+      
+      %% DCT Wrapper
+      \node at (12,0) [proc, minimum width=5cm, minimum height=10cm] (DCT) {DCT\\Wrapper};
+
+      %% Register
+      \node at (7,0) [proc, minimum width=3cm, minimum height=5cm] (reg) {Writable\\Registers};
+
+
+        
+
+        
+    \end{scope}
+    \begin{pgfonlayer}{background}
+      
+    \end{pgfonlayer}
+  \end{scope}
+\end{tikzpicture}

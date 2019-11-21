@@ -9,7 +9,7 @@
   base/.style={draw, on chain, on grid, align=center, minimum height=4ex},
   proc/.style={base, rectangle, text width=8em, fill=black!10},
   test/.style={base, diamond, aspect=2, text width=6em, fill=black!10},
-  inout/.style={base,draw,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
+  inout/.style={base,draw,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=black!12},
   term/.style={proc, rounded corners},
   % coord node style is used for placing corners of connecting lines
   coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
@@ -28,7 +28,7 @@
     \node[inout, it] (start) {Input Block};
 
     \node[proc, below=1.5cm of start] (get_col) {Get Column \texttt{i\_c}};
-      \path (start.south) to node [near end, xshift=2em, text=blue!80!black] {\texttt{i\_c=0}} (get_col);
+      \path (start.south) to node [near end, xshift=2em, text=coolblack] {\texttt{i\_c=0}} (get_col);
         \draw [->] (start.south) -- (get_col);
     
     \node[test, join] (ud_flip) {\texttt{ud\_flip}};      
@@ -46,7 +46,7 @@
     \node[test, join, text width=7em] (i_col) {\texttt{i\_c == (size\_col - 1)}};
 
     \node[proc,below=2.7cm of i_col] (get_row) {Get Row \texttt{i\_r}};
-      \path (i_col.south) to node [near end, xshift=2em, yshift=-0.2em, text=blue!80!black] {\texttt{i\_r=0}} (get_row);
+      \path (i_col.south) to node [near end, xshift=2em, yshift=-0.2em, text=coolblack] {\texttt{i\_r=0}} (get_row);
       \path (i_col.south) to node [near start, xshift=-1.5em, yshift=0.2cm, text=red!80!black] {\texttt{true}} (get_row);
         \draw [->] (i_col.south) -- (get_row);
 
@@ -77,13 +77,13 @@
         \draw [->] (flip_in2.south) -- (store1_right) |- (store1);
 
       \node[coord, left=of get_col] (get_col_left) {};
-      \path (get_col_left) to node [yshift=0.5em, text=blue!80!black] {\texttt{i\_c+=1}} (get_col);
+      \path (get_col_left) to node [yshift=0.5em, text=coolblack] {\texttt{i\_c+=1}} (get_col);
       \node[coord, left=of i_col] (i_col_left) {};
       \path (i_col.west) to node [yshift=-1em, text=red!80!black] {\texttt{false}} (i_col_left);
         \draw [->] (i_col.west) -- (i_col_left) |- (get_col_left) |- (get_col);
 
       \node[coord, left=of get_row] (get_row_left) {};
-      \path (get_row_left) to node [yshift=0.5em, text=blue!80!black] {\texttt{i\_r+=1}} (get_row);
+      \path (get_row_left) to node [yshift=0.5em, text=coolblack] {\texttt{i\_r+=1}} (get_row);
       \node[coord, left=of i_row] (i_row_left) {};
       \path (i_row.west) to node [yshift=-1em, text=red!80!black] {\texttt{false}} (i_row_left);
         \draw [->] (i_row.west) -- (i_row_left) |- (get_row_left) |- (get_row);
@@ -111,7 +111,7 @@
     \node[text width=6em,xshift=1.7cm, yshift=-0.95cm, font={\small}] at (a22 |- mid_right) (legend1) {\texttt{i\_c} - Current column index};
     \node[text width=6em, below=0.4cm of legend1.south west, font={\small}, anchor=west] (legend2) {\texttt{i\_r} - Current Row index};
     \node[text=red!80!black, below=0.3cm of legend2.south west, font={\small}, anchor=west] (legend3) {Test Output};
-    \node[text=blue!80!black, below=0.2cm of legend3.south west, font={\small}, anchor=west] (legend4) {Condition Set};
+    \node[text=coolblack, below=0.2cm of legend3.south west, font={\small}, anchor=west] (legend4) {Condition Set};
     \draw[thick] ($(legend4.south west)+(-2mm,-2mm)$) rectangle ($(legend1.north east)+(2mm,2mm)$);
   \end{pgfonlayer}
 \end{tikzpicture}

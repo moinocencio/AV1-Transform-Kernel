@@ -280,7 +280,7 @@ Nonetheless, in order to draw conclusions as to the correct functioning of the i
 
 Besides the previously shown 32 bit \texttt{dataIn}'s, \texttt{Clock}, \texttt{Reset} and \texttt{Enable}, this implementation adds an additional \texttt{Select} input. This signal flags the system on which \emph{\textbf{DCT}} should be enabled.
 
-As shown, this wrapper uses all the individual kernels independently, depending on the \textbf{Control Unit} to generate the correct enable signals (\texttt{DCTXEn}), according to the selected \emph{DCT}. This block is also tasked with the redirection of the kernel's calculated coefficients (\texttt{DCTXoK}) and valid output signal (\texttt{DCTXvo}) to the system's outputs (\texttt{dataOutK} and \texttt{validOut}).
+As shown, this wrapper uses all the individual kernels independently, depending on the \textbf{Output Multiplexer} to conduct the correct enable signals (\texttt{DCTXEn}), according to the selected \emph{DCT}. This block is also tasked with the redirection of the kernel's calculated coefficients (\texttt{DCTXoK}) and valid output signal (\texttt{DCTXvo}) to the system's outputs (\texttt{dataOutK} and \texttt{validOut}).
 
 To validate this design, a VHDL test bench was built and simulated in \emph{Vivado}. It generates a vector of 32 bit integers, as well as the four control signals, injects them into the developed architecture, and receives the outputs. In \ref{fig:v1timing} there is represented one of the timing tests made, where the selected size was 8. It shows the internal signals for the full architecture, as well as the selected block, \textbf{DCT8}.
 
@@ -336,7 +336,7 @@ To achieve this, each individual \textbf{DCTX} apart from \textbf{DCT4} was divi
 
 It is important to note that \textbf{DCT8\_P2} inputs and \texttt{en} are hardwired to the bottom four outputs and \texttt{valOut} of \textbf{DCT8\_P1}, respectively. Similar connections are done throughout the whole architecture, as each of the \textbf{DCTX\_P2} stages will always process outputs from the corresponding \textbf{P1} stages. However, the latter may be injected with the systems \texttt{dataIn}'s, or with intermediary coefficients from previous stages. %This behavior is shown in later in this Section.
 
-Depending on the selected size, the input data is injected into one of the \textbf{P1} stages or directly into \textbf{DCT4}. The interconnection of the internal blocks, and corresponding flow of the intermediary coefficients is dealt by a \textbf{Control Unit}, different from the one from the previous implementation. In this case, this block has a much higher input/output count, as it must control which signals go into each stage, to generate the correct final coefficients as if the \texttt{dataIn}'s passed through a single \textbf{DCT} block. Besides the coefficients, also the intermediary enable signals are dependent of the central unit, since the interconnection of the \texttt{valOut/en} pairs is dependent on the selected vector size.
+Depending on the selected size, the input data is injected into one of the \textbf{P1} stages or directly into \textbf{DCT4}. The interconnection of the internal blocks, and corresponding flow of the intermediary coefficients is dealt by a arrangement of multiplexers, that differ from the previous implementation. In this case, this block has a much higher input/output count, as it must control which signals go into each stage, to generate the correct final coefficients as if the \texttt{dataIn}'s passed through a single \textbf{DCT} block. Besides the coefficients, also the intermediary enable signals are dependent of the central unit, since the interconnection of the \texttt{valOut/en} pairs is dependent on the selected vector size.
 
 A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented. As mentioned previously, the system is composed of a single instance of each of the intermediary stages. This makes the achieved architecture similar to a single \textbf{DCT64} block from the first version. In other words, the largest block from the previous implementation had the same set of internal blocks as the newer \emph{Wrapper},
 
@@ -352,7 +352,7 @@ A simplified version of the achieved architecture is represented in Figure \ref{
 \end{landscape}
 
 \noindent
-but instantiated in a different manner. In this case, since all the internal intermediary points are accessible by the \textbf{Control Unit}, all the smaller transformations can be calculated with a single kernel of size 64. Figure \ref{fig:v2datapath} demonstrates this behavior. Depending on the selected vector size, the data is sequenced by different blocks, as shown by the different colored lines. The dotted lines represent the enable signals which will be activated at some point of the transformation process.
+but instantiated in a different manner. In this case, since all the internal intermediary points are accessible by the \textbf{Coefficient's Multiplexer}, all the smaller transformations can be calculated with a single kernel of size 64. Figure \ref{fig:v2datapath} demonstrates this behavior. Depending on the selected vector size, the data is sequenced by different blocks, as shown by the different colored lines. The dotted lines represent the enable signals which will be activated at some point of the transformation process.
 
 \begin{figure}[!htbp]
     \centering
@@ -361,7 +361,7 @@ but instantiated in a different manner. In this case, since all the internal int
     \label{fig:v2datapath}
 \end{figure}
 
-This architecture was subjected to the same test bench as the previous version. In Figure \ref{fig:v2timing} it is represented one of the tests, where 16 was the selected size. In this case, there are no internal signals represented, only being shown the most relevant of the ones accessible by the \textbf{Control Unit}, for this case. 
+This architecture was subjected to the same test bench as the previous version. In Figure \ref{fig:v2timing} it is represented one of the tests, where 16 was the selected size. In this case, there are no internal signals represented, only being shown the most relevant of the ones accessible by the central multiplexer, for this case. 
 
 \begin{figure}[!htbp]
     \centering
@@ -382,20 +382,22 @@ Given the desired behavior was achieved, the architecture was synthesized and im
         \textbf{DCT4}                       & 1077 $(1.70\%)$          & 507 $(0.40\%)$             & $1$ \\
         \textbf{DCT8\_P1}                   & 709 $(1.12\%)$           & 257 $(0.20\%)$             & $<1$ \\
         \textbf{DCT8\_P2}                   & 1064 $(1.68\%)$          & 717 $(0.57\%)$             & $1$ \\
-        \textbf{DCT16\_P1}                  & 128 $(2.03\%)$           & 513 $(0.40\%)$             & $1$ \\
-        \textbf{DCT16\_P2}                  & 386 $(6.09\%)$           & 2150 $(1.70\%)$            & $6$ \\
-        \textbf{DCT32\_P1}                  & 306 $(4.83\%)$           & 1025 $(0.81\%)$            & $2$ \\
-        \textbf{DCT32\_P2}                  & 909 $(14.34\%)$          & 5624 $(4.44\%)$            & $9$ \\
-        \textbf{DCT64\_P1}                  & 612 $(9.66\%)$           & 2049 $(1.62\%)$            & $3$ \\
-        \textbf{DCT64\_P2}                  & 2234 $(35.24\%)$         & 14000 $(11.04\%)$          & $19$ \\ \bottomrule
+        \textbf{DCT16\_P1}                  & 1285 $(2.03\%)$          & 513 $(0.40\%)$             & $1$ \\
+        \textbf{DCT16\_P2}                  & 3860 $(6.09\%)$          & 2150 $(1.70\%)$            & $6$ \\
+        \textbf{DCT32\_P1}                  & 3064 $(4.83\%)$          & 1025 $(0.81\%)$            & $2$ \\
+        \textbf{DCT32\_P2}                  & 9090 $(14.34\%)$         & 5624 $(4.44\%)$            & $9$ \\
+        \textbf{DCT64\_P1}                  & 6123 $(9.66\%)$          & 2049 $(1.62\%)$            & $3$ \\
+        \textbf{DCT64\_P2}                  & 22344 $(35.24\%)$        & 14000 $(11.04\%)$          & $19$ \\ \bottomrule
         \textbf{Wrapper}                    & 50039 $(78.93\%)$        & 32352 $(25.51\%)$          & $50$ \\
         \bottomrule
     \end{tabular}
-    \caption{Second developed architecture's utilization and estimated power consumption}
+    \caption{Second developed architecture's utilization and estimated power consumption on \emph{Artix 7}}
     \label{tab:v2results}
 \end{table}
 
-From these results, it is possible to conclude that the achieved implementation is applicable in the target hardware, given that the architecture occupies approximately 80\% of the available resources. Besides this, it is also possible to get an estimation of the power consumed during operation. As to the system's maximum operating frequency, it can be approximated using the \gls{wns}. This measure represents the lowest delay to meet the design's requirements, i.e., taking the system's longest clock propagation path, if it were increased by WNS, the timing constraints would still be met. Therefore, considering $T$ as the current operating clock's period, an estimation of the maximum operating frequency may be calculated by Equation \ref{eq:maxf}.
+From these results, it is possible to conclude that the achieved implementation is applicable in the target hardware, given that the architecture occupies approximately 80\% of the available resources. And, as mentioned previously, the obtained architecture's occupation is similar to \textbf{DCT64}'s, as the additional 4043 LUTs taken by this implementation can be justified by the more complex redirecting unit.
+
+Besides this, it is also possible to get an estimation of the power consumed during operation. As to the system's maximum operating frequency, it can be approximated using the \gls{wns}. This measure represents the lowest delay to meet the design's requirements, i.e., taking the system's longest clock propagation path, if it were increased by WNS, the timing constraints would still be met. Therefore, considering $T$ as the current operating clock's period, an estimation of the maximum operating frequency may be calculated by Equation \ref{eq:maxf}.
 
 \begin{equation} \label{eq:maxf}
     f_{Max} = \frac{1}{T-WNS} = \frac{1}{10\cdot 10^{-9} - 0.188\cdot 10^{-9}} = 101.9\,MHz
@@ -408,19 +410,52 @@ Taking the obtained results, the following step was the integration of the desig
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{\emph{Microblaze} Integration} \label{sec:microblaze}
 
-Considering the system presented on Figure \ref{fig:basicenc} (page \pageref{fig:basicenc}, \emph{Simplified Basic Encoder Model}), it would be safe to assume that, if it were to be implemented in hardware, the \textbf{Control Unit} would be implemented on a generic CPU, controlling the surrounding blocks, such as the presented \emph{DCT Wrapper}. Such an architecture would allow for a complex software, such as \emph{libaom}, to be massively simplified, as most of the complex calculations would be run on specialized co-processors, while leaving the system's controlling and decision-making processes to be run on a central unit.
+Considering the system presented on Figure \ref{fig:basicenc} (page \pageref{fig:basicenc}, \emph{Simplified Basic Encoder Model}), it would be safe to assume that, if it were to be implemented in hardware, the \textbf{Control Unit} would be implemented on a generic CPU, controlling the surrounding blocks, e.g. the presented \emph{DCT Wrapper}. Such an architecture would allow for a complex software, such as \emph{libaom}, to be massively simplified, as most of the complex calculations would be run on specialized co-processors, while leaving the system's controlling and decision-making processes to be run on a central unit.
+
+To consider a full \emph{libaom} integration in the focus of this work, with the target hardware, would be too demanding both in terms of complexity and achievability. Since a single block of the encoder occupies most of the available resources, the integration of the following processes would certainly need a highly capable hardware kit. 
+
+Nonetheless, a simpler architecture can still be implemented, as to test the applicability of the developed architecture on a full encoding system. To do this, the encoder's central unit would need to be instantiated on the hardware kit on the shape of a \gls{mcu}, alongside the developed \emph{Wrapper}. The latter also needed to be adapted for the communications between it and the MCU.
+
+To accomplish this, \emph{Vivado} provides a wide set of tools to easily achieve integration of a design described in VHDL with a generic processor, efficiently obtaining a hybrid design between the developed hardware and a software algorithm, easily developed in \emph{C}, as an example.
+
+Therefore, two separate tasks were conducted. First was the preparation of the \emph{DCT Wrapper}, and finally the development of a complete system.
+
+%%%%%%%%%%
+\paragraph{AXI4 Interface}
+
+Taken the architecture from Figure \ref{fig:fullv2}, the first step was the creation of a custom block with an \emph{AXI4} interface. This data-transfer protocol is heavily used in \emph{Xilinx}'s tools and \emph{ARM}'s processors.
+
+It is based on a generic \emph{Master-Slave} interaction with two separate channels. The \emph{Address} channel includes the location of the register to read/write from, as well as the necessary control signals. The \emph{Data} channel transports the information coming from the \emph{Slave} (read cycle) or \emph{Master} (write cycle). 
+
+\emph{Vivado} allows for three different versions of \emph{AXI4}:
 
 \begin{itemize}
-    \item This would be too much to ask on the target hardware
-    \item Similar implementation with a single DCT block
-    \item description of microblaze
-    \item AXI4 Memory mapped interface
-    \item Description of interaction with registers
-    \item increase in utilization
-    \item performed tests
-    \item timing results
+    \item \textbf{AXI4} implements a highly customizable memory mapped interface, indicated for complex applications;
+    \item \textbf{AXI4-Lite} is a simplified version of the former, keeping the memory mapped communications;
+    \item \textbf{AXI4-Stream} implements a streaming protocol, allowing a high throughput.
 \end{itemize}
 
+For the development of this work, the second protocol was chosen, as it allowed to prove the efficiency of the developed design on a full system, while keeping a low complexity. However, if a complete encoder were to be constructed, the stream configuration would be more adequate. Since the \emph{Wrapper} would need to process large amounts of coefficients each second, the interface from which it received the input vectors would need to be able to provide the necessary throughput.
+
+The integration of the \emph{Wrapper} with the interface constituted of connecting each of the \texttt{dataIn}s to one of the interface's 32 bit writable registers. This way, all the inputs are accessible by the controller when performing a writing operation. As to the outputs, the same addresses were attributed to the corresponding \texttt{dataOut}s, allowing to read the calculated coefficients. The \texttt{enable}, \texttt{reset} and \texttt{Select} signals were all connected to the same write register, as these signals occupy 5 bits in total.
+
+Besides the \emph{DCT} kernel, three counters were implemented. Each of these were tasked with counting the write, read and transformation clock cycles. The first two are controlled by activating/deactivating bits from the control register, while the other is controlled by the \texttt{enable} and \texttt{validOut} signals from the kernel. The output values are also accessible to the microcontroller, making possible the monitoring of the whole cycle.
+
+%Figure \ref{fig:axi4int} shows the integration of the kernel with the \emph{AXI4} Interface.
+%\begin{figure}[!htbp]
+%    \centering
+%    \input{Sections/4DevelopedArchitecture/Figures/v2AXI4.tex}
+%    \caption{Description of integration of \emph{DCT Wrapper} with AXI4-Lite interface}
+%    \label{fig:axi4int}
+%\end{figure}
+
+\begin{itemize}
+    \item increase in utilization
+    \item description of microblaze
+    \item performed tests
+    \item timing results
+    \item Primeira versão é mais funcional num aspeto do encoder (paralelização de DCTs)
+\end{itemize}
 
 \clearpage
 \printbibliography[heading=subbibliography]
