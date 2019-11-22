@@ -314,7 +314,7 @@ The utilization results of this design's synthesis into an \emph{Artix 7} FPGA a
     \label{tab:v1results}
 \end{table}
 
-As observable, this design uses more resources than what are available on the system's FPGA. This result, as mentioned previously was expected, due to the repetition of the smaller blocks on the different stages. The final architecture, effectively had five instances of the \textbf{DCT4}, four \textbf{DCT8}s, and so on. 
+As observable, this design uses more resources than what are available on the system's FPGA. This result, as mentioned previously was expected, due to the repetition of the smaller blocks on the different stages. The final architecture, effectively had five instances of the \textbf{DCT4}, four \textbf{DCT8}s, and so on. However, such an implementation could still be useful on a more capable kit, as will be discussed later in the following Section.
 
 Since this design is not synthesizable on the target hardware, no other results can be drawn, nor would they be applicable. However, on a more resourceful kit, this design could have been implemented, since there were no \emph{\gls{floorplaning}} errors.
 
@@ -338,7 +338,7 @@ It is important to note that \textbf{DCT8\_P2} inputs and \texttt{en} are hardwi
 
 Depending on the selected size, the input data is injected into one of the \textbf{P1} stages or directly into \textbf{DCT4}. The interconnection of the internal blocks, and corresponding flow of the intermediary coefficients is dealt by a arrangement of multiplexers, that differ from the previous implementation. In this case, this block has a much higher input/output count, as it must control which signals go into each stage, to generate the correct final coefficients as if the \texttt{dataIn}'s passed through a single \textbf{DCT} block. Besides the coefficients, also the intermediary enable signals are dependent of the central unit, since the interconnection of the \texttt{valOut/en} pairs is dependent on the selected vector size.
 
-A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented. As mentioned previously, the system is composed of a single instance of each of the intermediary stages. This makes the achieved architecture similar to a single \textbf{DCT64} block from the first version. In other words, the largest block from the previous implementation had the same set of internal blocks as the newer \emph{Wrapper},
+A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented. As mentioned previously, the system is composed of a single instance of each of the intermediary stages. This makes the achieved architecture similar to a single \textbf{DCT64} block from the first version. In other words, the largest block from
 
 \begin{landscape}
     \vspace*{\fill}
@@ -352,7 +352,7 @@ A simplified version of the achieved architecture is represented in Figure \ref{
 \end{landscape}
 
 \noindent
-but instantiated in a different manner. In this case, since all the internal intermediary points are accessible by the \textbf{Coefficient's Multiplexer}, all the smaller transformations can be calculated with a single kernel of size 64. Figure \ref{fig:v2datapath} demonstrates this behavior. Depending on the selected vector size, the data is sequenced by different blocks, as shown by the different colored lines. The dotted lines represent the enable signals which will be activated at some point of the transformation process.
+the previous implementation had the same set of internal blocks as the newer \emph{Wrapper}, but instantiated in a different manner. In this case, since all the internal intermediary points are accessible by the \textbf{Coefficient's Multiplexer}, all the smaller transformations can be calculated with a single kernel of size 64. Figure \ref{fig:v2datapath} demonstrates this behavior. Depending on the selected vector size, the data is sequenced by different blocks, as shown by the different colored lines. The dotted lines represent the enable signals which will be activated at some point of the transformation process.
 
 \begin{figure}[!htbp]
     \centering
@@ -421,7 +421,7 @@ To accomplish this, \emph{Vivado} provides a wide set of tools to easily achieve
 Therefore, two separate tasks were conducted. First was the preparation of the \emph{DCT Wrapper}, and finally the development of a complete system.
 
 %%%%%%%%%%
-\paragraph{AXI4 Interface}
+%\paragraph{AXI4 Interface}
 
 Taken the architecture from Figure \ref{fig:fullv2}, the first step was the creation of a custom block with an \emph{AXI4} interface. This data-transfer protocol is heavily used in \emph{Xilinx}'s tools and \emph{ARM}'s processors.
 
@@ -439,23 +439,89 @@ For the development of this work, the second protocol was chosen, as it allowed 
 
 The integration of the \emph{Wrapper} with the interface constituted of connecting each of the \texttt{dataIn}s to one of the interface's 32 bit writable registers. This way, all the inputs are accessible by the controller when performing a writing operation. As to the outputs, the same addresses were attributed to the corresponding \texttt{dataOut}s, allowing to read the calculated coefficients. The \texttt{enable}, \texttt{reset} and \texttt{Select} signals were all connected to the same write register, as these signals occupy 5 bits in total.
 
-Besides the \emph{DCT} kernel, three counters were implemented. Each of these were tasked with counting the write, read and transformation clock cycles. The first two are controlled by activating/deactivating bits from the control register, while the other is controlled by the \texttt{enable} and \texttt{validOut} signals from the kernel. The output values are also accessible to the microcontroller, making possible the monitoring of the whole cycle.
+Besides the \emph{DCT} kernel, three counters were implemented. Each of these were tasked with counting the write, read and transformation clock cycles. The first two are controlled by activating/deactivating bits from the control register, while the other is controlled by the \texttt{enable} and \texttt{validOut} signals from the kernel. The output values are also accessible to the microcontroller, making possible the monitoring of the whole cycle. And as the timers are implemented in hardware, there aren't as significant overheads as if the operations were timed with a software counter.
 
-%Figure \ref{fig:axi4int} shows the integration of the kernel with the \emph{AXI4} Interface.
-%\begin{figure}[!htbp]
-%    \centering
-%    \input{Sections/4DevelopedArchitecture/Figures/v2AXI4.tex}
-%    \caption{Description of integration of \emph{DCT Wrapper} with AXI4-Lite interface}
-%    \label{fig:axi4int}
-%\end{figure}
+Figure \ref{fig:axi4int} shows a simplified version of the kernel's integration with the \emph{AXI4} Interface. \textbf{DCT Timer}'s output is concatenated with \texttt{validOut} since it doesn't need the full 32 bits. The internal blocks are all driven with the same system clock.
 
-\begin{itemize}
-    \item increase in utilization
-    \item description of microblaze
-    \item performed tests
-    \item timing results
-    \item Primeira versão é mais funcional num aspeto do encoder (paralelização de DCTs)
-\end{itemize}
+\begin{figure}[htb]
+    \centering
+    \input{Sections/4DevelopedArchitecture/Figures/v2AXI4.tex}
+    \caption{Simplified description of integration of \emph{DCT Wrapper} with AXI4-Lite interface}
+    \label{fig:axi4int}
+\end{figure}
+
+The additional structures raised the number of used Look Up Tables to 50461 ($79.59\%$ of \emph{Artix 7}) and Registers to 34686 ($27.35\%$).
+
+%%%%%%%%%%
+%\paragraph{Microblaze}
+
+With this block, a separate design was created. To it was added a \emph{Microblaze} microcontroller, which instantiates a \gls{risc} soft core processor, specialized for use with \emph{Xilinx}'s products \cite{MicroBlazeProcessorReference2019a}. 
+
+Specifying the desired interfaces, \emph{Vivado} automation routines handle most of the necessary connections. To the \emph{Microblaze} and \emph{DCT Wrapper}, was also added a \gls{uart} connection for debugging purposes, giving origin to the block design from Figure \ref{fig:blockdes}. The addition of the microcontroller and peripherals added 1512 LUTs and 1387 registers, bringing to a final $81.98\%$ and $28.45\%$ utilization, respectively.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{Sections/4DevelopedArchitecture/Figures/DCTCop.png}
+    \caption{Block design generated by \emph{Vivado} for integration of \emph{DCT Wrapper} with \emph{Microblaze}}
+    \label{fig:blockdes}
+\end{figure}
+
+With the finalized design, some tests were developed in software, to be run on the \emph{Microblaze}. The interaction between it and the \emph{DCT Wrapper} is done with read and write routines provided by \emph{Xilinx}'s \gls{sdk}. These access the addresses attributed to the peripherals during \emph{Vivado}'s Implementation process.
+
+The first test revolved around the verification of the calculated of coefficients. The processor injected a sequence of input vectors into the co-processor, and compared the obtained results with the software's. This short test proved successful, as the hardware implementation gave the same result as the software version for all vector sizes.
+
+Being proven the correct calculation of the transformed coefficients, the final test was to verify the timing performances of the system. For this, a small program was written, where a vector with the same length as the desired \emph{DCT} would be loaded into the co-processor, this would be activated, and the same length transformed vector would be read back.
+
+The most relevant result to measure was the number of clock cycles to calculate the transformed coefficients, as the read and write processes are highly dependent on the used interface. This way, in Table \ref{tab:axi4time} there are presented the separate timing results for the three different processes measured, both in number of clock cycles, as well as the time duration at the calculated maximum frequency. 
+
+\begin{table}[!htpb]
+    \centering
+    \begin{tabular}{ccccccc} \toprule
+        \multirow{2}{*}{\textbf{Size}}   & \multicolumn{3}{c}{\textbf{Number of Clock Cycles}$\mathbf{(T_{@101.9MHz}(ns))}$}                      \\
+                                         & \textbf{Write} & \textbf{Transform} & \textbf{Read}  \\ \toprule
+        \textbf{4}                       & 510 $(5005)$   & 6 $(59)$           & 462 $(4534)$   \\
+        \textbf{8}                       & 902 $(8852)$   & 10 $(98)$          & 806 $(7910)$   \\
+        \textbf{16}                      & 1686 $(1646)$  & 14 $(137)$         & 1494 $(14661)$ \\
+        \textbf{32}                      & 3254 $(31933)$ & 18 $(177)$         & 2870 $(28165)$ \\
+        \textbf{64}                      & 6390 $(62709)$ & 22 $(216)$         & 5622 $(55172)$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Timing results for the \emph{Microblaze} integration design}
+    \label{tab:axi4time}
+\end{table}
+
+Taking the transformation times, it is possible to calculate the hypothetical throughput of the developed architecture. This is a measure of the highest frame rate this architecture could process at a given resolution. 
+
+On a video encoder, each residue block will suffer several transformations, horizontal and vertically. Given that the presented results are referring to vector transformations, the hypothetical time for transforming a 2D block must be calculated. With the obtained results, the maximum possible frame rate of some of the most common resolutions was calculated, considering only blocks of the the corresponding size were used, giving origin to Table \ref{tab:maxfps}.
+
+\begin{table}[!htpb]
+    \centering
+    \begin{tabular}{ccccc} \toprule
+        \multirow{2}{*}{\textbf{Size}}   & \multicolumn{4}{c}{\textbf{Resolution}}                      \\
+                                         & $\mathbf{1280\times 720}$    & $\mathbf{1920\times 1080}$  & $\mathbf{3840\times 2160}$  & $\mathbf{7680\times 4320}$  \\ \toprule
+        \textbf{4}                       & 37                      & 16                   & 4                    & 1  \\
+        \textbf{8}                       & 44                      & 20                   & 5                    & 1  \\
+        \textbf{16}                      & 63                      & 28                   & 7                    & 2  \\
+        \textbf{32}                      & 98                      & 44                   & 11                   & 3  \\
+        \textbf{64}                      & 161                     & 71                   & 18                   & 4  \\
+        \bottomrule
+    \end{tabular}
+    \caption{Maximum frame rate for a given resolution, considering fixed square transformation blocks}
+    \label{tab:maxfps}
+\end{table}
+
+As seen, the constructed architecture, on the current hardware, isn't capable of processing high resolution video at usable frame rates. Although for HD and FHD it may be able to provide more than 30fps at some block sizes, the emerging resolutions still prove too demanding to achieve a real time encoding. 
+
+Besides, the presented results represent a \emph{best case} scenario. On most encoders, various transformations are done on the same set of residue blocks, as to achieve the most efficient option to accomplish the target objective, be it regarding image distortion or compression. This way, efficient hardware implementations must allow this parallelization of encoding choices.
+
+With the second version of of the \emph{DCT Wrapper}, the utilization of hardware is heavily optimized, as there are no repeated stages throughout the design. However, this makes  parallel transformations of different vector sizes impossible. Since, at least, \textbf{DCT4} will always be occupied with one of the encoding options, and all other transform sizes need this stage to calculate its output, there isn't the possibility to calculate two different transform sizes at the same time.
+
+However, on the decoding process, there is no need for parallelization of the Transform stage, as all the encoding options were already chosen. This way, an architecture following the same implementation would be appropriate for an encoder, where low power and size are highly desired characteristics.
+
+On the other hand, the first version of the complete kernel had all \emph{DCT} blocks individualized, making the transformation of different sized vectors possible. As mentioned before, this makes this implementation better suited to be applied on an encoder, as it allows to test various configurations at the same time, and quickly evaluate the most adequate.
+
+
+
 
 \clearpage
 \printbibliography[heading=subbibliography]

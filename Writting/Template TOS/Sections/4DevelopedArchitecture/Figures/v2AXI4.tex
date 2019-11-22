@@ -10,9 +10,10 @@
 
   \tikzset{
     base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
-    reg/.style={base, rectangle, minimum width=2.5em, minimum height=2em,fill=black!15},
-    proc/.style={draw,thick, rounded corners, anchor=north west, fill=black!12, font={\Large\bfseries}, align=center},
-    inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
+    reg/.style={draw, thick, anchor=north west, rectangle, fill=black!10, font={\bfseries}},
+    proc/.style={draw,thick, rounded corners, anchor=north west, fill=black!8, font={\Large\bfseries}, align=center},
+    inoutl/.style={left, xshift=-1mm, font={\ttfamily}},
+    inoutr/.style={right, xshift=1mm, font={\ttfamily}},
     term/.style={proc, rounded corners},
     sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
     % coord node style is used for placing corners of connecting lines
@@ -28,21 +29,89 @@
 
   \begin{scope}[y=-1cm]
     \begin{scope}
-      \draw[step=1cm, very thin, lightgray] (0,0) grid (17,21);           
+      %\draw[step=1cm, very thin, lightgray] (0,0) grid (17,21);           
       
       %% DCT Wrapper
-      \node at (12,0) [proc, minimum width=5cm, minimum height=10cm] (DCT) {DCT\\Wrapper};
+      \node at (12,0) [proc, minimum width=5cm, minimum height=9.5cm, fill=black!15] (DCT) {DCT\\Wrapper};
+      \node at (12,1) [inoutr] (dctin0) {dataIn0};
+      \node at (11.5,2) [font={\bfseries\large},rotate=90, anchor=center] {...};
+      \node at (12,3) [inoutr] (dctin63) {dataIn63};
+      \node at (12,5) [inoutr] (en) {en};
+      \node at (12,4.5) [inoutr] (res) {res};
+      \node at (12,4) [inoutr] (sel) {Select};
+      \node at (12,7) [inoutr] (dctout0) {dataOut0};
+      \node at (11.5,7.5) [font={\bfseries\large},rotate=90, anchor=center] {...};
+      \node at (12,8) [inoutr] (dctout63) {dataOut63};
+      \node at (12,8.5) [inoutr] (validOut) {validOut};
 
       %% Register
-      \node at (7,0) [proc, minimum width=3cm, minimum height=5cm] (reg) {Writable\\Registers};
+      \node at (7,0.5) [reg, minimum width=3cm, minimum height=1cm] (reg0) {WReg0};
+        \draw[ar32] (reg0) -- (DCT.west |- dctin0);
+      \node at (8.5,2) [font={\bfseries\large},rotate=90, anchor=center] {...};
+      \node at (7,2.5) [reg, minimum width=3cm, minimum height=1cm] (reg63) {WReg63};
+        \draw[ar32] (reg63) -- (DCT.west |- dctin63);
+      \node at (7,3.5) [reg, minimum width=3cm, minimum height=1cm] (reg64) {WReg64};
+        \draw [b32] (reg64.east) -- ++(0.5,0) coordinate (reg64r) -- ++(0,13);
+        \draw [ar1] (reg64r) -- (DCT.west |- sel) node [midway, above, font={\ttfamily}] {3};
+        \draw [ar1] (reg64r) |- (DCT.west |- en);
+        \draw [ar1] (reg64r) |- (DCT.west |- res);
 
-
+      %% Address Dec
+      \node at (0,0) [proc, minimum width=5cm, minimum height=10.5cm] (addr) {Address\\Decoder};
+      \draw [black,very thick] (-1,1) circle (1mm) node [inoutl] {dataIn};      
+        \draw [b32] (-0.9,1) -- ++(0.9,0);
+      \draw [black,very thick] (-1,4) circle (1mm) node [inoutl] {Address};      
+        \draw [b32] (-0.9,4) -- ++(0.9,0);
+      \draw [black,very thick] (-1,7) circle (1mm) node [inoutl] {Write/Read};      
+        \draw [b1] (-0.9,7) -- ++(0.9,0);
+      \draw [black,very thick] (-1,9.5) circle (1mm) node [inoutl] {dataOut};      
+        \draw [b32] (-0.9,9.5) -- ++(0.9,0);
+      
+      
+        \draw [ar32] (DCT.west |- dctout0) -- (addr.east |- dctout0);
+        \draw [ar32] (DCT.west |- dctout63) -- (addr.east |- dctout63);
+        \draw [b1] (DCT.west |- validOut) -- ++(-2,0) coordinate (voutr);
+        \draw [ar32] (addr.east |- reg0) -- (reg0);
+        \draw [ar32] (addr.east |- reg63) -- (reg63);
+        \draw [ar32] (addr.east |- reg64) -- (reg64);
         
+      %% DCT Count Timer
+      \node at (12.5,-0.5+10.5) [proc, minimum width=4cm, minimum height=3cm] (DCTtimer) {DCT\\Timer};
+      \node at (12.5,-0.5+11) [inoutr] (dcttstop) {Stop};
+        \draw[ar1] ([xshift=1.25cm] voutr) |- (DCTtimer.west |- dcttstop);
+      \node at (12.5,-0.5+11.5) [inoutr] (dcttstart) {Start};
+        \draw[ar1] (10.75,5)  |- (DCTtimer.west |- dcttstart);
+      \node at (12.5,-0.5+13) [inoutr] (dcttout) {countOut};
+        \draw [b1] (DCTtimer.west |- dcttout) node [above, xshift=-5mm, font={\ttfamily}] {31} -| (voutr);
+        \draw [ar32] (voutr) -- (addr.east |- voutr);
 
-        
+
+      %% Write Timer
+      \node at (12.5,-0.25+13.5) [proc, minimum width=4cm, minimum height=3cm] (Loadtimer) {Write\\Timer};
+      \node at (12.5,-0.25+14) [inoutr] (wtimerst) {Start/Stop};
+        \draw [ar1] (reg64r |- wtimerst) -- (Loadtimer.west |- wtimerst);
+      \node at (12.5,-0.25+16) [inoutr] (wtimerout) {countOut};
+        \draw [ar32] (Loadtimer.west |- wtimerout) -- ++(-3,0) |- ([yshift=-5mm] addr.east |- validOut);
+
+      %% Read Timer
+      \node at (12.5,16.5) [proc, minimum width=4cm, minimum height=3cm] (readtimer) {Read\\Timer};
+      \node at (12.5,17) [inoutr] (rtimerst) {Start/Stop};
+        \draw [ar1] (reg64r |- rtimerst) -- (Loadtimer.west |- rtimerst);
+      \node at (12.5,19) [inoutr] (rtimerout) {countOut};
+        \draw [ar32] (Loadtimer.west |- rtimerout) -- ++(-3.5,0) |- ([yshift=-10mm] addr.east |- validOut);
+
+      
     \end{scope}
     \begin{pgfonlayer}{background}
-      
+      % Left-top corner of the background rectangle
+      \node (a11) at (-0.5,-0.5) {};
+      % Right-bottom corner of the background rectanle
+      \node (a21) at (17.5,20) {};
+      % Draw the background
+      \path[fill=black!3,rounded corners, draw, very thick]
+        (a11) rectangle (a21);
+      \node (a31) at (a21 |- a11) {};
+      \path (a11) -- (a31) node[midway, above, font={\huge}] (mid_right) {\textbf{AXI4 DCT Wrapper}};
     \end{pgfonlayer}
   \end{scope}
 \end{tikzpicture}
