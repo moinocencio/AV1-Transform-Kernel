@@ -196,7 +196,14 @@ However, the liability of this implementation depends on whether the encoder can
 
 As shown, with the performed changes, the encoding time was, in average, reduced by $2.9\%$ for all quality objectives, while maintaining the output PSNR, making this a suitable \emph{DCT} implementation for an \emph{AV1} encoder. Although the performance improvement is rather diminishing once considered the full encoding cycle, it is a step toward a possible realtime encoding implementation.
 
-These results allow to advance to a hardware implementation, since the obtained architecture can heavily benefit from parallelization and, due to the discard of the \texttt{cospi} array, would need less memory than the original architecture.
+However, the full impact of the applied changes can only be verified on a hardware implementation. With the reduction of the cosine approximations, the memory used in the developed \emph{DCT}s is highly reduced. Considering $M_{\texttt{cospi}}$ as the number of bytes ($B$) used for storing the original cosine approximation vector,
+
+\begin{equation}
+    M_{\texttt{cospi}} = \frac{64\cdot (10+11+12+13+14+15+16)}{8} = 728\, B
+\end{equation}
+On the other hand, with the new implementation, only $64 \, B$  would be needed to store these approximations, corresponding to an $81\%$ reduction.
+
+Nonetheless, both \emph{libaom}'s version and the developed could heavily benefit from parallelization, as is described in the following section.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hardware Implementations}
@@ -218,7 +225,7 @@ However, in order to achieve an efficient hardware implementation, some addition
 
 Consider an hypothetical operation performed in the software version, where two intermediary signals, \texttt{x1} and \texttt{x2}, get multiplied by some constant, added, and finally rescaled. In $C$, this operation is easily described in a single line of code, as shown in Figure \ref{fig:hardsoft}. However, to perform the same operation on an hardware descriptive language, some additional steps must be taken. The seemingly simple operation done in software must be deconstructed in various sequential steps, controlled by a clock signal. The operation shown in this Figure is repeated throughout the various \emph{DCT} implementations in hardware, making it the key to the development of the parallel architectures.
 
-\begin{figure}[!htbp]
+\begin{figure}[htb]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/multHardware.tex}
     \caption{Comparison between software and hardware implementation of multiplication, sum and re-scaling}
@@ -250,11 +257,13 @@ A simplified version of \textbf{DCT4}'s hardware implementation is represented i
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/DCT4hardv1.tex}
-    \caption{1D \emph{\textbf{DCT4}} hardware implementation}
+    \caption{1D \textbf{DCT4} hardware implementation}
     \label{fig:harddct4v1}
 \end{figure}
 
-All data signals and corresponding internal registers are represented with 32 bits, exemplified by the thicker lines. Although this increases the necessary footprint, this measure simplifies the development and integration between different transforms. Nonetheless, some additional measures were taken in the hardware description files, in order to easily change the number of used bits (\emph{\gls{genmap}}), at a later stage.
+To simplify the development of the hardware architectures, all signals and internal registers are represented, as this measure allows to easily interconnect the developed modules. Nonetheless, all modules are configurable through the modification of a \gls{genmap}.
+
+On a post-prototyping stage, to achieve an optimal utilization of resources, both inputs, outputs and internal signals should be shortened to the minimum length.
 
 As a final measure to simplify the development process, the \emph{kernels} are implemented using the smaller sizes as a constituting block. As shown in Wen-Hsiung Chen's work \cite{wen-hsiungchenFastComputationalAlgorithm1977}, all transform sizes greater than $4$ englobe the same sequence of operations as the smaller counterparts, on one subset of its intermediary coefficients. This way, each of the smaller \emph{1D-DCT} blocks may be inserted into the size immediately above it.
 
@@ -327,7 +336,7 @@ This next version's main objective was the reduction of necessary resources for 
 
 To achieve this, each individual \textbf{DCTX} apart from \textbf{DCT4} was divided in sections. \textbf{DCTX\_P1} is composed of the first stage of each individual kernel, corresponding to the first summing/rotation. Correspondingly, \textbf{DCTX\_P2} groups all the following stages, from multiplications, sums and shifts, apart from the steps taken by the smaller \textbf{DCT$\nicefrac{X}{2}$} implementations. Figure \ref{fig:dct8iv} gives an exemplification of this sectioning, for the previous implementation of \textbf{DCT8}. All bocks are controlled by the same clock and reset signals. For simplification purposes, these signals wont be displayed in the following Figures.
 
-\begin{figure}[!htbp]
+\begin{figure}[htb]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/DCT8divv2.tex}
     \caption{Exemplification of the individual kernel's division for the second implementation}
@@ -338,7 +347,7 @@ It is important to note that \textbf{DCT8\_P2} inputs and \texttt{en} are hardwi
 
 Depending on the selected size, the input data is injected into one of the \textbf{P1} stages or directly into \textbf{DCT4}. The interconnection of the internal blocks, and corresponding flow of the intermediary coefficients is dealt by a arrangement of multiplexers, that differ from the previous implementation. In this case, this block has a much higher input/output count, as it must control which signals go into each stage, to generate the correct final coefficients as if the \texttt{dataIn}'s passed through a single \textbf{DCT} block. Besides the coefficients, also the intermediary enable signals are dependent of the central unit, since the interconnection of the \texttt{valOut/en} pairs is dependent on the selected vector size.
 
-A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented. As mentioned previously, the system is composed of a single instance of each of the intermediary stages. This makes the achieved architecture similar to a single \textbf{DCT64} block from the first version. In other words, the largest block from
+A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented. As mentioned previously, the system is composed of a single instance of each of the intermediary stages. This makes the achieved architecture similar to a single \textbf{DCT64} block from the first version. In other words, the largest block from the previous implementation had the same set of internal blocks as the newer \emph{Wrapper}, but instantiated in a different manner. 
 
 \begin{landscape}
     \vspace*{\fill}
@@ -351,8 +360,7 @@ A simplified version of the achieved architecture is represented in Figure \ref{
     \vspace*{\fill}        
 \end{landscape}
 
-\noindent
-the previous implementation had the same set of internal blocks as the newer \emph{Wrapper}, but instantiated in a different manner. In this case, since all the internal intermediary points are accessible by the \textbf{Coefficient's Multiplexer}, all the smaller transformations can be calculated with a single kernel of size 64. Figure \ref{fig:v2datapath} demonstrates this behavior. Depending on the selected vector size, the data is sequenced by different blocks, as shown by the different colored lines. The dotted lines represent the enable signals which will be activated at some point of the transformation process.
+In this case, since all the internal intermediary points are accessible by the \textbf{Coefficient's Multiplexer}, all the smaller transformations can be calculated with a single kernel of size 64. Figure \ref{fig:v2datapath} demonstrates this behavior. Depending on the selected vector size, the data is sequenced by different blocks, as shown by the different colored lines. The dotted lines represent the enable signals which will be activated at some point of the transformation process.
 
 \begin{figure}[!htbp]
     \centering
@@ -361,7 +369,7 @@ the previous implementation had the same set of internal blocks as the newer \em
     \label{fig:v2datapath}
 \end{figure}
 
-This architecture was subjected to the same test bench as the previous version. In Figure \ref{fig:v2timing} it is represented one of the tests, where 16 was the selected size. In this case, there are no internal signals represented, only being shown the most relevant of the ones accessible by the central multiplexer, for this case. 
+This architecture was subjected to the same test bench as the previous version. In Figure \ref{fig:v2timing} it is represented one of these tests, where 16 was the selected size. In this case, there are no internal signals represented, only being shown the most relevant of the ones accessible by the central multiplexer, for this case. 
 
 \begin{figure}[!htbp]
     \centering
@@ -446,7 +454,7 @@ Figure \ref{fig:axi4int} shows a simplified version of the kernel's integration 
 \begin{figure}[htb]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/v2AXI4.tex}
-    \caption{Simplified description of integration of \emph{DCT Wrapper} with AXI4-Lite interface}
+    \caption{Simplified description of \emph{DCT Wrapper} with AXI4-Lite interface}
     \label{fig:axi4int}
 \end{figure}
 
@@ -497,30 +505,28 @@ On a video encoder, each residue block will suffer several transformations, hori
 \begin{table}[!htpb]
     \centering
     \begin{tabular}{ccccc} \toprule
-        \multirow{2}{*}{\textbf{Size}}   & \multicolumn{4}{c}{\textbf{Resolution}}                      \\
+        \multirow{2}{*}{\textbf{Block Size}}   & \multicolumn{4}{c}{\textbf{Resolution}}                      \\
                                          & $\mathbf{1280\times 720}$    & $\mathbf{1920\times 1080}$  & $\mathbf{3840\times 2160}$  & $\mathbf{7680\times 4320}$  \\ \toprule
-        \textbf{4}                       & 37                      & 16                   & 4                    & 1  \\
-        \textbf{8}                       & 44                      & 20                   & 5                    & 1  \\
-        \textbf{16}                      & 63                      & 28                   & 7                    & 2  \\
-        \textbf{32}                      & 98                      & 44                   & 11                   & 3  \\
-        \textbf{64}                      & 161                     & 71                   & 18                   & 4  \\
+        $\mathbf{4\times 4}$                       & 37                      & 16                   & 4                    & 1  \\
+        $\mathbf{8\times 8}$                       & 44                      & 20                   & 5                    & 1  \\
+        $\mathbf{16\times 16}$                      & 63                      & 28                   & 7                    & 2  \\
+        $\mathbf{32\times 32}$                      & 98                      & 44                   & 11                   & 3  \\
+        $\mathbf{64\times 64}$                      & 161                     & 71                   & 18                   & 4  \\
         \bottomrule
     \end{tabular}
     \caption{Maximum frame rate for a given resolution, considering fixed square transformation blocks}
     \label{tab:maxfps}
 \end{table}
 
-As seen, the constructed architecture, on the current hardware, isn't capable of processing high resolution video at usable frame rates. Although for HD and FHD it may be able to provide more than 30fps at some block sizes, the emerging resolutions still prove too demanding to achieve a real time encoding. 
+As seen, the constructed architecture, on the current hardware, isn't capable of processing high resolution video at usable frame rates. Although for HD and FHD it may be able to provide more than 30fps at some block sizes, the emerging resolutions still prove too demanding to achieve real time encoding usability. However, some works capable of delivering such performances have been published \cite{vayalilEfficientASICDesign2016,meherEfficientIntegerDCT2014,m.HighPerformanceInteger2017}.
 
 Besides, the presented results represent a \emph{best case} scenario. On most encoders, various transformations are done on the same set of residue blocks, as to achieve the most efficient option to accomplish the target objective, be it regarding image distortion or compression. This way, efficient hardware implementations must allow this parallelization of encoding choices.
 
-With the second version of of the \emph{DCT Wrapper}, the utilization of hardware is heavily optimized, as there are no repeated stages throughout the design. However, this makes  parallel transformations of different vector sizes impossible. Since, at least, \textbf{DCT4} will always be occupied with one of the encoding options, and all other transform sizes need this stage to calculate its output, there isn't the possibility to calculate two different transform sizes at the same time.
+With the second version of of the \emph{DCT Wrapper}, the utilization of hardware is heavily optimized, as there are no repeated stages throughout the design. However, this makes  parallel transformations of different vector sizes impossible. Since, at least, \textbf{DCT4} will always be occupied with one of the encoding options, and as all other transform sizes need this stage to calculate its output, there isn't the possibility to calculate two different transform sizes at the same time.
 
-However, on the decoding process, there is no need for parallelization of the Transform stage, as all the encoding options were already chosen. This way, an architecture following the same implementation would be appropriate for an encoder, where low power and size are highly desired characteristics.
+However, on the decoding process, there is no need for parallelization of the Transform stage, as all the encoding options were already chosen. This way, an architecture following the same implementation would be appropriate for a decoder, where low power and size are highly desired characteristics.
 
-On the other hand, the first version of the complete kernel had all \emph{DCT} blocks individualized, making the transformation of different sized vectors possible. As mentioned before, this makes this implementation better suited to be applied on an encoder, as it allows to test various configurations at the same time, and quickly evaluate the most adequate.
-
-
+On the other hand, the first version of the complete kernel had all \emph{DCT} blocks individualized, making the transformation of different sized vectors possible. As mentioned before, this makes this implementation better suited to be applied on an encoder, as it allows to test various configurations at the same time, and quickly evaluate the most adequate. However, for this to be achieved, some modifications would need to be made, as only one set of output vectors can be retrieved on the current implementation.
 
 
 \clearpage

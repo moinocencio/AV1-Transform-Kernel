@@ -2,3 +2,29 @@
 \chapter{Conclusions and Future Work}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This work started with the objective of improving the performance of the recently released video coding standard, \emph{AV1}, by optimization of the reference software, \emph{libaom}, and by the development of hardware architectures for the \emph{Transform} stage.
+
+On that note, the reference software was analyzed on various aspects. Firstly the internal functioning of the focused stage was studied, being described the most relevant features, such as the sequence of operations, internal data structures and implemented kernels.
+
+In addition to these, statistical data referring to the encoding choices done in the encoder was acquired. Upon its analysis, some possible characteristics for improvement of the reference software were found. From the number of bits used in the cosine approximations, to the verified number of occurrences of symmetric kernel blocks, there is a high margin for improvement of the encoder's performance.
+
+On the focus of this work, the tackled measure was the reduction of the number of bits used by cosine approximations, as it was verified that these had a low impact on the obtained video quality, while influencing the overall encoder's performance. With the changes performed in the reference software there was a $3\%$ reduction in the encoding time.
+
+The algorithm was then described in hardware, being achieved two different architectures, one of such was implemented and tested on a \emph{Nexys 4} FPGA. Although the design's functioning was validated, the  performance obtained with the tested kit is not adequate for implementation on a real time encoder for the currently desired resolutions.
+
+Accordingly, it can be concluded that the original objectives were partially achieved. \emph{Libaom}'s \emph{Transform} stage was improved with the software changes, and two different hardware implementations were constructed for the \emph{DCT} kernel. However, \emph{AV1} supports two other transformation kernels, being these the \emph{ADST} and \emph{Identity}. 
+
+With that said, the work started in this dissertation can be profoundly extended, in order to obtain an efficient hardware architecture for \emph{AV1}.
+
+As to the developed architectures, the most immediate measure would be the shortening of the internal signals, as well as the input and output coefficients. Although this measure would bring some complexity to the interconnection of the internal blocks, it would reduce the necessary footprint.
+
+However, this measure wouldn't suffice to improve the architecture's performance by a high margin. To do so, an ASIC implementation should be considered, since, in most cases, FPGA designs tend to perform worse than specialized integrated circuits. This happens because, on an FPGA, the design will always be limited by the hardware kit's logic structure, while on ASIC implementations the implemented hardware is optimized for the design, according to a library of logic cells, on a specific technology, e.g., 90nm \cite{FPGAVsASIC2016}.
+
+Considering an encoder application, an architecture based on the first implementation could better benefit of an ASIC implementation, as this allowed for the parallelization of transformations.
+
+However, the future work isn't limited to the \emph{DCT} kernel. Taking a similar workflow, other architectures could be achieved for both the \emph{ADST} and \emph{IDTX} kernels. In addition, other tasks remnant of the \emph{Transform} stage could benefit from hardware implementations, such as the column-row transpositions done between 1D transformations.
+
+\clearpage
+\printbibliography[heading=subbibliography]
+\addcontentsline{toc}{section}{References}
