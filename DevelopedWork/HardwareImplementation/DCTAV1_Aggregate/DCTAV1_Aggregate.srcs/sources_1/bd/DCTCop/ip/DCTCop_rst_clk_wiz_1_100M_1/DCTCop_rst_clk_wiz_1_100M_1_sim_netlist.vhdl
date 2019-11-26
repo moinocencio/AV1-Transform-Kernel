@@ -1,11 +1,11 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
--- Date        : Tue Nov 12 19:41:45 2019
+-- Date        : Tue Nov 26 21:52:48 2019
 -- Host        : abencoado running 64-bit Manjaro Linux
--- Command     : write_vhdl -force -mode funcsim -rename_top DCTCop_rst_clk_wiz_1_100M_1 -prefix
---               DCTCop_rst_clk_wiz_1_100M_1_ DCTCop_rst_clk_wiz_1_100M_0_sim_netlist.vhdl
--- Design      : DCTCop_rst_clk_wiz_1_100M_0
+-- Command     : write_vhdl -force -mode funcsim
+--               /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1_sim_netlist.vhdl
+-- Design      : DCTCop_rst_clk_wiz_1_100M_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7a100tcsg324-1
@@ -25,6 +25,8 @@ entity DCTCop_rst_clk_wiz_1_100M_1_cdc_sync is
     aux_reset_in : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of DCTCop_rst_clk_wiz_1_100M_1_cdc_sync : entity is "cdc_sync";
 end DCTCop_rst_clk_wiz_1_100M_1_cdc_sync;
 
 architecture STRUCTURE of DCTCop_rst_clk_wiz_1_100M_1_cdc_sync is
@@ -233,17 +235,14 @@ entity DCTCop_rst_clk_wiz_1_100M_1_upcnt_n is
     seq_cnt_en : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of DCTCop_rst_clk_wiz_1_100M_1_upcnt_n : entity is "upcnt_n";
 end DCTCop_rst_clk_wiz_1_100M_1_upcnt_n;
 
 architecture STRUCTURE of DCTCop_rst_clk_wiz_1_100M_1_upcnt_n is
   signal \^q\ : STD_LOGIC_VECTOR ( 5 downto 0 );
   signal clear : STD_LOGIC;
   signal q_int0 : STD_LOGIC_VECTOR ( 5 downto 0 );
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \q_int[1]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \q_int[2]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \q_int[3]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \q_int[4]_i_1\ : label is "soft_lutpair0";
 begin
   Q(5 downto 0) <= \^q\(5 downto 0);
 \q_int[0]_i_1\: unisim.vcomponents.LUT1
@@ -397,6 +396,8 @@ entity DCTCop_rst_clk_wiz_1_100M_1_lpf is
     ext_reset_in : in STD_LOGIC;
     aux_reset_in : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of DCTCop_rst_clk_wiz_1_100M_1_lpf : entity is "lpf";
 end DCTCop_rst_clk_wiz_1_100M_1_lpf;
 
 architecture STRUCTURE of DCTCop_rst_clk_wiz_1_100M_1_lpf is
@@ -578,6 +579,8 @@ entity DCTCop_rst_clk_wiz_1_100M_1_sequence_psr is
     lpf_int : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of DCTCop_rst_clk_wiz_1_100M_1_sequence_psr : entity is "sequence_psr";
 end DCTCop_rst_clk_wiz_1_100M_1_sequence_psr;
 
 architecture STRUCTURE of DCTCop_rst_clk_wiz_1_100M_1_sequence_psr is
@@ -603,17 +606,6 @@ architecture STRUCTURE of DCTCop_rst_clk_wiz_1_100M_1_sequence_psr is
   signal seq_clr : STD_LOGIC;
   signal seq_cnt : STD_LOGIC_VECTOR ( 5 downto 0 );
   signal seq_cnt_en : STD_LOGIC;
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \ACTIVE_LOW_BSR_OUT_DFF[0].FDRE_BSR_N_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of Core_i_1 : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \bsr_dec[2]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of bsr_i_1 : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \core_dec[0]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \core_dec[2]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of from_sys_i_1 : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \pr_dec[0]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of pr_i_1 : label is "soft_lutpair4";
 begin
   Bsr_out <= \^bsr_out\;
   MB_out <= \^mb_out\;
@@ -916,6 +908,8 @@ entity DCTCop_rst_clk_wiz_1_100M_1_proc_sys_reset is
   attribute C_NUM_PERP_ARESETN of DCTCop_rst_clk_wiz_1_100M_1_proc_sys_reset : entity is 1;
   attribute C_NUM_PERP_RST : integer;
   attribute C_NUM_PERP_RST of DCTCop_rst_clk_wiz_1_100M_1_proc_sys_reset : entity is 1;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of DCTCop_rst_clk_wiz_1_100M_1_proc_sys_reset : entity is "proc_sys_reset";
 end DCTCop_rst_clk_wiz_1_100M_1_proc_sys_reset;
 
 architecture STRUCTURE of DCTCop_rst_clk_wiz_1_100M_1_proc_sys_reset is
@@ -1042,7 +1036,7 @@ entity DCTCop_rst_clk_wiz_1_100M_1 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of DCTCop_rst_clk_wiz_1_100M_1 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of DCTCop_rst_clk_wiz_1_100M_1 : entity is "DCTCop_rst_clk_wiz_1_100M_0,proc_sys_reset,{}";
+  attribute CHECK_LICENSE_TYPE of DCTCop_rst_clk_wiz_1_100M_1 : entity is "DCTCop_rst_clk_wiz_1_100M_1,proc_sys_reset,{}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of DCTCop_rst_clk_wiz_1_100M_1 : entity is "yes";
   attribute x_core_info : string;
@@ -1073,13 +1067,13 @@ architecture STRUCTURE of DCTCop_rst_clk_wiz_1_100M_1 is
   attribute x_interface_parameter : string;
   attribute x_interface_parameter of aux_reset_in : signal is "XIL_INTERFACENAME aux_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute x_interface_info of ext_reset_in : signal is "xilinx.com:signal:reset:1.0 ext_reset RST";
-  attribute x_interface_parameter of ext_reset_in : signal is "XIL_INTERFACENAME ext_reset, BOARD.ASSOCIATED_PARAM RESET_BOARD_INTERFACE, POLARITY ACTIVE_LOW, INSERT_VIP 0";
+  attribute x_interface_parameter of ext_reset_in : signal is "XIL_INTERFACENAME ext_reset, BOARD.ASSOCIATED_PARAM RESET_BOARD_INTERFACE, POLARITY ACTIVE_HIGH, INSERT_VIP 0";
   attribute x_interface_info of mb_debug_sys_rst : signal is "xilinx.com:signal:reset:1.0 dbg_reset RST";
   attribute x_interface_parameter of mb_debug_sys_rst : signal is "XIL_INTERFACENAME dbg_reset, POLARITY ACTIVE_HIGH, INSERT_VIP 0";
   attribute x_interface_info of mb_reset : signal is "xilinx.com:signal:reset:1.0 mb_rst RST";
   attribute x_interface_parameter of mb_reset : signal is "XIL_INTERFACENAME mb_rst, POLARITY ACTIVE_HIGH, TYPE PROCESSOR, INSERT_VIP 0";
   attribute x_interface_info of slowest_sync_clk : signal is "xilinx.com:signal:clock:1.0 clock CLK";
-  attribute x_interface_parameter of slowest_sync_clk : signal is "XIL_INTERFACENAME clock, ASSOCIATED_RESET mb_reset:bus_struct_reset:interconnect_aresetn:peripheral_aresetn:peripheral_reset, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN DCTCop_clk_wiz_1_0_clk_out1, INSERT_VIP 0";
+  attribute x_interface_parameter of slowest_sync_clk : signal is "XIL_INTERFACENAME clock, ASSOCIATED_RESET mb_reset:bus_struct_reset:interconnect_aresetn:peripheral_aresetn:peripheral_reset, FREQ_HZ 460000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_1_clk_out1, INSERT_VIP 0";
   attribute x_interface_info of bus_struct_reset : signal is "xilinx.com:signal:reset:1.0 bus_struct_reset RST";
   attribute x_interface_parameter of bus_struct_reset : signal is "XIL_INTERFACENAME bus_struct_reset, POLARITY ACTIVE_HIGH, TYPE INTERCONNECT, INSERT_VIP 0";
   attribute x_interface_info of interconnect_aresetn : signal is "xilinx.com:signal:reset:1.0 interconnect_low_rst RST";

@@ -1,0 +1,72 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date         : Tue Nov 26 17:53:48 2019
+| Host         : abencoado running 64-bit Manjaro Linux
+| Command      : report_methodology -file DCTCop_wrapper_methodology_drc_routed.rpt -pb DCTCop_wrapper_methodology_drc_routed.pb -rpx DCTCop_wrapper_methodology_drc_routed.rpx
+| Design       : DCTCop_wrapper
+| Device       : xc7a200tfbg676-2
+| Speed File   : -2
+| Design State : Fully Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: checkpoint_DCTCop_wrapper
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 7
++-----------+----------+-------------------------------+------------+
+| Rule      | Severity | Description                   | Violations |
++-----------+----------+-------------------------------+------------+
+| LUTAR-1   | Warning  | LUT drives async reset alert  | 3          |
+| TIMING-9  | Warning  | Unknown CDC Logic             | 1          |
+| TIMING-18 | Warning  | Missing input or output delay | 3          |
++-----------+----------+-------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell DCTCop_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/sel_n_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) DCTCop_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/sel_n_reg/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#2 Warning
+LUT drives async reset alert  
+LUT cell DCTCop_i/mdm_1/U0/Use_E2.BSCAN_I/Use_Serial_Unified_Completion.completion_status[15]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg[0]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg[10]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg[26]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg[3]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg_c/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg_c_0/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg_c_1/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg_c_10/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg_c_11/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg_c_12/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg_c_2/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg_c_3/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg_c_4/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg_c_5/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg_c_6/CLR (the first 15 of 23 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#3 Warning
+LUT drives async reset alert  
+LUT cell DCTCop_i/mdm_1/U0/Use_E2.BSCAN_I/Use_Serial_Unified_Completion.completion_status[15]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_1_reg[0]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_1_reg[1]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_1_reg[2]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_1_reg[3]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_reg[0]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_reg[1]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_reg[2]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_reg[3]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.TDI_Shifter_reg[0]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.TDI_Shifter_reg[1]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.TDI_Shifter_reg[2]/CLR, DCTCop_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.TDI_Shifter_reg[3]/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+TIMING-9#1 Warning
+Unknown CDC Logic  
+One or more asynchronous Clock Domain Crossing has been detected between 2 clock domains through a set_false_path or a set_clock_groups or set_max_delay -datapath_only constraint but no double-registers logic synchronizer has been found on the side of the capture clock. It is recommended to run report_cdc for a complete and detailed CDC coverage. Please consider using XPM_CDC to avoid Critical severities
+Related violations: <none>
+
+TIMING-18#1 Warning
+Missing input or output delay  
+An input delay is missing on reset_0 relative to clock(s) sys_clock
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An input delay is missing on usb_uart_rxd relative to clock(s) sys_clock
+Related violations: <none>
+
+TIMING-18#3 Warning
+Missing input or output delay  
+An output delay is missing on usb_uart_txd relative to clock(s) sys_clock
+Related violations: <none>
+
+

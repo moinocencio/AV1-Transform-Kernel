@@ -37,7 +37,7 @@ v_n = [ "waterfall"       "flower"      "bridge" ...
 
 q_n = ["Low" "Medium" "High"];
 
-f_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Encode_Stats/TestCosBitLog.txt';
+f_n = '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/Libaom/Tests/Encode_Stats/TestCosBitLog.txt';
 
 %% Parse Timing Results
 f = fopen(f_n);
@@ -148,3 +148,5 @@ heck = bar(1:63,quanthist(3,2:end),'FaceColor','flat');
 
 legend(b_q,q_n);
 xlabel('Quantizer'),ylabel('Relative Use (\%)')
+
+save timingAnalW.mat

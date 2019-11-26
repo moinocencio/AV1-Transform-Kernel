@@ -1,0 +1,492 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Nov 26 22:06:51 2019
+# Process ID: 18014
+# Current directory: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2
+# Command line: vivado -log DCTCop_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source DCTCop_wrapper.tcl
+# Log file: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/DCTCop_wrapper.vds
+# Journal file: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/vivado.jou
+#-----------------------------------------------------------
+source DCTCop_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/ip_repo/DCTs_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/ip_repo/DCT_Kernel_1.0'.
+WARNING: [IP_Flow 19-2207] Repository '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/ip_repo/DCT_Kernel_1.0' already exists; ignoring attempt to add it again.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/ip_repo/DCT_Kernel_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/ip_repo/DCTKERNV2_1.0'.
+WARNING: [IP_Flow 19-2207] Repository '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/ip_repo/DCT_Kernel_1.0' already exists; ignoring attempt to add it again.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/ip_repo/DCT_Kernel_1.0'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2019.1/data/ip'.
+Command: synth_design -top DCTCop_wrapper -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 18097 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1711.188 ; gain = 150.719 ; free physical = 228 ; free virtual = 11617
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'DCTCop_wrapper' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/hdl/DCTCop_wrapper.vhd:23]
+INFO: [Synth 8-3491] module 'DCTCop' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2380' bound to instance 'DCTCop_i' of component 'DCTCop' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/hdl/DCTCop_wrapper.vhd:33]
+INFO: [Synth 8-638] synthesizing module 'DCTCop' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2393]
+INFO: [Synth 8-3491] module 'DCTCop_DCTs_0_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_DCTs_0_1_stub.vhdl:5' bound to instance 'DCTs_0' of component 'DCTCop_DCTs_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2829]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_DCTs_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_DCTs_0_1_stub.vhdl:32]
+INFO: [Synth 8-3491] module 'DCTCop_axi_uartlite_0_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_axi_uartlite_0_1_stub.vhdl:5' bound to instance 'axi_uartlite_0' of component 'DCTCop_axi_uartlite_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2853]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_axi_uartlite_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_axi_uartlite_0_1_stub.vhdl:33]
+INFO: [Synth 8-3491] module 'DCTCop_clk_wiz_1_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_clk_wiz_1_1_stub.vhdl:5' bound to instance 'clk_wiz_1' of component 'DCTCop_clk_wiz_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2878]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_clk_wiz_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_clk_wiz_1_1_stub.vhdl:15]
+INFO: [Synth 8-3491] module 'DCTCop_mdm_1_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_mdm_1_1_stub.vhdl:5' bound to instance 'mdm_1' of component 'DCTCop_mdm_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2885]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_mdm_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_mdm_1_1_stub.vhdl:21]
+INFO: [Synth 8-3491] module 'DCTCop_microblaze_0_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_microblaze_0_1_stub.vhdl:5' bound to instance 'microblaze_0' of component 'DCTCop_microblaze_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2898]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_microblaze_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_microblaze_0_1_stub.vhdl:156]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_microblaze_0_axi_periph_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1590]
+INFO: [Synth 8-638] synthesizing module 'm00_couplers_imp_14B8RPX' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:61]
+INFO: [Synth 8-256] done synthesizing module 'm00_couplers_imp_14B8RPX' (1#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:61]
+INFO: [Synth 8-638] synthesizing module 'm01_couplers_imp_HIL9DW' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:168]
+INFO: [Synth 8-256] done synthesizing module 'm01_couplers_imp_HIL9DW' (2#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:168]
+INFO: [Synth 8-638] synthesizing module 's00_couplers_imp_1A9WVD0' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:831]
+INFO: [Synth 8-256] done synthesizing module 's00_couplers_imp_1A9WVD0' (3#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:831]
+INFO: [Synth 8-638] synthesizing module 's01_couplers_imp_2EQOUT' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:942]
+INFO: [Synth 8-256] done synthesizing module 's01_couplers_imp_2EQOUT' (4#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:942]
+INFO: [Synth 8-638] synthesizing module 's02_couplers_imp_99O693' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1067]
+INFO: [Synth 8-3491] module 'DCTCop_auto_pc_0' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_auto_pc_0_stub.vhdl:5' bound to instance 'auto_pc' of component 'DCTCop_auto_pc_0' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1237]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_auto_pc_0' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_auto_pc_0_stub.vhdl:67]
+INFO: [Synth 8-256] done synthesizing module 's02_couplers_imp_99O693' (5#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1067]
+INFO: [Synth 8-638] synthesizing module 's03_couplers_imp_13OZAD2' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1333]
+INFO: [Synth 8-3491] module 'DCTCop_auto_pc_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_auto_pc_1_stub.vhdl:5' bound to instance 'auto_pc' of component 'DCTCop_auto_pc_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1415]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_auto_pc_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_auto_pc_1_stub.vhdl:37]
+INFO: [Synth 8-256] done synthesizing module 's03_couplers_imp_13OZAD2' (6#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1333]
+INFO: [Synth 8-3491] module 'DCTCop_xbar_0' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_xbar_0_stub.vhdl:5' bound to instance 'xbar' of component 'DCTCop_xbar_0' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2256]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_xbar_0' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_xbar_0_stub.vhdl:51]
+INFO: [Synth 8-256] done synthesizing module 'DCTCop_microblaze_0_axi_periph_1' (7#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1590]
+INFO: [Synth 8-638] synthesizing module 'microblaze_0_local_memory_imp_DAEQT3' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:252]
+INFO: [Synth 8-3491] module 'DCTCop_dlmb_bram_if_cntlr_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_dlmb_bram_if_cntlr_1_stub.vhdl:5' bound to instance 'dlmb_bram_if_cntlr' of component 'DCTCop_dlmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:466]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_dlmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_dlmb_bram_if_cntlr_1_stub.vhdl:31]
+INFO: [Synth 8-3491] module 'DCTCop_dlmb_v10_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_dlmb_v10_1_stub.vhdl:5' bound to instance 'dlmb_v10' of component 'DCTCop_dlmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:520]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_dlmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_dlmb_v10_1_stub.vhdl:36]
+INFO: [Synth 8-3491] module 'DCTCop_ilmb_bram_if_cntlr_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_ilmb_bram_if_cntlr_1_stub.vhdl:5' bound to instance 'ilmb_bram_if_cntlr' of component 'DCTCop_ilmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:548]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_ilmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_ilmb_bram_if_cntlr_1_stub.vhdl:31]
+INFO: [Synth 8-3491] module 'DCTCop_ilmb_v10_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_ilmb_v10_1_stub.vhdl:5' bound to instance 'ilmb_v10' of component 'DCTCop_ilmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:602]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_ilmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_ilmb_v10_1_stub.vhdl:36]
+INFO: [Synth 8-3491] module 'DCTCop_lmb_bram_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_lmb_bram_1_stub.vhdl:5' bound to instance 'lmb_bram' of component 'DCTCop_lmb_bram_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:630]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_lmb_bram_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_lmb_bram_1_stub.vhdl:27]
+INFO: [Synth 8-256] done synthesizing module 'microblaze_0_local_memory_imp_DAEQT3' (8#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:252]
+INFO: [Synth 8-3491] module 'DCTCop_rst_clk_wiz_1_100M_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_rst_clk_wiz_1_100M_1_stub.vhdl:5' bound to instance 'rst_clk_wiz_1_100M' of component 'DCTCop_rst_clk_wiz_1_100M_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:3209]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_rst_clk_wiz_1_100M_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/.Xil/Vivado-18014-abencoado/realtime/DCTCop_rst_clk_wiz_1_100M_1_stub.vhdl:21]
+INFO: [Synth 8-256] done synthesizing module 'DCTCop' (9#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2393]
+INFO: [Synth 8-256] done synthesizing module 'DCTCop_wrapper' (10#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/hdl/DCTCop_wrapper.vhd:23]
+WARNING: [Synth 8-3331] design s03_couplers_imp_13OZAD2 has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design s03_couplers_imp_13OZAD2 has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design s02_couplers_imp_99O693 has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design s02_couplers_imp_99O693 has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design s01_couplers_imp_2EQOUT has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design s01_couplers_imp_2EQOUT has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design s01_couplers_imp_2EQOUT has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design s01_couplers_imp_2EQOUT has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design s00_couplers_imp_1A9WVD0 has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design s00_couplers_imp_1A9WVD0 has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design s00_couplers_imp_1A9WVD0 has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design s00_couplers_imp_1A9WVD0 has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m01_couplers_imp_HIL9DW has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m01_couplers_imp_HIL9DW has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m01_couplers_imp_HIL9DW has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m01_couplers_imp_HIL9DW has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m00_couplers_imp_14B8RPX has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m00_couplers_imp_14B8RPX has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m00_couplers_imp_14B8RPX has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m00_couplers_imp_14B8RPX has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port M00_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port M00_ARESETN
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port M01_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port M01_ARESETN
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S00_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S00_ARESETN
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S01_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S01_ARESETN
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S02_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S02_ARESETN
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S03_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S03_ARESETN
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1773.906 ; gain = 213.438 ; free physical = 248 ; free virtual = 11639
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1776.875 ; gain = 216.406 ; free physical = 246 ; free virtual = 11639
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1776.875 ; gain = 216.406 ; free physical = 246 ; free virtual = 11639
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_microblaze_0_1/DCTCop_microblaze_0_1/DCTCop_microblaze_0_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_microblaze_0_1/DCTCop_microblaze_0_1/DCTCop_microblaze_0_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_v10'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_v10'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_v10_1/DCTCop_ilmb_v10_1/DCTCop_dlmb_v10_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_v10'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_v10_1/DCTCop_ilmb_v10_1/DCTCop_dlmb_v10_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_v10'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_bram_if_cntlr'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_bram_if_cntlr'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_bram_if_cntlr'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_bram_if_cntlr'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_lmb_bram_1/DCTCop_lmb_bram_1/DCTCop_lmb_bram_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/lmb_bram'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_lmb_bram_1/DCTCop_lmb_bram_1/DCTCop_lmb_bram_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/lmb_bram'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_mdm_1_1/DCTCop_mdm_1_1/DCTCop_mdm_1_0_in_context.xdc] for cell 'DCTCop_i/mdm_1'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_mdm_1_1/DCTCop_mdm_1_1/DCTCop_mdm_1_0_in_context.xdc] for cell 'DCTCop_i/mdm_1'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1_in_context.xdc] for cell 'DCTCop_i/clk_wiz_1'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1_in_context.xdc] for cell 'DCTCop_i/clk_wiz_1'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1_in_context.xdc] for cell 'DCTCop_i/rst_clk_wiz_1_100M'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1_in_context.xdc] for cell 'DCTCop_i/rst_clk_wiz_1_100M'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_DCTs_0_1/DCTCop_DCTs_0_1/DCTCop_DCTs_0_1_in_context.xdc] for cell 'DCTCop_i/DCTs_0'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_DCTs_0_1/DCTCop_DCTs_0_1/DCTCop_DCTs_0_1_in_context.xdc] for cell 'DCTCop_i/DCTs_0'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1_in_context.xdc] for cell 'DCTCop_i/axi_uartlite_0'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1_in_context.xdc] for cell 'DCTCop_i/axi_uartlite_0'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_xbar_0/DCTCop_xbar_0/DCTCop_xbar_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_axi_periph/xbar'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_xbar_0/DCTCop_xbar_0/DCTCop_xbar_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_axi_periph/xbar'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_auto_pc_0/DCTCop_auto_pc_0/DCTCop_auto_pc_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_axi_periph/s02_couplers/auto_pc'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_auto_pc_0/DCTCop_auto_pc_0/DCTCop_auto_pc_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_axi_periph/s02_couplers/auto_pc'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_auto_pc_1/DCTCop_auto_pc_1/DCTCop_auto_pc_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_axi_periph/s03_couplers/auto_pc'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_auto_pc_1/DCTCop_auto_pc_1/DCTCop_auto_pc_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_axi_periph/s03_couplers/auto_pc'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc]
+WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:14]
+WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:15]
+WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:17]
+WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:18]
+WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:20]
+WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:21]
+WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:23]
+WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:24]
+WARNING: [Vivado 12-584] No ports matched 'sw[4]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:26]
+WARNING: [Vivado 12-584] No ports matched 'sw[4]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:27]
+WARNING: [Vivado 12-584] No ports matched 'sw[5]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:29]
+WARNING: [Vivado 12-584] No ports matched 'sw[5]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:30]
+WARNING: [Vivado 12-584] No ports matched 'sw[6]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:32]
+WARNING: [Vivado 12-584] No ports matched 'sw[6]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:33]
+WARNING: [Vivado 12-584] No ports matched 'sw[7]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:35]
+WARNING: [Vivado 12-584] No ports matched 'sw[7]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:36]
+WARNING: [Vivado 12-584] No ports matched 'sw[8]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:38]
+WARNING: [Vivado 12-584] No ports matched 'sw[8]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:39]
+WARNING: [Vivado 12-584] No ports matched 'sw[9]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:41]
+WARNING: [Vivado 12-584] No ports matched 'sw[9]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:42]
+WARNING: [Vivado 12-584] No ports matched 'sw[10]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:44]
+WARNING: [Vivado 12-584] No ports matched 'sw[10]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:45]
+WARNING: [Vivado 12-584] No ports matched 'sw[11]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:47]
+WARNING: [Vivado 12-584] No ports matched 'sw[11]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:48]
+WARNING: [Vivado 12-584] No ports matched 'sw[12]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:50]
+WARNING: [Vivado 12-584] No ports matched 'sw[12]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:51]
+WARNING: [Vivado 12-584] No ports matched 'sw[13]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:53]
+WARNING: [Vivado 12-584] No ports matched 'sw[13]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:54]
+WARNING: [Vivado 12-584] No ports matched 'sw[14]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:56]
+WARNING: [Vivado 12-584] No ports matched 'sw[14]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:57]
+WARNING: [Vivado 12-584] No ports matched 'sw[15]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:59]
+WARNING: [Vivado 12-584] No ports matched 'sw[15]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:60]
+WARNING: [Vivado 12-584] No ports matched 'led[0]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:66]
+WARNING: [Vivado 12-584] No ports matched 'led[0]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:67]
+WARNING: [Vivado 12-584] No ports matched 'led[1]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:69]
+WARNING: [Vivado 12-584] No ports matched 'led[1]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:70]
+WARNING: [Vivado 12-584] No ports matched 'led[2]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:72]
+WARNING: [Vivado 12-584] No ports matched 'led[2]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:73]
+WARNING: [Vivado 12-584] No ports matched 'led[3]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:75]
+WARNING: [Vivado 12-584] No ports matched 'led[3]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:76]
+WARNING: [Vivado 12-584] No ports matched 'led[4]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:78]
+WARNING: [Vivado 12-584] No ports matched 'led[4]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:79]
+WARNING: [Vivado 12-584] No ports matched 'led[5]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:81]
+WARNING: [Vivado 12-584] No ports matched 'led[5]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:82]
+WARNING: [Vivado 12-584] No ports matched 'led[6]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:84]
+WARNING: [Vivado 12-584] No ports matched 'led[6]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:85]
+WARNING: [Vivado 12-584] No ports matched 'led[7]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:87]
+WARNING: [Vivado 12-584] No ports matched 'led[7]'. [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc:88]
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/constrs_1/imports/Vivado_Tutorial/Nexys4_Master.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/DCTCop_wrapper_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/dont_touch.xdc]
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1870.484 ; gain = 0.000 ; free physical = 143 ; free virtual = 11536
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1870.484 ; gain = 0.000 ; free physical = 143 ; free virtual = 11536
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'DCTCop_i/microblaze_0_local_memory/lmb_bram' at clock pin 'clka' is different from the actual clock period '2.174', this can lead to different synthesis results.
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 215 ; free virtual = 11611
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 215 ; free virtual = 11611
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for sys_clock. (constraint file  /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for sys_clock. (constraint file  /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1_in_context.xdc, line 4).
+Applied set_property DONT_TOUCH = true for DCTCop_i. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_local_memory/dlmb_v10. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_local_memory/ilmb_v10. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_local_memory/dlmb_bram_if_cntlr. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_local_memory/ilmb_bram_if_cntlr. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_local_memory/lmb_bram. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/mdm_1. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/clk_wiz_1. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/rst_clk_wiz_1_100M. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/DCTs_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_axi_periph. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/axi_uartlite_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_axi_periph/xbar. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_axi_periph/s02_couplers/auto_pc. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_axi_periph/s03_couplers/auto_pc. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 215 ; free virtual = 11611
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 215 ; free virtual = 11614
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port M00_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port M00_ARESETN
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port M01_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port M01_ARESETN
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S00_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S00_ARESETN
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S01_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S01_ARESETN
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S02_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S02_ARESETN
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S03_ACLK
+WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S03_ARESETN
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 215 ; free virtual = 11611
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5578] Moved timing constraint from pin 'DCTCop_i/microblaze_0_local_memory/dlmb_bram_if_cntlr/BRAM_Clk_A' to pin 'DCTCop_i/microblaze_0_local_memory/dlmb_bram_if_cntlr/bbstub_BRAM_Clk_A/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'DCTCop_i/microblaze_0_local_memory/ilmb_bram_if_cntlr/BRAM_Clk_A' to pin 'DCTCop_i/microblaze_0_local_memory/ilmb_bram_if_cntlr/bbstub_BRAM_Clk_A/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'DCTCop_i/mdm_1/Dbg_Clk_0' to pin 'DCTCop_i/mdm_1/bbstub_Dbg_Clk_0/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'DCTCop_i/mdm_1/Dbg_Update_0' to pin 'DCTCop_i/mdm_1/bbstub_Dbg_Update_0/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'DCTCop_i/clk_wiz_1/clk_out1' to pin 'DCTCop_i/clk_wiz_1/bbstub_clk_out1/O'
+INFO: [Synth 8-5819] Moved 5 constraints on hierarchical pins to their respective driving/loading pins
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 342 ; free virtual = 11737
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 342 ; free virtual = 11736
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 338 ; free virtual = 11734
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 280 ; free virtual = 11686
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 280 ; free virtual = 11686
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 280 ; free virtual = 11686
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 279 ; free virtual = 11685
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 279 ; free virtual = 11685
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 279 ; free virtual = 11685
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+----------------------------+----------+
+|      |BlackBox name               |Instances |
++------+----------------------------+----------+
+|1     |DCTCop_xbar_0               |         1|
+|2     |DCTCop_auto_pc_0            |         1|
+|3     |DCTCop_auto_pc_1            |         1|
+|4     |DCTCop_DCTs_0_1             |         1|
+|5     |DCTCop_axi_uartlite_0_1     |         1|
+|6     |DCTCop_clk_wiz_1_1          |         1|
+|7     |DCTCop_mdm_1_1              |         1|
+|8     |DCTCop_microblaze_0_1       |         1|
+|9     |DCTCop_rst_clk_wiz_1_100M_1 |         1|
+|10    |DCTCop_dlmb_bram_if_cntlr_1 |         1|
+|11    |DCTCop_dlmb_v10_1           |         1|
+|12    |DCTCop_ilmb_bram_if_cntlr_1 |         1|
+|13    |DCTCop_ilmb_v10_1           |         1|
+|14    |DCTCop_lmb_bram_1           |         1|
++------+----------------------------+----------+
+
+Report Cell Usage: 
++------+------------------------------------+------+
+|      |Cell                                |Count |
++------+------------------------------------+------+
+|1     |DCTCop_DCTs_0_1_bbox_0              |     1|
+|2     |DCTCop_auto_pc_0_bbox_5             |     1|
+|3     |DCTCop_auto_pc_1_bbox_6             |     1|
+|4     |DCTCop_axi_uartlite_0_1_bbox_1      |     1|
+|5     |DCTCop_clk_wiz_1_1_bbox_2           |     1|
+|6     |DCTCop_dlmb_bram_if_cntlr_1_bbox_8  |     1|
+|7     |DCTCop_dlmb_v10_1_bbox_9            |     1|
+|8     |DCTCop_ilmb_bram_if_cntlr_1_bbox_10 |     1|
+|9     |DCTCop_ilmb_v10_1_bbox_11           |     1|
+|10    |DCTCop_lmb_bram_1_bbox_12           |     1|
+|11    |DCTCop_mdm_1_1_bbox_3               |     1|
+|12    |DCTCop_microblaze_0_1_bbox_4        |     1|
+|13    |DCTCop_rst_clk_wiz_1_100M_1_bbox_13 |     1|
+|14    |DCTCop_xbar_0_bbox_7                |     1|
+|15    |IBUF                                |     2|
+|16    |OBUF                                |     1|
++------+------------------------------------+------+
+
+Report Instance Areas: 
++------+------------------------------+-------------------------------------+------+
+|      |Instance                      |Module                               |Cells |
++------+------------------------------+-------------------------------------+------+
+|1     |top                           |                                     |  1865|
+|2     |  DCTCop_i                    |DCTCop                               |  1862|
+|3     |    microblaze_0_axi_periph   |DCTCop_microblaze_0_axi_periph_1     |   613|
+|4     |      s02_couplers            |s02_couplers_imp_99O693              |   153|
+|5     |      s03_couplers            |s03_couplers_imp_13OZAD2             |    74|
+|6     |    microblaze_0_local_memory |microblaze_0_local_memory_imp_DAEQT3 |   496|
++------+------------------------------+-------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 1874.453 ; gain = 313.984 ; free physical = 279 ; free virtual = 11685
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 12 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1874.453 ; gain = 216.406 ; free physical = 327 ; free virtual = 11733
+Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1874.461 ; gain = 313.984 ; free physical = 342 ; free virtual = 11748
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1883.359 ; gain = 0.000 ; free physical = 201 ; free virtual = 11613
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+71 Infos, 96 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:33 . Memory (MB): peak = 1883.359 ; gain = 523.992 ; free physical = 500 ; free virtual = 11912
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1883.359 ; gain = 0.000 ; free physical = 500 ; free virtual = 11912
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/DCTCop_wrapper.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file DCTCop_wrapper_utilization_synth.rpt -pb DCTCop_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 26 22:07:36 2019...

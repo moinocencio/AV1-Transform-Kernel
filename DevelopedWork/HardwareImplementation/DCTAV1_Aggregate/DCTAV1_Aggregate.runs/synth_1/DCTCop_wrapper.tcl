@@ -17,7 +17,8 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-create_project -in_memory -part xc7a100tcsg324-1
+set_param chipscope.maxJobs 1
+create_project -in_memory -part xc7a200tfbg676-2
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
@@ -28,7 +29,7 @@ set_property parent.project_path /run/media/moinocencio/Data/Tese/Master-Thesis/
 set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property board_part digilentinc.com:nexys4:part0:1.1 [current_project]
+set_property board_part xilinx.com:ac701:part0:1.4 [current_project]
 set_property ip_repo_paths {
   /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/ip_repo/DCTs_1.0
   /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/ip_repo/DCT_Kernel_1.0
@@ -71,10 +72,10 @@ set_property used_in_implementation false [get_files -all /run/media/moinocencio
 set_property used_in_implementation false [get_files -all /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1_board.xdc]
 set_property used_in_implementation false [get_files -all /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1.xdc]
 set_property used_in_implementation false [get_files -all /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1_ooc.xdc]
-set_property used_in_implementation false [get_files -all /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_xbar_1/DCTCop_xbar_1_ooc.xdc]
 set_property used_in_implementation false [get_files -all /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1_board.xdc]
 set_property used_in_implementation false [get_files -all /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1_ooc.xdc]
 set_property used_in_implementation false [get_files -all /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1.xdc]
+set_property used_in_implementation false [get_files -all /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_xbar_0/DCTCop_xbar_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/DCTCop_ooc.xdc]
 set_property used_in_implementation false [get_files -all /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_microblaze_0_1/data/mb_bootloop_le.elf]
 
@@ -93,7 +94,7 @@ set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
-synth_design -top DCTCop_wrapper -part xc7a100tcsg324-1
+synth_design -top DCTCop_wrapper -part xc7a200tfbg676-2
 
 
 # disable binary constraint mode for synth run checkpoints

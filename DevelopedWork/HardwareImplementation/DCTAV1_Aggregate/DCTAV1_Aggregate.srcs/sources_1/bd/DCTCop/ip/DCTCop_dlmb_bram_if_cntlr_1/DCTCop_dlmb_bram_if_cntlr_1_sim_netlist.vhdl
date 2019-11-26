@@ -1,11 +1,11 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
--- Date        : Tue Nov 12 20:07:31 2019
+-- Date        : Tue Nov 26 21:51:50 2019
 -- Host        : abencoado running 64-bit Manjaro Linux
--- Command     : write_vhdl -force -mode funcsim -rename_top DCTCop_dlmb_bram_if_cntlr_1 -prefix
---               DCTCop_dlmb_bram_if_cntlr_1_ DCTCop_dlmb_bram_if_cntlr_0_sim_netlist.vhdl
--- Design      : DCTCop_dlmb_bram_if_cntlr_0
+-- Command     : write_vhdl -force -mode funcsim
+--               /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1_sim_netlist.vhdl
+-- Design      : DCTCop_dlmb_bram_if_cntlr_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7a100tcsg324-1
@@ -142,6 +142,8 @@ entity DCTCop_dlmb_bram_if_cntlr_1_lmb_bram_if_cntlr is
   attribute C_UE_FAILING_REGISTERS of DCTCop_dlmb_bram_if_cntlr_1_lmb_bram_if_cntlr : entity is 0;
   attribute C_WRITE_ACCESS : integer;
   attribute C_WRITE_ACCESS of DCTCop_dlmb_bram_if_cntlr_1_lmb_bram_if_cntlr : entity is 2;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of DCTCop_dlmb_bram_if_cntlr_1_lmb_bram_if_cntlr : entity is "lmb_bram_if_cntlr";
 end DCTCop_dlmb_bram_if_cntlr_1_lmb_bram_if_cntlr;
 
 architecture STRUCTURE of DCTCop_dlmb_bram_if_cntlr_1_lmb_bram_if_cntlr is
@@ -447,7 +449,7 @@ entity DCTCop_dlmb_bram_if_cntlr_1 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of DCTCop_dlmb_bram_if_cntlr_1 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of DCTCop_dlmb_bram_if_cntlr_1 : entity is "DCTCop_dlmb_bram_if_cntlr_0,lmb_bram_if_cntlr,{}";
+  attribute CHECK_LICENSE_TYPE of DCTCop_dlmb_bram_if_cntlr_1 : entity is "DCTCop_dlmb_bram_if_cntlr_1,lmb_bram_if_cntlr,{}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of DCTCop_dlmb_bram_if_cntlr_1 : entity is "yes";
   attribute x_core_info : string;
@@ -539,7 +541,7 @@ architecture STRUCTURE of DCTCop_dlmb_bram_if_cntlr_1 is
   attribute x_interface_parameter of BRAM_Rst_A : signal is "XIL_INTERFACENAME BRAM_PORT, MEM_SIZE 65536, MASTER_TYPE BRAM_CTRL, MEM_WIDTH 32, MEM_ECC NONE, READ_LATENCY 1";
   attribute x_interface_info of LMB_AddrStrobe : signal is "xilinx.com:interface:lmb:1.0 SLMB ADDRSTROBE";
   attribute x_interface_info of LMB_Clk : signal is "xilinx.com:signal:clock:1.0 CLK.LMB_Clk CLK";
-  attribute x_interface_parameter of LMB_Clk : signal is "XIL_INTERFACENAME CLK.LMB_Clk, ASSOCIATED_BUSIF SLMB:SLMB1:SLMB2:SLMB3, ASSOCIATED_RESET LMB_Rst, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN DCTCop_clk_wiz_1_0_clk_out1, INSERT_VIP 0";
+  attribute x_interface_parameter of LMB_Clk : signal is "XIL_INTERFACENAME CLK.LMB_Clk, ASSOCIATED_BUSIF SLMB:SLMB1:SLMB2:SLMB3, ASSOCIATED_RESET LMB_Rst, FREQ_HZ 460000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_1_clk_out1, INSERT_VIP 0";
   attribute x_interface_info of LMB_ReadStrobe : signal is "xilinx.com:interface:lmb:1.0 SLMB READSTROBE";
   attribute x_interface_info of LMB_Rst : signal is "xilinx.com:signal:reset:1.0 RST.LMB_Rst RST";
   attribute x_interface_parameter of LMB_Rst : signal is "XIL_INTERFACENAME RST.LMB_Rst, POLARITY ACTIVE_HIGH, TYPE INTERCONNECT, INSERT_VIP 0";

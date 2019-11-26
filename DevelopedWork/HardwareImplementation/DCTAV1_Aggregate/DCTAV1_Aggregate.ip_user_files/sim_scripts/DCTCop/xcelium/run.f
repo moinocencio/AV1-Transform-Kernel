@@ -66,6 +66,18 @@
   "../../../bd/DCTCop/ipshared/7098/hdl/DCTs_v1_0.vhd" \
   "../../../bd/DCTCop/ip/DCTCop_DCTs_0_1/sim/DCTCop_DCTs_0_1.vhd" \
 -endlib
+-makelib xcelium_lib/lib_pkg_v1_0_2 \
+  "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/0513/hdl/lib_pkg_v1_0_rfs.vhd" \
+-endlib
+-makelib xcelium_lib/lib_srl_fifo_v1_0_2 \
+  "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd" \
+-endlib
+-makelib xcelium_lib/axi_uartlite_v2_0_23 \
+  "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/0315/hdl/axi_uartlite_v2_0_vh_rfs.vhd" \
+-endlib
+-makelib xcelium_lib/xil_defaultlib \
+  "../../../bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/sim/DCTCop_axi_uartlite_0_1.vhd" \
+-endlib
 -makelib xcelium_lib/generic_baseblocks_v2_1_0 \
   "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v" \
 -endlib
@@ -91,20 +103,17 @@
   "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/ace7/hdl/axi_crossbar_v2_1_vl_rfs.v" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
-  "../../../bd/DCTCop/ip/DCTCop_xbar_1/sim/DCTCop_xbar_1.v" \
--endlib
--makelib xcelium_lib/lib_pkg_v1_0_2 \
-  "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/0513/hdl/lib_pkg_v1_0_rfs.vhd" \
--endlib
--makelib xcelium_lib/lib_srl_fifo_v1_0_2 \
-  "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd" \
--endlib
--makelib xcelium_lib/axi_uartlite_v2_0_23 \
-  "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/0315/hdl/axi_uartlite_v2_0_vh_rfs.vhd" \
+  "../../../bd/DCTCop/ip/DCTCop_xbar_0/sim/DCTCop_xbar_0.v" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
-  "../../../bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/sim/DCTCop_axi_uartlite_0_1.vhd" \
   "../../../bd/DCTCop/sim/DCTCop.vhd" \
+-endlib
+-makelib xcelium_lib/axi_protocol_converter_v2_1_19 \
+  "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/c83a/hdl/axi_protocol_converter_v2_1_vl_rfs.v" \
+-endlib
+-makelib xcelium_lib/xil_defaultlib \
+  "../../../bd/DCTCop/ip/DCTCop_auto_pc_0/sim/DCTCop_auto_pc_0.v" \
+  "../../../bd/DCTCop/ip/DCTCop_auto_pc_1/sim/DCTCop_auto_pc_1.v" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   glbl.v

@@ -1,0 +1,76 @@
+%% Generate Tables for Apendix
+close all
+clear all 
+clc
+
+%% Constants
+
+l_terms =  ["_q60_reg_dec.y4m" ...      % Low Quality encoding termination
+            "_q60_10b_dec.y4m" ...
+            "_q60_16b_dec.y4m"];
+
+m_terms =  ["_q25_reg_dec.y4m" ...      % Medium Quality encoding termination
+            "_q25_10b_dec.y4m" ...
+            "_q25_16b_dec.y4m"];
+
+h_terms =  ["_q5_reg_dec.y4m" ...       % High Quality encoding termination
+            "_q5_10b_dec.y4m" ...
+            "_q5_16b_dec.y4m"];
+
+terms =    [l_terms ; ...
+            m_terms ; ...
+            h_terms];
+
+res =      [288 352; ...                % Video Resolutions
+            720 1280; ...
+            1080 1920; ...
+            2160 3840];
+
+nFrames = 5;            
+
+%% Input Paths
+cif_ori_p =["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/CIF/waterfall_cif.y4m" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/CIF/flower_cif.y4m" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/CIF/bridge_close_cif.y4m"];
+cif_p =    ["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/CIF/waterfall" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/CIF/flower" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/CIF/bridge"];
+
+hd_ori_p = ["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/HD/720p50_parkrun_ter.y4m" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/HD/ducks_take_off_420_720p50.y4m" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/HD/720p50_shields_ter.y4m"];
+hd_p =     ["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/HD/parkrun" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/HD/ducks" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/HD/shields"];
+
+fhd_ori_p =["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/FHD/dinner_1080p30.y4m" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/FHD/factory_1080p30.y4m" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/FHD/park_joy_1080p50.y4m"];
+fhd_p =    ["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/FHD/dinner" ... 
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/FHD/factory" ... 
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/FHD/parkjoy"];
+
+uhd_ori_p =["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/UHD/old_town_cross_2160p50.y4m" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/UHD/in_to_tree_2160p50.y4m" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Test_Videos/UHD/crowd_run_2160p50.y4m"];            
+uhd_p =    ["/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/UHD/oldtowncross" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/UHD/intotree" ...
+            "/run/media/moinocencio/Data/Tese/Master-Thesis/Developed_Work/Libaom/Tests/Enc_DecVideos/UHD/crowdrun"];            
+
+ori_p = [cif_ori_p; hd_ori_p; fhd_ori_p; uhd_ori_p];
+v_p = [cif_p; hd_p; fhd_p; uhd_p];
+
+v_p_s = split(v_p,'/');
+v_n = squeeze(v_p_s(:,:,end));          % Video Names
+v_r = squeeze(v_p_s(:,1,end - 1));      % Video Resolutions
+v_q = ["Low" "Medium" "High"];          % Video Quality
+
+s_t = size(terms);
+s_v = size(ori_p);
+
+load compCosBitW.mat PSNR
+load timingAnalW.mat time
+
+str_t = sprintf("\begin{tabular}{ccccc} \toprule\n");
+str_t = str_t + sprintf("\multirow{2}{*}{\textbf{Video}} & \multirow{2}{*}{\textbf{Quality}} & \multicolumn{3}{c}{\textbf{PSNR}} & \multicolumn{2}{c}{\textbf{Time}} \\ \n");
+str_t = str_t + sprintf(" & & \textbf{10} & \textbf{16} & \textbf{Regular} & \textbf{Total} & \textbf{Fwd. Trans} \\ \n");

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Nov 26 22:06:51 2019
+# Process ID: 18014
+# Current directory: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2
+# Command line: vivado -log DCTCop_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source DCTCop_wrapper.tcl
+# Log file: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/DCTCop_wrapper.vds
+# Journal file: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_2/vivado.jou
+#-----------------------------------------------------------
+source DCTCop_wrapper.tcl -notrace

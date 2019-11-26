@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Nov 26 21:49:08 2019
+# Process ID: 11763
+# Current directory: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_axi_uartlite_0_1_synth_1
+# Command line: vivado -log DCTCop_axi_uartlite_0_1.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source DCTCop_axi_uartlite_0_1.tcl
+# Log file: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_axi_uartlite_0_1_synth_1/DCTCop_axi_uartlite_0_1.vds
+# Journal file: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/DCTCop_axi_uartlite_0_1_synth_1/vivado.jou
+#-----------------------------------------------------------
+source DCTCop_axi_uartlite_0_1.tcl -notrace

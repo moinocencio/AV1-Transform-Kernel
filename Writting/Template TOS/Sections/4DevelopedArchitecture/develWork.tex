@@ -228,7 +228,7 @@ Consider an hypothetical operation performed in the software version, where two 
 \begin{figure}[htb]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/multHardware.tex}
-    \caption{Comparison between software and hardware implementation of multiplication, sum and re-scaling}
+    \caption{Comparison between software and hardware implementation of multiplication, sum and re-scaling.}
     \label{fig:hardsoft}
 \end{figure}
 
@@ -257,7 +257,7 @@ A simplified version of \textbf{DCT4}'s hardware implementation is represented i
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/DCT4hardv1.tex}
-    \caption{1D \textbf{DCT4} hardware implementation}
+    \caption{1D \textbf{DCT4} hardware implementation.}
     \label{fig:harddct4v1}
 \end{figure}
 
@@ -272,7 +272,7 @@ As an example, \textbf{DCT8}'s hardware implementation is represented in Figure 
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/DCT8hardv1.tex}
-    \caption{Simplified 1D \textbf{DCT8} hardware implementation, with inclusion of \textbf{DCT4}}
+    \caption{Simplified 1D \textbf{DCT8} hardware implementation, with inclusion of \textbf{DCT4}.}
     \label{fig:harddct8v1}
 \end{figure}
 
@@ -283,7 +283,7 @@ Nonetheless, in order to draw conclusions as to the correct functioning of the i
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/fullDCTv1.tex}
-    \caption{First version of the complete \emph{DCT} wrapper}
+    \caption{First version of the complete \emph{DCT} wrapper.}
     \label{fig:fullv1}
 \end{figure}
 
@@ -296,7 +296,7 @@ To validate this design, a VHDL test bench was built and simulated in \emph{Viva
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/v1timing.tex}
-    \caption{Timing diagram for a test run on the first \emph{DCT} wrapper}
+    \caption{Timing diagram for a test run on the first \emph{DCT} wrapper.}
     \label{fig:v1timing}
 \end{figure}
 
@@ -319,7 +319,7 @@ The utilization results of this design's synthesis into an \emph{Artix 7} FPGA a
         \textbf{Wrapper} & 75805 $(119.57\%)$ & 58370 $(46.03\%)$ \\
         \bottomrule
     \end{tabular}
-    \caption{First developed architecture's utilization in number of LUTs, Registers and percentage of \emph{Artix 7} utilization}
+    \caption{First developed architecture's utilization in number of LUTs, Registers and percentage of \emph{Artix 7} utilization.}
     \label{tab:v1results}
 \end{table}
 
@@ -339,33 +339,36 @@ To achieve this, each individual \textbf{DCTX} apart from \textbf{DCT4} was divi
 \begin{figure}[htb]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/DCT8divv2.tex}
-    \caption{Exemplification of the individual kernel's division for the second implementation}
+    \caption{Exemplification of the individual kernel's division for the second implementation.}
     \label{fig:dct8iv}
 \end{figure}
+
+In Appendices \ref{app:dct81} and \ref{app:dct82} there are presented the implemented VHDL descriptions for both \emph{DCT8} blocks. The following blocks follow the same architecture, varying on the multiplication coefficients and number of stages.
 
 It is important to note that \textbf{DCT8\_P2} inputs and \texttt{en} are hardwired to the bottom four outputs and \texttt{valOut} of \textbf{DCT8\_P1}, respectively. Similar connections are done throughout the whole architecture, as each of the \textbf{DCTX\_P2} stages will always process outputs from the corresponding \textbf{P1} stages. However, the latter may be injected with the systems \texttt{dataIn}'s, or with intermediary coefficients from previous stages. %This behavior is shown in later in this Section.
 
 Depending on the selected size, the input data is injected into one of the \textbf{P1} stages or directly into \textbf{DCT4}. The interconnection of the internal blocks, and corresponding flow of the intermediary coefficients is dealt by a arrangement of multiplexers, that differ from the previous implementation. In this case, this block has a much higher input/output count, as it must control which signals go into each stage, to generate the correct final coefficients as if the \texttt{dataIn}'s passed through a single \textbf{DCT} block. Besides the coefficients, also the intermediary enable signals are dependent of the central unit, since the interconnection of the \texttt{valOut/en} pairs is dependent on the selected vector size.
 
-A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented. As mentioned previously, the system is composed of a single instance of each of the intermediary stages. This makes the achieved architecture similar to a single \textbf{DCT64} block from the first version. In other words, the largest block from the previous implementation had the same set of internal blocks as the newer \emph{Wrapper}, but instantiated in a different manner. 
+A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented. As mentioned previously, the system is composed of a single instance of each of the intermediary stages. This makes the achieved architecture
 
 \begin{landscape}
     \vspace*{\fill}
     \begin{figure}[!htbp]
         \centering
         \input{Sections/4DevelopedArchitecture/Figures/fullDCTv2.tex}
-        \caption{Simplified architecture of the second version of the full \emph{DCT} wrapper}
+        \caption{Simplified architecture of the second version of the full \emph{DCT} wrapper.}
         \label{fig:fullv2}
     \end{figure}
     \vspace*{\fill}        
 \end{landscape}
 
-In this case, since all the internal intermediary points are accessible by the \textbf{Coefficient's Multiplexer}, all the smaller transformations can be calculated with a single kernel of size 64. Figure \ref{fig:v2datapath} demonstrates this behavior. Depending on the selected vector size, the data is sequenced by different blocks, as shown by the different colored lines. The dotted lines represent the enable signals which will be activated at some point of the transformation process.
+\noindent
+similar to a single \textbf{DCT64} block from the first version. In other words, the largest block from the previous implementation had the same set of internal blocks as the newer \emph{Wrapper}, but instantiated in a different manner. In this case, since all the internal intermediary points are accessible by the \textbf{Coefficient's Multiplexer}, all the smaller transformations can be calculated with a single kernel of size 64. Figure \ref{fig:v2datapath} demonstrates this behavior. Depending on the selected vector size, the data is sequenced by different blocks, as shown by the different colored lines. The dotted lines represent the enable signals which will be activated at some point of the transformation process.
 
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/v2datapath.tex}
-    \caption{Flow of \texttt{dataIn} according to the selected vector size}
+    \caption{Flow of \texttt{dataIn} according to the selected vector size.}
     \label{fig:v2datapath}
 \end{figure}
 
@@ -374,7 +377,7 @@ This architecture was subjected to the same test bench as the previous version. 
 \begin{figure}[!htbp]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/v2timing.tex}
-    \caption{Timing diagram for a test run on the second \emph{DCT} wrapper}
+    \caption{Timing diagram for a test run on the second \emph{DCT} wrapper.}
     \label{fig:v2timing}
 \end{figure}
 
@@ -399,7 +402,7 @@ Given the desired behavior was achieved, the architecture was synthesized and im
         \textbf{Wrapper}                    & 50039 $(78.93\%)$        & 32352 $(25.51\%)$          & $50$ \\
         \bottomrule
     \end{tabular}
-    \caption{Second developed architecture's utilization and estimated power consumption on \emph{Artix 7}}
+    \caption{Second developed architecture's utilization and estimated power consumption on \emph{Artix 7}.}
     \label{tab:v2results}
 \end{table}
 
@@ -454,7 +457,7 @@ Figure \ref{fig:axi4int} shows a simplified version of the kernel's integration 
 \begin{figure}[htb]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/v2AXI4.tex}
-    \caption{Simplified description of \emph{DCT Wrapper} with AXI4-Lite interface}
+    \caption{Simplified description of \emph{DCT Wrapper} with AXI4-Lite interface.}
     \label{fig:axi4int}
 \end{figure}
 
@@ -470,7 +473,7 @@ Specifying the desired interfaces, \emph{Vivado} automation routines handle most
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{Sections/4DevelopedArchitecture/Figures/DCTCop.png}
-    \caption{Block design generated by \emph{Vivado} for integration of \emph{DCT Wrapper} with \emph{Microblaze}}
+    \caption{Block design generated by \emph{Vivado} for integration of \emph{DCT Wrapper} with \emph{Microblaze}.}
     \label{fig:blockdes}
 \end{figure}
 
@@ -494,7 +497,7 @@ The most relevant result to measure was the number of clock cycles to calculate 
         \textbf{64}                      & 6390 $(62709)$ & 22 $(216)$         & 5622 $(55172)$ \\
         \bottomrule
     \end{tabular}
-    \caption{Timing results for the \emph{Microblaze} integration design}
+    \caption{Timing results for the \emph{Microblaze} integration design.}
     \label{tab:axi4time}
 \end{table}
 
@@ -514,7 +517,7 @@ On a video encoder, each residue block will suffer several transformations, hori
         $\mathbf{64\times 64}$                      & 161                     & 71                   & 18                   & 4  \\
         \bottomrule
     \end{tabular}
-    \caption{Maximum frame rate for a given resolution, considering fixed square transformation blocks}
+    \caption{Maximum frame rate for a given resolution, considering fixed square transformation blocks.}
     \label{tab:maxfps}
 \end{table}
 

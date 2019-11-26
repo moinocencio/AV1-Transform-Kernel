@@ -1,18 +1,18 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-// Date        : Tue Nov 12 19:41:45 2019
+// Date        : Tue Nov 26 21:52:48 2019
 // Host        : abencoado running 64-bit Manjaro Linux
-// Command     : write_verilog -force -mode funcsim -rename_top DCTCop_rst_clk_wiz_1_100M_1 -prefix
-//               DCTCop_rst_clk_wiz_1_100M_1_ DCTCop_rst_clk_wiz_1_100M_0_sim_netlist.v
-// Design      : DCTCop_rst_clk_wiz_1_100M_0
+// Command     : write_verilog -force -mode funcsim
+//               /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1_sim_netlist.v
+// Design      : DCTCop_rst_clk_wiz_1_100M_1
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
 // Device      : xc7a100tcsg324-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "DCTCop_rst_clk_wiz_1_100M_0,proc_sys_reset,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "proc_sys_reset,Vivado 2019.1" *) 
+(* CHECK_LICENSE_TYPE = "DCTCop_rst_clk_wiz_1_100M_1,proc_sys_reset,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "proc_sys_reset,Vivado 2019.1" *) 
 (* NotValidForBitStream *)
 module DCTCop_rst_clk_wiz_1_100M_1
    (slowest_sync_clk,
@@ -25,8 +25,8 @@ module DCTCop_rst_clk_wiz_1_100M_1
     peripheral_reset,
     interconnect_aresetn,
     peripheral_aresetn);
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 clock CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME clock, ASSOCIATED_RESET mb_reset:bus_struct_reset:interconnect_aresetn:peripheral_aresetn:peripheral_reset, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN DCTCop_clk_wiz_1_0_clk_out1, INSERT_VIP 0" *) input slowest_sync_clk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 ext_reset RST" *) (* x_interface_parameter = "XIL_INTERFACENAME ext_reset, BOARD.ASSOCIATED_PARAM RESET_BOARD_INTERFACE, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input ext_reset_in;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 clock CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME clock, ASSOCIATED_RESET mb_reset:bus_struct_reset:interconnect_aresetn:peripheral_aresetn:peripheral_reset, FREQ_HZ 460000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_1_clk_out1, INSERT_VIP 0" *) input slowest_sync_clk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 ext_reset RST" *) (* x_interface_parameter = "XIL_INTERFACENAME ext_reset, BOARD.ASSOCIATED_PARAM RESET_BOARD_INTERFACE, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *) input ext_reset_in;
   (* x_interface_info = "xilinx.com:signal:reset:1.0 aux_reset RST" *) (* x_interface_parameter = "XIL_INTERFACENAME aux_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input aux_reset_in;
   (* x_interface_info = "xilinx.com:signal:reset:1.0 dbg_reset RST" *) (* x_interface_parameter = "XIL_INTERFACENAME dbg_reset, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *) input mb_debug_sys_rst;
   input dcm_locked;
@@ -69,6 +69,7 @@ module DCTCop_rst_clk_wiz_1_100M_1
         .slowest_sync_clk(slowest_sync_clk));
 endmodule
 
+(* ORIG_REF_NAME = "cdc_sync" *) 
 module DCTCop_rst_clk_wiz_1_100M_1_cdc_sync
    (lpf_asr_reg,
     scndry_out,
@@ -250,6 +251,7 @@ module DCTCop_rst_clk_wiz_1_100M_1_cdc_sync_0
         .O(lpf_exr_reg));
 endmodule
 
+(* ORIG_REF_NAME = "lpf" *) 
 module DCTCop_rst_clk_wiz_1_100M_1_lpf
    (lpf_int,
     slowest_sync_clk,
@@ -398,6 +400,7 @@ endmodule
 (* C_AUX_RESET_HIGH = "1'b0" *) (* C_AUX_RST_WIDTH = "4" *) (* C_EXT_RESET_HIGH = "1'b0" *) 
 (* C_EXT_RST_WIDTH = "4" *) (* C_FAMILY = "artix7" *) (* C_NUM_BUS_RST = "1" *) 
 (* C_NUM_INTERCONNECT_ARESETN = "1" *) (* C_NUM_PERP_ARESETN = "1" *) (* C_NUM_PERP_RST = "1" *) 
+(* ORIG_REF_NAME = "proc_sys_reset" *) 
 module DCTCop_rst_clk_wiz_1_100M_1_proc_sys_reset
    (slowest_sync_clk,
     ext_reset_in,
@@ -514,6 +517,7 @@ module DCTCop_rst_clk_wiz_1_100M_1_proc_sys_reset
         .slowest_sync_clk(slowest_sync_clk));
 endmodule
 
+(* ORIG_REF_NAME = "sequence_psr" *) 
 module DCTCop_rst_clk_wiz_1_100M_1_sequence_psr
    (MB_out,
     Bsr_out,
@@ -557,19 +561,16 @@ module DCTCop_rst_clk_wiz_1_100M_1_sequence_psr
   wire seq_cnt_en;
   wire slowest_sync_clk;
 
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \ACTIVE_LOW_BSR_OUT_DFF[0].FDRE_BSR_N_i_1 
        (.I0(Bsr_out),
         .O(bsr_reg_0));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N_i_1 
        (.I0(Pr_out),
         .O(pr_reg_0));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT2 #(
     .INIT(4'h2)) 
     Core_i_1
@@ -597,7 +598,6 @@ module DCTCop_rst_clk_wiz_1_100M_1_sequence_psr
         .I2(seq_cnt[3]),
         .I3(seq_cnt[5]),
         .O(p_5_out[0]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \bsr_dec[2]_i_1 
@@ -620,7 +620,6 @@ module DCTCop_rst_clk_wiz_1_100M_1_sequence_psr
         .D(p_5_out[2]),
         .Q(\bsr_dec_reg_n_0_[2] ),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT2 #(
     .INIT(4'h2)) 
     bsr_i_1
@@ -635,7 +634,6 @@ module DCTCop_rst_clk_wiz_1_100M_1_sequence_psr
         .D(bsr_i_1_n_0),
         .Q(Bsr_out),
         .S(lpf_int));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
     .INIT(16'h9000)) 
     \core_dec[0]_i_1 
@@ -644,7 +642,6 @@ module DCTCop_rst_clk_wiz_1_100M_1_sequence_psr
         .I2(seq_cnt[3]),
         .I3(seq_cnt[5]),
         .O(\core_dec[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \core_dec[2]_i_1 
@@ -675,7 +672,6 @@ module DCTCop_rst_clk_wiz_1_100M_1_sequence_psr
         .D(\core_dec[2]_i_1_n_0 ),
         .Q(p_0_in),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT2 #(
     .INIT(4'h8)) 
     from_sys_i_1
@@ -698,7 +694,6 @@ module DCTCop_rst_clk_wiz_1_100M_1_sequence_psr
         .I2(seq_cnt[2]),
         .I3(seq_cnt[1]),
         .O(pr_dec0__0));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
     .INIT(16'h0480)) 
     \pr_dec[0]_i_1 
@@ -729,7 +724,6 @@ module DCTCop_rst_clk_wiz_1_100M_1_sequence_psr
         .D(p_3_out[2]),
         .Q(\pr_dec_reg_n_0_[2] ),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT2 #(
     .INIT(4'h2)) 
     pr_i_1
@@ -754,6 +748,7 @@ module DCTCop_rst_clk_wiz_1_100M_1_sequence_psr
         .R(lpf_int));
 endmodule
 
+(* ORIG_REF_NAME = "upcnt_n" *) 
 module DCTCop_rst_clk_wiz_1_100M_1_upcnt_n
    (Q,
     seq_clr,
@@ -776,14 +771,12 @@ module DCTCop_rst_clk_wiz_1_100M_1_upcnt_n
     \q_int[0]_i_1 
        (.I0(Q[0]),
         .O(q_int0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \q_int[1]_i_1 
        (.I0(Q[0]),
         .I1(Q[1]),
         .O(q_int0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \q_int[2]_i_1 
@@ -791,7 +784,6 @@ module DCTCop_rst_clk_wiz_1_100M_1_upcnt_n
         .I1(Q[1]),
         .I2(Q[2]),
         .O(q_int0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \q_int[3]_i_1 
@@ -800,7 +792,6 @@ module DCTCop_rst_clk_wiz_1_100M_1_upcnt_n
         .I2(Q[2]),
         .I3(Q[3]),
         .O(q_int0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \q_int[4]_i_1 

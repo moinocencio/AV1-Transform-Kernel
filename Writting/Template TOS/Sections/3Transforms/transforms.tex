@@ -13,7 +13,7 @@ The objective of this chapter is to give the reader a basic understanding of the
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Basis vector/image interpretation}
+\subsection{Basis Vector/Image Interpretation}
 A useful interpretation, and a good starting point to the study of this process, is to see it as the decomposition of an $N$ length input, $\vec{g}$ as a set of basis vectors (in 1D transforms) or images/matrices (in 2D transforms). The transformation outputs , $\mathcal{G}_i$, can be seen as the weights of each basis vector/image, $\vec{e_i}$, that summed return the restored input, i.e.
 
 \begin{equation}
@@ -144,7 +144,7 @@ Once considered a finite number of points, the previous equations become
 \begin{equation} \label{eq:dfti}
     \restor{\mathbf{G}}(x,y) = \sum_{u=0}^{M-1}\sum_{v=0}^{N-1}\mathcal{G}(u,v)e^{j2\pi \left(\frac{ux}{M}+\frac{vy}{N}\right)}
 \end{equation}
-which corresponds to replacing the kernels in equations \ref{eq:Tmatsum} and \ref{eq:Gmatsum} with
+which correspond to replacing the kernels in equations \ref{eq:Tmatsum} and \ref{eq:Gmatsum} with
 
 \begin{gather}
     f(x,y,u,v) = \frac{1}{MN} e^{-j2\pi \left(\frac{ux}{M}+\frac{vy}{N}\right)} \\
@@ -190,7 +190,7 @@ It is frequently compared to the \emph{DFT}, due to the similarity of their oper
         3 &         \multicolumn{1}{m{0.35\textwidth}}{Keep the first $L$ coefficients\, and set all others to $0$} &         \multicolumn{1}{m{0.35\textwidth}}{Keep the first $L$ coefficients, and set all others to $0$}\\ 
         \bottomrule
     \end{tabular}
-    \caption{Similarity between the processes of the        \emph{DFT} and the \emph{DCT}}
+    \caption{Similarity between the processes of the        \emph{DFT} and the \emph{DCT}.}
     \label{tab:DFTDCT}
 \end{table}
 
@@ -203,34 +203,34 @@ Due to the back-to-head repetition seen in Figure \ref{subfig:dft}, there is a d
         \begin{subfigure}[c]{\textwidth}
             \centering
             \input{Sections/3Transforms/Images/DFTSymmetry.tex}
-            \caption{\emph{DFT}}
+            \caption{}
             \label{subfig:dft}
         \end{subfigure}
         \begin{subfigure}[c]{0.45\textwidth}
             \centering
             \input{Sections/3Transforms/Images/DCT1Symmetry.tex}
-            \caption{\emph{DCT-I}}
+            \caption{}
             \label{subfig:dct1}
         \end{subfigure}
         \begin{subfigure}[c]{0.45\textwidth}
             \centering
             \input{Sections/3Transforms/Images/DCT2Symmetry.tex}
-            \caption{\emph{DCT-II}}
+            \caption{}
             \label{subfig:dct2}
         \end{subfigure}
         \begin{subfigure}[c]{0.45\textwidth}
             \centering
             \input{Sections/3Transforms/Images/DCT3Symmetry.tex}
-            \caption{\emph{DCT-III}}
+            \caption{}
             \label{subfig:dct3}
         \end{subfigure}
         \begin{subfigure}[c]{0.45\textwidth}
             \centering
             \input{Sections/3Transforms/Images/DCT4Symmetry.tex}
-            \caption{\emph{DCT-IV}}
+            \caption{}
             \label{subfig:dct4}
         \end{subfigure}
-        \caption{Sequences generated in the first step of Table \ref{tab:DFTDCT}for the DFT and different DCTs. Filled dots correspond to the original sequence.}
+        \caption{Sequences generated in the first step of Table \ref{tab:DFTDCT}for the DFT and different DCTs. Filled dots correspond to the original sequence ((a) - \emph{DFT}; (b)) - \emph{DCT-I}; (c)) - \emph{DCT-II}; (d)) - \emph{DCT-III}; (e)) - \emph{DCT-IV}).}
     \label{fig:2NSeq}
 \end{figure}
 
@@ -347,7 +347,7 @@ The first analysis of this section was made through the study of the transformat
 \begin{figure}[!htbp]
     \centering
     \input{Sections/3Transforms/Images/libtrans.tex}
-    \caption{Flowchart of the Transform Stage on \emph{libaom}}
+    \caption{Flowchart of the Transform Stage on \emph{libaom}.}
     \label{fig:libtrans}
 \end{figure}
 
@@ -394,21 +394,21 @@ With the forward transformations explained and represented graphically, it's eas
 \begin{figure}[!htbp]
     \centering
     \input{Sections/3Transforms/Images/graphaid.tex}
-    \caption{Graphical aid for Figures \ref{fig:intDCT} and \ref{fig:intADST}}
+    \caption{Graphical aid for Figures \ref{fig:intDCT} and \ref{fig:intADST}.}
     \label{fig:aid}
 \end{figure}
 
 \begin{figure}[!htbp]
     \centering
     \input{Sections/3Transforms/Images/av1_identity.tex}
-    \caption{Description of the Identity transforms in \emph{libaom}}
+    \caption{Description of the Identity transforms in \emph{libaom}.}
     \label{fig:intIDEN}
 \end{figure}
 
 \begin{figure}[!htbp]
     \centering
     \input{Sections/3Transforms/Images/av1_fdct8_new.tex}
-    \caption{Block diagram of \emph{libaom}'s Integer DCT}
+    \caption{Block diagram of \emph{libaom}'s Integer DCT.}
     \label{fig:intDCT}
 \end{figure}
 
@@ -418,7 +418,7 @@ With the forward transformations explained and represented graphically, it's eas
     \begin{figure}[!htpb]
         \centering
         \input{Sections/3Transforms/Images/av1_fadst8_new.tex}
-        \caption{Block diagram of \emph{libaom}'s Integer ADST}
+        \caption{Block diagram of \emph{libaom}'s Integer ADST.}
         \label{fig:intADST}
     \end{figure}
     \vspace*{\fill}        
@@ -459,7 +459,7 @@ The tests were performed on different sequences with various resolutions and enc
                                 &                       &                       & \textit{Crowd Run} \\ 
         \bottomrule
     \end{tabular}
-    \caption{Sequences used for testing}
+    \caption{Sequences used for testing.}
     \label{tab:seqs}
 \end{table}
 
@@ -489,7 +489,7 @@ These results were verified in the performed tests, and are represented in Figur
 \begin{figure}[!htpb]
     \centering
     \includegraphics[width=\textwidth]{Sections/3Transforms/Images/TimingAnalysisAvg.eps}
-    \caption[Average encoding and transform time per resolution, on different quality objectives]{Average encoding and transform time per resolution, on different quality objectives (dark colours represent total encoding time, while lighter are the respective time spent on transform stage)}
+    \caption[Average encoding and transform time per resolution, on different quality objectives]{Average encoding and transform time per resolution, on different quality objectives (dark colours represent total encoding time, while lighter are the respective time spent on transform stage).}
     \label{fig:timeavg}
 \end{figure}
 
@@ -511,7 +511,7 @@ On the distribution of used kernels verified in Figure \ref{fig:kernelavg}, the 
 \begin{figure}[!htpb]
     \centering
     \includegraphics[width=\textwidth]{Sections/3Transforms/Images/kernelAvg.eps}
-    \caption{Average distribution of used kernels, for all resolutions, according to the quality threshold}
+    \caption{Average distribution of used kernels, for all resolutions, according to the quality threshold.}
     \label{fig:kernelavg}
 \end{figure}
 
@@ -520,7 +520,7 @@ A contrary behavior is verified on the transform vector size. As seen in Figure 
 \begin{figure}[!htpb]
     \centering
     \includegraphics[width=\textwidth]{Sections/3Transforms/Images/vectSizAvg.eps}
-    \caption{Average distribution of vector sizes, for all resolutions, according to the quality threshold}
+    \caption{Average distribution of vector sizes, for all resolutions, according to the quality threshold.}
     \label{fig:sizeavg}
 \end{figure}
 
@@ -529,7 +529,7 @@ Although \emph{AV1} supports asymmetric transform blocks, in Figure \ref{fig:squ
 \begin{figure}[!htpb]
     \centering
     \includegraphics[width=\textwidth]{Sections/3Transforms/Images/squareAvg.eps}
-    \caption{Use of square blocks, same kernel for rows and columns, and symmetric kernels, according to the quality threshold}
+    \caption{Use of square blocks, same kernel for rows and columns, and symmetric kernels, according to the quality threshold.}
     \label{fig:squareavg}
 \end{figure}
 
@@ -540,7 +540,7 @@ The final analyzed transform option is the number of bits used in the cosine rep
 \begin{figure}[!htpb]
     \centering
     \includegraphics[width=\textwidth]{Sections/3Transforms/Images/cosBitAvg.eps}
-    \caption{Different number of bits used on the cosine approximations, throughout different quality sets}
+    \caption{Different number of bits used on the cosine approximations, throughout different quality sets.}
     \label{fig:cosbitavg}
 \end{figure}
 
@@ -580,7 +580,7 @@ The workflow of the performed test is represented in Figure \ref{fig:compcosbit}
 \begin{figure}[!htbp]
     \centering
     \input{Sections/3Transforms/Images/compcosbitflow.tex}
-    \caption{Description of the test for comparing impact of number of bits in cosine approximations}
+    \caption{Description of the test for comparing impact of number of bits in cosine approximations.}
     \label{fig:compcosbit}
 \end{figure}
 
@@ -589,7 +589,7 @@ The average results from all resolutions, for each of the quality objectives is 
 \begin{figure}[!htpb]
     \centering
     \includegraphics[width=\textwidth]{Sections/3Transforms/Images/compcosbitAvg.eps}
-    \caption{Obtained quality for each of the quality objectives, and comparison with different cosine bits approximation}
+    \caption{Obtained quality for each of the quality objectives, and comparison with different cosine bits approximation.}
     \label{fig:compcosbitavg}
 \end{figure}
 
@@ -600,22 +600,22 @@ As expected, as \texttt{cq-level} increases, so does the obtained quality. Also,
         \begin{subfigure}[c]{\textwidth}
             \centering
             \includegraphics[height=0.25\textheight]{Sections/3Transforms/Images/lowParkDetail.png}
-            \caption{\texttt{cq-level=60}}
+            \caption{}
             \label{subfig:lowq}
         \end{subfigure}
         \begin{subfigure}[c]{\textwidth}
             \centering
             \includegraphics[height=0.25\textheight]{Sections/3Transforms/Images/medParkDetail.png}
-            \caption{\texttt{cq-level=25}}
+            \caption{}
             \label{subfig:medq}
         \end{subfigure}
         \begin{subfigure}[c]{\textwidth}
             \centering
             \includegraphics[height=0.25\textheight]{Sections/3Transforms/Images/highParkDetail.png}
-            \caption{\texttt{cq-level=5}}
+            \caption{}
             \label{subfig:highq}
         \end{subfigure}
-        \caption{Detail of \emph{Parkjoy} encodes, through different quality objectives}
+        \caption{Detail of \emph{Parkjoy} encodes, through different quality objectives (\texttt{cq-level = }(a) - 60; (b) - 25; (c) - 5).}
     \label{fig:qdiffs}
 \end{figure}
 
@@ -626,7 +626,7 @@ throughout the different \texttt{cq-level}'s (figure \ref{fig:quantavg}), it is 
 \begin{figure}[!htpb]
     \centering
     \includegraphics[width=\textwidth]{Sections/3Transforms/Images/quantizerAvg.eps}
-    \caption{\emph{Quantizer} distribution on different quality objectives}
+    \caption{\emph{Quantizer} distribution on different quality objectives.}
     \label{fig:quantavg}
 \end{figure}
 

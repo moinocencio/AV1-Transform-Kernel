@@ -34,14 +34,14 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DCTCop_rst_clk_
 # IP: bd/DCTCop/ip/DCTCop_DCTs_0_1/DCTCop_DCTs_0_1.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DCTCop_DCTs_0_1 || ORIG_REF_NAME==DCTCop_DCTs_0_1} -quiet] -quiet
 
-# IP: bd/DCTCop/ip/DCTCop_xbar_1/DCTCop_xbar_1.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DCTCop_xbar_1 || ORIG_REF_NAME==DCTCop_xbar_1} -quiet] -quiet
-
 # IP: bd/DCTCop/ip/DCTCop_microblaze_0_axi_periph_1/DCTCop_microblaze_0_axi_periph_1.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DCTCop_microblaze_0_axi_periph_1 || ORIG_REF_NAME==DCTCop_microblaze_0_axi_periph_1} -quiet] -quiet
 
 # IP: bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DCTCop_axi_uartlite_0_1 || ORIG_REF_NAME==DCTCop_axi_uartlite_0_1} -quiet] -quiet
+
+# IP: bd/DCTCop/ip/DCTCop_xbar_0/DCTCop_xbar_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DCTCop_xbar_0 || ORIG_REF_NAME==DCTCop_xbar_0} -quiet] -quiet
 
 # IP: ip/DCTs_0/DCTs_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DCTs_0 || ORIG_REF_NAME==DCTs_0} -quiet] -quiet

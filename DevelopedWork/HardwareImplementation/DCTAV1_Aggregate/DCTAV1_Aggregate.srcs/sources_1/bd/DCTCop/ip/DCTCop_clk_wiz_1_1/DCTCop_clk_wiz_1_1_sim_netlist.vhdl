@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
--- Date        : Wed Nov 13 18:31:48 2019
+-- Date        : Tue Nov 26 21:50:00 2019
 -- Host        : abencoado running 64-bit Manjaro Linux
--- Command     : write_vhdl -force -mode funcsim -rename_top DCTCop_clk_wiz_1_1 -prefix
---               DCTCop_clk_wiz_1_1_ DCTCop_clk_wiz_1_1_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1_sim_netlist.vhdl
 -- Design      : DCTCop_clk_wiz_1_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -17,10 +17,12 @@ use UNISIM.VCOMPONENTS.ALL;
 entity DCTCop_clk_wiz_1_1_DCTCop_clk_wiz_1_1_clk_wiz is
   port (
     clk_out1 : out STD_LOGIC;
-    resetn : in STD_LOGIC;
+    reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of DCTCop_clk_wiz_1_1_DCTCop_clk_wiz_1_1_clk_wiz : entity is "DCTCop_clk_wiz_1_1_clk_wiz";
 end DCTCop_clk_wiz_1_1_DCTCop_clk_wiz_1_1_clk_wiz;
 
 architecture STRUCTURE of DCTCop_clk_wiz_1_1_DCTCop_clk_wiz_1_1_clk_wiz is
@@ -28,7 +30,6 @@ architecture STRUCTURE of DCTCop_clk_wiz_1_1_DCTCop_clk_wiz_1_1_clk_wiz is
   signal clk_out1_DCTCop_clk_wiz_1_1 : STD_LOGIC;
   signal clkfbout_DCTCop_clk_wiz_1_1 : STD_LOGIC;
   signal clkfbout_buf_DCTCop_clk_wiz_1_1 : STD_LOGIC;
-  signal reset_high : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED : STD_LOGIC;
@@ -78,12 +79,12 @@ clkout1_buf: unisim.vcomponents.BUFG
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT_F => 10.000000,
+      CLKFBOUT_MULT_F => 48.875000,
       CLKFBOUT_PHASE => 0.000000,
       CLKFBOUT_USE_FINE_PS => false,
       CLKIN1_PERIOD => 10.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 10.000000,
+      CLKOUT0_DIVIDE_F => 2.125000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,
@@ -113,7 +114,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKOUT6_PHASE => 0.000000,
       CLKOUT6_USE_FINE_PS => false,
       COMPENSATION => "ZHOLD",
-      DIVCLK_DIVIDE => 1,
+      DIVCLK_DIVIDE => 5,
       IS_CLKINSEL_INVERTED => '0',
       IS_PSEN_INVERTED => '0',
       IS_PSINCDEC_INVERTED => '0',
@@ -159,15 +160,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       PSEN => '0',
       PSINCDEC => '0',
       PWRDWN => '0',
-      RST => reset_high
-    );
-mmcm_adv_inst_i_1: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => resetn,
-      O => reset_high
+      RST => reset
     );
 end STRUCTURE;
 library IEEE;
@@ -177,7 +170,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity DCTCop_clk_wiz_1_1 is
   port (
     clk_out1 : out STD_LOGIC;
-    resetn : in STD_LOGIC;
+    reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
   );
@@ -192,6 +185,6 @@ inst: entity work.DCTCop_clk_wiz_1_1_DCTCop_clk_wiz_1_1_clk_wiz
       clk_in1 => clk_in1,
       clk_out1 => clk_out1,
       locked => locked,
-      resetn => resetn
+      reset => reset
     );
 end STRUCTURE;

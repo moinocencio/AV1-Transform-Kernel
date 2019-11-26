@@ -1,7 +1,7 @@
 --Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
---Date        : Thu Nov 14 21:38:00 2019
+--Date        : Tue Nov 26 21:48:53 2019
 --Host        : abencoado running 64-bit Manjaro Linux
 --Command     : generate_target DCTCop_wrapper.bd
 --Design      : DCTCop_wrapper

@@ -11,15 +11,16 @@ vlib riviera/axi_lite_ipif_v3_0_4
 vlib riviera/mdm_v3_2_16
 vlib riviera/lib_cdc_v1_0_2
 vlib riviera/proc_sys_reset_v5_0_13
+vlib riviera/lib_pkg_v1_0_2
+vlib riviera/lib_srl_fifo_v1_0_2
+vlib riviera/axi_uartlite_v2_0_23
 vlib riviera/generic_baseblocks_v2_1_0
 vlib riviera/axi_infrastructure_v1_1_0
 vlib riviera/axi_register_slice_v2_1_19
 vlib riviera/fifo_generator_v13_2_4
 vlib riviera/axi_data_fifo_v2_1_18
 vlib riviera/axi_crossbar_v2_1_20
-vlib riviera/lib_pkg_v1_0_2
-vlib riviera/lib_srl_fifo_v1_0_2
-vlib riviera/axi_uartlite_v2_0_23
+vlib riviera/axi_protocol_converter_v2_1_19
 
 vmap xil_defaultlib riviera/xil_defaultlib
 vmap xpm riviera/xpm
@@ -31,15 +32,16 @@ vmap axi_lite_ipif_v3_0_4 riviera/axi_lite_ipif_v3_0_4
 vmap mdm_v3_2_16 riviera/mdm_v3_2_16
 vmap lib_cdc_v1_0_2 riviera/lib_cdc_v1_0_2
 vmap proc_sys_reset_v5_0_13 riviera/proc_sys_reset_v5_0_13
+vmap lib_pkg_v1_0_2 riviera/lib_pkg_v1_0_2
+vmap lib_srl_fifo_v1_0_2 riviera/lib_srl_fifo_v1_0_2
+vmap axi_uartlite_v2_0_23 riviera/axi_uartlite_v2_0_23
 vmap generic_baseblocks_v2_1_0 riviera/generic_baseblocks_v2_1_0
 vmap axi_infrastructure_v1_1_0 riviera/axi_infrastructure_v1_1_0
 vmap axi_register_slice_v2_1_19 riviera/axi_register_slice_v2_1_19
 vmap fifo_generator_v13_2_4 riviera/fifo_generator_v13_2_4
 vmap axi_data_fifo_v2_1_18 riviera/axi_data_fifo_v2_1_18
 vmap axi_crossbar_v2_1_20 riviera/axi_crossbar_v2_1_20
-vmap lib_pkg_v1_0_2 riviera/lib_pkg_v1_0_2
-vmap lib_srl_fifo_v1_0_2 riviera/lib_srl_fifo_v1_0_2
-vmap axi_uartlite_v2_0_23 riviera/axi_uartlite_v2_0_23
+vmap axi_protocol_converter_v2_1_19 riviera/axi_protocol_converter_v2_1_19
 
 vlog -work xil_defaultlib  -sv2k12 "+incdir+../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/c923" "+incdir+../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/ec67/hdl" \
 "/tools/Xilinx/Vivado/2019.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
@@ -109,6 +111,18 @@ vcom -work xil_defaultlib -93 \
 "../../../bd/DCTCop/ipshared/7098/hdl/DCTs_v1_0.vhd" \
 "../../../bd/DCTCop/ip/DCTCop_DCTs_0_1/sim/DCTCop_DCTs_0_1.vhd" \
 
+vcom -work lib_pkg_v1_0_2 -93 \
+"../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/0513/hdl/lib_pkg_v1_0_rfs.vhd" \
+
+vcom -work lib_srl_fifo_v1_0_2 -93 \
+"../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd" \
+
+vcom -work axi_uartlite_v2_0_23 -93 \
+"../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/0315/hdl/axi_uartlite_v2_0_vh_rfs.vhd" \
+
+vcom -work xil_defaultlib -93 \
+"../../../bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/sim/DCTCop_axi_uartlite_0_1.vhd" \
+
 vlog -work generic_baseblocks_v2_1_0  -v2k5 "+incdir+../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/c923" "+incdir+../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/ec67/hdl" \
 "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v" \
 
@@ -134,20 +148,17 @@ vlog -work axi_crossbar_v2_1_20  -v2k5 "+incdir+../../../../DCTAV1_Aggregate.src
 "../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/ace7/hdl/axi_crossbar_v2_1_vl_rfs.v" \
 
 vlog -work xil_defaultlib  -v2k5 "+incdir+../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/c923" "+incdir+../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/ec67/hdl" \
-"../../../bd/DCTCop/ip/DCTCop_xbar_1/sim/DCTCop_xbar_1.v" \
-
-vcom -work lib_pkg_v1_0_2 -93 \
-"../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/0513/hdl/lib_pkg_v1_0_rfs.vhd" \
-
-vcom -work lib_srl_fifo_v1_0_2 -93 \
-"../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd" \
-
-vcom -work axi_uartlite_v2_0_23 -93 \
-"../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/0315/hdl/axi_uartlite_v2_0_vh_rfs.vhd" \
+"../../../bd/DCTCop/ip/DCTCop_xbar_0/sim/DCTCop_xbar_0.v" \
 
 vcom -work xil_defaultlib -93 \
-"../../../bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/sim/DCTCop_axi_uartlite_0_1.vhd" \
 "../../../bd/DCTCop/sim/DCTCop.vhd" \
+
+vlog -work axi_protocol_converter_v2_1_19  -v2k5 "+incdir+../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/c923" "+incdir+../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/ec67/hdl" \
+"../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/c83a/hdl/axi_protocol_converter_v2_1_vl_rfs.v" \
+
+vlog -work xil_defaultlib  -v2k5 "+incdir+../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/c923" "+incdir+../../../../DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ipshared/ec67/hdl" \
+"../../../bd/DCTCop/ip/DCTCop_auto_pc_0/sim/DCTCop_auto_pc_0.v" \
+"../../../bd/DCTCop/ip/DCTCop_auto_pc_1/sim/DCTCop_auto_pc_1.v" \
 
 vlog -work xil_defaultlib \
 "glbl.v"

@@ -1,0 +1,15 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date         : Tue Nov 26 17:54:16 2019
+| Host         : abencoado running 64-bit Manjaro Linux
+| Command      : report_bus_skew -warn_on_violation -file DCTCop_wrapper_bus_skew_routed.rpt -pb DCTCop_wrapper_bus_skew_routed.pb -rpx DCTCop_wrapper_bus_skew_routed.rpx
+| Design       : DCTCop_wrapper
+| Device       : 7a200t-fbg676
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Bus Skew Report
+
+No bus skew constraints
+

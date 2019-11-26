@@ -1,7 +1,5 @@
 ----------------------------------------------------------------------------------
--- DCT8 Implementation for inetgration with aggregated architecture
---
--- Input and Output Integers
+-- DCT8 Stage 2 Implementation for integration with aggregated architecture
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;

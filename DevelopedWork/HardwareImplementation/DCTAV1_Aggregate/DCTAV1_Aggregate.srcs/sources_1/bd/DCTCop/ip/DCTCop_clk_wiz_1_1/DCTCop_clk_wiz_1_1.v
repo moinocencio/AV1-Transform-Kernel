@@ -56,7 +56,7 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_out1___100.000______0.000______50.0______130.958_____98.575
+// clk_out1___460.000______0.000______50.0______197.656____294.244
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -72,7 +72,7 @@ module DCTCop_clk_wiz_1_1
   // Clock out ports
   output        clk_out1,
   // Status and control signals
-  input         resetn,
+  input         reset,
   output        locked,
  // Clock in ports
   input         clk_in1
@@ -83,7 +83,7 @@ module DCTCop_clk_wiz_1_1
   // Clock out ports  
   .clk_out1(clk_out1),
   // Status and control signals               
-  .resetn(resetn), 
+  .reset(reset), 
   .locked(locked),
  // Clock in ports
   .clk_in1(clk_in1)

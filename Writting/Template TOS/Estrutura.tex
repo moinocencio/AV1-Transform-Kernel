@@ -65,6 +65,22 @@ breaklines=true
 \usepackage{array}
 \newcolumntype{L}{>{\centering\arraybackslash}m{0.35\textwidth}}
 \usepackage{units}
+\lstdefinelanguage{VHDL}{
+   morekeywords={
+     library,use,all,entity,is,port,in,out,end,architecture,of,
+     begin,and
+   },
+   morecomment=[l]--
+}
+ 
+\colorlet{keyword}{blue!100!black!80}
+\colorlet{comment}{green!90!black!90}
+\lstdefinestyle{vhdl}{
+   language     = VHDL,
+   basicstyle   = \ttfamily,
+   keywordstyle = \color{keyword}\bfseries,
+   commentstyle = \color{comment}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % Tikz library and set
@@ -150,8 +166,8 @@ breaklines=true
 % Mine
 \def\ThesisYear{\the\year}
 \def\myName{Miguel Oliveira Inocêncio}
-\def\TituloTese{Co-processador da Transformada para AV1}
-\def\ThesisTitle{AV1 Transform Co-Processor}
+\def\TituloTese{Co-processador da Transformada para o Codificador de Vídeo AV1}
+\def\ThesisTitle{Transform Co-Processor for AV1 Video Coding Standard}
 
 \setlength\bibitemsep{2.5\itemsep}        % Aumenta espaçamento entre entradas da bibliografia
 

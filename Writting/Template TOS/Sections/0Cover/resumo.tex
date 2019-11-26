@@ -3,9 +3,9 @@
   \TEXT{\textbf{Palavras-Chave}}
        {Compressão de Vídeo, AV1, Transformadas, DCT, FPGA}
   \TEXT{\textbf{Resumo}}
-       {Esta dissertação apresenta o estudo efetuado sob o formato de compressão de vídeo \emph{AV1}, no qual se baseia o desenvolvimento de arquiteturas para o módulo da Transformada, nomeadamente, a \emph{DCT}. Das implementações desenvolvidas em software, destaca-se o ganho de $3\%$ em tempo de codificação em relação ao software de referência.}
+       {Esta dissertação apresenta o estudo efetuado sob o formato de compressão de vídeo \emph{AV1}, no qual se baseia o desenvolvimento de arquiteturas para o módulo da Transformada, nomeadamente, a \emph{DCT}. Numa primeira fase foram abordados métodos de otimização do software de referência, tendo em conta as características identificadas nos testes de codificação. Com as modificações efetuadas, foram obtidos ganhos de $3\%$ no tempo de codificação em relação ao encoder original.}
   \TEXT{}
-       {Este algoritmo foi posteriormente implementado em hardware, tendo-se obtido duas variantes implementáveis. Uma das arquiteturas foi sintetizada e testada numa FPGA Nexys 4.}
+       {O algoritmo implementado em software foi posteriormente descrito em VHDL, tendo-se obtido duas variantes implementáveis, sendo que uma destas foi sintetizada e testada numa FPGA Nexys 4, tendo se obtido uma utilização de 78.93\% e um consumo de 50 mW. No kit de hardware onde foi implementada, esta arquitetura tem capacidade para processar vídeo FHD até 71 frames por segundo.}
 \EndTitlePage
 \titlepage\ \endtitlepage % empty page
 
@@ -14,8 +14,8 @@
   \TEXT{\textbf{Keywords}}
        {Video Coding, AV1, Transform Coding, DCT, FPGA}
   \TEXT{\textbf{Abstract}}
-       {This dissertation presents a study made about the \emph{AV1} video coding standard, on which the development of an architecture for the \emph{Transform} stage, namely the \emph{DCT}, was based. With the developed software implementation, a gain of $3\%$ on encoding time was achieved.}
+       {This dissertation presents a study made about the \emph{AV1} video coding standard, on which the development of an architecture for the \emph{Transform} stage, namely the \emph{DCT}, was based. Firstly, some optimization methods were implemented to the reference encoder, accordingly to some exploitable characteristics found on the encoding tests. With the developed software modifications, a gain of $3\%$ on encoding time was achieved, comparing to the original encoder.}
   \TEXT{}
-       {This algorithm was then implemented in hardware, obtaining two implementable architectures. One of which was synthesized and tested on a Nexys 4 FPGA.}
+       {The algorithm implemented in software was then described in VHDL, obtaining two implementable architectures, one of which was synthesized and tested on a Nexys 4 FPGA, obtaining 79.93\% utilization and a 50 mW consumption. On the hardware kit on which it was implemented, this architecture is able to process FHD video up to 71 frames per second.}
 \EndTitlePage
 \titlepage\ \endtitlepage % empty page

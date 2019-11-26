@@ -2,8 +2,8 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Thu Nov 14 21:44:24 2019
-# Process ID: 27141
+# Start of session at: Tue Nov 26 16:26:06 2019
+# Process ID: 14519
 # Current directory: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1
 # Command line: vivado -log DCTCop_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source DCTCop_wrapper.tcl
 # Log file: /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/DCTCop_wrapper.vds
@@ -19,29 +19,29 @@ INFO: [IP_Flow 19-1700] Loaded user IP repository '/run/media/moinocencio/Data/T
 WARNING: [IP_Flow 19-2207] Repository '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/ip_repo/DCT_Kernel_1.0' already exists; ignoring attempt to add it again.
 INFO: [IP_Flow 19-1700] Loaded user IP repository '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/ip_repo/DCT_Kernel_1.0'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2019.1/data/ip'.
-Command: synth_design -top DCTCop_wrapper -part xc7a100tcsg324-1
+Command: synth_design -top DCTCop_wrapper -part xc7a200tfbg676-2
 Starting synth_design
-Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
-INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
-INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Device 21-403] Loading part xc7a200tfbg676-2
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 27233 
+INFO: Helper process launched with PID 14626 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1710.348 ; gain = 153.719 ; free physical = 1770 ; free virtual = 11174
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1741.023 ; gain = 152.688 ; free physical = 2175 ; free virtual = 12768
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'DCTCop_wrapper' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/hdl/DCTCop_wrapper.vhd:23]
 INFO: [Synth 8-3491] module 'DCTCop' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1631' bound to instance 'DCTCop_i' of component 'DCTCop' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/hdl/DCTCop_wrapper.vhd:33]
 INFO: [Synth 8-638] synthesizing module 'DCTCop' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1644]
-INFO: [Synth 8-3491] module 'DCTCop_DCTs_0_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_DCTs_0_1_stub.vhdl:5' bound to instance 'DCTs_0' of component 'DCTCop_DCTs_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1940]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_DCTs_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_DCTs_0_1_stub.vhdl:32]
-INFO: [Synth 8-3491] module 'DCTCop_axi_uartlite_0_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_axi_uartlite_0_1_stub.vhdl:5' bound to instance 'axi_uartlite_0' of component 'DCTCop_axi_uartlite_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1964]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_axi_uartlite_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_axi_uartlite_0_1_stub.vhdl:33]
-INFO: [Synth 8-3491] module 'DCTCop_clk_wiz_1_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_clk_wiz_1_1_stub.vhdl:5' bound to instance 'clk_wiz_1' of component 'DCTCop_clk_wiz_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1989]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_clk_wiz_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_clk_wiz_1_1_stub.vhdl:15]
-INFO: [Synth 8-3491] module 'DCTCop_mdm_1_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_mdm_1_1_stub.vhdl:5' bound to instance 'mdm_1' of component 'DCTCop_mdm_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1996]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_mdm_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_mdm_1_1_stub.vhdl:21]
-INFO: [Synth 8-3491] module 'DCTCop_microblaze_0_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_microblaze_0_1_stub.vhdl:5' bound to instance 'microblaze_0' of component 'DCTCop_microblaze_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2009]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_microblaze_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_microblaze_0_1_stub.vhdl:82]
+INFO: [Synth 8-3491] module 'DCTCop_DCTs_0_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_DCTs_0_1_stub.vhdl:5' bound to instance 'DCTs_0' of component 'DCTCop_DCTs_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1940]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_DCTs_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_DCTs_0_1_stub.vhdl:32]
+INFO: [Synth 8-3491] module 'DCTCop_axi_uartlite_0_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_axi_uartlite_0_1_stub.vhdl:5' bound to instance 'axi_uartlite_0' of component 'DCTCop_axi_uartlite_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1964]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_axi_uartlite_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_axi_uartlite_0_1_stub.vhdl:33]
+INFO: [Synth 8-3491] module 'DCTCop_clk_wiz_1_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_clk_wiz_1_1_stub.vhdl:5' bound to instance 'clk_wiz_1' of component 'DCTCop_clk_wiz_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1989]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_clk_wiz_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_clk_wiz_1_1_stub.vhdl:15]
+INFO: [Synth 8-3491] module 'DCTCop_mdm_1_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_mdm_1_1_stub.vhdl:5' bound to instance 'mdm_1' of component 'DCTCop_mdm_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1996]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_mdm_1_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_mdm_1_1_stub.vhdl:21]
+INFO: [Synth 8-3491] module 'DCTCop_microblaze_0_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_microblaze_0_1_stub.vhdl:5' bound to instance 'microblaze_0' of component 'DCTCop_microblaze_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2009]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_microblaze_0_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_microblaze_0_1_stub.vhdl:82]
 INFO: [Synth 8-638] synthesizing module 'DCTCop_microblaze_0_axi_periph_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1095]
 INFO: [Synth 8-638] synthesizing module 'm00_couplers_imp_14B8RPX' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:61]
 INFO: [Synth 8-256] done synthesizing module 'm00_couplers_imp_14B8RPX' (1#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:61]
@@ -51,23 +51,23 @@ INFO: [Synth 8-638] synthesizing module 's00_couplers_imp_1A9WVD0' [/run/media/m
 INFO: [Synth 8-256] done synthesizing module 's00_couplers_imp_1A9WVD0' (3#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:831]
 INFO: [Synth 8-638] synthesizing module 's01_couplers_imp_2EQOUT' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:942]
 INFO: [Synth 8-256] done synthesizing module 's01_couplers_imp_2EQOUT' (4#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:942]
-INFO: [Synth 8-3491] module 'DCTCop_xbar_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_xbar_1_stub.vhdl:5' bound to instance 'xbar' of component 'DCTCop_xbar_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1545]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_xbar_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_xbar_1_stub.vhdl:51]
+INFO: [Synth 8-3491] module 'DCTCop_xbar_0' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_xbar_0_stub.vhdl:5' bound to instance 'xbar' of component 'DCTCop_xbar_0' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1545]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_xbar_0' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_xbar_0_stub.vhdl:51]
 INFO: [Synth 8-256] done synthesizing module 'DCTCop_microblaze_0_axi_periph_1' (5#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1095]
 INFO: [Synth 8-638] synthesizing module 'microblaze_0_local_memory_imp_DAEQT3' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:252]
-INFO: [Synth 8-3491] module 'DCTCop_dlmb_bram_if_cntlr_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_dlmb_bram_if_cntlr_1_stub.vhdl:5' bound to instance 'dlmb_bram_if_cntlr' of component 'DCTCop_dlmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:466]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_dlmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_dlmb_bram_if_cntlr_1_stub.vhdl:31]
-INFO: [Synth 8-3491] module 'DCTCop_dlmb_v10_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_dlmb_v10_1_stub.vhdl:5' bound to instance 'dlmb_v10' of component 'DCTCop_dlmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:520]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_dlmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_dlmb_v10_1_stub.vhdl:36]
-INFO: [Synth 8-3491] module 'DCTCop_ilmb_bram_if_cntlr_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_ilmb_bram_if_cntlr_1_stub.vhdl:5' bound to instance 'ilmb_bram_if_cntlr' of component 'DCTCop_ilmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:548]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_ilmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_ilmb_bram_if_cntlr_1_stub.vhdl:31]
-INFO: [Synth 8-3491] module 'DCTCop_ilmb_v10_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_ilmb_v10_1_stub.vhdl:5' bound to instance 'ilmb_v10' of component 'DCTCop_ilmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:602]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_ilmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_ilmb_v10_1_stub.vhdl:36]
-INFO: [Synth 8-3491] module 'DCTCop_lmb_bram_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_lmb_bram_1_stub.vhdl:5' bound to instance 'lmb_bram' of component 'DCTCop_lmb_bram_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:630]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_lmb_bram_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_lmb_bram_1_stub.vhdl:27]
+INFO: [Synth 8-3491] module 'DCTCop_dlmb_bram_if_cntlr_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_dlmb_bram_if_cntlr_1_stub.vhdl:5' bound to instance 'dlmb_bram_if_cntlr' of component 'DCTCop_dlmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:466]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_dlmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_dlmb_bram_if_cntlr_1_stub.vhdl:31]
+INFO: [Synth 8-3491] module 'DCTCop_dlmb_v10_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_dlmb_v10_1_stub.vhdl:5' bound to instance 'dlmb_v10' of component 'DCTCop_dlmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:520]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_dlmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_dlmb_v10_1_stub.vhdl:36]
+INFO: [Synth 8-3491] module 'DCTCop_ilmb_bram_if_cntlr_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_ilmb_bram_if_cntlr_1_stub.vhdl:5' bound to instance 'ilmb_bram_if_cntlr' of component 'DCTCop_ilmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:548]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_ilmb_bram_if_cntlr_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_ilmb_bram_if_cntlr_1_stub.vhdl:31]
+INFO: [Synth 8-3491] module 'DCTCop_ilmb_v10_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_ilmb_v10_1_stub.vhdl:5' bound to instance 'ilmb_v10' of component 'DCTCop_ilmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:602]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_ilmb_v10_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_ilmb_v10_1_stub.vhdl:36]
+INFO: [Synth 8-3491] module 'DCTCop_lmb_bram_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_lmb_bram_1_stub.vhdl:5' bound to instance 'lmb_bram' of component 'DCTCop_lmb_bram_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:630]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_lmb_bram_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_lmb_bram_1_stub.vhdl:27]
 INFO: [Synth 8-256] done synthesizing module 'microblaze_0_local_memory_imp_DAEQT3' (6#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:252]
-INFO: [Synth 8-3491] module 'DCTCop_rst_clk_wiz_1_100M_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_rst_clk_wiz_1_100M_1_stub.vhdl:5' bound to instance 'rst_clk_wiz_1_100M' of component 'DCTCop_rst_clk_wiz_1_100M_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2194]
-INFO: [Synth 8-638] synthesizing module 'DCTCop_rst_clk_wiz_1_100M_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-27141-abencoado/realtime/DCTCop_rst_clk_wiz_1_100M_1_stub.vhdl:21]
+INFO: [Synth 8-3491] module 'DCTCop_rst_clk_wiz_1_100M_1' declared at '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_rst_clk_wiz_1_100M_1_stub.vhdl:5' bound to instance 'rst_clk_wiz_1_100M' of component 'DCTCop_rst_clk_wiz_1_100M_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:2194]
+INFO: [Synth 8-638] synthesizing module 'DCTCop_rst_clk_wiz_1_100M_1' [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/.Xil/Vivado-14519-abencoado/realtime/DCTCop_rst_clk_wiz_1_100M_1_stub.vhdl:21]
 INFO: [Synth 8-256] done synthesizing module 'DCTCop' (7#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/synth/DCTCop.vhd:1644]
 INFO: [Synth 8-256] done synthesizing module 'DCTCop_wrapper' (8#1) [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/hdl/DCTCop_wrapper.vhd:23]
 WARNING: [Synth 8-3331] design s01_couplers_imp_2EQOUT has unconnected port M_ACLK
@@ -95,7 +95,7 @@ WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected 
 WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S01_ACLK
 WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S01_ARESETN
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1772.066 ; gain = 215.438 ; free physical = 1791 ; free virtual = 11197
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1802.742 ; gain = 214.406 ; free physical = 2194 ; free virtual = 12792
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -108,10 +108,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1775.035 ; gain = 218.406 ; free physical = 1804 ; free virtual = 11211
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1805.711 ; gain = 217.375 ; free physical = 2190 ; free virtual = 12790
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1775.035 ; gain = 218.406 ; free physical = 1804 ; free virtual = 11211
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1805.711 ; gain = 217.375 ; free physical = 2190 ; free virtual = 12790
 ---------------------------------------------------------------------------------
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
@@ -119,47 +119,47 @@ Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_microblaze_0_1/DCTCop_microblaze_0_1/DCTCop_microblaze_0_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0'
 Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_microblaze_0_1/DCTCop_microblaze_0_1/DCTCop_microblaze_0_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0'
-Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1/DCTCop_ilmb_v10_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_v10'
-Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1/DCTCop_ilmb_v10_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_v10'
-Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_v10_1/DCTCop_ilmb_v10_1/DCTCop_ilmb_v10_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_v10'
-Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_v10_1/DCTCop_ilmb_v10_1/DCTCop_ilmb_v10_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_v10'
-Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_bram_if_cntlr'
-Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_bram_if_cntlr'
-Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_bram_if_cntlr'
-Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_bram_if_cntlr'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_v10'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_v10'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_v10_1/DCTCop_ilmb_v10_1/DCTCop_dlmb_v10_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_v10'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_v10_1/DCTCop_ilmb_v10_1/DCTCop_dlmb_v10_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_v10'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_bram_if_cntlr'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/dlmb_bram_if_cntlr'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_bram_if_cntlr'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_ilmb_bram_if_cntlr_1/DCTCop_dlmb_bram_if_cntlr_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/ilmb_bram_if_cntlr'
 Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_lmb_bram_1/DCTCop_lmb_bram_1/DCTCop_lmb_bram_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/lmb_bram'
 Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_lmb_bram_1/DCTCop_lmb_bram_1/DCTCop_lmb_bram_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_local_memory/lmb_bram'
-Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_mdm_1_1/DCTCop_mdm_1_1/DCTCop_mdm_1_0_in_context.xdc] for cell 'DCTCop_i/mdm_1'
-Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_mdm_1_1/DCTCop_mdm_1_1/DCTCop_mdm_1_0_in_context.xdc] for cell 'DCTCop_i/mdm_1'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_mdm_1_1/DCTCop_mdm_1_1/DCTCop_mdm_1_1_in_context.xdc] for cell 'DCTCop_i/mdm_1'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_mdm_1_1/DCTCop_mdm_1_1/DCTCop_mdm_1_1_in_context.xdc] for cell 'DCTCop_i/mdm_1'
 Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1_in_context.xdc] for cell 'DCTCop_i/clk_wiz_1'
 Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1_in_context.xdc] for cell 'DCTCop_i/clk_wiz_1'
-Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_0_in_context.xdc] for cell 'DCTCop_i/rst_clk_wiz_1_100M'
-Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_0_in_context.xdc] for cell 'DCTCop_i/rst_clk_wiz_1_100M'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1_in_context.xdc] for cell 'DCTCop_i/rst_clk_wiz_1_100M'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1/DCTCop_rst_clk_wiz_1_100M_1_in_context.xdc] for cell 'DCTCop_i/rst_clk_wiz_1_100M'
 Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_DCTs_0_1/DCTCop_DCTs_0_1/DCTCop_DCTs_0_1_in_context.xdc] for cell 'DCTCop_i/DCTs_0'
 Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_DCTs_0_1/DCTCop_DCTs_0_1/DCTCop_DCTs_0_1_in_context.xdc] for cell 'DCTCop_i/DCTs_0'
-Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_xbar_1/DCTCop_xbar_1/DCTCop_xbar_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_axi_periph/xbar'
-Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_xbar_1/DCTCop_xbar_1/DCTCop_xbar_1_in_context.xdc] for cell 'DCTCop_i/microblaze_0_axi_periph/xbar'
 Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1_in_context.xdc] for cell 'DCTCop_i/axi_uartlite_0'
 Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1/DCTCop_axi_uartlite_0_1_in_context.xdc] for cell 'DCTCop_i/axi_uartlite_0'
+Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_xbar_0/DCTCop_xbar_0/DCTCop_xbar_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_axi_periph/xbar'
+Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_xbar_0/DCTCop_xbar_0/DCTCop_xbar_0_in_context.xdc] for cell 'DCTCop_i/microblaze_0_axi_periph/xbar'
 Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1885.645 ; gain = 0.000 ; free physical = 1716 ; free virtual = 11124
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1919.352 ; gain = 0.000 ; free physical = 2087 ; free virtual = 12689
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1885.645 ; gain = 0.000 ; free physical = 1716 ; free virtual = 11124
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1919.352 ; gain = 0.000 ; free physical = 2087 ; free virtual = 12689
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'DCTCop_i/microblaze_0_local_memory/lmb_bram' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1783 ; free virtual = 11197
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2164 ; free virtual = 12767
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
-Loading part: xc7a100tcsg324-1
+Loading part: xc7a200tfbg676-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1783 ; free virtual = 11197
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2164 ; free virtual = 12767
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -177,14 +177,14 @@ Applied set_property DONT_TOUCH = true for DCTCop_i/mdm_1. (constraint file  aut
 Applied set_property DONT_TOUCH = true for DCTCop_i/clk_wiz_1. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for DCTCop_i/rst_clk_wiz_1_100M. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for DCTCop_i/DCTs_0. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_axi_periph/xbar. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_axi_periph. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for DCTCop_i/axi_uartlite_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for DCTCop_i/microblaze_0_axi_periph/xbar. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1783 ; free virtual = 11197
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2164 ; free virtual = 12767
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1781 ; free virtual = 11197
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2163 ; free virtual = 12770
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -210,8 +210,8 @@ Finished RTL Hierarchical Component Statistics
 Start Part Resource Summary
 ---------------------------------------------------------------------------------
 Part Resources:
-DSPs: 240 (col length:80)
-BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+DSPs: 740 (col length:100)
+BRAMs: 730 (col length: RAMB18 100 RAMB36 50)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
@@ -228,7 +228,7 @@ WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected 
 WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S01_ACLK
 WARNING: [Synth 8-3331] design DCTCop_microblaze_0_axi_periph_1 has unconnected port S01_ARESETN
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1775 ; free virtual = 11196
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2156 ; free virtual = 12768
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -246,13 +246,13 @@ INFO: [Synth 8-5578] Moved timing constraint from pin 'DCTCop_i/mdm_1/Dbg_Update
 INFO: [Synth 8-5578] Moved timing constraint from pin 'DCTCop_i/clk_wiz_1/clk_out1' to pin 'DCTCop_i/clk_wiz_1/bbstub_clk_out1/O'
 INFO: [Synth 8-5819] Moved 5 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1603 ; free virtual = 11049
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:20 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2031 ; free virtual = 12647
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1603 ; free virtual = 11049
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:20 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2031 ; free virtual = 12647
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -264,7 +264,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1602 ; free virtual = 11048
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:20 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2032 ; free virtual = 12648
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -288,7 +288,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1602 ; free virtual = 11049
+Finished IO Insertion : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2032 ; free virtual = 12648
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -301,7 +301,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1602 ; free virtual = 11049
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2032 ; free virtual = 12648
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -313,25 +313,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1602 ; free virtual = 11049
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2032 ; free virtual = 12648
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1602 ; free virtual = 11049
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2032 ; free virtual = 12648
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1602 ; free virtual = 11049
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2032 ; free virtual = 12648
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1601 ; free virtual = 11048
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2032 ; free virtual = 12648
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -341,7 +341,7 @@ Report BlackBoxes:
 +------+----------------------------+----------+
 |      |BlackBox name               |Instances |
 +------+----------------------------+----------+
-|1     |DCTCop_xbar_1               |         1|
+|1     |DCTCop_xbar_0               |         1|
 |2     |DCTCop_DCTs_0_1             |         1|
 |3     |DCTCop_axi_uartlite_0_1     |         1|
 |4     |DCTCop_clk_wiz_1_1          |         1|
@@ -370,7 +370,7 @@ Report Cell Usage:
 |9     |DCTCop_mdm_1_1_bbox_3               |     1|
 |10    |DCTCop_microblaze_0_1_bbox_4        |     1|
 |11    |DCTCop_rst_clk_wiz_1_100M_1_bbox_11 |     1|
-|12    |DCTCop_xbar_1_bbox_5                |     1|
+|12    |DCTCop_xbar_0_bbox_5                |     1|
 |13    |IBUF                                |     2|
 |14    |OBUF                                |     1|
 +------+------------------------------------+------+
@@ -385,25 +385,25 @@ Report Instance Areas:
 |4     |    microblaze_0_local_memory |microblaze_0_local_memory_imp_DAEQT3 |   496|
 +------+------------------------------+-------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1888.613 ; gain = 331.984 ; free physical = 1601 ; free virtual = 11048
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1922.320 ; gain = 333.984 ; free physical = 2032 ; free virtual = 12648
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1888.613 ; gain = 218.406 ; free physical = 1655 ; free virtual = 11102
-Synthesis Optimization Complete : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1888.621 ; gain = 331.984 ; free physical = 1670 ; free virtual = 11116
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1922.320 ; gain = 217.375 ; free physical = 2085 ; free virtual = 12701
+Synthesis Optimization Complete : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 1922.328 ; gain = 333.984 ; free physical = 2100 ; free virtual = 12716
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1888.621 ; gain = 0.000 ; free physical = 1605 ; free virtual = 11052
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1922.328 ; gain = 0.000 ; free physical = 2032 ; free virtual = 12648
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
 63 Infos, 35 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:29 ; elapsed = 00:00:32 . Memory (MB): peak = 1888.621 ; gain = 541.125 ; free physical = 1692 ; free virtual = 11139
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1888.621 ; gain = 0.000 ; free physical = 1692 ; free virtual = 11139
+synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1922.328 ; gain = 574.805 ; free physical = 2122 ; free virtual = 12738
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1922.328 ; gain = 0.000 ; free physical = 2122 ; free virtual = 12738
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.runs/synth_1/DCTCop_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file DCTCop_wrapper_utilization_synth.rpt -pb DCTCop_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Nov 14 21:45:12 2019...
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 26 16:26:47 2019...

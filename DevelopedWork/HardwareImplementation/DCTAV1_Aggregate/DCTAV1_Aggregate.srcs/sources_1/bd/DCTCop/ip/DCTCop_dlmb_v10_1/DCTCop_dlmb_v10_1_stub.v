@@ -1,11 +1,11 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-// Date        : Tue Nov 12 19:37:12 2019
+// Date        : Tue Nov 26 21:50:50 2019
 // Host        : abencoado running 64-bit Manjaro Linux
-// Command     : write_verilog -force -mode synth_stub -rename_top DCTCop_dlmb_v10_1 -prefix
-//               DCTCop_dlmb_v10_1_ DCTCop_ilmb_v10_0_stub.v
-// Design      : DCTCop_ilmb_v10_0
+// Command     : write_verilog -force -mode synth_stub
+//               /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_dlmb_v10_1/DCTCop_dlmb_v10_1_stub.v
+// Design      : DCTCop_dlmb_v10_1
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1
 // --------------------------------------------------------------------------------

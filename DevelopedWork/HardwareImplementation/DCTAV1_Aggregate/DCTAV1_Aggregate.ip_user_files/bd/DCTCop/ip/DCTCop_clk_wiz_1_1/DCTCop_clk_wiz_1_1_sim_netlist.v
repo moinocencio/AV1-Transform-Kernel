@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-// Date        : Wed Nov 13 18:31:47 2019
+// Date        : Tue Nov 26 18:08:02 2019
 // Host        : abencoado running 64-bit Manjaro Linux
-// Command     : write_verilog -force -mode funcsim -rename_top DCTCop_clk_wiz_1_1 -prefix
-//               DCTCop_clk_wiz_1_1_ DCTCop_clk_wiz_1_1_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               /run/media/moinocencio/Data/Tese/Master-Thesis/DevelopedWork/HardwareImplementation/DCTAV1_Aggregate/DCTAV1_Aggregate.srcs/sources_1/bd/DCTCop/ip/DCTCop_clk_wiz_1_1/DCTCop_clk_wiz_1_1_sim_netlist.v
 // Design      : DCTCop_clk_wiz_1_1
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -15,33 +15,34 @@
 (* NotValidForBitStream *)
 module DCTCop_clk_wiz_1_1
    (clk_out1,
-    resetn,
+    reset,
     locked,
     clk_in1);
   output clk_out1;
-  input resetn;
+  input reset;
   output locked;
   input clk_in1;
 
   (* IBUF_LOW_PWR *) wire clk_in1;
   wire clk_out1;
   wire locked;
-  wire resetn;
+  wire reset;
 
   DCTCop_clk_wiz_1_1_DCTCop_clk_wiz_1_1_clk_wiz inst
        (.clk_in1(clk_in1),
         .clk_out1(clk_out1),
         .locked(locked),
-        .resetn(resetn));
+        .reset(reset));
 endmodule
 
+(* ORIG_REF_NAME = "DCTCop_clk_wiz_1_1_clk_wiz" *) 
 module DCTCop_clk_wiz_1_1_DCTCop_clk_wiz_1_1_clk_wiz
    (clk_out1,
-    resetn,
+    reset,
     locked,
     clk_in1);
   output clk_out1;
-  input resetn;
+  input reset;
   output locked;
   input clk_in1;
 
@@ -52,8 +53,7 @@ module DCTCop_clk_wiz_1_1_DCTCop_clk_wiz_1_1_clk_wiz
   wire clkfbout_DCTCop_clk_wiz_1_1;
   wire clkfbout_buf_DCTCop_clk_wiz_1_1;
   wire locked;
-  wire reset_high;
-  wire resetn;
+  wire reset;
   wire NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED;
@@ -171,12 +171,7 @@ module DCTCop_clk_wiz_1_1_DCTCop_clk_wiz_1_1_clk_wiz
         .PSEN(1'b0),
         .PSINCDEC(1'b0),
         .PWRDWN(1'b0),
-        .RST(reset_high));
-  LUT1 #(
-    .INIT(2'h1)) 
-    mmcm_adv_inst_i_1
-       (.I0(resetn),
-        .O(reset_high));
+        .RST(reset));
 endmodule
 `ifndef GLBL
 `define GLBL
