@@ -14,7 +14,7 @@ The objective of this chapter is to give the reader a basic understanding of the
 \section{Background}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Basis Vector/Image Interpretation}
-A useful interpretation, and a good starting point to the study of this process, is to see it as the decomposition of an $N$ length input, $\vec{g}$ as a set of basis vectors (in 1D transforms) or images/matrices (in 2D transforms). The transformation outputs , $\mathcal{G}_i$, can be seen as the weights of each basis vector/image, $\vec{e_i}$, that summed return the restored input, i.e.
+A useful interpretation, and a good starting point to the study of this process, is to see it as the decomposition of an $N$ length input, $\vec{g}$ as a set of basis vectors (in 1D transforms) or images/matrices (in 2D transforms). The transformation outputs , $\mathcal{G}_i$, can be seen as the weights of each basis vector/image, $\vec{e_i}$, that summed return the restored input, $\restor{g}$, i.e.
 
 \begin{equation}
     \vec{\restor{g}} = \sum_{i=0}^{N-1} \mathcal{G}_i \vec{e_i}
@@ -32,7 +32,7 @@ Since each input vector will have different correlation values between the vario
     \item Signaling of the most important basis vectors.
 \end{itemize}
 
-Considering a 2D image, $\mathbf{X}(x,y)$, and its corresponding transformed coefficients, $\mathcal{G}(u,v)$, where $(x,y)$ are the pixel coordinates, and $(u,v)$ are the corresponding coordinates in the transform domain, we can obtain an analogous version of equation \ref{eq:coef_vec} as
+Considering a 2D image, $\mathbf{G}(x,y)$, and its corresponding transformed coefficients, $\mathcal{G}(u,v)$, where $(x,y)$ are the pixel coordinates, and $(u,v)$ are the corresponding coordinates in the transform domain, we can obtain an analogous version of Equation \ref{eq:coef_vec} as
 
 \begin{equation} \label{eq:Tmatsum}
     \mathcal{G}(u,v) = \sum_{x=0}^{M-1}\sum_{y=0}^{N-1}\mathbf{G}(x,y)f(x,y,u,v)
@@ -65,7 +65,7 @@ This aspect is applicable if the following conditions are applied
     i(x,y,u,v)=i_1(x,u)i_2(y,v)
 \end{equation}
 
-This means that the equation \ref{eq:Tmatsum} is reconstructed as 2 independent and sequential operations
+This means that the Equation \ref{eq:Tmatsum} is reconstructed as 2 independent and sequential operations
 
 \begin{gather}
     \mathcal{G}_{temp}(x,v) = \sum_{y=0}^{N-1}\mathbf{G}(x,y)f_2(y,v) \\
@@ -77,7 +77,7 @@ On AV1, due to the various implemented transformation kernels, this aspect is se
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Symmetry}
 
-Taking equation \ref{eq:fwf1f2}, a transformation kernel is said to be symmetric if 
+Taking Equation \ref{eq:fwf1f2}, a transformation kernel is said to be symmetric if 
 
 \begin{equation}
     f_1(y,v) = f_2(x,u)
@@ -113,7 +113,7 @@ where
             \end{bmatrix}
 \end{equation}
 
-Therefore, the forward and inverse transformation process can be seen as the deconstruction of an input block, into a set of $M \cdot N$ basis images, dependent of the used transformation kernel. As expressed in equations \ref{eq:fwf1f2} and \ref{eq:ini1i2}, this analogy can be made on a 1D space \nocite{shiImageVideoCompression2008}.
+Therefore, the forward and inverse transformation process can be seen as the deconstruction of an input block, into a set of $M \cdot N$ basis images, dependent of the used transformation kernel. As expressed in Equations \ref{eq:fwf1f2} and \ref{eq:ini1i2}, this analogy can be made on a 1D space \nocite{shiImageVideoCompression2008}.
 
 Given a general comprehension of the theoretical principles behind the \emph{Transform} block, now the most common transformation kernels are introduced, with focus on the AV1 video codec.
 
@@ -125,7 +125,7 @@ Given a general comprehension of the theoretical principles behind the \emph{Tra
 
 Although it isn't implemented in video coding, it's widely used in digital signal processing, and many of the used transformation kernels are approximations of this function.
 
-It has it's roots on the \emph{Fourier Transform}, whose forward and inverse transformations are expressed in equations \ref{eq:fourf} and \ref{eq:fouri}, respectively.
+It has it's roots on the \emph{Fourier Transform}, whose forward and inverse transformations are expressed in Equations \ref{eq:fourf} and \ref{eq:fouri}, respectively.
 
 \begin{equation} \label{eq:fourf}
     \mathcal{G}(u,v) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\mathbf{G}(x,y)e^{-j2\pi(ux+vy)} dx \, dy
@@ -151,14 +151,14 @@ which correspond to replacing the kernels in equations \ref{eq:Tmatsum} and \ref
     i(x,y,u,v) = e^{j2\pi \left(\frac{ux}{M}+\frac{vy}{N}\right)}
 \end{gather}
 
-The position of the multiplication factor, $\frac{1}{MN}$, is irrelevant, and in some works is divided into two terms in the forward and inverse kernels, $\frac{1}{M}$ and $\frac{1}{N}$, or even $\frac{1}{\sqrt{MN}}$. \nocite{gonzalezDigitalImageProcessing2018}
+The position of the multiplication factor, $\nicefrac{1}{MN}$, is irrelevant, and in some works is divided into two terms in the forward and inverse kernels, $\nicefrac{1}{M}$ and $\nicefrac{1}{N}$, or even $\nicefrac{1}{\sqrt{MN}}$. \nocite{gonzalezDigitalImageProcessing2018}
 
 Because of the use of complex numbers, this operation tends require a high computational effort, whence its disuse in video coding.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discrete Walsh-Hadamard Transform (WHT)}
 
-This transformation replaces the sum of sines and cosines of the DFT, alternating of positive and negative $1$'s, depending on the binary representation of the inputs.
+This transformation replaces the sum of sines and cosines of the DFT, alternating positive and negative $1$'s, depending on the binary representation of the inputs.
 
 Considering the inputs of the transform to be represented with $K$ bits, where $K-1$ is the most significant bit ($b_{K-1}$), the forward and inverse kernels are represented as
 
@@ -177,9 +177,9 @@ where
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discrete Cosine Transform (DCT)}
 
-The most commonly used transform, the \emph{DCT}, was published by Ahmed et al. in 1974 \cite{ahmedDiscreteCosineTransform1974}. Since then, it has been adopted in a wide range of applications, being the only transform used in the first generations of video codecs, as well as in \emph{still image compression}, being the basis of the \emph{\gls{JPEG}} standard.
+The most commonly used transform, the \emph{DCT}, was published by N. Ahmed et al. in 1974 \cite{ahmedDiscreteCosineTransform1974}. Since then, it has been adopted in a wide range of applications, being the only transform used in the first generations of video codecs, as well as in \emph{still image compression}, being the basis of the \emph{\gls{JPEG}} standard.
 
-It is frequently compared to the \emph{DFT}, due to the similarity of their operation. However, as the name implies, the \emph{DCT} relies on the cosine function to create its basis images, which is a \emph{periodic} and \emph{symmetrically even} function. Therefore, as mentioned by \cite[A. V. Oppenheim]{oppenheimDiscretetimeSignalProcessing1998}, \emph{"Just as the DFT involves an implicit assumption of periodicity, the DCT involves implicit assumptions of both periodicity and even symmetry"}.  This is easily observable once considered the equivalent process of both algorithms. Taking an $L$-point sequence, $g(n)$, the calculation of the \emph{DFT} and \emph{DCT} of such sequence is equivalent to the processes presented at Table \ref{tab:DFTDCT}.
+It is frequently compared to the \emph{DFT}, due to the similarity of their operation. However, as the name implies, the \emph{DCT} relies on the cosine function to create its basis images, which is a \emph{periodic} and \emph{symmetrically even} function. Therefore, as mentioned by A. V. Oppenheim \cite{oppenheimDiscretetimeSignalProcessing1998}, \emph{"Just as the DFT involves an implicit assumption of periodicity, the DCT involves implicit assumptions of both periodicity and even symmetry"}.  This is easily observable once considered the equivalent process of both algorithms. Taking an $L$-point sequence, $g(n)$, the calculation of the \emph{DFT} and \emph{DCT} of such sequence is equivalent to the processes presented at Table \ref{tab:DFTDCT}.
 
 \begin{table}[!htpb]
     \centering
@@ -355,11 +355,11 @@ This stage is controlled by a configuration set, which is chosen according to th
 
 The choosing of these parameters will not be addressed in this work, since \emph{AV1} allows for a great deal of maneuverability to the designer, as to adjust each encoder/decoder pair to the desired application. In this regard, \emph{libaom} allows for a high number of configuration options, that dramatically change the parameters chosen in the transformation stage, as well as in the rest of the system.
 
-Throughout the represented process, many of the operations are done with sequential, iterative processes, e.g., the input vector selection or the flipping operations. Such operations would greatly benefit of a hardware implementation, since they are easily parallelizable, as the objectives of \emph{AV1} suggested. However, on this work, the focus relies of the \emph{T} block, i.e., the transformation itself.
+Throughout the represented process, many of the operations are done with sequential, iterative processes, e.g., the input vector selection or the flipping operations. Such operations would greatly benefit of a hardware implementation, since they are easily parallelizable, as the objectives of \emph{AV1} suggested. However, on this work, the focus relies of the \emph{T} block, i.e., the transformation kernel itself.
 
-Independently of the transformation kernel, the operation is done sequently, in various stages. In each of these, the corresponding intermediary coefficients get calculated as function of two of the previous calculated coefficients. These, in most of the stages, are multiplied by a specific integer approximation of cosine/sine value. Such approximations, as mentioned previously, depend on the number of bits on which they are represented. 
+Independently of the chosen transform, the operation is done sequently, in various stages. In each of these, the corresponding intermediary coefficients get calculated as function of two of the previous calculated coefficients. These, in most of the stages, are multiplied by a specific integer approximation of a cosine/sine value. Such approximations, as mentioned previously, depend on the number of bits on which they are represented. 
 
-The arrays on which the calculated cosine and sine values are stored, \texttt{cospi} and \texttt{sinpi}, respectively, are bi-dimensional. The first dimension, $\texttt{K}$,  has 7 positions, where the first corresponds to 10 bit approximations, and the last to 16 bit. The second dimension, $\texttt{n}$, has 64 positions for \texttt{cospi} and 5 for \texttt{sinpi}, representing the first quadrant of the trigonometric circle. Each position is calculated according to equations \ref{eq:cos} and \ref{eq:sin}, where $n$ represents the position in the array, and $K$ corresponds to the number of bits. Therefore, \verb|cospi[K][0]| corresponds to $\cos(0)$, \verb|cospi[K][63]| is $\cos(63\pi/128)$, and the following positions can also be associated to a certain angle.
+The arrays on which the calculated cosine and sine values are stored, \texttt{cospi} and \texttt{sinpi}, respectively, are bi-dimensional. The first dimension, $\texttt{K}$,  has 7 positions, corresponding to 10 to 16 bits approximations. The second dimension, $\texttt{n}$, has 64 positions for \texttt{cospi} and 5 for \texttt{sinpi}, representing the first quadrant of the trigonometric circle. Each position is calculated according to Equations \ref{eq:cos} and \ref{eq:sin}, where $n$ represents the position in the array, and $K$ corresponds to the number of bits. Therefore, \verb|cospi[K][0]| corresponds to $\cos(0)$, \verb|cospi[K][63]| is $\cos(63\pi/128)$, and the following positions can also be associated to a certain angle.
 
 \begin{equation} \label{eq:cos}
     \texttt{cospi[K][n]} = \nint*{2^{K}\cos\left(\frac{n\pi}{128}\right)}
@@ -371,7 +371,7 @@ The arrays on which the calculated cosine and sine values are stored, \texttt{co
 
 The \texttt{sinpi} array is only used in the shortest length of the \emph{ADST}, which is the reason it only has five positions. All other versions of this kernel use \texttt{cospi} to get the desired value.
 
-Most of the intermediary coefficients inside each stage are calculated with the function \verb|half_btf|, which performs the operation represented in equation \ref{eq:half_btf}. This function takes the two previously calculated coefficients, two values from the previously introduced arrays, as well as the number of bits used to represent these, and maps the result from the multiplications and sum of the first inputs to the desired number of bits.
+Most of the intermediary coefficients inside each stage are calculated with the function \verb|half_btf|, which performs the operation represented in Equation \ref{eq:half_btf}. This function takes the two previously calculated coefficients, two values from the previously introduced approximations arrays, as well as the number of bits used to represent these, and maps the result from the multiplications and sum of the first inputs to the desired number of bits.
 
 \begin{equation} \label{eq:half_btf}
     \texttt{half\_btf(w0, in0, w1, in1, K)} \quad \widehat{=} \quad \nfloor*{\frac{w_0\cdot in_0 + w_1\cdot in_1 + 2^{K -1}}{2^{K}}}
@@ -379,15 +379,15 @@ Most of the intermediary coefficients inside each stage are calculated with the 
 
 Although the code implementation is sequential, the \emph{8 length} transformation kernels are represented in Figures \ref{fig:intDCT} and \ref{fig:intADST} as parallel block diagrams, with the diverse stages in series. While \emph{AV1} accepts \emph{transform block} sizes varying between 4 and 64, the method of transformation is similar between the different sizes.
 
-Both pictures start with the input vector components, i.e., \texttt{x0} to \texttt{x7}. The following sum's represent the addition of the two pointing values, in case the that the arrow guiding these doesn't present any further coefficient. If such is verified, the operation to be realized is the one presented in equation \ref{eq:half_btf}. The value near each arrow is referred to the equivalent \texttt{cospi} position, that multiplies by the result coming from the arrow's origin. Figure \ref{fig:aid} presents a visual aid for the following schematics.
+Both pictures start with the input vector components, i.e., \texttt{x0} to \texttt{x7}. The following sum's represent the addition of the two pointing values, in case the that the arrow guiding these doesn't present any further coefficient. If such is verified, the operation to be realized is the one presented in Equation \ref{eq:half_btf}. The value near each arrow is referred to the equivalent \texttt{cospi} position, that multiplies by the result coming from the arrow's origin. Figure \ref{fig:aid} presents a visual aid for the following schematics.
 
-Both \emph{DCT} and \emph{ADST} are implemented using the method firstly described in 1977 by Wen-Hsiung Chen et. al, in \emph{A Fast Computational Algorithm for the Discrete Cosine Transform} \cite{wen-hsiungchenFastComputationalAlgorithm1977}. This approach consists of sequential \emph{butterfly rotations}, which correspond to the various rotations obtained with the additions and subtractions of nodes of opposite ends. These operations are easily parallelizable, making this approach widely used in most hardware \emph{DCT} implementations to this day, e.g. \cite{songPipeliningHardwareImplementation2010, srivastavaFPGAImplementationPipelined2018a, tejaVerilogImplementationFully2015, subramanianVLSIImplementationFully2010}.
+Both \emph{DCT} and \emph{ADST} are implemented using the method firstly described in 1977 by Wen-Hsiung Chen et. al, in \emph{"A Fast Computational Algorithm for the Discrete Cosine Transform"} \cite{wen-hsiungchenFastComputationalAlgorithm1977}. This approach consists of sequential \emph{butterfly rotations}, which correspond to the various rotations obtained with the additions and subtractions of nodes of opposite ends. These operations are easily parallelizable, making this approach widely used in most hardware \emph{DCT} implementations to this day ()\cite{songPipeliningHardwareImplementation2010, srivastavaFPGAImplementationPipelined2018a, tejaVerilogImplementationFully2015, subramanianVLSIImplementationFully2010}).
 
 The identity transforms, \emph{IDTX}, are the simplest of the ones implemented in \emph{libaom}, since they consist of a scale factor, which varies throughout the transform sizes. On the 4 and 16 length transforms, the scaling factor includes a 12-bit integer approximation of the square root of 2, which is calculated through
 \begin{equation}
     N_{\sqrt{2}}=\nint*{2^{12}\sqrt{2}}=5793
 \end{equation}
-Being so, the input also suffers an additional mapping, similar to the operation in \ref{eq:half_btf}. These operations are demonstrated in Figure \ref{fig:intIDEN}.
+Being so, the input also suffers an additional mapping, similar to the operation in Equation \ref{eq:half_btf}. These operations are demonstrated in Figure \ref{fig:intIDEN}.
 
 With the forward transformations explained and represented graphically, it's easily understandable that the corresponding inverses correspond to the backwards operation in Figures \ref{fig:intIDEN}, \ref{fig:intDCT} and \ref{fig:intADST}. With this, it is meant that only the direction of the arrows change, and the corresponding procedure is done right-to-left, i.e., the output's position, \texttt{y}, is now the input.
 
@@ -427,7 +427,7 @@ With the forward transformations explained and represented graphically, it's eas
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Performance and Statistics Analysis} \label{ssec:performance}
 
-From the obtained understanding of the tools and characteristics of the \emph{Transform} stage, various tests were performed in order to gather information on what were the most commonly used options, and the corresponding impact of such on encoding performance.
+From the obtained understanding of the tools and characteristics of the \emph{Transform} stage, various tests were performed in order to gather information on what were the most commonly used options, and their corresponding impact on encoding performance.
 
 With these tests, it was intended to get to know:
 \begin{itemize}
@@ -436,7 +436,7 @@ With these tests, it was intended to get to know:
     \item bits used on cosine approximation.
 \end{itemize}
 
-For this, \emph{libaom} was modified in order to retrieve these statistics, without impacting the encoding performance. As an additional measure, the timing tests were performed independently from the others, in order to get an accurate result of the encoding performance, since the writing of the transformation options would cause a major impact during the transform stage.
+In order to achieve this, \emph{libaom} was modified in order to retrieve these statistics, without impacting the encoding performance. As an additional measure, the timing tests were performed independently from the others, in order to get an accurate result of the encoding performance, since the writing of the transformation options would cause a major impact to the overall duration of the encode.
 
 The tests were performed on different sequences with various resolutions and encoding difficulties. These were obtained in \emph{Xiph}'s test media \cite{XiphOrgTest}, and are presented in Table \ref{tab:seqs}.
 
@@ -463,11 +463,11 @@ The tests were performed on different sequences with various resolutions and enc
     \label{tab:seqs}
 \end{table}
 
-As mentioned previously in section \ref{ssse:encmod}, the definition of the encoding objectives greatly impacts the performance of the encoder, both in terms of compression gain, and obtained video quality. These objectives are typically defined according to a certain performance or quality metric. \emph{AV1} reference encoder, \emph{aomenc}, provides four different metrics, corresponding to constant or constrained quality (\emph{q} and \emph{cq}) and constant or varying bitrate (\emph{cbr} and \emph{vbr}). These options allow for the easy adaptation of each encode to the corresponding use case. For instance, for a network application, a certain bit rate objective, or range, is more adequate than the definition of a certain quality, since in this case the obtained bit rate may depend on the scene.
+As mentioned previously in Section \ref{ssse:encmod}, the definition of the encoding objectives greatly impacts the performance of the encoder, both in terms of compression gain, and obtained video quality. These objectives are typically defined according to a certain performance or quality metric. \emph{AV1} reference encoder, \emph{aomenc}, provides four different metrics, corresponding to constant or constrained quality (\emph{q} and \emph{cq}) and constant or varying bitrate (\emph{cbr} and \emph{vbr}). These options allow for the easy adaptation of each encode to the corresponding use case. For instance, for a network application, a certain bit rate objective, or range, is more adequate than the definition of a certain quality, since in this case the obtained bit rate may depend on the scene.
 
 For the performed tests, the variation of used tools and performance was evaluated by varying the desired objective on a constant quality mode, which is controlled through a subjective parameter, \texttt{cq-level}. This may vary between 0 and 63, corresponding the latter to the lowest quality encode. Three different quality parameters were tested, \emph{60, 25,} and \emph{5}, corresponding to a \emph{Low}, \emph{Medium} and \emph{High} quality sets, respectively.
 
-Besides the quality objectives, the encoder was also configured to use the highest computing power, \texttt{cpu-used=8}, as well as a single pass encode, \texttt{passes=1}. These options were set in order to get the lowest encoding times, since their impact on the obtained results didn't justify the added complexity.
+Besides the quality objectives, the encoder was also configured to use the highest computing power, \texttt{cpu-used=8}, as well as a single pass encode, \texttt{passes=1}. These options were set in order to get the lowest encoding times, since their impact on the obtained quality didn't justify the added complexity.
 
 The resulting command for configuring \emph{aomenc} for the developed tests, encoding the first 10 frames of each video, becomes
 
@@ -480,7 +480,7 @@ The results presented in the following sections are derived from the test encode
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Timing Analysis} \label{sec:timinganal}
 
-On the performed \emph{AV1} timing analysis, the main aspect to evaluate was the impact of the time spent on \emph{Transform} stage, for different quality thresholds.
+On the performed \emph{AV1} timing analysis, the main aspect to evaluate was the impact of the \emph{Transform} stage on the total encoding time, for different quality thresholds.
 
 For a certain resolution, it is expected that the time spent on this stage remains approximately constant, regardless of the desired quality. Therefore, the higher the total encoding time, the least impact the \emph{Transform} stage would have.
 
@@ -489,7 +489,7 @@ These results were verified in the performed tests, and are represented in Figur
 \begin{figure}[!htpb]
     \centering
     \includegraphics[width=\textwidth]{Sections/3Transforms/Images/TimingAnalysisAvg.eps}
-    \caption[Average encoding and transform time per resolution, on different quality objectives]{Average encoding and transform time per resolution, on different quality objectives (dark colours represent total encoding time, while lighter are the respective time spent on transform stage).}
+    \caption[Average encoding and transform time per resolution, on different quality objectives]{Average encoding and transform time per resolution, on different quality objectives (dark colours represent total encoding time, while lighter are the respective time spent on \emph{Transform} stage).}
     \label{fig:timeavg}
 \end{figure}
 
@@ -497,14 +497,14 @@ In this Figure, each tall bar corresponds to the average time spent per encode, 
 
 As anticipated, the desired quality of each encode plays an important role in the necessary total time, majorly considering the \emph{Low} to \emph{Medium} quality objectives, since the latter, in average, spends \emph{double} the time of the former. However, once considered the \emph{High} quality set, the encoder takes $14 \%$ more time to encode the same sequence on a \emph{Medium} quality objective.
 
-Although these results represent an interesting analysis from a performance standpoint, for the focus of this work, the most interesting analysis comes from the percentage of time spent during the \emph{Transform} stage. As expected, this time stays roughly the same, independently of the quality objective. However its impact to the total encoding time decreases as the quality increases. 
+Although these results represent an interesting analysis from a performance standpoint, for the focus of this work, the most relevant analysis comes from the percentage of time spent during the \emph{Transform} stage. As expected, this time stays roughly the same, independently of the quality objective. However its impact to the total encoding time decreases as the quality increases. On average, the encode spends 17.3\% on the transformation.
 
 This aspect leads to conclude that there is a necessity to develop fast and efficient architectures for the \emph{Transform} block, since it corresponds to a relevant percentage of the total encode time, regardless of the quality. And although lower quality encodes could benefit more of such improvements when comparing to higher qualities, both cases would gain, since such architecture could be used on a high variety of encoders.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Configuration Set Analysis}
 
-This analysis is divided in different segments, dedicated to each of the transform options analyzed. Some of which, although not entirely relevant to the aim of this work, may prove useful for the implementation of different architectures.
+This analysis is divided in different segments, dedicated to each of the transform options analyzed. Some of which, although not entirely relevant for the aim of this work, may prove useful for the implementation of different architectures.
 
 On the distribution of used kernels verified in Figure \ref{fig:kernelavg}, the most relevant aspect is the clear dominance of the \emph{DCT} among the others. However, as quality increases, the distribution starts to spread out.
 
@@ -533,7 +533,7 @@ Although \emph{AV1} supports asymmetric transform blocks, in Figure \ref{fig:squ
     \label{fig:squareavg}
 \end{figure}
 
-This aspect may prove a starting point for improvement of the transform stage, since, as mentioned previously, symmetric transforms may be implemented with \emph{\gls{mm}}. Therefore, using fast \emph{MM} architectures for symmetric blocks, and complementing with the algorithm implemented in \emph{libaom} for asymmetric blocks, the transform time may decrease.
+This aspect may prove as a starting point for improving the \emph{Transform} stage, since, as mentioned previously, symmetric transforms may be implemented with \emph{\gls{mm}}. Therefore, using fast \emph{MM} architectures for symmetric blocks, and complementing with the algorithm implemented in \emph{libaom} for asymmetric blocks, the transform time may decrease.
 
 The final analyzed transform option is the number of bits used in the cosine representation. In Figure \ref{fig:cosbitavg}, the distribution is represented for the different quality objectives. 
 
@@ -556,15 +556,15 @@ Analyzing this information, it may be thought that the number of bits used in th
 
 In this test, besides evaluating the obtained quality for each tested \texttt{cq-level}, the impact of the number of bits in cosine representation also was measured. 
 
-To evaluate the impact of the number of bits used in the cosine approximations, \emph{aomenc} was modified to force either 10 or 16 bits throughout the encoding operation, for both forward ($T$) and inverse transformations ($T^{-1}$). \emph{Aomdec} (reference decoder) may not be modified, since it acts according to the specified \emph{Bitstream Decoding Format} \cite{AV1BitstreamDecoding}. Nonetheless, it uses $12$ bit representation, regardless of the choices made in the decoder.
+To evaluate the impact of the number of bits used in the cosine approximations, \emph{aomenc} was modified to force either 10 or 16 bits throughout the encoding operation, for both forward ($T$) and inverse transformations ($T^{-1}$). \emph{Aomdec} (reference decoder) wasn't modified, since it acts according to the specified \emph{Bitstream Decoding Format} \cite{AV1BitstreamDecoding}. Nonetheless, it uses $12$ bit representation, regardless of the choices made in the decoder.
 
-From the gathered reconstructed sequences, $\restor{\mathbf{G}}$, the \gls{psnr} of each one was calculated, according to equation \ref{eq:psnr}.
+From the gathered reconstructed sequences, $\restor{\mathbf{G}}$, the \gls{psnr} of each one was calculated, according to Equation \ref{eq:psnr}.
 
 \begin{equation} \label{eq:psnr}
     PSNR = 10\;log_{10}\left(\frac{255^2}{MSE}\right)
 \end{equation}
 
-$MSE$ corresponds to the \emph{Mean Squared Error} of the reconstructed video. Considering a single $M \times N$ monochrome frame, this error is given by equation \ref{eq:emsf}.
+$MSE$ corresponds to the \emph{Mean Squared Error} of the reconstructed video. Considering a single $M \times N$ monochrome frame, this error is given by Equation \ref{eq:emsf}.
 
 \begin{equation} \label{eq:emsf}
     MSE = \frac{1}{MN}\sum^{M-1}_{x=0} \sum^{N-1}_{y=0} \left(\mathbf{G_{x,y}} - \restor{\mathbf{G_{x,y}}}\right)^2
@@ -593,7 +593,7 @@ The average results from all resolutions, for each of the quality objectives is 
     \label{fig:compcosbitavg}
 \end{figure}
 
-As expected, as \texttt{cq-level} increases, so does the obtained quality. Also, considering the encoding time differences verified in section \ref{sec:timinganal}, the smaller PSNR gap between \emph{Medium} and \emph{High} qualities was also expected. However, the difference between these two parameters depends on the encoded video, as shown in Figure \ref{fig:qdiffs}, where the difference between \emph{Medium} and \emph{High} encodes is $2 dB$.
+As expected, as \texttt{cq-level} increases, so does the obtained quality. Also, considering the encoding time differences verified in Section \ref{sec:timinganal}, the smaller PSNR gap between \emph{Medium} and \emph{High} qualities was also expected. However, the difference between these two parameters depends on the encoded video, as shown in Figure \ref{fig:qdiffs}, where the difference between \emph{Medium} and \emph{High} encodes is $2 dB$.
 
 \begin{figure}[!htpb]
     \centering 
@@ -619,9 +619,7 @@ As expected, as \texttt{cq-level} increases, so does the obtained quality. Also,
     \label{fig:qdiffs}
 \end{figure}
 
-The differences between obtained PSNRs can be easily explained through analysis of the \emph{Quantization} stage in each quality objective. Looking at the distribution of the \emph{Quantizer/\Gls{qp}} 
-\footnote{Parameter that indicates the \emph{quantization matrix} to use (higher values indicate more severe quantization).}
-throughout the different \texttt{cq-level}'s (figure \ref{fig:quantavg}), it is possible to verify that this stage deeply adapts to the desired quality objective, increasing QP for lower qualities. 
+The differences between obtained PSNRs can be easily explained through analysis of the \emph{Quantization} stage in each quality objective. Looking at the distribution of the \emph{Quantizer} throughout the different \texttt{cq-level}'s (Figure \ref{fig:quantavg}), it is possible to verify that this stage deeply adapts to the desired quality objective, increasing QP for lower qualities. 
 
 \begin{figure}[!htpb]
     \centering
@@ -630,7 +628,7 @@ throughout the different \texttt{cq-level}'s (figure \ref{fig:quantavg}), it is 
     \label{fig:quantavg}
 \end{figure}
 
-However, the differences in the used QP's don't justify the increased encoding time throughout the different quality objectives, since the \emph{Quantization} stage's complexity shouldn't vary depending on the desired quality, similarly to what happens on the \emph{Transform} stage. The time difference is mainly caused in the higher complexity blocks, the \emph{Inter} and \emph{Intra Prediction} stages, as the encoder adapts the processes in these blocks depending on the desired quality. For instance, there is no need for the encoder to make a exceptionally precise prediction, when most of the transform coefficients are discarded.
+However, the differences in the used QP's don't justify the increased encoding time throughout the different quality objectives, since the \emph{Quantization} stage's complexity shouldn't vary too much depending on the desired quality, similarly to what happens on the \emph{Transform} stage. The time difference is mainly caused in the higher complexity blocks, the \emph{Inter} and \emph{Intra Prediction} stages, as the encoder adapts the processes in these blocks depending on the desired quality. For instance, there is no need for the encoder to make a exceptionally precise prediction, when most of the transform coefficients are discarded.
 
 Considering now the obtained quality for each of the three different encodes (\emph{Regular}, \emph{10 bit} and \emph{16 bit}), it is possible to observe that the number of bits on cosine approximation doesn't contribute to the obtained quality, regardless of the desired objective, contrary to what was verified in Figure \ref{fig:cosbitavg}. Accordingly, it would be safe to assume that the cosine approximations could be fixed on a certain number of bits, without major impact to the video quality.
 

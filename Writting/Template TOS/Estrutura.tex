@@ -18,6 +18,10 @@
 \usepackage{xspace}% used by \sigla
 \usepackage{lipsum}
 \usepackage[backend=biber, refsection=chapter, sorting=none, url=false]{biblatex}
+\DeclareFieldFormat{pages}{#1}
+\AtEveryBibitem{%
+  \clearfield{note}%
+}
 \addbibresource{newBib.bib}
 \usepackage{csquotes}
 \usepackage[acronym,nonumberlist]{glossaries}

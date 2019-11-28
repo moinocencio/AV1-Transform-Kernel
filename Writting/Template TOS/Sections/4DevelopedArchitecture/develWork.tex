@@ -8,7 +8,7 @@ The previous chapter presented some characteristics of the current state of \emp
 
 In order to undertake these opportunities, and improve the overall encoder performance, new architectures for the studied stage were developed. The first approach was to study possible simplifications of the reference software, through the development and testing of alternative approaches for the provided functions.
 
-The developed implementations tackled the forward \emph{DCT}, as it was the \emph{kernel} that would have the most impact on encoder performance. As the \emph{IDCT} is shared between encoder and decoder, and due to the added complexity, no changes were done to this block, as it acts with accordance with the established standard, as mentioned previously. 
+The developed implementations tackled the forward \emph{DCT}, as it was the \emph{kernel} that would have the highest impact on encoder performance. As the \emph{IDCT} is shared between encoder and decoder, and due to the added complexity, no changes were done to this block, as it acts with accordance with the established standard, as mentioned previously. 
 
 All the developed architectures and corresponding tests were written in $C$ programming language, as to maintain the simple integration into \emph{libaom}.
 
@@ -36,7 +36,7 @@ As mentioned previously, the floating point coefficients bring a number of disad
 
 In order to address these problems, a scale and rounding operation was performed, as shown in Equation \ref{eq:matscale}, where $K$ represents the number of bits of the scaled coefficients.
 
-\begin{equation} \label{eq:matscale}
+\begin{equation} 
     \nint*{\mathbf{F}_K}   = \nint*{2^K \mathbf{F}}
 \end{equation}
 
@@ -73,7 +73,7 @@ As it was proven in the previous Chapter that the number of bits in the cosine r
 
 To evaluate the performance of this first implementation, a test was performed to measure and compare the elapsed time for both the described architecture, and the corresponding equivalent from \emph{aomenc}. This test injected a fixed sequence of 1 million input vectors into each of the \emph{DCT}'s,  measuring the elapsed cpu time in the operation. The results are in Table \ref{tab:dcttime}.
 
-\begin{table}[!htpb]
+\begin{table}[htb]
     \centering
     \begin{tabular}{ccc} \toprule
         \multirow{2}{*}{\textbf{Vector Size}} &     \multicolumn{2}{c}{\textbf{Execution Time (ms)}} \\
@@ -91,7 +91,7 @@ To evaluate the performance of this first implementation, a test was performed t
 
 From these it's easily observable why the encoder's implemented transforms follow the \emph{butterfly} scheme. Although from sizes $4$ to $32$ the proposed implementation is faster than the current version of \emph{libaom}, the largest transform is slower. This factor, added to the error variation from the scaling operation makes this implementation quite damaging for the overall encoder performance, especially on a constant quality objective, as shown in Table \ref{tab:multresults}. Here, there are presented the timing results of an encoding test, where one encode was made with the standard \emph{aomenc}, the other had the proposed matrix multiplication \emph{DCT}'s. The test encoded the first 15 frames of the \emph{Parkrun} HD sequence, with two different quality objectives. After compression, the encoded video was decoded with \emph{aomdec}, calculating the PSNR of the output video.
 
-\begin{table}[!htpb]
+\begin{table}[htb]
     \centering
     \begin{tabular}{cccc} \toprule
         \multirow{2}{*}{\textbf{cq-level}} & \multirow{2}{*}{\textbf{Measure}} &    \multicolumn{2}{c}{\textbf{Execution Time (ms)}} \\
@@ -160,7 +160,7 @@ On the implemented architecture, the rescaling didn't include the additional fac
 
 The constructed \emph{DCT} architecture underwent the first test as the previous implementation, giving origin to the results from Table \ref{tab:dcttime2}.
 
-\begin{table}[!htpb]
+\begin{table}[htb]
     \centering
     \begin{tabular}{ccc} \toprule
         \multirow{2}{*}{\textbf{Vector Size}} &     \multicolumn{2}{c}{\textbf{Execution Time (ms)}} \\
@@ -178,16 +178,16 @@ The constructed \emph{DCT} architecture underwent the first test as the previous
 
 As shown, the developed architecture is, on average, $60\%$ faster for all vector sizes. This is due to the removal of the memory accessing overheads imposed by the access to the \texttt{cospi} array, as well the simplification of the performed operations. 
 
-However, the liability of this implementation depends on whether the encoder can maintain the desired quality with the increased error introduced by the quantization of the \emph{cosine} approximations. To verify this factor, the tests presented in Section \ref{ssec:performance} were repeated, once with the original encoder, and other with the encoder with the described alternative version of the \emph{DCT}. The obtained quality and timing results are presented in Figures \ref{fig:buttqual} and \ref{fig:butttime}, respectively. In the latter, the dotted lines correspond to time with the original encoder. The percentage above each bar represent the time difference taken by the alternative encoder, relative to the original.
+However, the reliability of this implementation depends on whether the encoder can maintain the desired quality with the increased error introduced by the quantization of the \emph{cosine} approximations. To verify this factor, the tests presented in Section \ref{ssec:performance} were repeated, once with the original encoder, and other with the encoder with the described alternative version of the \emph{DCT}. The obtained quality and timing results are presented in Figures \ref{fig:buttqual} and \ref{fig:butttime}, respectively. In the latter, the dotted lines correspond to time with the original encoder. The percentage above each bar represent the time difference taken by the alternative encoder, relative to the original.
 
-\begin{figure}[!htpb]
+\begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{Sections/4DevelopedArchitecture/Figures/buttmultqual.eps}
     \caption{Obtained quality with original vs alternative \emph{DCT} implementation.}
     \label{fig:buttqual}
 \end{figure}
 
-\begin{figure}[!htpb]
+\begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{Sections/4DevelopedArchitecture/Figures/buttmulttime.eps}
     \caption{Encoding time with original vs alternative \emph{DCT} implementation.}
@@ -196,7 +196,7 @@ However, the liability of this implementation depends on whether the encoder can
 
 As shown, with the performed changes, the encoding time was, in average, reduced by $2.9\%$ for all quality objectives, while maintaining the output PSNR, making this a suitable \emph{DCT} implementation for an \emph{AV1} encoder. Although the performance improvement is rather diminishing once considered the full encoding cycle, it is a step toward a possible realtime encoding implementation.
 
-However, the full impact of the applied changes can only be verified on a hardware implementation. With the reduction of the cosine approximations, the memory used in the developed \emph{DCT}s is highly reduced. Considering $M_{\texttt{cospi}}$ as the number of bytes ($B$) used for storing the original cosine approximation vector,
+However, the full impact of the applied changes is most noticeable on a hardware implementation. With the reduction of the cosine approximations, the memory used in the developed \emph{DCT}s is highly reduced. Considering $M_{\texttt{cospi}}$ as the number of bytes ($B$) used for storing the original cosine approximation vector,
 
 \begin{equation}
     M_{\texttt{cospi}} = \frac{64\cdot (10+11+12+13+14+15+16)}{8} = 728\, B
@@ -208,11 +208,17 @@ Nonetheless, both \emph{libaom}'s version and the developed could heavily benefi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hardware Implementations}
 
-On the subject of hardware prototyping, \glspl{fpga} have gained massive popularity within developers, both because of its applicability, as well as ease of use. Additionally, in recent years, there have been major developments in software platforms that allow for the synthesis of FPGA designs as \glspl{asic}, such as \emph{Cadence}'s \emph{Genus} or \emph{Synopsys' Design Compiler} \cite{GenusSynthesisSolution, DesignCompilerGraphical}. 
+On the subject of hardware development, \glspl{fpga} have gained massive popularity within developers. Their ease of use, added to the applicability in certain designs as caused them to gain massive popularity for both prototyping and product implementation, since they present relatively smaller \emph{times-to-market} over other options. However, as usual, they come with compromises, namely the increased cost over specialized circuits, as well as the lower performances when compared to such \cite{FPGAVsASIC2016}.
 
-This way, the chosen platform for the development of the hardware architectures was \emph{Xilinx}'s \emph{Vivado}, due to the wide availability of its FPGAs, as well as for the wide support from its community. For the focus of this work, the target of the designs was \emph{Digillent}'s \emph{Nexys 4 Artix 7 FPGA} \cite{NexysArtix7FPGA}, at $100MHz$ clock. Although this system is not the most adequate if a full encoder integration is desired, it allows to easily test the applicability of the developed architectures. The designs and test benches were described in \gls{vhdl}.
+Therefore, when it comes to hardware development, the best compromise would be to maintain the applicability of FPGAs in the prototyping stage, and easily migrate the tested designs into \glspl{asic}. This way, the first development stage could be done on a massively adaptable platform, and once concluded, the design could be implemented as a specialized design, without compromising its performance.
 
-With an efficient algorithm for each of the supported vector sizes, the first objective was to develop a hardware architecture to implement each of the 1D \emph{DCT}s individually, and group them on a single block at a later stage. Two different architectures were developed. The first implements each of the \emph{DCT} blocks individually, while the latter uses sub-blocks of each \emph{DCT}, in order to achieve the final result. These architectures are explained in the following Sections.
+To achieve this, in recent years, there have been major developments in software platforms that allow for the synthesis of FPGA designs as ASICs, such as \emph{Cadence}'s \emph{Genus} or \emph{Synopsys' Design Compiler} \cite{GenusSynthesisSolution, DesignCompilerGraphical}. These softwares have been implemented in a variety of branches, when hardware development is necessary, namely, in video coding. 
+
+This way, for the development of this work, the chosen development platform was \emph{Xilinx}'s \emph{Vivado}, due to the wide availability of its FPGAs, as well as for the wide support from its community. However, there should be kept in mind that to achieve the full performance of the developed designs, a specialized hardware implementation is desired. 
+
+With an efficient algorithm for each of the supported vector sizes, the first objective was to develop a hardware architecture to implement each of the 1D \emph{DCT}s individually, and group them on a single block at a later stage. 
+
+Two different architectures were developed. The first implements each of the \emph{DCT} blocks individually, while the latter uses sub-blocks of each \emph{DCT}, in order to achieve the final result. These architectures are explained in the following Sections.
 
 With this approach, it was hopped to reach an architecture that englobed all the \emph{DCT} kernels, allowing to easily chose between each of them, depending on the desired choices made in the beginning of the transform stage.
 
@@ -221,7 +227,7 @@ With this approach, it was hopped to reach an architecture that englobed all the
 
 The hardware implementations followed the same scheme as the corresponding software counterparts. By this it is meant that the flow of the input towards the output is done in individual and sequential stages. The main difference between these implementations is that in hardware, all of the intermediary signals within each stage are calculated in parallel. 
 
-However, in order to achieve an efficient hardware implementation, some additional measures must be taken into account, mainly when considering the multiplication of signals by the cosine coefficients and re-scaling.
+However, in order to achieve an efficient hardware implementation, some additional measures must be taken into consideration, mainly when considering the multiplication of signals by the cosine coefficients and re-scaling.
 
 Consider an hypothetical operation performed in the software version, where two intermediary signals, \texttt{x1} and \texttt{x2}, get multiplied by some constant, added, and finally rescaled. In $C$, this operation is easily described in a single line of code, as shown in Figure \ref{fig:hardsoft}. However, to perform the same operation on an hardware descriptive language, some additional steps must be taken. The seemingly simple operation done in software must be deconstructed in various sequential steps, controlled by a clock signal. The operation shown in this Figure is repeated throughout the various \emph{DCT} implementations in hardware, making it the key to the development of the parallel architectures.
 
@@ -261,7 +267,7 @@ A simplified version of \textbf{DCT4}'s hardware implementation is represented i
     \label{fig:harddct4v1}
 \end{figure}
 
-To simplify the development of the hardware architectures, all signals and internal registers are represented, as this measure allows to easily interconnect the developed modules. Nonetheless, all modules are configurable through the modification of a \gls{genmap}.
+To simplify the development of the hardware architectures, all signals and internal registers are represented, as this measure allows to easily interconnect the developed modules. Nonetheless, all modules are configurable through the modification of a \gls{genmap} parameter.
 
 On a post-prototyping stage, to achieve an optimal utilization of resources, both inputs, outputs and internal signals should be shortened to the minimum length.
 
@@ -276,9 +282,9 @@ As an example, \textbf{DCT8}'s hardware implementation is represented in Figure 
     \label{fig:harddct8v1}
 \end{figure}
 
-In the same manner, \textbf{DCT16} includes \textbf{DCT8}, which, as shown, also includes the four input version. This approach causes the smaller blocks to be repeated throughout the various larger architectures, making this approach highly inefficient from the chip's utilization standpoint.
+In the same manner, \textbf{DCT16} includes \textbf{DCT8}, which, as shown, also includes the four input version. This approach causes the smaller blocks to be repeated throughout the various larger architectures, making this approach highly inefficient from the chip's utilization standpoint. However, it brings the possibility to calculate each of the five \emph{DCT} sizes simultaneously, which is a highly desired characteristic on an encoder. As its objective is to encode each frame in the most efficient manner, the encoder tests various options, as to find the best for the current block. This behavior is present in the various stages, including the \emph{Transform}. Therefore, for an hardware encoder to be efficient, it must allow for the parallelization of encoding options.
 
-Nonetheless, in order to draw conclusions as to the correct functioning of the internal stages, as well as to see possible gains from the following implementations, the architecture from Figure \ref{fig:fullv1} was developed.
+One such implementation was implemented, as described in Figure \ref{fig:fullv1}.
 
 \begin{figure}[!htbp]
     \centering
@@ -287,11 +293,11 @@ Nonetheless, in order to draw conclusions as to the correct functioning of the i
     \label{fig:fullv1}
 \end{figure}
 
-Besides the previously shown 32 bit \texttt{dataIn}'s, \texttt{Clock}, \texttt{Reset} and \texttt{Enable}, this implementation adds an additional \texttt{Select} input. This signal flags the system on which \emph{\textbf{DCT}} should be enabled.
+Besides the previously shown 32 bit \texttt{dataIn}'s, \texttt{Clock}, \texttt{Reset} and \texttt{Enable}, this implementation adds an additional \texttt{Select} input.
 
-As shown, this wrapper uses all the individual kernels independently, depending on the \textbf{Output Multiplexer} to conduct the correct enable signals (\texttt{DCTXEn}), according to the selected \emph{DCT}. This block is also tasked with the redirection of the kernel's calculated coefficients (\texttt{DCTXoK}) and valid output signal (\texttt{DCTXvo}) to the system's outputs (\texttt{dataOutK} and \texttt{validOut}).
+As shown, this wrapper uses all the individual kernels independently, depending on the \textbf{Output Multiplexer} to conduct the correct output, according to the selected \emph{DCT}.
 
-To validate this design, a VHDL test bench was built and simulated in \emph{Vivado}. It generates a vector of 32 bit integers, as well as the four control signals, injects them into the developed architecture, and receives the outputs. In \ref{fig:v1timing} there is represented one of the timing tests made, where the selected size was 8. It shows the internal signals for the full architecture, as well as the selected block, \textbf{DCT8}.
+To validate this design, a VHDL test bench was built and simulated in \emph{Vivado}. It generates a vector of 32 bit integers, as well as the four control signals, injects them into the developed architecture, and receives the outputs. In Figure \ref{fig:v1timing} there is represented one of the timing tests made, where the selected size was 8. It shows the internal signals for the full architecture, as well as the selected block, \textbf{DCT8}.
 
 \begin{figure}[!htbp]
     \centering
@@ -300,34 +306,64 @@ To validate this design, a VHDL test bench was built and simulated in \emph{Viva
     \label{fig:v1timing}
 \end{figure}
 
-From this test, it is observable that the desired functioning of the internal stages is achieved. The input gets sequentially pipelined through the various stages, getting a valid output 12 clock cycles after the enabling of the system. This behavior was also verified for the other vector sizes, although the delay until getting the output varies.
+From this test, it is observable that the desired functioning of the internal stages is achieved. The input gets sequentially pipelined through the various stages, getting a valid output 10 clock cycles after the enabling of the system. This behavior was also verified for the other vector sizes, although the delay until getting the output varies from \emph{DCT} to \emph{DCT}, between 6 clock cycles (\textbf{DCT4}) to 22 (\textbf{DCT64}).
 
-However, even though the correct functioning of the developed architecture is verified, its applicability isn't verified yet. To draw conclusions, this design must first be synthesized into the FPGA which provides metrics as to the chip's utilization, power draw, timing characteristics, etc.
+%However, even though the correct functioning of the developed architecture is verified, its applicability isn't verified yet. To draw conclusions, this design must first be synthesized into the FPGA which provides metrics as to the chip's utilization, power draw, timing characteristics, etc.
 
-The utilization results of this design's synthesis into an \emph{Artix 7} FPGA are presented in Table \ref{tab:v1results}. 
+%The utilization results of this design's synthesis into an \emph{Artix 7} FPGA are presented in Table \ref{tab:v1results}. 
 
-\begin{table}[!htpb]
+Considering these results, it is possible to calculate the necessary frequency of operation, in order for this architecture to maintain a given frame rate at a specific resolution.
+
+To obtain the necessary number of transformation blocks to process each second, the desired frame rate must be multiplied by the number of $4 \times 4$ blocks within a frame of a given resolution (as to obtain the worst case scenario). Considering then that the presented results are referring to 1D vectors of length $L$, the number of clock cycles to process a 2D $L\times L$ block ($N_{2D}$) is given by
+
+\begin{equation}
+    N_{2D} = 2\cdot (L\cdot N_{1D})
+\end{equation}
+
+The necessary frequency of operation for frequencies between HD and 8K at 30 fps is represented in Table \ref{tab:freq30}.
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{cc} \toprule
+        \textbf{Resolution}         & \textbf{Frequency (MHz)} \\ \toprule
+        $\mathbf{1280\times 720}$   & 83 \\
+        $\mathbf{1920\times 1080}$  & 187 \\
+        $\mathbf{3840\times 2160}$  & 746 \\
+        $\mathbf{7680\times 4320}$  & 2986 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Necessary frequency of operation to obtain real-time encoding at 30 frames per second.}
+    \label{tab:freq30}
+\end{table}
+
+With these results, several illations can be retrieved. For lower resolutions, this implementation can easily provide operable frame rates, as most devices can easily operate at 83 MHz. However, the same can't be said of the necessary 3 GHz for 8K video. These results give an idea of the necessity to develop efficient architectures, that can take advantage of high parallelization in hardware, if high resolutions are desired. In the same manner, such architectures hardly could be implemented in FPGAs, since these usually present lower clock speeds than ASICs.
+
+Such architectures would need to process several input vectors at once, as to process several transformation blocks simultaneously.
+
+The developed hardware was then synthesized considering the \emph{Artix 7} FPGA family, obtaining the utilization results from Table \ref{tab:v1results}.
+
+\begin{table}[htb]
     \centering
     \begin{tabular}{ccc} \toprule
         \multirow{2}{*}{\textbf{DCT Size}} &     \multicolumn{2}{c}{\textbf{Utilization}} \\
          &      \textbf{Slice LUTs} &      \textbf{Slice Registers} \\ \toprule
-        \textbf{4} &    1125 $(1.77\%)$ &       636 $(0.50\%)$ \\ \hline
-        \textbf{8} &    2428 $(3.83\%)$ &       2087 $(1.65\%)$ \\ \hline
-        \textbf{16} &   7103 $(11.20\%)$ &      5702 $(4.50\%)$ \\ \hline
-        \textbf{32} &   19148 $(30.20\%)$ &     14257 $(11.24\%)$  \\ \hline
-        \textbf{64} &   45996 $(72.55\%)$  &    34146 $(26.93\%)$  \\ \bottomrule        
-        \textbf{Wrapper} & 75805 $(119.57\%)$ & 58370 $(46.03\%)$ \\
+        \textbf{4} &    1125  &       636  \\ \hline
+        \textbf{8} &    2428  &       2087  \\ \hline
+        \textbf{16} &   7103  &      5702  \\ \hline
+        \textbf{32} &   19148  &     14257  \\ \hline
+        \textbf{64} &   45996  &    34146  \\ \bottomrule        
+        \textbf{Wrapper} & 75805  & 58370  \\
         \bottomrule
     \end{tabular}
-    \caption{First developed architecture's utilization in number of LUTs, Registers and percentage of \emph{Artix 7} utilization.}
+    \caption{First developed architecture's utilization in number of LUTs and Registers.}
     \label{tab:v1results}
 \end{table}
 
-As observable, this design uses more resources than what are available on the system's FPGA. This result, as mentioned previously was expected, due to the repetition of the smaller blocks on the different stages. The final architecture, effectively had five instances of the \textbf{DCT4}, four \textbf{DCT8}s, and so on. However, such an implementation could still be useful on a more capable kit, as will be discussed later in the following Section.
+%As observable, this design uses more resources than what are available on the system's FPGA. This result, as mentioned previously was expected, due to the repetition of the smaller blocks on the different stages. The final architecture, effectively had five instances of the \textbf{DCT4}, four \textbf{DCT8}s, and so on. However, such an implementation could still be useful on a more capable kit, as will be discussed later in the following Section.
 
-Since this design is not synthesizable on the target hardware, no other results can be drawn, nor would they be applicable. However, on a more resourceful kit, this design could have been implemented, since there were no \emph{\gls{floorplaning}} errors.
+%Since this design is not synthesizable on the target hardware, no other results can be drawn, nor would they be applicable. However, on a more resourceful kit, this design could have been implemented, since there were no \emph{\gls{floorplaning}} errors.
 
-Nonetheless, this architecture allowed to draw conclusions as to the correct functioning of the \emph{DCT}'s internal stages, and served as the basis for the following architecture.
+%Nonetheless, this architecture allowed to draw conclusions as to the correct functioning of the \emph{DCT}'s internal stages, and served as the basis for the following architecture.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\emph{Interdependent 1D DCTs} Design}
@@ -349,7 +385,14 @@ It is important to note that \textbf{DCT8\_P2} inputs and \texttt{en} are hardwi
 
 Depending on the selected size, the input data is injected into one of the \textbf{P1} stages or directly into \textbf{DCT4}. The interconnection of the internal blocks, and corresponding flow of the intermediary coefficients is dealt by a arrangement of multiplexers, that differ from the previous implementation. In this case, this block has a much higher input/output count, as it must control which signals go into each stage, to generate the correct final coefficients as if the \texttt{dataIn}'s passed through a single \textbf{DCT} block. Besides the coefficients, also the intermediary enable signals are dependent of the central unit, since the interconnection of the \texttt{valOut/en} pairs is dependent on the selected vector size.
 
-A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented. As mentioned previously, the system is composed of a single instance of each of the intermediary stages. This makes the achieved architecture
+A simplified version of the achieved architecture is represented in Figure \ref{fig:fullv2}, where no clock or reset signals are represented. As mentioned previously, the system is composed of a single instance of each of the intermediary stages. This makes the achieved architecture similar to a single \textbf{DCT64} block from the first version. In other words, the largest block from the previous implementation had the same set of internal blocks as the newer \emph{Wrapper}, but instantiated in a different manner. In this case, since all the internal intermediary points are accessible by the \textbf{Coefficient Multiplexer}, all the smaller transformations can be calculated with a single kernel of size 64. Figure \ref{fig:v2datapath} demonstrates this behavior. Depending on the selected vector size, the data is sequenced by different blocks, as shown by the different colored lines. The dotted lines represent the enable signals which will be activated at some point of the transformation process.
+
+\begin{figure}[!htbp]
+    \centering
+    \input{Sections/4DevelopedArchitecture/Figures/v2datapath.tex}
+    \caption{Flow of \texttt{dataIn} according to the selected vector size.}
+    \label{fig:v2datapath}
+\end{figure}
 
 \begin{landscape}
     \vspace*{\fill}
@@ -362,15 +405,6 @@ A simplified version of the achieved architecture is represented in Figure \ref{
     \vspace*{\fill}        
 \end{landscape}
 
-\noindent
-similar to a single \textbf{DCT64} block from the first version. In other words, the largest block from the previous implementation had the same set of internal blocks as the newer \emph{Wrapper}, but instantiated in a different manner. In this case, since all the internal intermediary points are accessible by the \textbf{Coefficient's Multiplexer}, all the smaller transformations can be calculated with a single kernel of size 64. Figure \ref{fig:v2datapath} demonstrates this behavior. Depending on the selected vector size, the data is sequenced by different blocks, as shown by the different colored lines. The dotted lines represent the enable signals which will be activated at some point of the transformation process.
-
-\begin{figure}[!htbp]
-    \centering
-    \input{Sections/4DevelopedArchitecture/Figures/v2datapath.tex}
-    \caption{Flow of \texttt{dataIn} according to the selected vector size.}
-    \label{fig:v2datapath}
-\end{figure}
 
 This architecture was subjected to the same test bench as the previous version. In Figure \ref{fig:v2timing} it is represented one of these tests, where 16 was the selected size. In this case, there are no internal signals represented, only being shown the most relevant of the ones accessible by the central multiplexer, for this case. 
 
@@ -381,51 +415,81 @@ This architecture was subjected to the same test bench as the previous version. 
     \label{fig:v2timing}
 \end{figure}
 
-As it is observable, the central block handles the direction of intermediary coefficients and enable signals between the internal blocks, according to the selected size. The final stage taken by it is the re-organization of each of the \textbf{P2} stages' outputs. The timing performance results are presented at a later in this section.
+As it is observable, the central block handles the direction of intermediary coefficients and enable signals between the internal blocks, according to the selected size. The final stage taken by it is the re-organization of each of the \textbf{P2} stages' outputs.% The timing performance results are presented at a later in this section.
 
-Given the desired behavior was achieved, the architecture was synthesized and implemented on the hardware kit, being the system's characteristics presented in Table \ref{tab:v2results}.
+%Given the desired behavior was achieved, the architecture was synthesized and implemented on the hardware kit, being the system's characteristics presented in Table \ref{tab:v2results}.
 
-\begin{table}[!htpb]
+Similarly to the previous architecture, the current was also synthesized considering an \emph{Artix 7} FPGA, giving origin to the utilization results from Table \ref{tab:v2results}.
+
+\begin{table}[htb]
     \centering
-    \begin{tabular}{cccc} \toprule
-        \multirow{2}{*}{\textbf{Block}}     & \multicolumn{2}{c}{\textbf{Utilization}}              & \multirow{2}{*}{\textbf{Approx. Power (mW)}}   \\
-                                            & \textbf{Slice LUTs}      & \textbf{Slice Registers}   &                                                \\ \toprule
-        \textbf{DCT4}                       & 1077 $(1.70\%)$          & 507 $(0.40\%)$             & $1$ \\
-        \textbf{DCT8\_P1}                   & 709 $(1.12\%)$           & 257 $(0.20\%)$             & $<1$ \\
-        \textbf{DCT8\_P2}                   & 1064 $(1.68\%)$          & 717 $(0.57\%)$             & $1$ \\
-        \textbf{DCT16\_P1}                  & 1285 $(2.03\%)$          & 513 $(0.40\%)$             & $1$ \\
-        \textbf{DCT16\_P2}                  & 3860 $(6.09\%)$          & 2150 $(1.70\%)$            & $6$ \\
-        \textbf{DCT32\_P1}                  & 3064 $(4.83\%)$          & 1025 $(0.81\%)$            & $2$ \\
-        \textbf{DCT32\_P2}                  & 9090 $(14.34\%)$         & 5624 $(4.44\%)$            & $9$ \\
-        \textbf{DCT64\_P1}                  & 6123 $(9.66\%)$          & 2049 $(1.62\%)$            & $3$ \\
-        \textbf{DCT64\_P2}                  & 22344 $(35.24\%)$        & 14000 $(11.04\%)$          & $19$ \\ \bottomrule
-        \textbf{Wrapper}                    & 50039 $(78.93\%)$        & 32352 $(25.51\%)$          & $50$ \\
+    \begin{tabular}{ccc} \toprule
+        \multirow{2}{*}{\textbf{Block}}     & \multicolumn{2}{c}{\textbf{Utilization}}              \\
+                                            & \textbf{Slice LUTs}      & \textbf{Slice Registers}   \\ \toprule
+        \textbf{DCT4}                       & 1077                     & 507    \\
+        \textbf{DCT8\_P1}                   & 709                      & 257    \\
+        \textbf{DCT8\_P2}                   & 1064                     & 717    \\
+        \textbf{DCT16\_P1}                  & 1285                     & 513    \\
+        \textbf{DCT16\_P2}                  & 3860                     & 2150   \\
+        \textbf{DCT32\_P1}                  & 3064                     & 1025   \\
+        \textbf{DCT32\_P2}                  & 9090                     & 5624   \\
+        \textbf{DCT64\_P1}                  & 6123                     & 2049   \\
+        \textbf{DCT64\_P2}                  & 22344                    & 14000  \\ \bottomrule
+        \textbf{Wrapper}                    & 50039                    & 32352  \\
         \bottomrule
     \end{tabular}
     \caption{Second developed architecture's utilization and estimated power consumption on \emph{Artix 7}.}
     \label{tab:v2results}
 \end{table}
 
-From these results, it is possible to conclude that the achieved implementation is applicable in the target hardware, given that the architecture occupies approximately 80\% of the available resources. And, as mentioned previously, the obtained architecture's occupation is similar to \textbf{DCT64}'s, as the additional 4043 LUTs taken by this implementation can be justified by the more complex redirecting unit.
+As observable, this implementation occupies $66\%$ of the area occupied by the former, approximately corresponding to the occupation taken by \textbf{DCT64}. This makes the current version more efficient from the utilization standpoint. However, it can only calculate one \emph{DCT} size at a time, as all blocks are interdependent. This makes such implementation undesirable for an encoder, since no parallelization of transformation options is achieved and, therefore, to obtain the five \emph{DCT} outputs for a given input vector, the architecture would need to calculate each size sequentially, bringing the total number of clock cycles to
 
-Besides this, it is also possible to get an estimation of the power consumed during operation. As to the system's maximum operating frequency, it can be approximated using the \gls{wns}. This measure represents the lowest delay to meet the design's requirements, i.e., taking the system's longest clock propagation path, if it were increased by WNS, the timing constraints would still be met. Therefore, considering $T$ as the current operating clock's period, an estimation of the maximum operating frequency may be calculated by Equation \ref{eq:maxf}.
+\begin{equation}
+    N_{Total} = 6+10+14+18+22 = 70
+\end{equation}
+while to obtain the same results with the previous implementation there would only be needed 22.
+
+If real time encoding isn't necessary, such implementation would be most suitable for mobile applications, where size and consumed power are key requirements, as this version would perform better than the previous implementation on both of these aspects.
+
+%From these results, it is possible to conclude that the achieved implementation is applicable in the target hardware, given that the architecture occupies approximately 80\% of the available resources. And, as mentioned previously, the obtained architecture's occupation is similar to \textbf{DCT64}'s, as the additional 4043 LUTs taken by this implementation can be justified by the more complex redirecting unit.
+
+%Besides this, it is also possible to get an estimation of the power consumed during operation. As to the system's maximum operating frequency, it can be approximated using the \gls{wns}. This measure represents the lowest delay to meet the design's requirements, i.e., taking the system's longest clock propagation path, if it were increased by WNS, the timing constraints would still be met. Therefore, considering $T$ as the current operating clock's period, an estimation of the maximum operating frequency may be calculated by Equation \ref{eq:maxf}.
+
+%\begin{equation} \label{eq:maxf}
+%    f_{Max} = \frac{1}{T-WNS} = \frac{1}{10\cdot 10^{-9} - 0.188\cdot 10^{-9}} = 101.9\,MHz
+%\end{equation}
+
+%As seen, the design is already close to the maximum operating frequency, for the provided objectives. Hence, if a different set of design constraints were to be provided, this frequency might increase.
+
+%Taking the obtained results, the following step was the integration of the design on a system more resembling of a complete encoder.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\emph{Microblaze} Integration} \label{sec:microblaze}
+
+Considering the system presented on Figure \ref{fig:basicenc} (page \pageref{fig:basicenc}, \emph{Simplified Basic Encoder Model}), it would be safe to assume that, if it were to be implemented in hardware, the \textbf{Control Unit} would be implemented on a generic CPU, controlling the surrounding blocks, e.g. the developed \emph{DCT} kernels. Such an architecture would allow for a complex software, such as \emph{libaom}, to be massively simplified, as most of the complex calculations would be run on specialized co-processors, while leaving the system's controlling and decision-making processes to be run on a central unit.
+
+In order to prove the applicability of the developed architectures in such system, the designs were tested on a \emph{Digilent}'s Nexys 4 hardware kit, equipped with an \emph{Artix 7} FPGA, XC7A100T-1CSG324C. This board is presented in Figure \ref{fig:nexys4}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\figwidth]{Sections/4DevelopedArchitecture/Figures/nexys-4-0.png}
+    \caption[Nexys 4 hardware kit.]{Nexys 4 hardware kit \cite{NexysArtix7FPGA}.}
+    \label{fig:nexys4}
+\end{figure}
+
+With the hardware chosen, the first step would be to synthesize the developed architectures to the desired FPGA. This operation provides numerous relevant data, such as the percentage of utilization, the estimated power drawn or some timing characteristics. 
+
+Referring to the first implementation of the \emph{DCT} kernel, the Synthesis to the current hardware isn't possible, since the design occupies $119.57\%$ of the available slice LUTs. However, on a more capable kit, this design could be tested.
+
+However, as the second implementation uses only $79.93\%$, and no other \emph{floorplaning} errors occurred, the Synthesis and Implementation were successful, and therefore, \emph{Vivado} provides the mentioned estimations. With an operating frequency of 100 MHz, the obtained power draw is 50 mW. With the \gls{wns}, it is also possible to calculate the system's maximum operating frequency. This measure represents the lowest delay to meet the design's requirements, i.e., taking the system's longest clock propagation path, if it were increased by WNS, the timing constraints would still be met. Therefore, considering $T$ as the current operating clock's period, an estimation of the maximum operating frequency may be calculated by Equation \ref{eq:maxf}.
 
 \begin{equation} \label{eq:maxf}
     f_{Max} = \frac{1}{T-WNS} = \frac{1}{10\cdot 10^{-9} - 0.188\cdot 10^{-9}} = 101.9\,MHz
 \end{equation}
 
-As seen, the design is already close to the maximum operating frequency, for the provided objectives. Hence, if a different set of design constraints were to be provided, this frequency might increase.
-
-Taking the obtained results, the following step was the integration of the design on a system more resembling of a complete encoder.
-
-%%%%%%%%%%%%%%%%%%%
-\subsubsection{\emph{Microblaze} Integration} \label{sec:microblaze}
-
-Considering the system presented on Figure \ref{fig:basicenc} (page \pageref{fig:basicenc}, \emph{Simplified Basic Encoder Model}), it would be safe to assume that, if it were to be implemented in hardware, the \textbf{Control Unit} would be implemented on a generic CPU, controlling the surrounding blocks, e.g. the presented \emph{DCT Wrapper}. Such an architecture would allow for a complex software, such as \emph{libaom}, to be massively simplified, as most of the complex calculations would be run on specialized co-processors, while leaving the system's controlling and decision-making processes to be run on a central unit.
-
 To consider a full \emph{libaom} integration in the focus of this work, with the target hardware, would be too demanding both in terms of complexity and achievability. Since a single block of the encoder occupies most of the available resources, the integration of the following processes would certainly need a highly capable hardware kit. 
 
-Nonetheless, a simpler architecture can still be implemented, as to test the applicability of the developed architecture on a full encoding system. To do this, the encoder's central unit would need to be instantiated on the hardware kit on the shape of a \gls{mcu}, alongside the developed \emph{Wrapper}. The latter also needed to be adapted for the communications between it and the MCU.
+Nonetheless, a simpler architecture can still be implemented, as to test the applicability of the developed architecture on a full encoding system. To do this, the encoder's central unit would need to be instantiated on the hardware kit on the shape of a \gls{mcu}, alongside the developed kernels. The latter also needed to be adapted for the communications between it and the MCU.
 
 To accomplish this, \emph{Vivado} provides a wide set of tools to easily achieve integration of a design described in VHDL with a generic processor, efficiently obtaining a hybrid design between the developed hardware and a software algorithm, easily developed in \emph{C}, as an example.
 
@@ -483,9 +547,9 @@ The first test revolved around the verification of the calculated of coefficient
 
 Being proven the correct calculation of the transformed coefficients, the final test was to verify the timing performances of the system. For this, a small program was written, where a vector with the same length as the desired \emph{DCT} would be loaded into the co-processor, this would be activated, and the same length transformed vector would be read back.
 
-The most relevant result to measure was the number of clock cycles to calculate the transformed coefficients, as the read and write processes are highly dependent on the used interface. This way, in Table \ref{tab:axi4time} there are presented the separate timing results for the three different processes measured, both in number of clock cycles, as well as the time duration at the calculated maximum frequency. 
+The most relevant result to measure was the number of clock cycles to calculate the transformed coefficients, and verify the accordance with the VHDL test bench. The read and write processes should only be seen as references, as they are highly dependent on the used interface. This way, in Table \ref{tab:axi4time} there are presented the separate timing results for the three different processes measured, both in number of clock cycles, as well as the time duration at the calculated maximum frequency. 
 
-\begin{table}[!htpb]
+\begin{table}[htb]
     \centering
     \begin{tabular}{ccccccc} \toprule
         \multirow{2}{*}{\textbf{Size}}   & \multicolumn{3}{c}{\textbf{Number of Clock Cycles}$\mathbf{(T_{@101.9MHz}(ns))}$}                      \\
@@ -501,11 +565,12 @@ The most relevant result to measure was the number of clock cycles to calculate 
     \label{tab:axi4time}
 \end{table}
 
-Taking the transformation times, it is possible to calculate the hypothetical throughput of the developed architecture. This is a measure of the highest frame rate this architecture could process at a given resolution. 
+Taking the transformation times, it is possible to calculate the hypothetical throughput of the developed architecture on the current hardware. %This is a measure of the highest frame rate this architecture could process at a given resolution. 
+This is calculation is done with a similar process as the one of Table \ref{tab:freq30}, but in reverse. Given the maximum estimated frequency, the maximum possible frame rate is estimated. In Table \ref{tab:maxfps}, these results are presented, considering all square block sizes.
 
-On a video encoder, each residue block will suffer several transformations, horizontal and vertically. Given that the presented results are referring to vector transformations, the hypothetical time for transforming a 2D block must be calculated. With the obtained results, the maximum possible frame rate of some of the most common resolutions was calculated, considering only blocks of the the corresponding size were used, giving origin to Table \ref{tab:maxfps}.
+%On a video encoder, each residue block will suffer several transformations, horizontal and vertically. Given that the presented results are referring to vector transformations, the hypothetical time for transforming a 2D block must be calculated. With the obtained results, the maximum possible frame rate of some of the most common resolutions was calculated, considering only blocks of the the corresponding size were used, giving origin to Table \ref{tab:maxfps}.
 
-\begin{table}[!htpb]
+\begin{table}[htb]
     \centering
     \begin{tabular}{ccccc} \toprule
         \multirow{2}{*}{\textbf{Block Size}}   & \multicolumn{4}{c}{\textbf{Resolution}}                      \\
@@ -517,19 +582,23 @@ On a video encoder, each residue block will suffer several transformations, hori
         $\mathbf{64\times 64}$                      & 161                     & 71                   & 18                   & 4  \\
         \bottomrule
     \end{tabular}
-    \caption{Maximum frame rate for a given resolution, considering fixed square transformation blocks.}
+    \caption{Maximum frame rate for a given resolution, considering fixed square transformation blocks, on the Nexys 4 implementation.}
     \label{tab:maxfps}
 \end{table}
 
-As seen, the constructed architecture, on the current hardware, isn't capable of processing high resolution video at usable frame rates. Although for HD and FHD it may be able to provide more than 30fps at some block sizes, the emerging resolutions still prove too demanding to achieve real time encoding usability. However, some works capable of delivering such performances have been published \cite{vayalilEfficientASICDesign2016,meherEfficientIntegerDCT2014,m.HighPerformanceInteger2017}.
+As seen, the constructed architecture, on the current hardware, isn't capable of processing high resolution video at usable frame rates. For HD video, it can maintain 30 fps for all block sizes. However, on higher resolutions, this throughput cannot be maintained, in order to obtain real time usability. 
 
-Besides, the presented results represent a \emph{best case} scenario. On most encoders, various transformations are done on the same set of residue blocks, as to achieve the most efficient option to accomplish the target objective, be it regarding image distortion or compression. This way, efficient hardware implementations must allow this parallelization of encoding choices.
+Other works capable of providing such performances have been published, mostly for the HEVC standard (see references \cite{vayalilEfficientASICDesign2016,meherEfficientIntegerDCT2014,m.HighPerformanceInteger2017}). These results should justify the choices made by the developers, since the proclaimed clock frequencies are obtained with \gls{vlsi} circuits, and FPGA implementations, when present, are only used for validation purposes.
 
-With the second version of of the \emph{DCT Wrapper}, the utilization of hardware is heavily optimized, as there are no repeated stages throughout the design. However, this makes  parallel transformations of different vector sizes impossible. Since, at least, \textbf{DCT4} will always be occupied with one of the encoding options, and as all other transform sizes need this stage to calculate its output, there isn't the possibility to calculate two different transform sizes at the same time.
+In addition, it should be kept in mind that the presented results represent a \emph{best case} scenario, since they don't take into consideration any other delays from the encoding process.
 
-However, on the decoding process, there is no need for parallelization of the Transform stage, as all the encoding options were already chosen. This way, an architecture following the same implementation would be appropriate for a decoder, where low power and size are highly desired characteristics.
+Nonetheless, the integration of the developed architecture with the \emph{Microblaze} should prove the applicability of the first on a full encoding system, even though the maximum performance of the system isn't known, as it could be achieved through synthesis to ASIC.
 
-On the other hand, the first version of the complete kernel had all \emph{DCT} blocks individualized, making the transformation of different sized vectors possible. As mentioned before, this makes this implementation better suited to be applied on an encoder, as it allows to test various configurations at the same time, and quickly evaluate the most adequate. However, for this to be achieved, some modifications would need to be made, as only one set of output vectors can be retrieved on the current implementation.
+%With the second version of of the \emph{DCT Wrapper}, the utilization of hardware is heavily optimized, as there are no repeated stages throughout the design. However, this makes  parallel transformations of different vector sizes impossible. Since, at least, \textbf{DCT4} will always be occupied with one of the encoding options, and as all other transform sizes need this stage to calculate its output, there isn't the possibility to calculate two different transform sizes at the same time.
+
+%However, on the decoding process, there is no need for parallelization of the Transform stage, as all the encoding options were already chosen. This way, an architecture following the same implementation would be appropriate for a decoder, where low power and size are highly desired characteristics.
+
+%On the other hand, the first version of the complete kernel had all \emph{DCT} blocks individualized, making the transformation of different sized vectors possible. As mentioned before, this makes this implementation better suited to be applied on an encoder, as it allows to test various configurations at the same time, and quickly evaluate the most adequate. However, for this to be achieved, some modifications would need to be made, as only one set of output vectors can be retrieved on the current implementation.
 
 
 \clearpage
