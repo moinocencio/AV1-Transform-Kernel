@@ -1,8 +1,11 @@
 {
     "cSpell.words": [
+        "Vivado",
+        "achievability",
         "aomenc",
         "libaom",
-        "parallelization"
+        "parallelization",
+        "synthesizable"
     ],
     "files.associations": {
         "stdlib.h": "c",
