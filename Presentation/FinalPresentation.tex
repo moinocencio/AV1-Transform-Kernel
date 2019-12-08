@@ -1,0 +1,176 @@
+\documentclass{beamer}
+\setbeameroption{show notes}
+
+
+\mode<presentation>
+{
+\usetheme{Pittsburgh}      % Madrid, Montpellier, Pittsburgh, Rochester, boxes
+\usecolortheme{dove} 	% beaver, crane, dolphin, dove, lily, orchid, seagull, seahorse
+\usefonttheme{default}  % or try serif, structurebold, ...
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{multirow}
+\usepackage{ragged2e}
+\usepackage{textpos}
+\usepackage[export]{adjustbox}
+\usepackage{caption}
+\justifying
+\usepackage{pifont}
+\newcommand{\xmark}{\ding{55}}%
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+\usetikzlibrary{arrows,positioning} 
+\usetikzlibrary{matrix}
+\usetikzlibrary{fadings,shapes,arrows,chains,backgrounds,calc,arrows,arrows.meta,shadows,shapes.geometric, fit, positioning, circuits.logic.US, circuits, decorations.markings, arrows.meta}
+
+\setlength{\parindent}{0.5cm}
+%%%%%%%%%%%%%%%%%%%%%
+% Títulos e etc
+\title[Apresentação Final]{Co-processador da Transformada para o Codificador de Vídeo AV1}
+\subtitle{Apresentação Final}
+\author[M. Inocêncio]{Miguel Inocêncio}
+\institute[UA]{Universidade de Aveiro\\ 
+				Instituto de Telecomunicações}
+\date{18/12/2019}
+%\titlegraphic{\includegraphics[height=1.5cm]{../ua.jpg}\includegraphics[height=1.5cm]{../IT.png}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Página Inicial
+\begin{frame}
+	\titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Table of Contents
+\begin{frame}{Conteúdos}
+	\tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Introdução
+\section{Introdução}
+
+\begin{frame}
+	\frametitle{Consumo de Vídeo}
+       \begin{columns}
+              \column{\textwidth}
+                     \begin{figure}[h]
+                            \centering
+                            \includegraphics[width=\textwidth]{Figures/cisco.jpg}
+                            \caption{Previsões da \emph{Cisco} para evolução de tráfico IP}
+                            \label{fig:cisco}
+                     \end{figure}
+       \end{columns}
+\end{frame}
+
+\note[itemize]{
+       \item Consumo de vídeo tem vindo a aumentar exponencialmente
+       \item A Cisco prevê que para 2022 82\% do tráfico IP esteja dedicado à vizualização de vídeo
+}
+
+\begin{frame}
+       \frametitle{Necessidade de Compressão de Vídeo}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/videoHD.tex}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item Enorme quantidade de dados gerados com a captura ou criação de vídeo
+       \item Vídeo HD a 30 frames por segundo num espaço RGB de 8 bits por cor ocuparia 24GB em 5 minutos
+       \item Para as resoluções que se desejam hoje em dia este problema seria ainda mais grave
+       \item Necessidade de reduzir quantidade de informação precisa para reproduzir um vídeo
+}
+
+\begin{frame}[plain,t]
+       \begin{center}
+              \Huge \textbf{Codificação de Vídeo}\\ \vspace{1cm}
+              \Large Remoção de informação de sequência de imagens, mantendo a capacidade de reprodução
+       \end{center}
+       \vspace{1cm}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/videocodeevol.tex}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item Levou ao conceito de codificação de vídeo
+       \item Em prática desde os anos 40 com o interlaced scanning das televisões de raios catódicos
+       \item Evolução do vídeo levou à evolução dos métodos de compressão (aumento da complexidade)
+       \item Alliance for Open Media Video One ou AV1 apresenta grandes taxas de compressão, a custo de elevada complexidade
+       \item Necessidade de software optimizado e arquiteturas de hardware eficientes
+}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Sistemas de Codificação de Vídeo
+\section{Sistemas de Codificação de Vídeo}
+
+\begin{frame}
+       \frametitle{Redundâncias}
+       \begin{columns}
+              \column{0.5\textwidth}
+              \begin{figure}[h]
+                     \centering
+                     \input{Figures/intraex.tex}
+                     \caption*{Espaciais}
+              \end{figure}
+              \begin{figure}[h]
+                     \centering
+                     \input{Figures/sub420.tex}
+                     \caption*{Psico-Visuais}
+              \end{figure}
+
+              \column{0.5\textwidth}
+              \begin{figure}[h]
+                     \centering
+                     \input{Figures/interex.tex}
+                     \caption*{Temporais}
+              \end{figure}
+              \begin{figure}[h]
+                     \centering
+                     \input{Figures/huff.tex}
+                     \caption*{Código}
+              \end{figure}
+       \end{columns}
+\end{frame}
+
+\note[itemize]{
+       \item Apesar da evolução, os princípios de base continuam os mesmos
+       \item 4 tipos de redundâncias, a maioria causadas pela interpretação do olho humano
+       \item Espaciais referentes à proximidade de pixeis proximos
+       \item Temporais referentes à semelhança de pixeis em imagens consecutivas
+       \item Psicovisuais referentes à perceção mais baixa da cor ou de detalhes
+       \item Código, não sendo referente à imagem ou perceção, mas à representação dos símbolos em domínio digital
+       \item Estas redundâncias são exploradas em vários estágios de um codificador de vídeo
+}
+
+\begin{frame}
+       \frametitle{Modelo Básico de Codificador}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/basicEnc.tex}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item Processo começa com frame de entrada que é dividido em blocos
+       \item Estágio de predição Intra ou Inter
+       \item Bloco previsto subtraído por original
+       \item Transformada é o foco do trabalho
+       \item Avalia componentes de frequência
+       \item Quantização avalia coeficientes de maior relevância para reconstrução de imagem
+       \item codificador de entropia organiza símbolos segundo códigos de comprimento variável
+       \item Loop de feedback para restaurar imagem do descodificador para uso nos estágios de predição
+       \item Unidade de controlo escolhe quais as ferramentas de codificação a usar
+       \item Descodificador faz operação inversa
+}
+
+\end{document}	

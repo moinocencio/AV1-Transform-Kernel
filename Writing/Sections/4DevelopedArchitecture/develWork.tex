@@ -40,7 +40,7 @@ In order to address these problems, a scale and rounding operation was performed
     \nint*{\mathbf{F}_K}   = \nint*{2^K \mathbf{F}}
 \end{equation}
 
-However, due to the rectangular block sizes allowed in \emph{AV1}, the factor $\sqrt{\nicefrac{2}{L}}$ isn't considered in the kernels themselves. Instead, the transformed outputs get scaled at a later stage. This way, the implemented transform matrix is
+However, due to the rectangular block sizes allowed in \emph{AV1}, the factor $\sqrt{\nicefrac{2}{L}}$ is not considered in the kernels themselves. Instead, the transformed outputs get scaled at a later stage. This way, the implemented transform matrix is
 
 \begin{equation} \label{eq:matscale2}
     \begin{gathered}
@@ -69,12 +69,13 @@ One other negative aspect of such implementation is that, due to the variation o
     \Delta_K = \frac{\max{\left(\sqrt{\frac{L}{2}}\mathbf{F}\right)} - \min{\left(\sqrt{\frac{L}{2}}\mathbf{F}\right)}}{2^K}
 \end{equation}
 
-As it was proven in the previous Chapter that the number of bits in the cosine representation wouldn't greatly impact the quality of the video, the developed architectures used 8 bits for the scaling operation, as to decrease the overhead of the implemented multiplications and shifts. The impact of this choice was evaluated at a later stage.
+As it was proven in the previous Chapter that the number of bits in the cosine representation would not greatly impact the quality of the video, the developed architectures used 8 bits for the scaling operation, as to decrease the overhead of the implemented multiplications and shifts. The impact of this choice was evaluated at a later stage.
 
 To evaluate the performance of this first implementation, a test was performed to measure and compare the elapsed time for both the described architecture, and the corresponding equivalent from \emph{aomenc}. This test injected a fixed sequence of 1 million input vectors into each of the \emph{DCT}'s,  measuring the elapsed cpu time in the operation. The results are in Table \ref{tab:dcttime}.
 
-\begin{table}[htb]
+\begin{table}[!htpb]
     \centering
+    \caption{Comparison of execution time between \emph{aomenc}'s DCT and the matrix multiplication implementation.}
     \begin{tabular}{ccc} \toprule
         \multirow{2}{*}{\textbf{Vector Size}} &     \multicolumn{2}{c}{\textbf{Execution Time (ms)}} \\
          &      \textbf{aomenc's} &      \textbf{MM} \\ \toprule
@@ -84,15 +85,15 @@ To evaluate the performance of this first implementation, a test was performed t
         \textbf{32} &   1039 &     686 $(-33\%)$  \\ \hline
         \textbf{64} &   3288 &     3590 $(+9\%)$  \\ 
         \bottomrule
-    \end{tabular}
-    \caption{Comparison of execution time between \emph{aomenc}'s DCT and the matrix multiplication implementation.}
+    \end{tabular}    
     \label{tab:dcttime}
 \end{table}
 
-From these it's easily observable why the encoder's implemented transforms follow the \emph{butterfly} scheme. Although from sizes $4$ to $32$ the proposed implementation is faster than the current version of \emph{libaom}, the largest transform is slower. This factor, added to the error variation from the scaling operation makes this implementation quite damaging for the overall encoder performance, especially on a constant quality objective, as shown in Table \ref{tab:multresults}. Here, there are presented the timing results of an encoding test, where one encode was made with the standard \emph{aomenc}, the other had the proposed matrix multiplication \emph{DCT}'s. The test encoded the first 15 frames of the \emph{Parkrun} HD sequence, with two different quality objectives. After compression, the encoded video was decoded with \emph{aomdec}, calculating the PSNR of the output video.
+From these it is easily observable why the encoder's implemented transforms follow the \emph{butterfly} scheme. Although from sizes $4$ to $32$ the proposed implementation is faster than the current version of \emph{libaom}, the largest transform is slower. This factor, added to the error variation from the scaling operation makes this implementation quite damaging for the overall encoder performance, especially on a constant quality objective, as shown in Table \ref{tab:multresults}. Here, there are presented the timing results of an encoding test, where one encode was made with the standard \emph{aomenc}, the other had the proposed matrix multiplication \emph{DCT}'s. The test encoded the first 15 frames of the \emph{Parkrun} HD sequence, with two different quality objectives. After compression, the encoded video was decoded with \emph{aomdec}, calculating the PSNR of the output video.
 
-\begin{table}[htb]
+\begin{table}[!htpb]
     \centering
+    \caption{\emph{aomenc}'s encoding time with original vs implemented \emph{DCT}.}
     \begin{tabular}{cccc} \toprule
         \multirow{2}{*}{\textbf{cq-level}} & \multirow{2}{*}{\textbf{Measure}} &    \multicolumn{2}{c}{\textbf{Execution Time (ms)}} \\
         &   &   \textbf{Original} &      \textbf{MM} \\ \toprule
@@ -103,8 +104,7 @@ From these it's easily observable why the encoder's implemented transforms follo
                                         & \textbf{\emph{Trans.} time (s)}    & 60.4      & 98.4 \\
                                         & \textbf{PSNR (dB)}            & 34.88     & 34.86 \\                                        
          \bottomrule
-    \end{tabular}
-    \caption{\emph{aomenc}'s encoding time with original vs implemented \emph{DCT}.}
+    \end{tabular}    
     \label{tab:multresults}
 \end{table}
 
@@ -117,7 +117,7 @@ Taking this into account, a new approach was employed, using the same \emph{butt
 
 \emph{AV1}'s reference \emph{Transform stage} follows the aforementioned architecture for the DCT, in addition to expanding its use into the \emph{ADST}. In this scheme's publishing paper \cite{wen-hsiungchenFastComputationalAlgorithm1977}, the authors gave good reasons for the heavy adoption of this implementation, claiming that "\emph{The number of computational steps has been shown to be less than \nicefrac{1}{6} of the conventional DCT algorithm employing a 2-sided FFT}". 
 
-This is achieved through a pipelined implementation of the previously shown matrix multiplication, where each stage is calculated as function of the previously calculated intermediary coefficients, as shown in Figures \ref{fig:intDCT} and \ref{fig:intADST}. Besides the reduction of complexity, this implementation also uses a fixed bank of \emph{cosine} coefficients (corresponding to \texttt{cospi} in \emph{libaom}), limited between $\cos\left(\nicefrac{\pi}{2}\right) < \alpha \leq \cos(0)$, i.e., $0 < \alpha \leq 1$ \footnote[1]{Zero is excluded from the set, as matrix $\mathbf{F}$ won't have any null element, for any $L$}. This way, the quantization error produced by the rounding and scaling operation is constant for all vector sizes.
+This is achieved through a pipelined implementation of the previously shown matrix multiplication, where each stage is calculated as function of the previously calculated intermediary coefficients, as shown in Figures \ref{fig:intDCT} and \ref{fig:intADST}. Besides the reduction of complexity, this implementation also uses a fixed bank of \emph{cosine} coefficients (corresponding to \texttt{cospi} in \emph{libaom}), limited between $\cos\left(\nicefrac{\pi}{2}\right) < \alpha \leq \cos(0)$, i.e., $0 < \alpha \leq 1$ \footnote[1]{Zero is excluded from the set, as matrix $\mathbf{F}$ will not have any null element, for any $L$}. This way, the quantization error produced by the rounding and scaling operation is constant for all vector sizes.
 
 To improve upon the reference \emph{DCT}, the developed architecture implemented a similar approach to the previous \emph{MM} architecture, using 8 bits for the scaling of the \emph{cosine} approximations. These values, $cos_{Apr}$, were generated using the same method as \texttt{cospi}, i.e.
 
@@ -133,7 +133,7 @@ Comparing the quantization step to the worst case for \emph{libaom}'s \emph{DCT}
     \Delta_{10} = \frac{1-0}{2^{10}} \approx 0.98\cdot10^{-3}\\
     \Delta_{8} = \frac{1-0}{2^{8}} \approx 3.9\cdot10^{-3}
 \end{gather}
-then it's possible to calculate the \emph{Mean Squared Quantization Error} through Equation \ref{eq:msequant}
+then it is possible to calculate the \emph{Mean Squared Quantization Error} through Equation \ref{eq:msequant}
 
 \begin{equation} \label{eq:msequant}
     \begin{gathered}
@@ -156,12 +156,13 @@ The implemented \emph{DCT} also deviates from the reference software in the mult
     \end{gathered}    
 \end{equation}
 
-On the implemented architecture, the rescaling didn't include the additional factor, and was made just with the right shifting (\gls{tld:shiftr}) by 8 bits, corresponding to the \emph{flooring} operation (\gls{tld:floor}).
+On the implemented architecture, the rescaling did not include the additional factor, and was made just with the right shifting (\gls{tld:shiftr}) by 8 bits, corresponding to the \emph{flooring} operation (\gls{tld:floor}).
 
 The constructed \emph{DCT} architecture underwent the first test as the previous implementation, giving origin to the results from Table \ref{tab:dcttime2}.
 
-\begin{table}[htb]
+\begin{table}[!htpb]
     \centering
+    \caption{Comparison of execution time between \emph{aomenc}'s DCT and the alternative \emph{butterfly} implementation.}
     \begin{tabular}{ccc} \toprule
         \multirow{2}{*}{\textbf{Vector Size}} &     \multicolumn{2}{c}{\textbf{Execution Time (ms)}} \\
          &      \textbf{aomenc's} &      \textbf{Alternative \emph{butterfly}} \\ \toprule
@@ -172,7 +173,6 @@ The constructed \emph{DCT} architecture underwent the first test as the previous
         \textbf{64} &   3288  &    1362 $(-58\%)$  \\ 
         \bottomrule
     \end{tabular}
-    \caption{Comparison of execution time between \emph{aomenc}'s DCT and the alternative \emph{butterfly} implementation.}
     \label{tab:dcttime2}
 \end{table}
 
@@ -180,14 +180,14 @@ As shown, the developed architecture is, on average, $60\%$ faster for all vecto
 
 However, the reliability of this implementation depends on whether the encoder can maintain the desired quality with the increased error introduced by the quantization of the \emph{cosine} approximations. To verify this factor, the tests presented in Section \ref{ssec:performance} were repeated, once with the original encoder, and other with the encoder with the described alternative version of the \emph{DCT}. The obtained quality and timing results are presented in Figures \ref{fig:buttqual} and \ref{fig:butttime}, respectively. In the latter, the dotted lines correspond to time with the original encoder. The percentage above each bar represent the time difference taken by the alternative encoder, relative to the original.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{Sections/4DevelopedArchitecture/Figures/buttmultqual.eps}
     \caption{Obtained quality with original vs alternative \emph{DCT} implementation.}
     \label{fig:buttqual}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{Sections/4DevelopedArchitecture/Figures/buttmulttime.eps}
     \caption{Encoding time with original vs alternative \emph{DCT} implementation.}
@@ -231,7 +231,7 @@ However, in order to achieve an efficient hardware implementation, some addition
 
 Consider an hypothetical operation performed in the software version, where two intermediary signals, \texttt{x1} and \texttt{x2}, get multiplied by some constant, added, and finally rescaled. In $C$, this operation is easily described in a single line of code, as shown in Figure \ref{fig:hardsoft}. However, to perform the same operation on an hardware descriptive language, some additional steps must be taken. The seemingly simple operation done in software must be deconstructed in various sequential steps, controlled by a clock signal. The operation shown in this Figure is repeated throughout the various \emph{DCT} implementations in hardware, making it the key to the development of the parallel architectures.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/multHardware.tex}
     \caption{Comparison between software and hardware implementation of multiplication, sum and re-scaling.}
@@ -308,7 +308,7 @@ To validate this design, a VHDL test bench was built and simulated in \emph{Viva
 
 From this test, it is observable that the desired functioning of the internal stages is achieved. The input gets sequentially pipelined through the various stages, getting a valid output 10 clock cycles after the enabling of the system. This behavior was also verified for the other vector sizes, although the delay until getting the output varies from \emph{DCT} to \emph{DCT}, between 6 clock cycles (\textbf{DCT4}) to 22 (\textbf{DCT64}).
 
-%However, even though the correct functioning of the developed architecture is verified, its applicability isn't verified yet. To draw conclusions, this design must first be synthesized into the FPGA which provides metrics as to the chip's utilization, power draw, timing characteristics, etc.
+%However, even though the correct functioning of the developed architecture is verified, its applicability is not verified yet. To draw conclusions, this design must first be synthesized into the FPGA which provides metrics as to the chip's utilization, power draw, timing characteristics, etc.
 
 %The utilization results of this design's synthesis into an \emph{Artix 7} FPGA are presented in Table \ref{tab:v1results}. 
 
@@ -322,8 +322,9 @@ To obtain the necessary number of transformation blocks to process each second, 
 
 The necessary frequency of operation for frequencies between HD and 8K at 30 fps is represented in Table \ref{tab:freq30}.
 
-\begin{table}[htb]
+\begin{table}[!htpb]
     \centering
+    \caption{Necessary frequency of operation to obtain real-time encoding at 30 frames per second.}
     \begin{tabular}{cc} \toprule
         \textbf{Resolution}         & \textbf{Frequency (MHz)} \\ \toprule
         $\mathbf{1280\times 720}$   & 83 \\
@@ -331,19 +332,19 @@ The necessary frequency of operation for frequencies between HD and 8K at 30 fps
         $\mathbf{3840\times 2160}$  & 746 \\
         $\mathbf{7680\times 4320}$  & 2986 \\
         \bottomrule
-    \end{tabular}
-    \caption{Necessary frequency of operation to obtain real-time encoding at 30 frames per second.}
+    \end{tabular}    
     \label{tab:freq30}
 \end{table}
 
-With these results, several illations can be retrieved. For lower resolutions, this implementation can easily provide operable frame rates, as most devices can easily operate at 83 MHz. However, the same can't be said of the necessary 3 GHz for 8K video. These results give an idea of the necessity to develop efficient architectures, that can take advantage of high parallelization in hardware, if high resolutions are desired. In the same manner, such architectures hardly could be implemented in FPGAs, since these usually present lower clock speeds than ASICs.
+With these results, several illations can be retrieved. For lower resolutions, this implementation can easily provide operable frame rates, as most devices can easily operate at 83 MHz. However, the same cannot be said of the necessary 3 GHz for 8K video. These results give an idea of the necessity to develop efficient architectures, that can take advantage of high parallelization in hardware, if high resolutions are desired. In the same manner, such architectures hardly could be implemented in FPGAs, since these usually present lower clock speeds than ASICs.
 
 Such architectures would need to process several input vectors at once, as to process several transformation blocks simultaneously.
 
 The developed hardware was then synthesized considering the \emph{Artix 7} FPGA family, obtaining the utilization results from Table \ref{tab:v1results}.
 
-\begin{table}[htb]
+\begin{table}[!htpb]
     \centering
+    \caption{First developed architecture's utilization in number of LUTs and Registers.}
     \begin{tabular}{ccc} \toprule
         \multirow{2}{*}{\textbf{DCT Size}} &     \multicolumn{2}{c}{\textbf{Utilization}} \\
          &      \textbf{Slice LUTs} &      \textbf{Slice Registers} \\ \toprule
@@ -354,8 +355,7 @@ The developed hardware was then synthesized considering the \emph{Artix 7} FPGA 
         \textbf{64} &   45996  &    34146  \\ \bottomrule        
         \textbf{Wrapper} & 75805  & 58370  \\
         \bottomrule
-    \end{tabular}
-    \caption{First developed architecture's utilization in number of LUTs and Registers.}
+    \end{tabular}    
     \label{tab:v1results}
 \end{table}
 
@@ -372,7 +372,7 @@ This next version's main objective was the reduction of necessary resources for 
 
 To achieve this, each individual \textbf{DCTX} apart from \textbf{DCT4} was divided in sections. \textbf{DCTX\_P1} is composed of the first stage of each individual kernel, corresponding to the first summing/rotation. Correspondingly, \textbf{DCTX\_P2} groups all the following stages, from multiplications, sums and shifts, apart from the steps taken by the smaller \textbf{DCT$\nicefrac{X}{2}$} implementations. Figure \ref{fig:dct8iv} gives an exemplification of this sectioning, for the previous implementation of \textbf{DCT8}. All bocks are controlled by the same clock and reset signals. For simplification purposes, these signals wont be displayed in the following Figures.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/DCT8divv2.tex}
     \caption{Exemplification of the individual kernel's division for the second implementation.}
@@ -421,8 +421,9 @@ As it is observable, the central block handles the direction of intermediary coe
 
 Similarly to the previous architecture, the current was also synthesized considering an \emph{Artix 7} FPGA, giving origin to the utilization results from Table \ref{tab:v2results}.
 
-\begin{table}[htb]
+\begin{table}[!htpb]
     \centering
+    \caption{First developed architecture’s utilization in number of LUTs and Registers.}
     \begin{tabular}{ccc} \toprule
         \multirow{2}{*}{\textbf{Block}}     & \multicolumn{2}{c}{\textbf{Utilization}}              \\
                                             & \textbf{Slice LUTs}      & \textbf{Slice Registers}   \\ \toprule
@@ -437,8 +438,7 @@ Similarly to the previous architecture, the current was also synthesized conside
         \textbf{DCT64\_P2}                  & 22344                    & 14000  \\ \bottomrule
         \textbf{Wrapper}                    & 50039                    & 32352  \\
         \bottomrule
-    \end{tabular}
-    \caption{Second developed architecture's utilization and estimated power consumption on \emph{Artix 7}.}
+    \end{tabular}    
     \label{tab:v2results}
 \end{table}
 
@@ -449,7 +449,7 @@ As observable, this implementation occupies $66\%$ of the area occupied by the f
 \end{equation}
 while to obtain the same results with the previous implementation there would only be needed 22.
 
-If real time encoding isn't necessary, such implementation would be most suitable for mobile applications, where size and consumed power are key requirements, as this version would perform better than the previous implementation on both of these aspects.
+If real time encoding is not necessary, such implementation would be most suitable for mobile applications, where size and consumed power are key requirements, as this version would perform better than the previous implementation on both of these aspects.
 
 %From these results, it is possible to conclude that the achieved implementation is applicable in the target hardware, given that the architecture occupies approximately 80\% of the available resources. And, as mentioned previously, the obtained architecture's occupation is similar to \textbf{DCT64}'s, as the additional 4043 LUTs taken by this implementation can be justified by the more complex redirecting unit.
 
@@ -470,7 +470,7 @@ Considering the system presented on Figure \ref{fig:basicenc} (page \pageref{fig
 
 In order to prove the applicability of the developed architectures in such system, the designs were tested on a \emph{Digilent}'s Nexys 4 hardware kit, equipped with an \emph{Artix 7} FPGA, XC7A100T-1CSG324C. This board is presented in Figure \ref{fig:nexys4}.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=\figwidth]{Sections/4DevelopedArchitecture/Figures/nexys-4-0.png}
     \caption[Nexys 4 hardware kit.]{Nexys 4 hardware kit \cite{NexysArtix7FPGA}.}
@@ -479,7 +479,7 @@ In order to prove the applicability of the developed architectures in such syste
 
 With the hardware chosen, the first step would be to synthesize the developed architectures to the desired FPGA. This operation provides numerous relevant data, such as the percentage of utilization, the estimated power drawn or some timing characteristics. 
 
-Referring to the first implementation of the \emph{DCT} kernel, the Synthesis to the current hardware isn't possible, since the design occupies $119.57\%$ of the available slice LUTs. However, on a more capable kit, this design could be tested.
+Referring to the first implementation of the \emph{DCT} kernel, the Synthesis to the current hardware is not possible, since the design occupies $119.57\%$ of the available slice LUTs. However, on a more capable kit, this design could be tested.
 
 However, as the second implementation uses only $79.93\%$, and no other \emph{floorplaning} errors occurred, the Synthesis and Implementation were successful, and therefore, \emph{Vivado} provides the mentioned estimations. With an operating frequency of 100 MHz, the obtained power draw is 50 mW. With the \gls{wns}, it is also possible to calculate the system's maximum operating frequency. This measure represents the lowest delay to meet the design's requirements, i.e., taking the system's longest clock propagation path, if it were increased by WNS, the timing constraints would still be met. Therefore, considering $T$ as the current operating clock's period, an estimation of the maximum operating frequency may be calculated by Equation \ref{eq:maxf}.
 
@@ -514,11 +514,11 @@ For the development of this work, the second protocol was chosen, as it allowed 
 
 The integration of the \emph{Wrapper} with the interface constituted of connecting each of the \texttt{dataIn}s to one of the interface's 32 bit writable registers. This way, all the inputs are accessible by the controller when performing a writing operation. As to the outputs, the same addresses were attributed to the corresponding \texttt{dataOut}s, allowing to read the calculated coefficients. The \texttt{enable}, \texttt{reset} and \texttt{Select} signals were all connected to the same write register, as these signals occupy 5 bits in total.
 
-Besides the \emph{DCT} kernel, three counters were implemented. Each of these were tasked with counting the write, read and transformation clock cycles. The first two are controlled by activating/deactivating bits from the control register, while the other is controlled by the \texttt{enable} and \texttt{validOut} signals from the kernel. The output values are also accessible to the microcontroller, making possible the monitoring of the whole cycle. And as the timers are implemented in hardware, there aren't as significant overheads as if the operations were timed with a software counter.
+Besides the \emph{DCT} kernel, three counters were implemented. Each of these were tasked with counting the write, read and transformation clock cycles. The first two are controlled by activating/deactivating bits from the control register, while the other is controlled by the \texttt{enable} and \texttt{validOut} signals from the kernel. The output values are also accessible to the microcontroller, making possible the monitoring of the whole cycle. And as the timers are implemented in hardware, there are not as significant overheads as if the operations were timed with a software counter.
 
-Figure \ref{fig:axi4int} shows a simplified version of the kernel's integration with the \emph{AXI4} Interface. \textbf{DCT Timer}'s output is concatenated with \texttt{validOut} since it doesn't need the full 32 bits. The internal blocks are all driven with the same system clock.
+Figure \ref{fig:axi4int} shows a simplified version of the kernel's integration with the \emph{AXI4} Interface. \textbf{DCT Timer}'s output is concatenated with \texttt{validOut} since it does not need the full 32 bits. The internal blocks are all driven with the same system clock.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \input{Sections/4DevelopedArchitecture/Figures/v2AXI4.tex}
     \caption{Simplified description of \emph{DCT Wrapper} with AXI4-Lite interface.}
@@ -534,7 +534,7 @@ With this block, a separate design was created. To it was added a \emph{Microbla
 
 Specifying the desired interfaces, \emph{Vivado} automation routines handle most of the necessary connections. To the \emph{Microblaze} and \emph{DCT Wrapper}, was also added a \gls{uart} connection for debugging purposes, giving origin to the block design from Figure \ref{fig:blockdes}. The addition of the microcontroller and peripherals added 1512 LUTs and 1387 registers, bringing to a final $81.98\%$ and $28.45\%$ utilization, respectively.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{Sections/4DevelopedArchitecture/Figures/DCTCop.png}
     \caption{Block design generated by \emph{Vivado} for integration of \emph{DCT Wrapper} with \emph{Microblaze}.}
@@ -549,8 +549,9 @@ Being proven the correct calculation of the transformed coefficients, the final 
 
 The most relevant result to measure was the number of clock cycles to calculate the transformed coefficients, and verify the accordance with the VHDL test bench. The read and write processes should only be seen as references, as they are highly dependent on the used interface. This way, in Table \ref{tab:axi4time} there are presented the separate timing results for the three different processes measured, both in number of clock cycles, as well as the time duration at the calculated maximum frequency. 
 
-\begin{table}[htb]
+\begin{table}[!htpb]
     \centering
+    \caption{Timing results for the \emph{Microblaze} integration design.}
     \begin{tabular}{ccccccc} \toprule
         \multirow{2}{*}{\textbf{Size}}   & \multicolumn{3}{c}{\textbf{Number of Clock Cycles}$\mathbf{(T_{@101.9MHz}(ns))}$}                      \\
                                          & \textbf{Write} & \textbf{Transform} & \textbf{Read}  \\ \toprule
@@ -561,7 +562,6 @@ The most relevant result to measure was the number of clock cycles to calculate 
         \textbf{64}                      & 6390 $(62709)$ & 22 $(216)$         & 5622 $(55172)$ \\
         \bottomrule
     \end{tabular}
-    \caption{Timing results for the \emph{Microblaze} integration design.}
     \label{tab:axi4time}
 \end{table}
 
@@ -570,8 +570,9 @@ This is calculation is done with a similar process as the one of Table \ref{tab:
 
 %On a video encoder, each residue block will suffer several transformations, horizontal and vertically. Given that the presented results are referring to vector transformations, the hypothetical time for transforming a 2D block must be calculated. With the obtained results, the maximum possible frame rate of some of the most common resolutions was calculated, considering only blocks of the the corresponding size were used, giving origin to Table \ref{tab:maxfps}.
 
-\begin{table}[htb]
+\begin{table}[!htpb]
     \centering
+    \caption{Maximum frame rate for a given resolution, considering fixed square transformation blocks, on the Nexys 4 implementation.}
     \begin{tabular}{ccccc} \toprule
         \multirow{2}{*}{\textbf{Block Size}}   & \multicolumn{4}{c}{\textbf{Resolution}}                      \\
                                          & $\mathbf{1280\times 720}$    & $\mathbf{1920\times 1080}$  & $\mathbf{3840\times 2160}$  & $\mathbf{7680\times 4320}$  \\ \toprule
@@ -581,20 +582,19 @@ This is calculation is done with a similar process as the one of Table \ref{tab:
         $\mathbf{32\times 32}$                      & 98                      & 44                   & 11                   & 3  \\
         $\mathbf{64\times 64}$                      & 161                     & 71                   & 18                   & 4  \\
         \bottomrule
-    \end{tabular}
-    \caption{Maximum frame rate for a given resolution, considering fixed square transformation blocks, on the Nexys 4 implementation.}
+    \end{tabular}    
     \label{tab:maxfps}
 \end{table}
 
-As seen, the constructed architecture, on the current hardware, isn't capable of processing high resolution video at usable frame rates. For HD video, it can maintain 30 fps for all block sizes. However, on higher resolutions, this throughput cannot be maintained, in order to obtain real time usability. 
+As seen, the constructed architecture, on the current hardware, is not capable of processing high resolution video at usable frame rates. For HD video, it can maintain 30 fps for all block sizes. However, on higher resolutions, this throughput cannot be maintained, in order to obtain real time usability. 
 
 Other works capable of providing such performances have been published, mostly for the HEVC standard (see references \cite{vayalilEfficientASICDesign2016,meherEfficientIntegerDCT2014,m.HighPerformanceInteger2017}). These results should justify the choices made by the developers, since the proclaimed clock frequencies are obtained with \gls{vlsi} circuits, and FPGA implementations, when present, are only used for validation purposes.
 
-In addition, it should be kept in mind that the presented results represent a \emph{best case} scenario, since they don't take into consideration any other delays from the encoding process.
+In addition, it should be kept in mind that the presented results represent a \emph{best case} scenario, since they do not take into consideration any other delays from the encoding process.
 
-Nonetheless, the integration of the developed architecture with the \emph{Microblaze} should prove the applicability of the first on a full encoding system, even though the maximum performance of the system isn't known, as it could be achieved through synthesis to ASIC.
+Nonetheless, the integration of the developed architecture with the \emph{Microblaze} should prove the applicability of the first on a full encoding system, even though the maximum performance of the system is not known, as it could be achieved through synthesis to ASIC.
 
-%With the second version of of the \emph{DCT Wrapper}, the utilization of hardware is heavily optimized, as there are no repeated stages throughout the design. However, this makes  parallel transformations of different vector sizes impossible. Since, at least, \textbf{DCT4} will always be occupied with one of the encoding options, and as all other transform sizes need this stage to calculate its output, there isn't the possibility to calculate two different transform sizes at the same time.
+%With the second version of of the \emph{DCT Wrapper}, the utilization of hardware is heavily optimized, as there are no repeated stages throughout the design. However, this makes  parallel transformations of different vector sizes impossible. Since, at least, \textbf{DCT4} will always be occupied with one of the encoding options, and as all other transform sizes need this stage to calculate its output, there is not the possibility to calculate two different transform sizes at the same time.
 
 %However, on the decoding process, there is no need for parallelization of the Transform stage, as all the encoding options were already chosen. This way, an architecture following the same implementation would be appropriate for a decoder, where low power and size are highly desired characteristics.
 

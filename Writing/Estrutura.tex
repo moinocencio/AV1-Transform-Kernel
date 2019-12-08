@@ -22,9 +22,11 @@
 \AtEveryBibitem{%
   \clearfield{note}%
 }
+\renewbibmacro{in:}{}
+\AtEveryBibitem{\clearlist{language}}
 \addbibresource{newBib.bib}
 \usepackage{csquotes}
-\usepackage[acronym,nonumberlist]{glossaries}
+\usepackage[acronym,nonumberlist, nopostdot]{glossaries}
 \newglossary[tlg]{nomenclature}{tld}{tdn}{Nomenclature}
 \usepackage{xcolor}
 \usepackage{todonotes}
@@ -200,6 +202,10 @@ breaklines=true
 \definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
 \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
 \definecolor{coolblack}{rgb}{0.0, 0.18, 0.39}
+
+\renewcommand\appendixname{Annexes}
+\renewcommand\appendixpagename{Annexes}
+\renewcommand\appendixtocname{Annexes}
 
 %%%%%%%%%%%%%%%%%%%%
 % Carregar Glossário

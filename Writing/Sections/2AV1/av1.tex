@@ -4,7 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Basic Principles}
 
-\emph{Video Compression Systems} have been in development for approximately forty years, with the first video codec, \emph{H.120}, being released in 1984. It was composed of basic operations, which didn't correlate to good compression performances. This has lead to a quick downfall of its usage, being aggravated by the release of the \emph{H.261} standard by 1988.
+\emph{Video Compression Systems} have been in development for approximately forty years, with the first video codec, \emph{H.120}, being released in 1984. It was composed of basic operations, which did not correlate to good compression performances. This has lead to a quick downfall of its usage, being aggravated by the release of the \emph{H.261} standard by 1988.
 
 However, the building blocks on which later standards were based are the same as in the first generations, i.e., the strategies implemented on newer standards exploit the same \emph{redundancies} as previous, less efficient, codecs.
 
@@ -22,7 +22,7 @@ This way, to have a better understanding of the functioning behind video codecs,
 
 \nocite{gonzalezDigitalImageProcessing2018}
 
-Most of the compressed/decompressed video nowadays is directed to content visualization by consumers, with the exception of some network-driven image processing applications, such as automatic video surveillance. Therefore, the compression of video sequences has the intent of making changes to the original data, without serious impact to the users' perception. This process is mentioned as the removal of the \emph{Psychovisual redundancy} \cite{shiImageVideoCompression2008}. Therefore, a basic understanding of the visual system can clarify many of the design choices made in video compression applications, and why their use doesn't present much impact on the quality of the image, while greatly reducing its memory usage.
+Most of the compressed/decompressed video nowadays is directed to content visualization by consumers, with the exception of some network-driven image processing applications, such as automatic video surveillance. Therefore, the compression of video sequences has the intent of making changes to the original data, without serious impact to the users' perception. This process is mentioned as the removal of the \emph{Psychovisual redundancy} \cite{shiImageVideoCompression2008}. Therefore, a basic understanding of the visual system can clarify many of the design choices made in video compression applications, and why their use does not present much impact on the quality of the image, while greatly reducing its memory usage.
 
 The image perception starts in the human eye, represented in Figure \ref{fig:eye}. Its different constituents accomplish different tasks, from focusing, to aperture control. Although their importance to the overall functioning of the eye, the part that matters most to the focus of this work is the innermost membrane, the retina.
 
@@ -37,17 +37,17 @@ Once the desired image is properly focused by the lens, an inverse version of it
 
 The \emph{cones} are highly sensitive to color, being responsible for the \emph{photonic} or \emph{bright-light} vision. There are three different types, corresponding to the wavelength they are susceptible to. These are the \emph{S}, \emph{M} and \emph{L} \emph{cones}, being sensitive to, approximately, the blue, green and red light, respectively, making a somewhat similar capture to the RGB color system.
 
-On the other side, \emph{rods} aren't stimulated by bright light, being more active on low illumination levels. This aspect makes them responsible for giving a rough overview of the field of view. This is called as \emph{scotopic} or \emph{dim-light} vision. These cells are more broadly spread across the retina comparing to the \emph{cones}, which is also observable in the number of cells (approximately 6 million \emph{cones}, to 100 million \emph{rods}).
+On the other side, \emph{rods} are not stimulated by bright light, being more active on low illumination levels. This aspect makes them responsible for giving a rough overview of the field of view. This is called as \emph{scotopic} or \emph{dim-light} vision. These cells are more broadly spread across the retina comparing to the \emph{cones}, which is also observable in the number of cells (approximately 6 million \emph{cones}, to 100 million \emph{rods}).
 
-From this, it's already observable that the human visual system is more sensitive to differences on the luminosity, than to the color of an object \cite{mullenContrastSensitivityHuman1985}, which is a starting point for compressing video, as will be shown later in this Chapter. However, many other opportunities come from the processing of the nerve signals, and the \emph{psychovisual} perception that follows.
+From this, it is already observable that the human visual system is more sensitive to differences on the luminosity, than to the color of an object \cite{mullenContrastSensitivityHuman1985}, which is a starting point for compressing video, as will be shown later in this Chapter. However, many other opportunities come from the processing of the nerve signals, and the \emph{psychovisual} perception that follows.
 
-Although more sensitive to \emph{luminance}, there is a threshold to which the difference between two objects --- $\Delta I$ --- can't be discerned. This relation is mentioned as \emph{contrast sensitivity function}, which is roughly approximated with the \emph{Weber's Law}
+Although more sensitive to \emph{luminance}, there is a threshold to which the difference between two objects --- $\Delta I$ --- cannot be discerned. This relation is mentioned as \emph{contrast sensitivity function}, which is roughly approximated with the \emph{Weber's Law}
 
 \begin{equation}
     \frac{\Delta I}{I}\approx constant
 \end{equation}
 
-Analyzing this equation, it's possible to conclude that the darker an object is, the lower the difference in luminance needs to be to distinguish another object. Also, darker images tend to be more susceptible to compression artifacts.
+Analyzing this equation, it is possible to conclude that the darker an object is, the lower the difference in luminance needs to be to distinguish another object. Also, darker images tend to be more susceptible to compression artifacts.
 
 Besides the luminance values, the spatial and temporal frequencies also represent an important role in the perception of such errors. 
 
@@ -71,7 +71,7 @@ The Figure \ref{fig:noise} gives an example of the dependency with spatial frequ
     \label{fig:noise}
 \end{figure}
 
-Temporal frequency dependency, although more challenging to exemplify, is easily understandable. On a sequence of frames with fast movements, either from the camera or the subject, the human eye doesn't have the ability to track details or other artifacts, while in slow moving scenes, it can easily identify errors.
+Temporal frequency dependency, although more challenging to exemplify, is easily understandable. On a sequence of frames with fast movements, either from the camera or the subject, the human eye does not have the ability to track details or other artifacts, while in slow moving scenes, it can easily identify errors.
 
 These are some of the fragilities of the human visual system that get exploited during the compression of video. However, other \emph{redundancies}, inherent from the captured images themselves contribute to the reduction of the video size, as will be described in the following sections.
 
@@ -85,7 +85,7 @@ These are some of the fragilities of the human visual system that get exploited 
 %\todo[inline,color=red!40]{*Transform and Quantization}
 %\todo[inline,color=red!40]{*Entropy Coding}
 
-Even though there are countless observable subjects and sceneries, it's unfair to think of a frame as a random sequence of pixels. Objects tend to represent clusters of pixels with roughly the same values, moving objects follow predictable directions, etc. Such characteristics represent \emph{redundancies} that can be explored during the compression of said sequence.
+Even though there are countless observable subjects and sceneries, it is unfair to think of a frame as a random sequence of pixels. Objects tend to represent clusters of pixels with roughly the same values, moving objects follow predictable directions, etc. Such characteristics represent \emph{redundancies} that can be explored during the compression of said sequence.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Spatial Redundancy} \label{sssec:spatred}
@@ -101,7 +101,7 @@ Taking Figure \ref{subfig:noiseOri} and calculating its autocorrelation with var
     \label{fig:autocorr}
 \end{figure}
 
-As it is observable, for shorter shifts, the normalized autocorrelation is very close to one, since most of the de-correlation comes for mismatching edges. Although this relation varies depending on the image, it's safe to assume that it is very similar for the majority of the cases.
+As it is observable, for shorter shifts, the normalized autocorrelation is very close to one, since most of the de-correlation comes for mismatching edges. Although this relation varies depending on the image, it is safe to assume that it is very similar for the majority of the cases.
 
 Such study gives a promising opportunity for compression, since it means that most pixels can be predicted from its neighbors. This aspect as lead to what is now known as \emph{differential} or \emph{predictive} coding.
 
@@ -128,7 +128,7 @@ The codec takes advantage of this redundancy in the \emph{inter-prediction} stag
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Psychovisual Redundancy}
 
-As to the redundancies presented in Section \ref{ssec:hvs}, these are explored in various stages throughout the video encoder.
+The redundancies presented in Section \ref{ssec:hvs} are explored in various stages throughout the video encoder.
 
 The first measure is the \emph{chroma subsampling}, which takes advantage of the lower perception to color, discarding some of the \emph{chroma} samples, depending on the subsampling chosen.
 
@@ -160,7 +160,7 @@ Typically, a pixel value is represented in one luminance and two chrominance val
 
 From the reduced sensitivity to details (or areas with high spatial frequency), the compression is explored in the \emph{Transform} (T) and \emph{Quantization} (Q) blocks. In the first stage, blocks of pixels are evaluated in their frequency components. These are then evaluated in the second stage, where the least significant ones get discarded. In the decoder, the image is reconstructed with the maintained coefficients, without much impact to the image quality. This process is further explained throughout the work.
 
-On the Quantization block, some work was also developed to account for \emph{Weber's law}, where the quantization depends on the average luminance value of the block. This concept was first introduced in \emph{"Efficiency of a Model Human Image Code"} \cite{watsonEfficiencyModelHuman1988}, and since then experimented in various codecs, such as HEVC \cite{rouisPerceptualVideoContent2018}.
+On the Quantization block, some work was also developed to account for \emph{Weber's law}, where the quantization depends on the average luminance value of the block. This concept was first introduced in \emph{"Efficiency of a Model Human Image Code"} \cite{watsonEfficiencyModelHuman1988}, and since then, experimented in various codecs, such as HEVC \cite{rouisPerceptualVideoContent2018}.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Coding Redundancy}
@@ -225,7 +225,7 @@ The wipe out of the least significant coefficients is particularly efficient whe
     \label{fig:zigzag}
 \end{figure}
 
-In most of the cases, this causes that the non-zero coefficients get read first, followed by a sequence of zeros. Such sequence benefits heavily of being encoded with \gls{vlc}, such as \emph{Huffman Tree Codes} or \Gls{cabac}. Off all the processes, this is the one that doesn't introduce further distortion into the encoded sequence, which is the reason it doesn't get included in the \emph{feedback loop}.
+In most of the cases, this causes that the non-zero coefficients get read first, followed by a sequence of zeros. Such sequence benefits heavily of being encoded with \gls{vlc}, such as \emph{Huffman Tree Codes} or \Gls{cabac}. Off all the processes, this is the one that does not introduce further distortion into the encoded sequence, which is the reason it does not get included in the \emph{feedback loop}.
 
 The intent of this loop is to get an exact same copy of the frame reconstructed in the decoder. This reconstructed frame gets used as the reference for intra-prediction, or gets put into the reference frame buffer to be used in a later inter-prediction process. 
 
@@ -265,7 +265,7 @@ In the decoder, the \emph{Control Unit} represents the process that organizes th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{AV1}
 
-Being the focus of this work, in the following sections, \emph{AV1} is presented on its most relevant aspects, starting with its development process.
+Being the focus of this work, in the following sections, \emph{AV1} is discussed concerning its most relevant aspects, starting with its development process.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{History and Development}
@@ -285,7 +285,7 @@ In 2014, \emph{Google} started working on the next generation of open-source vid
     \label{fig:aom}
 \end{figure}
 
-By 2016, \emph{AV1} started, with the objective of reaching 30\% bitrate decrease, in comparison to \emph{VP9}. After the bitstream freeze in March 2018 and deployment of \emph{libaom} soon later, this first objective was fulfilled. However, the compression performance did not atone for the very high compression and decompression times of the reference software. This left a large margin for improvement, which quickly got explored with the development of other compression and decompression algorithms by the \emph{AOM} members, such as \emph{dav1d}, \emph{rav1e}, \emph{SVT-AV1},  among others. This parallel development gave origin to a competition among the corresponding teams, that benefited the adoption of the standard, since it brought a wide range of possibilities. 
+By 2016, \emph{AV1} started, with the objective of reaching 30\% bitrate decrease, in comparison to \emph{VP9}. After the bitstream freeze in March 2018 and deployment of \emph{libaom} soon later, this first objective was fulfilled. However, the compression performance did not atone for the very high operation times of the reference software. This left a large margin for improvement, which quickly got explored with the development of other compression and decompression algorithms by the \emph{AOM} members, such as \emph{dav1d}, \emph{rav1e}, \emph{SVT-AV1},  among others. This parallel development gave origin to a competition among the corresponding teams, that benefited the adoption of the standard, since it brought a wide range of possibilities. 
 
 With the improvements verified on both encoders and decoders, \emph{AV1} got progressively more adoption from the industry, getting support from most web browsers, as well as uploads of \emph{AV1} encoded videos to streaming platforms \cite{eggeLatestTechnicalBusiness2019}.
 
@@ -303,7 +303,7 @@ Although the focus of this work revolves around the Transform stage, in this sec
 
 At the start of the encoding process, an input frame is divided into \emph{superblocks}. These constitute the starting point of the compression of an image.
 
-These blocks may be of $128 \times 128$ pixels, or $64 \times 64$. However, doing operations with such sizes would add complexity, as well as it wouldn't prove to be efficient. Therefore, the \emph{superblock} can be partitioned into various \emph{prediction blocks}. These can range between $128 \times 128$ to $4 \times 4$, including rectangular blocks, with $2:1$ or $4:1$ ratios. The division of these blocks can be done recursively, where a square block divided into 4 square blocks can originate progressively smaller blocks, according to the schematic in Figure \ref{fig:partitioning}.
+These blocks may be of $128 \times 128$ pixels, or $64 \times 64$. However, doing operations with such sizes would add complexity, as well as it would not prove to be efficient. Therefore, the \emph{superblock} can be partitioned into various \emph{prediction blocks}. These can range between $128 \times 128$ to $4 \times 4$, including rectangular blocks, with $2:1$ or $4:1$ ratios. The division of these blocks can be done recursively, where a square block divided into 4 square blocks can originate progressively smaller blocks, according to the schematic in Figure \ref{fig:partitioning}.
 
 \begin{figure}[!htbp]
     \centering
@@ -325,7 +325,7 @@ As to the \emph{non-directional predictors}, \emph{VP9} includes two different m
 
 \emph{Pallet mode} also got revised and included in \emph{AV1}. This mode is paired with other prediction techniques, limiting the pixel values to a set of possible colors. \emph{Pallet} as well as \emph{Intra-block copy} are especially designed for artificial video, such as video game footage, since these kind of videos contained a limited set of colors textures. \emph{Intra-block copy} allows for the replication of a intra-predicted block, similarly to the process in inter prediction.
 
-Finally, \emph{AV1} introduces two new intra prediction modes that haven't been implemented in previous generations. These are \emph{Chroma from Luma} and \emph{Recursive-filter Intra Prediction}. The first is easily understandable through its name. The chroma component of a block is calculated through the corresponding luminance values (see \emph{"Predicting Chroma from Luma in AV1"} \cite{trudeauPredictingChromaLuma2018}). As to the later, it sub-divides a prediction block, and calculates each set of pixels using different filters.
+Finally, \emph{AV1} introduces two new intra prediction modes that have not been implemented in previous generations. These are \emph{Chroma from Luma} and \emph{Recursive-filter Intra Prediction}. The first is easily understandable through its name. The chroma component of a block is calculated through the corresponding luminance values (see \emph{"Predicting Chroma from Luma in AV1"} \cite{trudeauPredictingChromaLuma2018}). As to the later, it sub-divides a prediction block, and calculates each set of pixels using different filters.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Inter-prediction}
@@ -341,7 +341,7 @@ Some works have already been published with advances to this stage, as well as h
 
 \emph{AV1} follows the innovations made in \emph{VP9}, adding more transformation kernels. Besides the regularly implemented \emph{\gls{dct}}, the transformation blocks may now be transformed using Identity kernels or \emph{\gls{adst}} kernels, which can be implemented in two directions. These different options can be used independently in the columns and rows, giving origin to 16 different options of block transformations. This aspect is further explained in Chapter \ref{chap:trans}.
 
-As to transform sizes, \emph{AV1} allows for extra flexibility, not fixing any of the block's dimensions to a certain value. This way, the block size can vary between $4 \times 4$ and $64 \times 64$, including rectangular blocks of $2:1$ and $4:1$ ratios.
+As to transform sizes, \emph{AV1} allows for extra flexibility, not fixing any of the block dimensions to a certain value. This way, the block size can vary between $4 \times 4$ and $64 \times 64$, including rectangular blocks of $2:1$ and $4:1$ ratios.
 
 %%%%%%%%%%%%%%%%%%%
 \subsubsection{Quantization}
@@ -364,9 +364,9 @@ Besides the revision of the old filter, many others are added, such as the \emph
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Performance Analysis}
 
-\emph{AV1}'s decoding specification hasn't change since the release of the standard and freeze of the bitstream. However, this isn't verified on the implementations of the standard. Even \emph{libaom}, which is intended to serve as a guideline for future implementations, has been severely improved since its release in June 2018. 
+\emph{AV1}'s decoding specification has not changed since the release of the standard and freeze of the bitstream. However, this is not verified on the implementations of the standard. Even \emph{libaom}, which is intended to serve as a guideline for future implementations, has been severely improved since its release in June 2018. 
 
-Being so, the comparison of \emph{AV1} throughout these developing months has been divided in two major categories: \emph{Quality} and \emph{Timing}. The first depends on the standard itself, and on how the encoding tools are able to compress the video, while maintaining its playback capabilities. Therefore, if the encoding objectives are maintained throughout the development of the encoders/decoders, this parameter should not vary. However, the same cannot be said of the \emph{Timing Performance}, since as more efficient tools get released, it is expected that the time to encode/decode a video gets reduced, as to reach real-time usability.
+The comparison of \emph{AV1} throughout these developing months has been divided in two major categories: \emph{Quality} and \emph{Timing}. The first depends on the standard itself, and on how the encoding tools are able to compress the video, while maintaining its playback capabilities. Therefore, if the encoding objectives are maintained throughout the development of the encoders/decoders, this parameter should not vary. However, the same cannot be said of the \emph{Timing Performance}, since as more efficient tools get released, it is expected that the time to encode/decode a video gets reduced, as to reach real-time usability.
 
 %\todor{Comparation metrics?}
 
@@ -383,23 +383,24 @@ These results may vary greatly with the performed tests, as the encoding tools m
 
 \begin{table}[h]
     \centering
+    \caption[BD-rate of \emph{VP9} and \emph{H.264} codecs, when compared to \emph{AV1} (negative corresponds to bitrate savings)]{BD-rate of \emph{VP9} and \emph{H.264} codecs, when compared to \emph{AV1} (negative corresponds to bitrate savings) \cite{AV1BeatsX2642018}.}
     \begin{tabular}{@{}cccccc@{}} \toprule
         \multirow{2}{*}{\textbf{Codec}}     &      \multicolumn{5}{c}{\textbf{Resolutions}} \\
          & \textbf{360p} & \textbf{480p} & \textbf{720p} & \textbf{1080p} & \textbf{Average}\\ \toprule 
         VP9            &    -29.5\% & -32.5\% & -32.3\% & -35.9\% & -32.5\% \\ \hline
         H.264          &    -43.4\% & -49.3\% & -51.2\% & -57.9\% & -50.3\% \\
         \bottomrule
-    \end{tabular}
-    \caption[BD-rate of \emph{VP9} and \emph{H.264} codecs, when compared to \emph{AV1} (negative corresponds to bitrate savings)]{BD-rate of \emph{VP9} and \emph{H.264} codecs, when compared to \emph{AV1} (negative corresponds to bitrate savings) \cite{AV1BeatsX2642018}.}
+    \end{tabular}    
     \label{tab:facetest}
 \end{table}
 
-As it may be seen, as the resolution increases, so does the bitrate savings. This leads to believe that if the same test were to be performed with \emph{4K} and \emph{8K} sequences, higher performances would be verified.
+As it may be seen, as the resolution increases, so do the bitrate savings. This leads to believe that if the same test were to be performed with \emph{4K} and \emph{8K} sequences, higher performances would be verified.
 
 As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1FirstLook2018, GoodNewsAV12019}, it is possible to see the improvements made on \emph{libaom}. In Table \ref{tab:testtime} there are presented the encoding times of a 5 second clip, shortly after the reference software was released, August 2018, and in March 2019, under the same conditions. Besides the performance of \emph{libaom}, software for \emph{H.264/AVC}, \emph{H.265/HEVC} and \emph{VP9} is also evaluated.
 
 \begin{table}[h]
     \centering
+    \caption[Encoding times of different video encoders, and improvements on \emph{AV1}]{Encoding times of different video encoders, and improvements on \emph{AV1} \cite{AV1FirstLook2018, GoodNewsAV12019}.}
     \begin{tabular}{ccc} \toprule
         \multirow{2}{*}{\textbf{Codec}}     &      \multicolumn{2}{c}{\textbf{Encoding Time (s)}} \\
          &    \textbf{2018}  &   \textbf{2019}  \\ \toprule
@@ -408,12 +409,11 @@ As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1F
         VP9            &    \multicolumn{2}{c}{226} \\ \hline
         H.264          &    \multicolumn{2}{c}{18} \\
         \bottomrule
-    \end{tabular}
-    \caption[Encoding times of different video encoders, and improvements on \emph{AV1}]{Encoding times of different video encoders, and improvements on \emph{AV1} \cite{AV1FirstLook2018, GoodNewsAV12019}.}
+    \end{tabular}    
     \label{tab:testtime}
 \end{table}
 
-From these results, it is possible to conclude that \emph{AV1} is a promising codec. When quality and compression gains are considered, it is already verifiable that the codec presents better performances than its predecessors, in some cases even beating its objective of 30\% improvement over \emph{VP9}. However, when considering the timing issues, the results don't prove as optimistic. As the time of writing, the encoding solutions are still far away from a real-time usability. Although, as better software and hardware solutions get developed, this objective may be achieved in the near future.
+From these results, it is possible to conclude that \emph{AV1} is a promising codec. When quality and compression gains are considered, it is already verifiable that the codec presents better performances than its predecessors, in some cases even beating its objective of 30\% improvement over \emph{VP9}. However, when considering the timing issues, the results do not prove as optimistic. As the time of writing, the encoding solutions are still far away from a real-time usability. Although, as better software and hardware solutions get developed, this objective may be achieved in the near future.
 
 
 \clearpage

@@ -1,0 +1,101 @@
+\begin{tikzpicture}[%
+    >=triangle 60,              % Nice arrows; your taste may be different
+    start chain=going right,    % General flow is top-to-bottom
+    node distance=2.5cm,          % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    ]
+
+\tikzset{
+    base/.style={draw, on chain, on grid, align=center},
+    proc/.style={base, rectangle, text width=1.6cm, fill=black!15, minimum height=1.5cm, minimum width=1.5cm,font={\bfseries}},    
+    frame/.style={base, minimum height=1.5cm, minimum width=2cm, fill=blue!10, thick},
+    sub/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!10, minimum height=3.5ex, font={\bfseries}},
+    spot/.style={circle, inner sep=0pt, radius=0.4cm, minimum height=2mm, draw},
+    edge rectangle/.style={ to path={ rectangle (\tikztotarget)}},
+    % coord node style is used for placing corners of connecting lines
+    coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+    % Arrows 
+    fforw/.style={->, thick},
+    fback/.style={->, thick, red!75!black},
+    aref/.style={<->, dashed, black!50},
+    % -------------------------------------------------
+    % Connector line styles for different parts of the diagram
+    cascaded/.style = {%
+    general shadow = {%
+      shadow scale = 1,
+      shadow xshift = -1ex,
+      shadow yshift = 1ex,
+      draw,
+      thick,
+      fill = blue!40},
+    general shadow = {%
+      shadow scale = 1,
+      shadow xshift = -.5ex,
+      shadow yshift = .5ex,
+      draw,
+      thick,
+      fill =blue!40},
+    fill = blue!40, 
+    draw,
+    thick,
+    minimum width = 2cm,
+    minimum height = 1.5cm},
+    base
+}    
+
+\node [coord] (ed) {};    
+\node[proc, text width=2cm, right=4mm of ed] (ED) {Entropy\\Decoding};
+    \draw [fforw] (ed) -- (ED.west);
+\node [proc] (Q1) {$\mathbf{Q^{-1}}$};
+    \draw [fforw] (ED) -- (Q1);
+\node [proc] (T1) {$\mathbf{T^{-1}}$};
+    \draw [fforw] (Q1) -- (T1);
+\node [sub] (add) {+};
+    \draw [fforw] (T1) -- (add);
+\node [frame, right=5cm of add] (recframe) {Reconstructed\\Frame};
+    \draw [fforw] (add) -- (recframe);
+
+%% Inter
+\node [cascaded, below=5cm of recframe] (ref) {Reference\\Frames};
+\node [proc, left=of ref] (inter) {Inter\\Coding};
+\draw [fforw] (ref) -- (inter);
+
+%% Intra
+\coordinate (lrec) at (inter |- recframe);
+\node [proc, below=1.5cm of lrec] (intra) {Intra\\Coding};
+    \draw [fforw] (intra |- recframe) -- (intra.north);
+
+%% Selector
+\coordinate (lintra) at ($(intra.west)+(-5mm,0)$);
+\node [spot, below=1cm of lintra, fill=black] (sintra) {};
+    \draw [thick] (intra.west) -- (lintra) |- (sintra.north);
+
+\coordinate (linter) at ($(inter.west)+(-5mm,0)$);
+\node [spot, above=1cm of linter, fill=black] (sinter) {};
+    \draw [thick] (inter.west) -- (linter) |- (sinter.south);
+
+\path (sintra) -- (sinter) coordinate [midway] (intraintermid);
+\node [spot, at=(add |- intraintermid)] (sel) {};
+\draw [dashed] ($(sel)+(4mm,-3.3mm)$) arc (-40:40:5mm);
+    \draw [fforw] (sintra) -- (sel);
+    \draw [fforw] (sel) -- (add);
+
+%% Control
+\path (ED.west) -- (recframe.east) node[midway] (mid) {};
+\node [proc, text width=8cm, fill=black!40, above=2cm of mid, rounded corners, ] (control) {Control Unit};
+    \draw [aref] (T1) -- (T1.north |- control.south);
+    \draw [aref] (Q1) -- (Q1.north |- control.south);
+\coordinate (aboved) at (ED |- control);
+    \draw [aref] (ED) -- (aboved) |- (control);
+    \draw [aref] (intra.120) -- (intra.120 |- control.south);
+    \draw [aref] (inter.south) -- ++(0,-3.2mm) coordinate (y) |- (control.south |- y) |- (control.south);
+    \draw [aref] (sel.west) -- ++(-6mm,0) coordinate (y) |- (y |- control.south);
+
+%% Legend
+\node [below=5cm of ED, font={\tiny}] (lc) {Control\\Signal};
+    \draw [aref] ($(lc.west)+(-6mm,0)$) -- +(5mm,0);
+\node [above=7mm of lc, font={\tiny}] (lf) {Forward\\Path};
+    \draw [fforw] ($(lc.west)+(-6mm,7mm)$) -- +(5mm,0); 
+\draw[thick] ($(lc.south west)+(-9mm,-2mm)$) rectangle ($(lf.north east)+(2mm,2mm)$);
+
+\end{tikzpicture}

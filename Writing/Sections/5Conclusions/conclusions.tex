@@ -5,34 +5,28 @@
 
 This work started with the objective of improving the performance of the recently released video coding standard, \emph{AV1}, by optimization of the reference software, \emph{libaom}, and through the development of hardware architectures for the \emph{Transform} stage.
 
-On that note, the reference software was analyzed on various aspects. Firstly the internal functioning of the focused stage was studied, being described the most relevant features, such as the sequence of operations, internal data structures and implemented kernels.
+Thus, the reference software was analyzed on various aspects. Firstly, the internal functioning of that stage was studied, being described the most relevant features, such as the sequence of operations, internal data structures and implemented kernels.
 
-In addition to these, statistical data was acquired, referring to the encoding choices done in the encoder. The organization of this data showed relevant opportunities to improve the performance of the reference encoder. From the number of bits used in the cosine approximations, to the verified number of occurrences of symmetric kernel blocks, there were found many starting points for the development of efficient software and hardware architectures for \emph{AV1}'s \emph{Transform} stage.
+In addition to these, statistical results were obtained, referring to the encoding choices accomplished in the encoder. The analysis of this data showed relevant opportunities to improve the performance of the reference encoder. From the number of bits used in the cosine approximations, to the verified number of occurrences of symmetric kernel blocks, there were found many starting points for the development of efficient software and hardware architectures for \emph{AV1}'s \emph{Transform} stage.
 
-In this work, the tackled measure was the reduction of the number of bits used by cosine approximations, as it was verified that these had a low impact on the obtained video quality, while influencing the overall encoder's performance. With the changes performed in the reference software there was a $3\%$ reduction in the encoding time, as well as $81\%$ lower memory utilization on storing cosine approximations.
+In this work, the tackled measure was the reduction of the number of bits used by the cosine approximations, as it was verified that these have a low impact on the obtained video quality, while influencing the overall encoding performance. With the changes performed in the reference software there was obtained a $3\%$ reduction in the encoding time, as well as $81\%$ lower memory usage in storing cosine approximations.
 
-The algorithm was then described in hardware, achieving two different architectures. Although both perform the transformation as desired, they provide different levels of maneuverability, as only the first provides some parallelization of encoding options. It was also shown that this implementation could be fitted into a real-time encoder for FHD@30fps, if a minimum operating frequency of 187 MHz were to be achieved with an ASIC implementation.
+The algorithm was then described in hardware, achieving two different architectures. Although both perform the transformation as desired, they provide different levels of flexibility, as only the first provides some parallelization of encoding options. It was also shown that the proposed hardware architecture could be fitted into a real-time encoder for FHD@30fps, if a minimum operating frequency of 187 MHz were to be achieved with an ASIC implementation.
 
 The second architecture was then implemented and tested on a \emph{Nexys 4} board, with \emph{Microblaze} integration. This test served as proof of concept for an eventual full encoder implementation, as the connectivity between the developed co-processor and a control unit was easily achieved and tested. However, the  performance obtained with the tested kit is not adequate for implementation on a real time encoder, leading to the aforementioned necessity of ASIC implementations.
 
 Taking these factors into consideration, it can be concluded that the original objectives were partially achieved. \emph{Libaom}'s \emph{Transform} stage was improved with the software changes, and two different hardware implementations were constructed for the \emph{DCT} kernel. 
 
-Accordingly, this work failed to meet some of the originally presented objectives.
+Thus, the work started in this dissertation can be profoundly extended, in order to obtain an efficient hardware architecture for \emph{AV1}.
 
-Firstly, \emph{AV1} supports two other transformation kernels, being these the \emph{ADST} and \emph{Identity}. In order to achieve a complete \emph{Transform} co-processor, hardware implementations for both these kernels should be implemented.
+\emph{AV1} supports two other transformation kernels, being these the \emph{ADST} and \emph{Identity}. In order to achieve a complete \emph{Transform} co-processor, hardware implementations for both these kernels should be implemented.
 
-Secondly, the full impact of the developed hardware architectures on \emph{libaom} wasn't tested. To verify this, the hardware architectures should be implemented on a fitting FPGA kit, with capabilities for high-bandwidth communications between it and a CPU running the reference software, similarly to the hybrid \emph{Microblaze} architecture.
-
-With that said, the work started in this dissertation can be profoundly extended, in order to obtain an efficient hardware architecture for \emph{AV1}.
+%Secondly, 
 
 As to the developed architectures, the most immediate measure would be the shortening of the internal signals, as well as the input and output coefficients. Although this measure would bring some complexity to the interconnection of the internal blocks, it would reduce the necessary footprint.
 
 Other considerations would be the addition of smaller \emph{DCT} blocks, such as \textbf{DCT4}, into the final \emph{Wrapper}. This would go according to two aspects. Foremost, as shown in the encoding data, the most commonly used vector is the smallest, and lastly it is the quickest to be calculated, meaning that while a bigger vector is being calculated, many iterations of the smaller vectors could be run, sequentially or in parallel.
 
-However, this wouldn't suffice to improve the architecture's performance by a high margin. To do so, an ASIC implementation should be considered, since, in most cases, FPGA designs tend to perform worse than specialized integrated circuits. Therefore, this design, as well as others aiming to achieve real-time, 8K video encoding performances, should be considered as ASIC implementations.
+As to test the full impact of the developed hardware architectures on \emph{libaom}, the hardware architectures should be implemented on a fitting FPGA kit, with capabilities for high-bandwidth communications between it and a CPU running the reference software, similarly to the hybrid \emph{Microblaze} architecture.
 
-
-
-\clearpage
-\printbibliography[heading=subbibliography]
-\addcontentsline{toc}{section}{References}
+Finally, an ASIC implementation should be considered, since, in most cases, FPGA designs tend to perform worse than specialized integrated circuits. Therefore, this design, as well as others aiming to achieve real-time, 8K video encoding performances, should be considered as ASIC implementations.
