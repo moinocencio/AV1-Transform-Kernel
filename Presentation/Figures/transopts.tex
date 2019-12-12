@@ -1,0 +1,29 @@
+\begin{tikzpicture}[%
+    len/.style={<->, line width=0.3mm, >=stealth'},
+    to/.style={->, line width=0.8mm, >=stealth'},
+    scale=0.6, every node/.style={transform shape},
+    base/.style={draw, align=center, minimum height=4ex},
+    proc/.style={base, rectangle, text width=3cm, fill=black!10, minimum height=2cm},
+    x=1cm,
+    y=1cm
+    ]
+
+    \draw[thick, step=0.5] (0,0) grid (4,4);
+        \draw[len] (0,4.5) -- (4,4.5) node [midway, align=center, anchor=south, font={\bfseries\huge}, yshift=-.5] {N};
+        \draw[len] (-.5,0) -- (-.5,4) node [midway, align=center, anchor=east, font={\bfseries\huge}, xshift=-.5] {M};
+        \draw[minimum width=6cm, minimum height=6cm, draw=gray, dashed] (-1.5,-1) rectangle (5,5.5);
+    
+    \draw[to] (4.2,2) -- (5.8,2);
+    
+    \node at (6,2) [proc, anchor=west, font={\bfseries\Large}, thick] (T) {T};
+    
+    \node [above=2cm of T, font={\huge},draw=gray, dashed, text width=10em,align=center,thick] (opts) {$\bullet\mathbf{2^Kcos(\alpha)}$\\$\bullet$ \textbf{Kernel}};
+        \draw[to] ([yshift=-.2cm] opts.south) -- ([yshift=.2cm] T.north);
+    
+    \draw[thick, step=0.5] (10.99,0) grid (15,4);
+        \draw[len] (11,4.5) -- (15,4.5) node [midway, align=center, anchor=south, font={\Large}, yshift=-.5] {$\mathbf{V}$};
+        \draw[len] (15.5,0) -- (15.5,4) node [midway, align=center, anchor=west, font={\Large}, xshift=.5] {$\mathbf{U}$};
+
+    \draw[to] ([xshift=.2cm] T.east) -- ++(1.4,0);
+    
+\end{tikzpicture}

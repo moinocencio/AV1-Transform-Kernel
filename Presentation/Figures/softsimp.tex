@@ -1,0 +1,27 @@
+\begin{tikzpicture}[%
+    >={Triangle[length=6pt,angle'=28]},
+    start chain=going below,    % General flow is left-to-right
+    node distance=2mm and 20mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    scale=0.8, every node/.style={transform shape},
+    ]
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+  inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=black!12},
+  sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!8},
+  ar/.style={->, line width=0.4mm},
+  nar/.style={ar, red!75!black},
+  pathcos/.style={font=\small, sloped}
+}
+    \node [inout] (a3) {$A$};
+    \node [inout] (b3) {$B$};
+    \path (a3) -- (b3) node [midway] (s3t) {};
+    \node [sum, right=of s3t] (s3) {\textbf{+}};
+        \path (a3.east) to node [pathcos, above, near start] {$\alpha$} (s3.west);
+            \draw [ar] (a3.east) -- (s3);
+        \path (b3.east) to node [pathcos, color=red!75!black, below, near start] {$\beta$} (s3.west);
+            \draw [nar] (b3.east) -- (s3);
+    \node [inout, right=of s3] (c3) {$C$};
+        \draw [ar] (s3) -- (c3);
+    \node [right=1cm of c3] (eq3) {C = ($\alpha\cdot$A + $\beta\cdot$B)\texttt{>>}8};
+\end{tikzpicture}

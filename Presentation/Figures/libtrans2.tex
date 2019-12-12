@@ -1,0 +1,111 @@
+\begin{tikzpicture}[%
+    >=triangle 60,              % Nice arrows; your taste may be different
+    start chain=going below,    % General flow is top-to-bottom
+    node distance=6mm and 40mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    scale=0.5, every node/.style={transform shape},
+    ]
+
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=4ex},
+  proc/.style={base, rectangle, text width=8em, fill=black!10},
+  test/.style={base, diamond, aspect=2, text width=6em, fill=black!10},
+  inout/.style={base,draw,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=black!12},
+  term/.style={proc, rounded corners},
+  % coord node style is used for placing corners of connecting lines
+  coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+  % nmark node style is used for coordinate debugging marks
+  nmark/.style={draw, cyan, circle, font={\sffamily\bfseries}},
+  % -------------------------------------------------
+  % Connector line styles for different parts of the diagram
+  norm/.style={->, draw},
+  free/.style={->, draw, green3},
+  cong/.style={->, draw, red3},
+  it/.style={font={\itshape}}
+}    
+    
+  \begin{scope}
+
+    \node[inout, it] (start) {Input Block};
+
+    \node[proc, below=1.5cm of start] (get_col) {Get Column \texttt{i\_c}};
+      \path (start.south) to node [near end, xshift=2em, text=coolblack] {\texttt{i\_c=0}} (get_col);
+        \draw [->] (start.south) -- (get_col);
+    
+    \node[test, join] (ud_flip) {\texttt{ud\_flip}};      
+
+    \node[proc] (T1) {$T$};
+      \path (ud_flip.south) to node [near start, xshift=1em, text=red!80!black] {\texttt{0}} (T1);
+          \draw [->] (ud_flip.south) -- (T1);
+    
+    \node[test, join] (lr_flip) {\texttt{lr\_flip}};   
+
+    \node[proc] (store1) {Store coefficients};
+      \path (lr_flip.south) to node [near start, xshift=1em, text=red!80!black] {\texttt{0}} (store1);
+            \draw [->] (lr_flip.south) -- (store1);
+
+    \node[test, join, text width=7em] (i_col) {\texttt{i\_c == (size\_col - 1)}};
+
+    \node [proc, right=11cm of get_col] (get_row) {Get Row \texttt{i\_r}};
+      \path (i_col.south) to node [near end, xshift=2em, yshift=-0.2em, text=coolblack] {\texttt{i\_r=0}} (get_row);
+      \path (i_col.south) to node [near start, xshift=-1.5em, yshift=0.2cm, text=red!80!black] {\texttt{true}} (get_row);
+        \draw [->] (i_col.south) -- ++(0,-0.5) -- ++(6.3,0) -- ++(0,13) -| (get_row);
+
+    \node[proc, join] (T2) {$T$};
+
+    \node[proc, join] (store2) {Store coefficients};
+
+    \node[test, join, text width=7em] (i_row) {\texttt{i\_r == (size\_row - 1)}};
+
+    \node[term,line width=0.8mm] (end) {End};      
+      \path (i_row.south) to node [near start, xshift=-1.5em, text=red!80!black] {\texttt{true}} (end);
+        \draw [->] (i_row.south) -- (end);
+
+      \node[proc, right=of ud_flip] (flip_in) {Flip Input Vertically};
+      \path (ud_flip.east) to node [near start, yshift=1em, text=red!80!black] {\texttt{1}} (flip_in);
+          \draw [->] (ud_flip.east) -- (flip_in); 
+
+      \node[coord, right=of T1] (T1_right) {};
+      \path (flip_in.south) to node {} (T1_right);
+        \draw [->] (flip_in.south) -- (T1_right) |- (T1);
+
+      \node[proc, right=of lr_flip] (flip_in2) {Flip Coefficients Horizontally};
+      \path (lr_flip.east) to node [near start, yshift=1em, text=red!80!black] {\texttt{1}} (flip_in2);
+          \draw [->] (lr_flip.east) -- (flip_in2); 
+
+      \node[coord, right=of store1] (store1_right) {};
+      \path (flip_in2.south) to node {} (store1_right);
+        \draw [->] (flip_in2.south) -- (store1_right) |- (store1);
+
+      \node[coord, left=of get_col] (get_col_left) {};
+      \path (get_col_left) to node [yshift=0.5em, text=coolblack] {\texttt{i\_c+=1}} (get_col);
+      \node[coord, left=of i_col] (i_col_left) {};
+      \path (i_col.west) to node [yshift=-1em, text=red!80!black] {\texttt{false}} (i_col_left);
+        \draw [->] (i_col.west) -- (i_col_left) |- (get_col_left) |- (get_col);
+
+      \node[coord, left=of get_row] (get_row_left) {};
+      \path (get_row_left) to node [yshift=0.5em, text=coolblack] {\texttt{i\_r+=1}} (get_row);
+      \node[coord, left=of i_row] (i_row_left) {};
+      \path (i_row.west) to node [yshift=-1em, text=red!80!black] {\texttt{false}} (i_row_left);
+        \draw [->] (i_row.west) -- (i_row_left) |- (get_row_left) |- (get_row);
+  \end{scope}        
+  
+  \begin{pgfonlayer}{background}
+    % Left-top corner of the background rectangle
+    \path (get_col_left.west |- get_col_left.north)+(-1.5cm,0.8cm) node (a11) {};
+    % Right-bottom corner of the background rectanle
+    \path (flip_in.east |- i_col.south)+(+0.2cm,-0.75cm) node (a21) {};
+    % Draw the background
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
+      (a11) rectangle (a21);
+    \path (a11 |- a21) node (a31) {};
+    \path (a11) -- (a31) node[midway, rotate=90, yshift=-0.5cm] (mid_right) {\textbf{Column Transform}};
+
+    \path (get_row_left.west |- get_row_left.north)+(-0.2cm,0.8cm) node (a12) {};
+    \path (flip_in.east |- i_col.south)+(+9.5cm,-0.75cm) node (a22) {};
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
+      (a12) rectangle (a22);
+    \path (a22 |- a12) node (a32) {};
+    \path (a22) -- (a32) node[midway, rotate=90, yshift=0.5cm] (mid_right) {\textbf{Row Transform}};
+  \end{pgfonlayer}
+\end{tikzpicture}

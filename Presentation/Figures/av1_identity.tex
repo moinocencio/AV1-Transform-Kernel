@@ -1,0 +1,84 @@
+\begin{tikzpicture}[%
+    >={Triangle[length=6pt,angle'=28]},
+    start chain=going right,    % General flow is left-to-right
+    node distance=15mm and 20mm, % Global setup of box spacing
+    every join/.style={norm},   % Default linetype for connecting boxes
+    ]
+
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=3.5ex},
+  proc/.style={base, rectangle, text width=8em, fill=black!10},
+  inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=black!12},
+  term/.style={proc, rounded corners},
+  sum/.style={base, circle, inner sep=0pt, radius=0.4cm},
+  % coord node style is used for placing corners of connecting lines
+  coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
+  % nmark node style is used for coordinate debugging marks% -------------------------------------------------
+  % Connector line styles for different parts of the diagram
+  norm/.style={ar, draw},
+  free/.style={ar, draw, green3},
+  cong/.style={ar, draw, red3},
+  it/.style={font={\small\itshape}},
+  ar/.style={->, line width=0.4mm},
+  nar/.style={ar, red!75!black},
+  pathcos/.style={font=\small, sloped}
+}
+
+\begin{scope}
+    \node [inout] (x4) {\texttt{xk}};
+    \node [proc] (p4) {$\nfloor*{\frac{N_{\sqrt{2}}+ 2^{11}}{2^{12}}}$};
+    \node [inout] (y4) {\texttt{yk}};
+    \node [right=1cm of y4] (id4) {\textbf{IDTX4}};
+
+        \draw [ar] (x4) -- (p4);
+        \draw [ar] (p4) -- (y4);
+
+    \node [inout, below=of x4] (x8) {\texttt{xk}};
+    \node [proc] (p8) {$2$};
+    \node [inout] (y8) {\texttt{yk}};
+    \node [right=1cm of y8] (id8) {\textbf{IDTX8}};
+
+        \draw [ar] (x8) -- (p8);
+        \draw [ar] (p8) -- (y8);
+
+    \node [inout, below=of x8] (x16) {\texttt{xk}};
+    \node [proc] (p16) {$\nfloor*{\frac{2N_{\sqrt{2}}+ 2^{11}}{2^{12}}}$};
+    \node [inout] (y16) {\texttt{yk}};
+    \node [right=1cm of y16] (id16) {\textbf{IDTX16}};
+        
+        \draw [ar] (x16) -- (p16);
+        \draw [ar] (p16) -- (y16);
+
+    \node [inout, below=of x16] (x32) {\texttt{xk}};
+    \node [proc] (p32) {$4$};
+    \node [inout] (y32) {\texttt{yk}};
+    \node [right=1cm of y32] (id32) {\textbf{IDTX32}};
+
+        \draw [ar] (x32) -- (p32);
+        \draw [ar] (p32) -- (y32);
+\end{scope}
+
+\begin{pgfonlayer}{background}
+    \path (x4.west |- p4.north)+(-5mm,2mm) node (a11) {};
+    \path (id4.east |- p4.south)+(5mm,-2mm) node (a21) {};
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
+      (a11) rectangle (a21);
+
+    \path (x8.west |- p8.north)+(-5mm,2mm) node (a11) {};
+    \path (id8.east |- p8.south)+(5mm,-2mm) node (a21) {};
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
+    (a11) rectangle (a21);
+
+    \path (x16.west |- p16.north)+(-5mm,2mm) node (a11) {};
+    \path (id4.east |- p16.south)+(5mm,-2mm) node (a21) {};
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
+      (a11) rectangle (a21);
+
+    \path (x32.west |- p32.north)+(-5mm,2mm) node (a11) {};
+    \path (id4.east |- p32.south)+(5mm,-2mm) node (a21) {};
+    \path[fill=black!2,rounded corners, draw=black!50, dashed]
+      (a11) rectangle (a21);
+
+\end{pgfonlayer}
+
+\end{tikzpicture}

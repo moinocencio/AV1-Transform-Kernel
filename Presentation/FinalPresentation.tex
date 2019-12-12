@@ -1,15 +1,16 @@
 \documentclass{beamer}
-\setbeameroption{show notes}
+%\setbeameroption{show notes}
 
+\usetheme[subsectionpage=progressbar]{metropolis}
 
-\mode<presentation>
-{
-\usetheme{Pittsburgh}      % Madrid, Montpellier, Pittsburgh, Rochester, boxes
-\usecolortheme{dove} 	% beaver, crane, dolphin, dove, lily, orchid, seagull, seahorse
-\usefonttheme{default}  % or try serif, structurebold, ...
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{caption}[numbered]
-}
+%\mode<presentation>
+%{
+%\usetheme{Madrid}      % Madrid, Montpellier, Pittsburgh, Rochester, boxes
+%\usecolortheme{dove} 	% beaver, crane, dolphin, dove, lily, orchid, seagull, seahorse
+%\usefonttheme{default}  % or try serif, structurebold, ...
+%\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{caption}[numbered]
+%}
 
 \usepackage[portuguese]{babel}
 \usepackage[utf8x]{inputenc}
@@ -26,6 +27,19 @@
 \usetikzlibrary{arrows,positioning} 
 \usetikzlibrary{matrix}
 \usetikzlibrary{fadings,shapes,arrows,chains,backgrounds,calc,arrows,arrows.meta,shadows,shapes.geometric, fit, positioning, circuits.logic.US, circuits, decorations.markings, arrows.meta}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{xfrac}
+\usepackage{enumitem}
+\usepackage{pifont}
+
+\definecolor{lavenderblue}{rgb}{0.8, 0.8, 1.0}
+\definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
+\definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
+\definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
+\definecolor{coolblack}{rgb}{0.0, 0.18, 0.39}
+
+\newcommand{\pathcos}[6]{\path (#1.east) to node [pathcos, color=#5, #6] {$\sfrac{#3\pi}{#4}$} (#2.west)}
 
 \setlength{\parindent}{0.5cm}
 %%%%%%%%%%%%%%%%%%%%%
@@ -42,7 +56,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%
 % Página Inicial
-\begin{frame}
+\begin{frame}[plain]
 	\titlepage
 \end{frame}
 
@@ -79,6 +93,7 @@
        \begin{figure}[h]
               \centering
               \input{Figures/videoHD.tex}
+              \caption{Exemplo de dados em vídeo HD}
        \end{figure}
 \end{frame}
 
@@ -89,12 +104,19 @@
        \item Necessidade de reduzir quantidade de informação precisa para reproduzir um vídeo
 }
 
-\begin{frame}[plain,t]
+\begin{frame}
+       \frametitle{Codificação de Vídeo}
        \begin{center}
-              \Huge \textbf{Codificação de Vídeo}\\ \vspace{1cm}
               \Large Remoção de informação de sequência de imagens, mantendo a capacidade de reprodução
        \end{center}
-       \vspace{1cm}
+\end{frame}
+
+\note[itemize]{
+       \item Levou ao conceito de codificação de vídeo
+}
+
+\begin{frame}
+       \frametitle{Evolução da Codificação de Vídeo}
        \begin{figure}[h]
               \centering
               \input{Figures/videocodeevol.tex}
@@ -102,7 +124,6 @@
 \end{frame}
 
 \note[itemize]{
-       \item Levou ao conceito de codificação de vídeo
        \item Em prática desde os anos 40 com o interlaced scanning das televisões de raios catódicos
        \item Evolução do vídeo levou à evolução dos métodos de compressão (aumento da complexidade)
        \item Alliance for Open Media Video One ou AV1 apresenta grandes taxas de compressão, a custo de elevada complexidade
@@ -112,33 +133,43 @@
 %%%%%%%%%%%%%%%%%%%%%%
 % Sistemas de Codificação de Vídeo
 \section{Sistemas de Codificação de Vídeo}
+%\begin{frame}[plain, c]
+%       \begin{center}
+%              \Huge \textbf{Sistemas de Codificação de Vídeo}
+%       \end{center}
+%\end{frame}
+
+\note[itemize]{
+       \item Operação feita por codec
+       \item Composto por codificador e descodificador
+       \item Tem como princípio base a remoção de dados previsíveis, ou redundantes
+}
 
 \begin{frame}
        \frametitle{Redundâncias}
        \begin{columns}
               \column{0.5\textwidth}
-              \begin{figure}[h]
-                     \centering
-                     \input{Figures/intraex.tex}
-                     \caption*{Espaciais}
-              \end{figure}
-              \begin{figure}[h]
-                     \centering
-                     \input{Figures/sub420.tex}
-                     \caption*{Psico-Visuais}
-              \end{figure}
-
+                     \begin{figure}[h]
+                            \centering
+                            \input{Figures/intraex.tex}
+                            \caption*{Espaciais}
+                     \end{figure}
+                     \begin{figure}[h]
+                            \centering
+                            \input{Figures/sub420.tex}
+                            \caption*{Psico-Visuais}
+                     \end{figure}
               \column{0.5\textwidth}
-              \begin{figure}[h]
-                     \centering
-                     \input{Figures/interex.tex}
-                     \caption*{Temporais}
-              \end{figure}
-              \begin{figure}[h]
-                     \centering
-                     \input{Figures/huff.tex}
-                     \caption*{Código}
-              \end{figure}
+                     \begin{figure}[h]
+                            \centering
+                            \input{Figures/interex.tex}
+                            \caption*{Temporais}
+                     \end{figure}
+                     \begin{figure}[h]
+                            \centering
+                            \input{Figures/huff.tex}
+                            \caption*{Código}
+                     \end{figure}
        \end{columns}
 \end{frame}
 
@@ -153,10 +184,11 @@
 }
 
 \begin{frame}
-       \frametitle{Modelo Básico de Codificador}
+       \frametitle{Modelo Básico do Codificador}
        \begin{figure}[h]
               \centering
               \input{Figures/basicEnc.tex}
+              \caption{Modelo Básico de codificador}
        \end{figure}
 \end{frame}
 
@@ -173,4 +205,643 @@
        \item Descodificador faz operação inversa
 }
 
-\end{document}	
+\begin{frame}
+       \frametitle{Performance do AV1}
+              \begin{figure}[htbp]
+                     \centering
+                     \begin{tikzpicture}[scale=0.5, every node/.style={scale=0.5}, >=triangle 60]
+                            \draw[thick] (-0.5,0) -- (12,0) ;
+                            \draw[thick,->] (0,-0.5) -- (0,6) node[midway, rotate=90, above, font={\bfseries}]{Average Relative Bitrate};
+                            
+                            \node at (2,0) [below, font={\bfseries}] (h264) {H.264};
+                            \draw [line width=5mm, darkgray] (2,0) -- (2,5)node[font={\bfseries}, yshift=2.5mm]{100\%};
+                            \node at (5,0) [below, font={\bfseries}] (h264) {H.265};
+                            \draw [line width=5mm, darkgray] (5,0) -- (5,3.5)node[font={\bfseries}, yshift=2.5mm]{70\%};
+                            \node at (8,0) [below, font={\bfseries}] (h264) {VP9};
+                            \draw [line width=5mm, darkgray] (8,0) -- (8,3.2)node[font={\bfseries}, yshift=2.5mm]{68\%};
+                            \node at (11,0) [below, font={\bfseries}] (h264) {AV1};
+                            \draw [line width=5mm, coolblack] (11,0) -- (11,2.6)node[font={\bfseries}, yshift=2.5mm]{53\%};
+                     \end{tikzpicture}
+                     \caption{Poupanças de Bitrate relativas ao H.264}
+              \end{figure}
+\end{frame}
+
+\begin{frame}
+       \frametitle{Performance do AV1}
+              \begin{table}[h]
+                     \centering
+                     \caption{Tempos de Codificação}
+                     \begin{tabular}{ccc} \toprule
+                            \multirow{2}{*}{\textbf{Codec}}     &      \multicolumn{2}{c}{\textbf{Tempo de Codificação (s)}} \\
+                            &    \textbf{2018}  &   \textbf{2019}  \\ \toprule
+                            AV1            &    226 080        & 736 \\ \hline
+                            H.265          &    \multicolumn{2}{c}{289} \\ \hline
+                            VP9            &    \multicolumn{2}{c}{226} \\ \hline
+                            H.264          &    \multicolumn{2}{c}{18} \\
+                            \bottomrule
+                     \end{tabular}    
+              \end{table}
+\end{frame}
+
+\note[itemize]{
+       \item Processo complexo
+       \item Agravado pela complexidade do codificador
+       \item Quanto mais opções de codificação, melhor a performance de compressão, mas maior o tempo de operação
+       \item AV1 apresenta grandes poupanças em bit savings a custo de elevados tempos de operação
+       \item Melhorias até 30\% em relação ao HEVC ou VP9 (formatos de codificação recentes)
+       \item Demora até 3 vezes mais para atingir a mesma distorção
+       \item Melhoria ao longo dos anos com optimização do software
+}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Transformadas
+\section{Transformadas em Codificação de Vídeo}
+
+%\begin{frame}[plain, c]
+%       \begin{center}
+%              \Huge \textbf{Transformadas em Codificação de Vídeo}\\
+%       \end{center}
+%\end{frame}
+
+\note[itemize]{
+       \item Avanço para o estudo do software de referência
+       \item objetivo de perceber funcionamento interno do estágio da Transformada
+       \item Objetivo do estágio é decomposição em componentes de frequência
+}
+
+\begin{frame}
+       \frametitle{Interpretação com Imagens Base}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/imdecompos.tex}   
+              \caption{Exemplo de decomposição de bloco em imagens base}           
+       \end{figure}       
+\end{frame}
+
+\note[itemize]{
+       \item Interpreção em imagens de base: um bloco original pode ser visto como a soma de diversos blocos com diferentes componentes de frequencia horizontal e/ou vertical
+       \item Transformada vista como calculo da correlação entre imagem original e imagens base
+       \item Conjunto de imagens base depende da transformada utilizada e do tamanho do bloco a transformar
+       \item AV1 suporta blocos entre 4 e 64, incluíndo tamanhos rectangulares
+}
+
+\begin{frame}
+       \frametitle{Transformadas em Codificação de Vídeo}
+       \begin{columns}
+              \column{0.5\textwidth}
+                     \begin{figure}[h]
+                            \input{Figures/trans2D1D.tex}
+                     \end{figure}
+              \column{0.5\textwidth}
+                     \begin{center}
+                            \begin{itemize}
+                                   \item Discrete Cosine Transform (DCT)
+                                   \item Identity (IDTX)
+                                   \item Asymmetric Discrete Sine Transform (ADST)
+                                   \item \emph{Flip} - Asymmetric Discrete Sine Transform (Flip-ADST)
+                            \end{itemize}
+                     \end{center}
+       \end{columns}
+\end{frame}
+
+\note[itemize]{
+       \item Bloco de duas dimensões implica transformação a duas dimensões
+       \item Transformada pode ser feita em duas operações separáveis para linhas e colunas ou vice-versa
+       \item Operações denominadas por kernels da Transformada
+       \item AV1 suporta 3 tipos: Identidade, DCT e ADST que pode ser calculada direta ou inversamente
+       \item Kernels podem ser utilizados independentemente na vertical ou horizontal
+}
+
+\begin{frame}
+       \frametitle{Transformada no AV1}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/libtrans2.tex}
+              \caption{Sequência de operações da Transformada no \emph{libaom}}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item Diagrama de operação das transformadas no AV1
+       \item Começa com a transformada vertical (colunas)
+       \item Blocos de flip usados quando se pretende fazer a transformação com Flip-ADST
+       \item Quando todas as colunas foram transformadas, segue para a transformaçao linha a linha
+       \item Kernels representados pelos blocos T
+}
+
+\begin{frame}
+       \frametitle{Transformadas Inteiras}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/av1_fdct8_new.tex}
+              \caption{DCT}
+       \end{figure}
+       \vspace{-0.7cm}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/av1_fadst8_new.tex}
+              \caption{ADST}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item Coeficientes calculados com operações Inteiras de modo a simplificar calculo e evitar discrepâncias entre codificador e descodificador
+       \item Métodos eficazes de calcular a DCT tem sido desenvolvidos
+       \item AV1 aplica transformadas sequênciais com estágios de rotação
+       \item Princípio aplicado também na ADST
+       \item Simplifica implementações em hardware
+       \item Cada coeficiente intermédio é calculado como função de dois dos calculados anteriormente e aproximações inteiras do cosseno
+       \item Software de referencia permite aproximações com 10 a 16 bits       
+}
+
+\begin{frame}
+       \frametitle{Opções de Codificação}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/transopts.tex}
+       \end{figure}
+
+\end{frame}
+
+\note[itemize]{
+       \item Estágio da transformada controlado por:
+       \begin{itemize}
+              \item Tamanho do bloco de transformação
+              \item kernel utilizado horizontal e verticalmente
+              \item nº de bits utilizado nas aproximações de cossenos
+       \end{itemize}
+       \item Testes para saber quais as opções mais utilizadas:
+       \begin{itemize}
+              \item 12 vídeos de resoluções entre CIF e UHD
+              \item Testar variação das opções com a qualidade do vídeo
+              \item encode de qualidade constante com 3 objetivos distintos de qualidade
+       \end{itemize}
+       \item Tempo passado no estágio da transformada
+}
+
+\begin{frame}
+       \frametitle{Opções de Codificação - Resultados}              
+       \begin{center}
+                     \begin{figure}[h]
+                            \centering
+                            \includegraphics[width=\textwidth]{Figures/kernelAvg.eps}
+                            \caption{Kernel Utilizado}
+                     \end{figure}
+       \end{center}
+\end{frame}
+
+\begin{frame}
+       \frametitle{Opções de Codificação - Resultados}              
+       \begin{center}
+                     \begin{figure}[h]
+                            \centering
+                            \includegraphics[width=\textwidth]{Figures/vectSizAvg.eps}
+                            \caption{Tamanho de Vetor}
+                     \end{figure}
+       \end{center}
+\end{frame}
+
+\begin{frame}
+       \frametitle{Opções de Codificação - Resultados}              
+       \begin{center}
+                     \begin{figure}[h]
+                            \centering
+                            \includegraphics[width=\textwidth]{Figures/squareAvg.eps}
+                            \caption{Kernel Simétrico}
+                     \end{figure}
+       \end{center}
+\end{frame}
+
+\begin{frame}
+       \frametitle{Opções de Codificação - Resultados}              
+       \begin{center}
+                     \begin{figure}[h]
+                            \centering
+                            \includegraphics[width=\textwidth]{Figures/cosBitAvg.eps}
+                            \caption{Número de Bits Utilizados nas Aproximações do Cosseno}
+                     \end{figure}
+       \end{center}
+\end{frame}
+
+\note[itemize]{
+       \item DCT é a mais utilizada
+       \item Outros kernels só são utilizados em objetivos de qualidade mais elevados
+       \item A dimensão mais comum é 4, e o seu uso aumenta com a qualidade pretendida
+       \item Esperado, pois para uma dada area de imahem ser transformada com vetores de 1 por 4, tem que ser feitas mais trnaformaçoes do que para vetores de dimensoes superiores
+       \item É possível verificar a percentagem de ocurrencias para kernels simétricos (tamanho e kernel de colunas igual a tamanho e kernel de linhas)
+       \item A maior parte das transformações usa 13 bits para as representações dos cossenos
+       \item À medida que a qualidade aumenta, também aumenta o numero de bits no cosseno       
+}
+
+\begin{frame}
+       \frametitle{Nº de bits dos Cossenos vs Distorção - Teste}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/compcosbitflow.tex}              
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item Poderá levar a pensar que o número de bits do cosseno influencia a qualidade da imagem
+       \item Testes feitos para avaliar esta hipotese
+       \item Testes de codificação forçando o número de bits utilizados nas aproximações dos cossenos, no codificador
+       \item Descodificação feita com o descodificador de origem, que usa sempre 12 bits
+       \item Cálculo da Relação Sinal Ruído de Pico e comparar com os tres codificadores, para os tres objetivos de qualidade distintos
+}
+
+\begin{frame}
+       \frametitle{Nº de bits dos Cossenos vs Distorção - Resultados}
+       \begin{figure}[h]
+              \centering
+              \includegraphics[width=\textwidth]{Figures/compcosbitAvg.eps}
+              \caption{Comparaçao Distorção com Número de Bits usados no Cosseno}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item PSNR independente do número de bits utilizado no cosseno, para qualquer objetivo de qualidade
+       \item Princípio de base para otimização do software de referencia
+       \item Outros aspetos podem ser explorados para a otimização do software de referencia
+}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Arquiteturas Desenvolvidas
+\metroset{sectionpage=none}
+\section{Arquiteturas Desenvolvidas}
+
+\subsection{Software}
+
+\note[itemize]{
+       \item Foco na DCT pois seria a que causaria mais impacto na performance do encoder
+}
+
+\begin{frame}
+       \frametitle{Redução do Número de Bits}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/softsimp.tex}
+       \end{figure}
+       \begin{columns}
+              \column{0.5\textwidth}
+                     \begin{equation*}
+                            M_{original} = 728\, B
+                     \end{equation*}
+                     \begin{equation*}
+                            M_{8 bits} = 64\, B \approx 0.2\cdot M_{original}
+                     \end{equation*}
+              \column{0.5\textwidth}
+                     \begin{gather*}
+                            \Delta_{10} = \frac{1-0}{2^{10}} \approx 0.98\cdot10^{-3}\\
+                            \Delta_{8} = \frac{1-0}{2^{8}} \approx 3.9\cdot10^{-3}\\
+                            \Downarrow \\
+                            MSE_{8} = 16\cdot MSE_{10} 
+                     \end{gather*}
+       \end{columns}
+\end{frame}
+
+\note[itemize]{
+       \item Testar a hipótese da redução de complexidade pela redução do número de bits dos cossenos
+       \begin{itemize}
+              \item Multiplicações mais simples
+              \item Número de Shifts reduzido
+       \end{itemize}
+       \item Teste com 8 bits
+       \item levaria à redução em 81\% da memória utilizada para armazenamento destas aproximações
+       \item Possibilidade de degradação da qualidade de imagem pois o Erro de Quantização Quadrático médio aumentaria em 16 vezes
+       \item Repetição dos testes de distorção usando encoder com 8 bits e encoder original
+}
+
+\begin{frame}
+       \frametitle{Otimização do \emph{libaom}}       
+       \begin{center}
+                     \begin{figure}[h]
+                            \centering
+                            \includegraphics[width=\textwidth]{Figures/buttmultqual.eps}
+                            \caption{Comparação da distorção}
+                     \end{figure}
+       \end{center}
+\end{frame}
+
+\begin{frame}
+       \frametitle{Otimização do \emph{libaom}}       
+       \begin{center}
+                     \begin{figure}[h]
+                            \centering
+                            \includegraphics[width=\textwidth]{Figures/buttmulttime.eps}
+                            \caption{Tempo de Codificação}
+                     \end{figure}
+       \end{center}
+\end{frame}
+
+\note[itemize]{
+       \item Qualidade mantém-se em ambas codificações
+       \item Redução de 3\% no tempo de codificação:
+       \begin{itemize}
+              \item Tracejado: Tempo de codificação com codificador original
+              \item Barras escuras: Tempo de codificação do codificador modificado
+              \item Barras claras: tempo da Transformada
+              \item Percentagem: Diferença percetual do tempo entre codificador original e codificador modificado
+       \end{itemize}
+       \item Avanço para arquiteturas em hardware
+}
+
+\subsection{Hardware}
+\metroset{sectionpage=progressbar}
+\begin{frame}
+       \frametitle{Princípios de desenvolvimento}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/av1_fdct8_deconstruct.tex}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item Desenvolvimento foi feito em VHDL no Vivado da Xilinx
+       \item Designs e sinteses feitas com objetivo de implementação em Artix 7
+       \item Cada estágio é feito sequencialmente
+       \item Estágios de somas simples e de Multiplicação, Soma e Shift
+}
+
+\begin{frame}
+       \frametitle{Princípios de desenvolvimento}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/multHardware.tex}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item em software é uma operação fácil, descrita numa linha de códigos
+       \item em hardware tem que ser decomposta em três estágios diferentes
+       \item controlado pelo flanco ascendente de um sinal de clock
+}
+
+\begin{frame}
+       \frametitle{Princípios de desenvolvimento}
+       \begin{figure}[h]
+              \centering
+              \input{Figures/av1_fdct8_deconstruct2.tex}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item Operações das DCTs mais pequenas são contidas nas DCTs de maiores dimensões
+       \item Comportamento replica-se para os restantes tamanhos
+       \item Permite repetição de hardware, simplificando o desenvolvimento
+}
+
+\begin{frame}[c]
+       \begin{figure}[h]
+              \centering
+              \input{Figures/DCT4hardv1.tex}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item Arquitetura mais simples
+       \item Ativada por sinal de enable
+       \item Estágios internos controlados por sinal de enable
+       \item Quando terminam estágio intermédio geram validação da saída
+       \item Pipeline de estágios feito com interligação dos sinais de validação de saída de um estágio com o enable do próximo
+}
+
+\begin{frame}[c]
+       \begin{figure}[h]
+              \centering
+              \input{Figures/DCT8hardv1.tex}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item Segue o mesmo molde da arquitetura anterior, mas DCT4 é incluída internamente
+       \item validOut dependente do ultimo estágio interno, bem como da DCT4
+}
+
+\begin{frame}[c]
+       \begin{figure}[h]
+              \centering
+              \input{Figures/fullDCTv1.tex}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item As restantes transformadas seguem o mesmo design
+       \item Interligando todos com um multiplexer de seleção do output obtém-se a seguinte arquitetura
+       \item Permite cálculo dos 5 tamanhos de transformada em paralelo
+       \item Repetição de hardware causa que seja uma arquitetura de dimensões elevadas com muita utilização lógica
+}
+
+\begin{frame}
+       \frametitle{Primeira arquitetura - Resultados}
+              \begin{table}[h]
+                     \centering
+                     \caption{Resultados de utilização lógica da primeira arquitetura em família Artix 7}
+                     \begin{tabular}{ccc} \toprule
+                            \multirow{2}{*}{\textbf{DCT Size}} &     \multicolumn{2}{c}{\textbf{Utilization}} \\
+                            &      \textbf{Slice LUTs} &      \textbf{Slice Registers} \\ \toprule
+                            \textbf{4} &    1125  &       636  \\ \hline
+                            \textbf{8} &    2428  &       2087  \\ \hline
+                            \textbf{16} &   7103  &      5702  \\ \hline
+                            \textbf{32} &   19148  &     14257  \\ \hline
+                            \textbf{64} &   45996  &    34146  \\ \bottomrule        
+                            \textbf{Wrapper} & 75805  & 58370  \\
+                            \bottomrule
+                     \end{tabular}    
+                     \label{tab:v1results}
+              \end{table}
+\end{frame}
+
+\begin{frame}
+       \frametitle{Primeira arquitetura - Resultados}
+              \begin{table}[h]
+                     \centering
+                     \caption{Frequência de operação necessária para codificação em tempo real a 30 imagens por segundo}
+                     \begin{tabular}{cc} \toprule
+                            \textbf{Resolution}         & \textbf{Frequency (MHz)} \\ \toprule
+                            $\mathbf{1280\times 720}$   & 83 \\
+                            $\mathbf{1920\times 1080}$  & 187 \\
+                            $\mathbf{3840\times 2160}$  & 746 \\
+                            $\mathbf{7680\times 4320}$  & 2986 \\
+                            \bottomrule
+                     \end{tabular}    
+                     \label{tab:freq30}
+              \end{table}
+\end{frame}
+
+\note[itemize]{       
+       \item Velocidade do Sistema dependente da transformada mais lenta (DCT64), que demora 22 ciclos de relógio
+       \item Considerando que um frame seria codificado com blocos de transformação quadrados, é possivel calcular a frequencia de operação minima necessária para codificar vídeo de uma dada resolução com uma frame rate específica
+       \item Para resoluções HD e FHD o sistema poderia facilmente atingir a frequencia necessaria (dependendo da implementação)
+       \item Para reoluções mais altas não se pode dizer o mesmo
+       \item Necessidade de arquiteturas com elevado grau de paralelismo
+       \item Tamanhos superiores ocupam muita área
+}
+
+\begin{frame}[c]
+       \begin{figure}[h]
+              \centering
+              \input{Figures/DCT8divv2.tex}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item De forma a ocupar menos área, é possível construir uma arquitetura sem repetição de hardware
+       \item Divisão das DCTs em duas partes
+       \begin{itemize}
+              \item P1 com primeiro estágio de soma e rotação
+              \item P2 com restantes estágios, e metade dos coeficientes
+       \end{itemize}
+}
+
+\begin{frame}[c]
+       \begin{figure}[h]
+              \centering
+              \input{Figures/fullDCTv2.tex}
+       \end{figure}
+\end{frame}
+
+\note[itemize]{
+       \item Aplicando às restantes DCTs é possível obter a seguinte arquitetura
+       \item Entradas seguem para uma das fases P1, consoante o sinal de seleção
+}
+
+\begin{frame}
+       \frametitle{Segunda arquitetura - Resultados}
+       \begin{table}[!htpb]
+              \centering
+              \caption{Resultados de utilização lógica da segunda arquitetura em família Artix 7}
+              \adjustbox{max height=\dimexpr\textheight-5.5cm\relax, max width=\textwidth}{
+                     \begin{tabular}{ccc} \toprule
+                            \multirow{2}{*}{\textbf{Block}}     & \multicolumn{2}{c}{\textbf{Utilization}}              \\
+                                                               & \textbf{Slice LUTs}      & \textbf{Slice Registers}   \\ \toprule
+                            \textbf{DCT4}                       & 1077                     & 507    \\
+                            \textbf{DCT8\_P1}                   & 709                      & 257    \\
+                            \textbf{DCT8\_P2}                   & 1064                     & 717    \\
+                            \textbf{DCT16\_P1}                  & 1285                     & 513    \\
+                            \textbf{DCT16\_P2}                  & 3860                     & 2150   \\
+                            \textbf{DCT32\_P1}                  & 3064                     & 1025   \\
+                            \textbf{DCT32\_P2}                  & 9090                     & 5624   \\
+                            \textbf{DCT64\_P1}                  & 6123                     & 2049   \\
+                            \textbf{DCT64\_P2}                  & 22344                    & 14000  \\ \bottomrule
+                            \textbf{Wrapper}                    & 50039                    & 32352  \\
+                            \bottomrule
+                     \end{tabular}    
+              }
+              \label{tab:v2results}
+          \end{table}
+\end{frame}
+
+\note[itemize]{
+       \item Ocupa dois terços da implementação anterior
+       \item Apenas permite calculo de um dos tamanhos pois parte do software está sempre utilizado
+       \item Menos adaptada ao uso em encoder complexo, pois não permite paralelização de opções de codificação
+}
+
+\begin{frame}
+       \frametitle{Implementação Nexys 4}
+       \begin{figure}[htbp]
+              \centering
+              \includegraphics{Figures/nexys-4-0.png}
+       \end{figure}
+       \begin{figure}[htbp]
+              \centering
+              \includegraphics[width=\textwidth]{Figures/DCTCop.png}
+       \end{figure}       
+\end{frame}
+
+\note[itemize]{
+       \item Ultimo passo desta dissertação foi a integração da segunda arquitetura num design com Microblaze, num kit de hardware Nexys 4 da Digilent
+       \item Micro-Processador ARM usado em ferramentas da Xilinx
+       \item Prova de conceito para codificador completo
+}
+
+\begin{frame}
+       \frametitle{Implementação Nexys 4 - Resultados}
+       \begin{equation*}
+              f_{Max} = 101.9\,MHz
+       \end{equation*}
+       \begin{equation*}
+              P = 50\,mW
+       \end{equation*}
+       \begin{table}[!htpb]
+              \centering
+              \caption{Frame rate máximo obtido na implementação com Nexys 4}
+              \adjustbox{max height=\dimexpr\textheight-5.5cm\relax, max width=\textwidth}{
+                     \begin{tabular}{ccccc} \toprule
+                            \multirow{2}{*}{\textbf{Block Size}}   & \multicolumn{4}{c}{\textbf{Resolution}}                      \\
+                                                               & $\mathbf{1280\times 720}$    & $\mathbf{1920\times 1080}$  & $\mathbf{3840\times 2160}$  & $\mathbf{7680\times 4320}$  \\ \toprule
+                            $\mathbf{4\times 4}$                       & 37                      & 16                   & 4                    & 1  \\
+                            $\mathbf{8\times 8}$                       & 44                      & 20                   & 5                    & 1  \\
+                            $\mathbf{16\times 16}$                      & 63                      & 28                   & 7                    & 2  \\
+                            $\mathbf{32\times 32}$                      & 98                      & 44                   & 11                   & 3  \\
+                            $\mathbf{64\times 64}$                      & 161                     & 71                   & 18                   & 4  \\
+                            \bottomrule
+                     \end{tabular}    
+              }
+       \end{table}          
+\end{frame}
+
+\note[itemize]{
+       \item Vivado estima uma frequencia máxima de operação de aproximadamente 102 MHz
+       \item 50 mW de potência consumida
+       \item Frame rates baixos neste hardware, apesar do funcionamento ser o Esperado
+       \item Justifica-se a necessidade de implementações em ASIC, capazes de frequencias de clock mais elevadas
+}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Conclusões e Trabalho Futuro
+\section{Conclusões e Trabalho Futuro}
+
+\begin{frame}
+       \frametitle{Conclusões e Trabalho Futuro}
+       \begin{itemize}
+              \item[\ding{51}] Otimização do Software de referência
+              \item[\ding{51}] Construção de arquiteturas em hardware para o kernel da DCT              
+       \end{itemize}
+       \vspace{1cm}
+       \begin{itemize}
+              \item[\ding{212}] Integração dos restantes kernels
+              \item[\ding{212}] Teste com \emph{libaom} em FPGA
+              \item[\ding{212}] Síntese para ASIC
+       \end{itemize}
+\end{frame}
+
+\note[itemize]{
+       \item Objetivos parcialmente atingidos
+       \item Otimização do software de referência com estudo das características de codificação do AV1
+       \item Contrução de arquiteturas de hardware funcionais para a DCT
+       \item Pontos em falta para um verdadeiro estágio da transformada em hardware
+       \item Integração dos restantes kernels 
+       \item Teste da arquitetura de hardware com libaom em FPGA com interface com muita largura de banda (PCIE por exemplo)
+       \item Sintese para ASIC para obter frequencia máxima de operação
+}
+
+\begin{frame}[plain, c]
+       \begin{center}
+              \Huge \textbf{Obrigado!}\\
+       \end{center}
+\end{frame}
+
+\begin{frame}[plain,c]
+       \begin{center}
+              \Huge \textbf{Discussão}\\ \vspace{1cm}
+              \Large Co-processador da Transformada para o Codificador de Vídeo AV1 \\ \vspace{.5cm}
+              \large Miguel Oliveira Inocêncio      \\ \vspace{1.5cm}
+              \begin{columns}
+                     \column{0.3\textwidth}
+                            \centering
+                            \large Armando Pinho
+                            \small \textbf{Presidente de Mesa}
+                     \column{0.3\textwidth}
+                            \centering
+                            \large Pedro Assunção
+                            \small \textbf{Arguente Principal}
+                     \column{0.3\textwidth}
+                            \centering
+                            \large António Navarro
+                            \small \textbf{Orientador}
+              \end{columns}
+       \end{center}
+\end{frame}
+
+\end{document}
