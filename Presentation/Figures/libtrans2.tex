@@ -48,7 +48,7 @@
 
     \node [proc, right=11cm of get_col] (get_row) {Get Row \texttt{i\_r}};
       \path (i_col.south) to node [near end, xshift=2em, yshift=-0.2em, text=coolblack] {\texttt{i\_r=0}} (get_row);
-      \path (i_col.south) to node [near start, xshift=-1.5em, yshift=0.2cm, text=red!80!black] {\texttt{true}} (get_row);
+      \path (i_col.south) to node [near start, xshift=-1.5em, yshift=-3cm, text=red!80!black] {\texttt{true}} (get_row);
         \draw [->] (i_col.south) -- ++(0,-0.5) -- ++(6.3,0) -- ++(0,13) -| (get_row);
 
     \node[proc, join] (T2) {$T$};
@@ -58,7 +58,7 @@
     \node[test, join, text width=7em] (i_row) {\texttt{i\_r == (size\_row - 1)}};
 
     \node[term,line width=0.8mm] (end) {End};      
-      \path (i_row.south) to node [near start, xshift=-1.5em, text=red!80!black] {\texttt{true}} (end);
+      \path (i_row.south) to node [near start, xshift=-1.5em, yshift=0.1cm, text=red!80!black] {\texttt{true}} (end);
         \draw [->] (i_row.south) -- (end);
 
       \node[proc, right=of ud_flip] (flip_in) {Flip Input Vertically};

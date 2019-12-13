@@ -1,7 +1,7 @@
 \documentclass{beamer}
 %\setbeameroption{show notes}
-
 \usetheme[subsectionpage=progressbar]{metropolis}
+
 
 %\mode<presentation>
 %{
@@ -46,19 +46,31 @@
 % Títulos e etc
 \title[Apresentação Final]{Co-processador da Transformada para o Codificador de Vídeo AV1}
 \subtitle{Apresentação Final}
-\author[M. Inocêncio]{Miguel Inocêncio}
+\author[M. Inocêncio]{Miguel Inocêncio\\Mestrado Integrado em Engenharia Eletrónica e de Telecomunicações}
 \institute[UA]{Universidade de Aveiro\\ 
-				Instituto de Telecomunicações}
+              Instituto de Telecomunicações}
 \date{18/12/2019}
-%\titlegraphic{\includegraphics[height=1.5cm]{../ua.jpg}\includegraphics[height=1.5cm]{../IT.png}}
+\titlegraphic{\vspace{7.9cm}\hspace{-1.2cm}\includegraphics[height=0.75cm]{Figures/ua.png}\hspace{0.2cm}\includegraphics[height=0.75cm]{Figures/it.png}}
+%\logo{\includegraphics[height=0.75cm]{Figures/ua.png}\hspace{0.2cm}\includegraphics[height=0.75cm]{Figures/it.png}}
+
+%\setbeamertemplate{background}{%
+%  \raisebox{.2cm-\paperheight}{%
+%    \parbox[t][0.8cm]{2cm}{\centering%
+%    \hspace{0.1cm}
+%    \includegraphics[height=0.75cm]{Figures/ua.png}
+%    \includegraphics[height=0.75cm]{Figures/it.png}
+%    }%
+%  }%
+%}    
 
 \begin{document}
-
 %%%%%%%%%%%%%%%%%%%%%
 % Página Inicial
+%\metroset{background=dark}
 \begin{frame}[plain]
 	\titlepage
 \end{frame}
+%\metroset{background=light}
 
 %%%%%%%%%%%%%%%%%%%%%
 % Table of Contents
@@ -66,11 +78,17 @@
 	\tableofcontents
 \end{frame}
 
+\addtobeamertemplate{frametitle}{}{%
+       \begin{textblock*}{100mm}(.85\textwidth,-1cm)
+              \vspace{0.1cm}\includegraphics[height=0.75cm]{Figures/ua.png}\hspace{0.2cm}\includegraphics[height=0.75cm]{Figures/it.png}
+       \end{textblock*}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%
 % Introdução
 \section{Introdução}
 
-\begin{frame}
+\begin{frame}[c]
 	\frametitle{Consumo de Vídeo}
        \begin{columns}
               \column{\textwidth}
@@ -88,7 +106,7 @@
        \item A Cisco prevê que para 2022 82\% do tráfico IP esteja dedicado à vizualização de vídeo
 }
 
-\begin{frame}
+\begin{frame}[c]
        \frametitle{Necessidade de Compressão de Vídeo}
        \begin{figure}[h]
               \centering
@@ -104,10 +122,10 @@
        \item Necessidade de reduzir quantidade de informação precisa para reproduzir um vídeo
 }
 
-\begin{frame}
+\begin{frame}[c]
        \frametitle{Codificação de Vídeo}
        \begin{center}
-              \Large Remoção de informação de sequência de imagens, mantendo a capacidade de reprodução
+              \Large \textbf{Remoção de informação de sequência de imagens, mantendo a capacidade de reprodução}
        \end{center}
 \end{frame}
 
@@ -115,11 +133,12 @@
        \item Levou ao conceito de codificação de vídeo
 }
 
-\begin{frame}
+\begin{frame}[c]
        \frametitle{Evolução da Codificação de Vídeo}
        \begin{figure}[h]
               \centering
               \input{Figures/videocodeevol.tex}
+              \caption{Exemplo de \emph{interlaced scaning} e logo do \emph{AV1}}
        \end{figure}
 \end{frame}
 
@@ -152,23 +171,23 @@
                      \begin{figure}[h]
                             \centering
                             \input{Figures/intraex.tex}
-                            \caption*{Espaciais}
+                            \caption{Espaciais}
                      \end{figure}
                      \begin{figure}[h]
                             \centering
                             \input{Figures/sub420.tex}
-                            \caption*{Psico-Visuais}
+                            \caption{Psico-Visuais}
                      \end{figure}
               \column{0.5\textwidth}
                      \begin{figure}[h]
                             \centering
                             \input{Figures/interex.tex}
-                            \caption*{Temporais}
+                            \caption{Temporais}
                      \end{figure}
                      \begin{figure}[h]
                             \centering
                             \input{Figures/huff.tex}
-                            \caption*{Código}
+                            \caption{Código}
                      \end{figure}
        \end{columns}
 \end{frame}
@@ -209,7 +228,7 @@
        \frametitle{Performance do AV1}
               \begin{figure}[htbp]
                      \centering
-                     \begin{tikzpicture}[scale=0.5, every node/.style={scale=0.5}, >=triangle 60]
+                     \begin{tikzpicture}[scale=.8, every node/.style={scale=0.7}, >=triangle 60]
                             \draw[thick] (-0.5,0) -- (12,0) ;
                             \draw[thick,->] (0,-0.5) -- (0,6) node[midway, rotate=90, above, font={\bfseries}]{Average Relative Bitrate};
                             
@@ -291,6 +310,7 @@
               \column{0.5\textwidth}
                      \begin{figure}[h]
                             \input{Figures/trans2D1D.tex}
+                            \caption{Separabilidade de transformadas 2D}
                      \end{figure}
               \column{0.5\textwidth}
                      \begin{center}
@@ -334,13 +354,13 @@
        \begin{figure}[h]
               \centering
               \input{Figures/av1_fdct8_new.tex}
-              \caption{DCT}
+              \caption{DCT no \emph{libaom}}
        \end{figure}
        \vspace{-0.7cm}
        \begin{figure}[h]
               \centering
               \input{Figures/av1_fadst8_new.tex}
-              \caption{ADST}
+              \caption{ADST no \emph{libaom}}
        \end{figure}
 \end{frame}
 
@@ -359,6 +379,7 @@
        \begin{figure}[h]
               \centering
               \input{Figures/transopts.tex}
+              \caption{Opções de Codificação}
        \end{figure}
 
 \end{frame}
@@ -437,7 +458,8 @@
        \frametitle{Nº de bits dos Cossenos vs Distorção - Teste}
        \begin{figure}[h]
               \centering
-              \input{Figures/compcosbitflow.tex}              
+              \input{Figures/compcosbitflow.tex}  
+              \caption{Testes de codificação com diferentes bits nas aproximações de cosseno}            
        \end{figure}
 \end{frame}
 
@@ -480,6 +502,7 @@
        \begin{figure}[h]
               \centering
               \input{Figures/softsimp.tex}
+              \caption{Operação implementada nas transformadas inteiras}
        \end{figure}
        \begin{columns}
               \column{0.5\textwidth}
@@ -552,6 +575,7 @@
        \begin{figure}[h]
               \centering
               \input{Figures/av1_fdct8_deconstruct.tex}
+              \caption{Estágios da DCT inteira}
        \end{figure}
 \end{frame}
 
@@ -567,6 +591,7 @@
        \begin{figure}[h]
               \centering
               \input{Figures/multHardware.tex}
+              \caption{Deconstrução de operação em software}
        \end{figure}
 \end{frame}
 
@@ -581,6 +606,7 @@
        \begin{figure}[h]
               \centering
               \input{Figures/av1_fdct8_deconstruct2.tex}
+              \caption{Inclusão de DCT4 na DCT8}
        \end{figure}
 \end{frame}
 
@@ -593,7 +619,13 @@
 \begin{frame}[c]
        \begin{figure}[h]
               \centering
-              \input{Figures/DCT4hardv1.tex}
+              \begin{minipage}{.75\textwidth}
+                     \input{Figures/DCT4hardv1.tex}
+                 \end{minipage}  
+                 \hspace{-1cm}
+                 \begin{minipage}[]{.25\textwidth}
+                     \caption{Implementação em hardware da DCT4}
+                 \end{minipage}
        \end{figure}
 \end{frame}
 
@@ -608,7 +640,13 @@
 \begin{frame}[c]
        \begin{figure}[h]
               \centering
-              \input{Figures/DCT8hardv1.tex}
+              \hspace{-0.5cm}
+              \begin{minipage}[]{.25\textwidth}
+                     \caption{Implementação em hardware da DCT8}
+              \end{minipage}
+              \begin{minipage}{.75\textwidth}
+                     \input{Figures/DCT8hardv1.tex}       
+              \end{minipage}  
        \end{figure}
 \end{frame}
 
@@ -620,7 +658,14 @@
 \begin{frame}[c]
        \begin{figure}[h]
               \centering
-              \input{Figures/fullDCTv1.tex}
+              \hspace{-0.5cm}
+              \begin{minipage}{.75\textwidth}
+                     \input{Figures/fullDCTv1.tex}
+                 \end{minipage}  
+                 \hspace{0.5cm}
+                 \begin{minipage}[]{.2\textwidth}
+                     \caption{Primeira arquitetura para o kernel da DCT}
+                 \end{minipage}              
        \end{figure}
 \end{frame}
 
@@ -678,10 +723,18 @@
 }
 
 \begin{frame}[c]
-       \begin{figure}[h]
-              \centering
-              \input{Figures/DCT8divv2.tex}
-       \end{figure}
+       \begin{center}
+              \begin{figure}[h]
+                     \centering
+                     \hspace{-0.5cm}
+                     \begin{minipage}[]{.25\textwidth}
+                            \caption{Deconstrução de blocos da DCT}
+                     \end{minipage}
+                     \begin{minipage}{.75\textwidth}
+                            \input{Figures/DCT8divv2.tex}
+                     \end{minipage}                
+              \end{figure}       
+       \end{center}
 \end{frame}
 
 \note[itemize]{
@@ -697,6 +750,7 @@
        \begin{figure}[h]
               \centering
               \input{Figures/fullDCTv2.tex}
+              \caption{Segunda arquitetura para o kernel da DCT}
        \end{figure}
 \end{frame}
 
@@ -741,11 +795,20 @@
        \frametitle{Implementação Nexys 4}
        \begin{figure}[htbp]
               \centering
-              \includegraphics{Figures/nexys-4-0.png}
+              \hspace{-0.5cm}
+              \begin{minipage}{.75\textwidth}
+                     \includegraphics{Figures/nexys-4-0.png}
+                 \end{minipage}  
+                 \hspace{-1.5cm}
+                 \begin{minipage}[]{.2\textwidth}
+                     \caption{Kit \emph{Nexys 4} da \emph{Digilent}}
+                 \end{minipage}                  
        \end{figure}
+       \vspace{-0.5cm}
        \begin{figure}[htbp]
               \centering
               \includegraphics[width=\textwidth]{Figures/DCTCop.png}
+              \caption{Diagrama de blocos implementado}
        \end{figure}       
 \end{frame}
 
@@ -816,13 +879,13 @@
        \item Sintese para ASIC para obter frequencia máxima de operação
 }
 
-\begin{frame}[plain, c]
+\begin{frame}[standout, c]
        \begin{center}
               \Huge \textbf{Obrigado!}\\
        \end{center}
 \end{frame}
 
-\begin{frame}[plain,c]
+\begin{frame}[standout,c]
        \begin{center}
               \Huge \textbf{Discussão}\\ \vspace{1cm}
               \Large Co-processador da Transformada para o Codificador de Vídeo AV1 \\ \vspace{.5cm}
