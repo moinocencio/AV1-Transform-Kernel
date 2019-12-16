@@ -46,28 +46,28 @@
 }
 
 %% Reference
-\node [cascaded] (inseq) {Input\\Sequence};
+\node [cascaded] (inseq) {Sequência de\\Entrada};
 
-\node [proc, right=3cm of inseq] (regenc) {Regular\\Encoder};
+\node [proc, right=3cm of inseq] (regenc) {Codificador\\Original};
     \draw[->] (inseq) -- (regenc);
-\node [proc, above=of regenc] (bit10enc) {10 bit\\Encoder};
+\node [proc, above=of regenc] (bit10enc) {Codificador\\de 10 bits};
     \draw[->] (inseq)+(1.5cm,0) |- (bit10enc);
-\node [proc, below=of regenc] (bit16enc) {16 bit\\Encoder};
+\node [proc, below=of regenc] (bit16enc) {Codificador\\de 16 bits};
     \draw[->] (inseq)+(1.5cm,0) |- (bit16enc);
 
-\node [proc, right=3cm of regenc] (dec) {Decoder};
+\node [proc, right=3cm of regenc] (dec) {Desc.\\Original};
     \draw[->] (regenc) -- (dec);
     \draw[->] (bit10enc) --++(1.5cm,0) |- (dec.160);
     \draw[->] (bit16enc) --++(1.5cm,0) |- (dec.200);
 
-\node [cascaded, right=3.5cm of dec] (regrec) {Regular\\Reconstructed};
+\node [cascaded, right=3.5cm of dec] (regrec) {Reconstruída\\Normal};
     \draw[->] (dec) -- ([xshift=-1.3mm]regrec.west);
-\node [cascaded, above=of regrec] (10bitrec) {10 bit\\Reconstructed};
+\node [cascaded, above=of regrec] (10bitrec) {Reconstruída\\10 bits};
     \draw[->] (dec.20) --++(0.5cm,0) |- ([xshift=-1.3mm]10bitrec.west);
-\node [cascaded, below=of regrec] (16bitrec) {16 bit\\Reconstructed};
+\node [cascaded, below=of regrec] (16bitrec) {Reconstruída\\16 bits};
     \draw[->] (dec.340) --++(0.5cm,0) |- ([xshift=-1.3mm]16bitrec.west);
 
-\node [proc, right=3cm of regrec, fill=black!15] (psnr) {Calculate \emph{PSNR}};
+\node [proc, right=3cm of regrec, fill=black!15] (psnr) {Calcular \emph{PSNR}};
     \draw[->] (regrec) -- (psnr);
     \draw[->] (10bitrec) --++(1.5cm,0) |- (psnr.160);
     \draw[->] (16bitrec) --++(1.5cm,0) |- (psnr.200);

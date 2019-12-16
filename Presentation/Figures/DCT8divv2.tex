@@ -14,7 +14,7 @@
     proc/.style={base, rectangle, minimum width=4em, minimum height=8em, fill=black!15},
     inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
     term/.style={proc, rounded corners},
-    sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
+    soma/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
     % coord node style is used for placing corners of connecting lines
     coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
     % nmark node style is used for coordinate debugging marks% -------------------------------------------------
@@ -34,8 +34,8 @@
     \begin{scope}
       %\draw[step=1cm, very thin, lightgray] (0,0) grid (14,30);
       
-      %% Stage 1 Sum
-      \node (St1) at (5-1,6-1) [draw,thick,minimum width=10cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 1: Sum}};
+      %% Fase 1 Soma
+      \node (St1) at (5-1,6-1) [draw,thick,minimum width=10cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Fase 1: Soma}};
       \node (enSt1) at (5-1,6.5-1) [right, font={}] {\texttt{en}};
         \draw [black,very thick] (2.5,5.5) circle (1mm) node [left, xshift=-1mm] {\texttt{DCT8\_P1en}};
         \draw [ar1] (2.6,5.5) -- (4,5.5);
@@ -61,8 +61,8 @@
         \draw [black,very thick] (3,14.5) circle (1mm) node [left, xshift=-1mm] {\texttt{DCT4vo}};
         \draw [b1] (4,14.5) -- (3.1,14.5);
     
-      %% Stage 2 Mult
-      \node (St2M) at (9.5,9.5) [draw,thick,minimum width=4.5cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large\bfseries}, align=center] {Stage 2:\\Multiplier};
+      %% Fase 2 Mult
+      \node (St2M) at (9.5,9.5) [draw,thick,minimum width=4.5cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large\bfseries}, align=center] {Fase 2:\\Multiplicação};
       \node (enSt2M) at (9.5,10) [right, font={}] {\texttt{en}};
       \node (resSt2M) at (9.5,10.5) [right, font={}] {\texttt{res}};
       \node (clkSt2M) at (9.5,11) [right, font={}] {\texttt{clk}};
@@ -72,11 +72,11 @@
       \foreach \x in {0,...,4}
         \node at (etc) [left, rotate=90, xshift=-1mm, yshift=-\x cm, font={\bfseries}] {...};
 
-      %% Stage 4 Shift
+      %% Fase 4 Shift
       \foreach \x in {0,...,3}
         \draw [ar32] (10+\x,14) -- ++(0,0.5);
       \draw [ar1] (9,14) |- (9.5,15);
-      \node (St4S) at (9.5,14.5) [draw,thick,minimum width=4.5cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large\bfseries}, align=center] {Stage 4:\\Shift};
+      \node (St4S) at (9.5,14.5) [draw,thick,minimum width=4.5cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large\bfseries}, align=center] {Fase 4:\\Shift};
       \node (enSt2S) at (9.5,15) [right, font={}] {\texttt{en}};
       \node (resSt2S) at (9.5,15.5) [right, font={}] {\texttt{res}};
       \node (clkSt2S) at (9.5,16) [right, font={}] {\texttt{clk}};

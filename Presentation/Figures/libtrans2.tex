@@ -26,9 +26,9 @@
     
   \begin{scope}
 
-    \node[inout, it] (start) {Input Block};
+    \node[inout, it] (start) {Bloco de Entrada};
 
-    \node[proc, below=1.5cm of start] (get_col) {Get Column \texttt{i\_c}};
+    \node[proc, below=1.5cm of start] (get_col) {Ler coluna \texttt{i\_c}};
       \path (start.south) to node [near end, xshift=2em, text=coolblack] {\texttt{i\_c=0}} (get_col);
         \draw [->] (start.south) -- (get_col);
     
@@ -40,28 +40,28 @@
     
     \node[test, join] (lr_flip) {\texttt{lr\_flip}};   
 
-    \node[proc] (store1) {Store coefficients};
+    \node[proc] (store1) {Guardar coeficientes};
       \path (lr_flip.south) to node [near start, xshift=1em, text=red!80!black] {\texttt{0}} (store1);
             \draw [->] (lr_flip.south) -- (store1);
 
     \node[test, join, text width=7em] (i_col) {\texttt{i\_c == (size\_col - 1)}};
 
-    \node [proc, right=11cm of get_col] (get_row) {Get Row \texttt{i\_r}};
+    \node [proc, right=11cm of get_col] (get_row) {Ler linha \texttt{i\_r}};
       \path (i_col.south) to node [near end, xshift=2em, yshift=-0.2em, text=coolblack] {\texttt{i\_r=0}} (get_row);
       \path (i_col.south) to node [near start, xshift=-1.5em, yshift=-3cm, text=red!80!black] {\texttt{true}} (get_row);
         \draw [->] (i_col.south) -- ++(0,-0.5) -- ++(6.3,0) -- ++(0,13) -| (get_row);
 
     \node[proc, join] (T2) {$T$};
 
-    \node[proc, join] (store2) {Store coefficients};
+    \node[proc, join] (store2) {Guardar coeficientes};
 
     \node[test, join, text width=7em] (i_row) {\texttt{i\_r == (size\_row - 1)}};
 
-    \node[term,line width=0.8mm] (end) {End};      
+    \node[term,line width=0.8mm] (end) {Fim};      
       \path (i_row.south) to node [near start, xshift=-1.5em, yshift=0.1cm, text=red!80!black] {\texttt{true}} (end);
         \draw [->] (i_row.south) -- (end);
 
-      \node[proc, right=of ud_flip] (flip_in) {Flip Input Vertically};
+      \node[proc, right=of ud_flip] (flip_in) {Rodar vetor na vertical};
       \path (ud_flip.east) to node [near start, yshift=1em, text=red!80!black] {\texttt{1}} (flip_in);
           \draw [->] (ud_flip.east) -- (flip_in); 
 
@@ -69,7 +69,7 @@
       \path (flip_in.south) to node {} (T1_right);
         \draw [->] (flip_in.south) -- (T1_right) |- (T1);
 
-      \node[proc, right=of lr_flip] (flip_in2) {Flip Coefficients Horizontally};
+      \node[proc, right=of lr_flip] (flip_in2) {Rodar vetor na horizontal};
       \path (lr_flip.east) to node [near start, yshift=1em, text=red!80!black] {\texttt{1}} (flip_in2);
           \draw [->] (lr_flip.east) -- (flip_in2); 
 
@@ -99,13 +99,13 @@
     \path[fill=black!2,rounded corners, draw=black!50, dashed]
       (a11) rectangle (a21);
     \path (a11 |- a21) node (a31) {};
-    \path (a11) -- (a31) node[midway, rotate=90, yshift=-0.5cm] (mid_right) {\textbf{Column Transform}};
+    \path (a11) -- (a31) node[midway, rotate=90, yshift=-0.5cm] (mid_right) {\textbf{Transformada Vertical}};
 
     \path (get_row_left.west |- get_row_left.north)+(-0.2cm,0.8cm) node (a12) {};
     \path (flip_in.east |- i_col.south)+(+9.5cm,-0.75cm) node (a22) {};
     \path[fill=black!2,rounded corners, draw=black!50, dashed]
       (a12) rectangle (a22);
     \path (a22 |- a12) node (a32) {};
-    \path (a22) -- (a32) node[midway, rotate=90, yshift=0.5cm] (mid_right) {\textbf{Row Transform}};
+    \path (a22) -- (a32) node[midway, rotate=90, yshift=0.5cm] (mid_right) {\textbf{Transformada Horizontal}};
   \end{pgfonlayer}
 \end{tikzpicture}

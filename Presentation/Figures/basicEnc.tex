@@ -45,7 +45,7 @@
 }    
 
 %% Top row
-\node [frame] (inframe) {Input\\Frame};
+\node [frame] (inframe) {Frame\\Entrada};
     \node [coord] (ni1) {};    
     \node [coord, right=2mm of inframe.east] (ni2) {};
 \node [sub, right=2cm of ni1] (sub) {-};
@@ -55,22 +55,22 @@
 \node [proc] (Q) {Q};
     \draw [fforw] (T) -- (Q);
 \coordinate (rq) at ($(Q.east)+(4mm,0)$);
-\node [proc, right=1cm of Q.east] (EC) {Entropy\\Coding};
+\node [proc, right=1cm of Q.east] (EC) {Cod.\\ de Entropia};
     \draw [fforw] (Q) -- (EC);
 \coordinate (out) at ($(EC.east)+(4mm,0)$);
 %\path (EC) to node [yshift=-1em] {Encoded\\Bitstream} (out);
     \draw [fforw] (EC) -- (out);
 
 %% Reference
-\node [cascaded, below=5cm of inframe] (ref) {Reference\\Frames};
+\node [cascaded, below=5cm of inframe] (ref) {Frames\\ Referência};
 
 %% Intra
-\node [proc, below=1.5cm of ni1] (intra) {Intra\\Coding};
+\node [proc, below=1.5cm of ni1] (intra) {Predição\\Intra};
     \coordinate (ni3) at (ni2 |- intra);    
     \draw [fforw] (ni3) -- (intra);
 
 %% Inter    
-\node [proc,right=of ref] (inter) {Inter\\Coding};
+\node [proc,right=of ref] (inter) {Predição\\Inter};
     \node [coord, below=4.5cm of ni2] (ni4) {};
     \draw [fforw] (ni2) -- (ni4) |- ($(inter.west)+(0,5mm)$);
     \draw [fforw] ($(ref.east)+(0,-5mm)$) -- ($(inter.west)+(0,-5mm)$);
@@ -99,6 +99,6 @@
     \draw [fback] (Q1) -- (T1);
 \coordinate (rq1) at ($(Q1.east)+(4mm,0)$);
     \draw [fback] (rq) -- (rq1) |- (Q1);
-\node [frame, below=7.4cm of inframe] (recframe) {Reconstructed\\Frame};
+\node [frame, below=7.4cm of inframe] (recframe) {Frame\\Reconstruído};
     \draw [fback] (add) -- (recframe);
 \end{tikzpicture}

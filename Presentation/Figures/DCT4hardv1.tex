@@ -13,7 +13,7 @@
     proc/.style={base, rectangle, minimum width=4em, minimum height=8em, fill=black!15},
     inout/.style={base,trapezium,trapezium left angle=70,trapezium right angle=-70, fill=blue!12},
     term/.style={proc, rounded corners},
-    sum/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
+    soma/.style={base, circle, inner sep=0pt, radius=0.4cm, fill=black!15},
     % coord node style is used for placing corners of connecting lines
     coord/.style={coordinate, on chain, on grid, node distance=6mm and 40mm},
     % nmark node style is used for coordinate debugging marks% -------------------------------------------------
@@ -51,31 +51,31 @@
         \draw [black,very thick] (6+2*\x,0) circle (1mm) node [right, rotate=90, xshift=1mm] (dIn\x) {\texttt{dataIn\x}};      
 
       %% In Register
-      \node (inReg) at (5,2-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 1: Sum}};
+      \node (inReg) at (5,2-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Fase 1: Soma}};
       \node (enInReg) at (5,2.5-1) [right, font={\small}] {\texttt{en}};
       \node (resInReg) at (5,3-1) [right, font={\small}] {\texttt{res}};
       \node (clkInReg) at (5,3.5-1) [right, font={\small}] {\texttt{clk}};
       \node (valoutInReg) at (5,4.5-1) [right, font={\small}] {\texttt{valOut}};
         \draw [ar1] (5,4.5-1) -- ++(-1,0) |- (5,6.5-1);
 
-      %% Stage 1 Sum
-      \node (St1) at (5,6-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Multiplier}};
+      %% Fase 1 Soma
+      \node (St1) at (5,6-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Fase 2: Multiplicação}};
       \node (enSt1) at (5,6.5-1) [right, font={\small}] {\texttt{en}};
       \node (resSt1) at (5,7-1) [right, font={\small}] {\texttt{res}};
       \node (clkSt1) at (5,7.5-1) [right, font={\small}] {\texttt{clk}};
       \node (valoutSt1) at (5,8.5-1) [right, font={\small}] {\texttt{valOut}};
         \draw [ar1] (5,8.5-1) -- ++(-1,0) |- (5,10.5-1);
 
-      %% Stage 2 Mult
-      \node (St2M) at (5,10-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Sum}};
+      %% Fase 2 Mult
+      \node (St2M) at (5,10-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Fase 2: Soma}};
       \node (enSt2M) at (5,10.5-1) [right, font={\small}] {\texttt{en}};
       \node (resSt2M) at (5,11-1) [right, font={\small}] {\texttt{res}};
       \node (clkSt2M) at (5,11.5-1) [right, font={\small}] {\texttt{clk}};
       \node (valoutSt2M) at (5,12.5-1) [right, font={\small}] {\texttt{valOut}};
         \draw [ar1] (5,12.5-1) -- ++(-1,0) |- (5,14.5-1);
       
-      %% Stage 2 Add
-      \node (St2A) at (5,14-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Shift}};
+      %% Fase 2 Add
+      \node (St2A) at (5,14-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Fase 2: Shift}};
       \node (enSt2A) at (5,14.5-1) [right, font={\small}] {\texttt{en}};
       \node (resSt2A) at (5,15-1) [right, font={\small}] {\texttt{res}};
       \node (clkSt2A) at (5,15.5-1) [right, font={\small}] {\texttt{clk}};
@@ -84,8 +84,8 @@
         \draw [line width=0.4mm] (2,16.5) -- ++(0,0.4);
 
       
-      %%% Stage 2 Shift
-      %\node (St2S) at (5,18-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Stage 2: Shift}};
+      %%% Fase 2 Shift
+      %\node (St2S) at (5,18-1) [draw,thick,minimum width=8cm,minimum height=3cm, rounded corners, anchor=north west, fill=black!8, font={\large}] {\textbf{Fase 2: Shift}};
       %\node (enSt2S) at (5,18.5-1) [right, font={\small}] {\texttt{en}};
       %\node (resSt2S) at (5,19-1) [right, font={\small}] {\texttt{res}};
       %\node (clkSt2S) at (5,19.5-1) [right, font={\small}] {\texttt{clk}};
