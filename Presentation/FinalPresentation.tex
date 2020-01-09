@@ -4,17 +4,6 @@
 \setbeameroption{show notes}
 \setbeameroption{show notes on second screen=right}
 
-
-
-%\mode<presentation>
-%{
-%\usetheme{Madrid}      % Madrid, Montpellier, Pittsburgh, Rochester, boxes
-%\usecolortheme{dove} 	% beaver, crane, dolphin, dove, lily, orchid, seagull, seahorse
-%\usefonttheme{default}  % or try serif, structurebold, ...
-%\setbeamertemplate{navigation symbols}{}
-%\setbeamertemplate{caption}[numbered]
-%}
-
 \usepackage[portuguese]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{multirow}
@@ -36,7 +25,13 @@
 \usepackage{enumitem}
 \usepackage{pifont}
 \setlist{nosep}
-
+\usepackage{listings}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=fullflexible,
+breaklines=true
+}
+\usepackage{multirow}
 \definecolor{lavenderblue}{rgb}{0.8, 0.8, 1.0}
 \definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
 \definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
@@ -89,7 +84,10 @@
 
 \note{
        \begin{itemize}[label=$\bullet$]
-              \item 
+              \item Começo por introdução do vídeo e sua utilização
+              \item Introdução dos sistemas de codificação e suas transformadas
+              \item arquiteturas Desenvolvidas
+              \item Conclusões e trabalhos futuros
        \end{itemize}
 }
 
@@ -180,7 +178,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%
 % Sistemas de Codificação de Vídeo
-\section{Sistemas de Codificação de Vídeo}
+\section{Norma de Codificação de Vídeo AV1}
 %\begin{frame}[plain, c]
 %       \begin{center}
 %              \Huge \textbf{Sistemas de Codificação de Vídeo}
@@ -289,19 +287,23 @@
 
 \begin{frame}
        \frametitle{Desempenho do AV1}
-              \begin{table}[h]
-                     \centering
-                     \caption{Tempos de Codificação}
-                     \begin{tabular}{ccc} \toprule
-                            \multirow{2}{*}{\textbf{Codec}}     &      \multicolumn{2}{c}{\textbf{Tempo de Codificação (s)}} \\
-                            &    \textbf{2018}  &   \textbf{2019}  \\ \toprule
-                            AV1            &    226 080        & 736 \\ \hline
-                            H.265          &    \multicolumn{2}{c}{289} \\ \hline
-                            VP9            &    \multicolumn{2}{c}{226} \\ \hline
-                            H.264          &    \multicolumn{2}{c}{18} \\
-                            \bottomrule
-                     \end{tabular}    
-              \end{table}
+       \begin{figure}[h]
+              \centering
+              \begin{tikzpicture}[scale=.8, every node/.style={scale=0.7}, >=triangle 60]
+                     \draw[thick] (-0.5,0) -- (12,0) ;
+                     \draw[thick,->] (0,-0.5) -- (0,6) node[midway, rotate=90, above, font={\bfseries}]{Tempo de Codificação (s)};
+              
+                     \node at (2,0) [below, font={\bfseries}] (h264) {H.264};
+                     \draw [line width=5mm, darkgray] (2,0) -- (2,0.1)node[font={\bfseries}, yshift=2.5mm]{18};
+                     \node at (5,0) [below, font={\bfseries}] (h264) {H.265};
+                     \draw [line width=5mm, darkgray] (5,0) -- (5,2)node[font={\bfseries}, yshift=2.5mm]{289};
+                     \node at (8,0) [below, font={\bfseries}] (h264) {VP9};
+                     \draw [line width=5mm, darkgray] (8,0) -- (8,1.5)node[font={\bfseries}, yshift=2.5mm]{226};
+                     \node at (11,0) [below, font={\bfseries}] (h264) {AV1};
+                     \draw [line width=5mm, coolblack] (11,0) -- (11,5)node[font={\bfseries}, yshift=2.5mm]{736};
+              \end{tikzpicture}
+              \caption{Tempo de codificação para a mesma qualidade [\emph{Streaming Media Magazine}]}
+       \end{figure}
 \end{frame}
 
 \note{
@@ -314,7 +316,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%
 % Transformadas
-\section{Transformadas em Codificação de Vídeo}
+\section{Transformadas no AV1}
 
 \note{
        \begin{itemize}[label=$\bullet$]
@@ -419,7 +421,7 @@
 }
 
 \begin{frame}
-       \frametitle{Opções de Codificação}
+       \frametitle{Opções de Codificação - Teste}
        \begin{figure}[h]
               \centering
               \input{Figures/transopts.tex}
@@ -435,7 +437,41 @@
                      \item Tamanho do bloco de transformação
                      \item kernel utilizado horizontal e verticalmente
                      \item nº de bits utilizado nas aproximações de cossenos
-              \end{itemize}
+              \end{itemize}              
+       \end{itemize}
+}
+
+\begin{frame}
+       \frametitle{Opções de Codificação - Teste}
+       \begin{table}[!htpb]
+              \centering
+              \caption{Sequencias usadas para teste}
+              \adjustbox{max height=\dimexpr\textheight-5.5cm\relax, max width=\textwidth}{
+              \begin{tabular}{cccc} \toprule
+                  \multicolumn{3}{c}{\textbf{Resolução}}                                 & \multirow{2}{*}{\textbf{Nome da Sequência}} \\
+                  \textbf{Identificação}          & \textbf{Altura}       & \textbf{largura}        & \\ \toprule 
+                  \multirow{3}{*}{CIF}    & \multirow{3}{*}{288}  & \multirow{3}{*}{352}  & \textit{Waterfall}\\
+                                          &                       &                       & \textit{Flower} \\
+                                          &                       &                       & \textit{Bridge Close} \\ \hline
+                  \multirow{3}{*}{HD}     & \multirow{3}{*}{720}  & \multirow{3}{*}{1280} & \textit{Ducks take off}\\
+                                          &                       &                       & \textit{Parkrun} \\        
+                                          &                       &                       & \textit{Shields} \\ \hline
+                  \multirow{3}{*}{FHD}    & \multirow{3}{*}{1080} & \multirow{3}{*}{1920} & \textit{Parkjoy}\\
+                                          &                       &                       & \textit{Dinner} \\
+                                          &                       &                       & \textit{Factory} \\ \hline
+                  \multirow{3}{*}{UHD}    & \multirow{3}{*}{2160} & \multirow{3}{*}{3840} & \textit{Into tree}\\
+                                          &                       &                       & \textit{Old Town Cross} \\
+                                          &                       &                       & \textit{Crowd Run} \\ 
+                  \bottomrule
+              \end{tabular} 
+              }   
+              \label{tab:seqs}
+          \end{table}
+
+\end{frame}
+
+\note{
+       \begin{itemize}
               \item Testes para saber quais as opções mais utilizadas:
               \begin{itemize}[label=$\bullet$]
                      \item 12 vídeos de resoluções entre CIF e UHD
@@ -445,6 +481,7 @@
               \item Tempo passado no estágio da transformada
        \end{itemize}
 }
+
 
 \begin{frame}
        \frametitle{Opções de Codificação - Resultados}              
@@ -556,7 +593,7 @@
 %%%%%%%%%%%%%%%%%%%%%%
 % Arquiteturas Desenvolvidas
 \metroset{sectionpage=none}
-\section{Arquiteturas Desenvolvidas}
+\section{Arquiteturas Propostas}
 
 \subsection{Software}
 
@@ -978,12 +1015,34 @@
 }
 
 \begin{frame}
-       \frametitle{Conclusões e Trabalho Futuro}
-       \begin{itemize}[label=$\bullet$]
+       \frametitle{Conclusões}
+       \begin{itemize}
+              \item[\ding{51}] Estudo \emph{libaom} e identificação de características exploráveis
               \item[\ding{51}] Otimização do Software de referência
-              \item[\ding{51}] Construção de arquiteturas em hardware para o kernel da DCT              
+              \begin{itemize}[label=$\bullet$]
+                     \item Redução em 81\% da memória utilizada nas aproximações do cosseno
+                     \item Prova da possibilidade de usar 8 bits sem impacto na qualidade da codificação
+              \end{itemize} 
+              \item[\ding{51}] Construção de arquiteturas em hardware para o kernel da DCT
+              \begin{itemize}[label=$\bullet$]
+                     \item Duas implementações distintas
+              \end{itemize} 
+              \item[\ding{51}] Implementação em Nexys 4
+              \begin{itemize}[label=$\bullet$]
+                     \item Prova de conceito em Codificador Completo
+              \end{itemize} 
        \end{itemize}
-       \vspace{1cm}
+\end{frame}
+
+\note{
+       \begin{itemize}[label=$\bullet$]
+              \item Objetivos atingidos
+              \item Otimização do software de referência com estudo das características de codificação do AV1
+              \item Contrução de arquiteturas de hardware funcionais para a DCT, e implementação prática da segunda
+       \end{itemize}
+}
+\begin{frame}
+       \frametitle{Trabalho Futuro}
        \begin{itemize}[label=$\bullet$]
               \item[\ding{212}] Integração dos restantes kernels
               \item[\ding{212}] Teste com \emph{libaom} em FPGA
@@ -993,10 +1052,6 @@
 
 \note{
        \begin{itemize}[label=$\bullet$]
-              \item Objetivos parcialmente atingidos
-              \item Otimização do software de referência com estudo das características de codificação do AV1
-              \item Contrução de arquiteturas de hardware funcionais para a DCT
-              \item Pontos em falta para um verdadeiro estágio da transformada em hardware
               \item Integração dos restantes kernels 
               \item Teste da arquitetura de hardware com libaom em FPGA com interface com muita largura de banda (PCIE por exemplo)
               \item Sintese para ASIC para obter frequencia máxima de operação

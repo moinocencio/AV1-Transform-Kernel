@@ -4,13 +4,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Basic Principles}
 
-\emph{Video Compression Systems} have been in development for approximately forty years, with the first video codec, \emph{H.120}, being released in 1984. It was composed of basic operations, which did not correlate to good compression performances. This has lead to a quick downfall of its usage, being aggravated by the release of the \emph{H.261} standard by 1988.
+\emph{Video Compression Systems} have been in development for approximately forty years, with the first video codec, \emph{H.120}, being released in 1984. It was composed of basic operations, which did not correlate to good compression performances. This has lead to a quick downfall of its usage, being replaced by \emph{H.261} standard in 1988.
 
 However, the building blocks on which later standards were based are the same as in the first generations, i.e., the strategies implemented on newer standards exploit the same \emph{redundancies} as previous, less efficient, codecs.
 
-By redundancies, it is meant disposable information to the playback of an image sequence. This concept is the key of video compression. Throughout the years, the enhancement of video codecs was based on the improvement of the algorithms which can reliably represent a video, while maintaining the least of the original information. In other words, the video sequence is analyzed for predictable/identifiable characteristics (e.g. the movement of a subject or the edge of an object), identifies strategies of predicting nearby pixel values through that information and removes the disposable. This process is mentioned as \emph{redundancy removal}.
+By redundancies, it is meant disposable or predictable information to the playback of an image sequence. This concept is the key of video compression. Throughout the years, the enhancement of video codecs was based on the improvement of the algorithms which can reliably represent a video, while maintaining the least of the original information. In other words, the video sequence is analyzed for predictable/identifiable characteristics (e.g. the movement of a subject or the edge of an object), identifies strategies of predicting nearby pixel values through that information and removes the disposable. This process is mentioned as \emph{redundancy removal}.
 
-This way, to have a better understanding of the functioning behind video codecs, the mentioned redundancies are presented, as well as its origins. Most of such are due to the way humans perceive vision, being this the first topic of this Chapter.
+This way, to have a better understanding of the tools behind video codecs, the mentioned redundancies are presented, as well as its origins. Most of such are due to the way humans perceive vision, being this the first topic of this Chapter.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Human Visual System} \label{ssec:hvs}
@@ -24,13 +24,13 @@ This way, to have a better understanding of the functioning behind video codecs,
 
 Most of the compressed/decompressed video nowadays is directed to content visualization by consumers, with the exception of some network-driven image processing applications, such as automatic video surveillance. Therefore, the compression of video sequences has the intent of making changes to the original data, without serious impact to the users' perception. This process is mentioned as the removal of the \emph{Psychovisual redundancy} \cite{shiImageVideoCompression2008}. Therefore, a basic understanding of the visual system can clarify many of the design choices made in video compression applications, and why their use does not present much impact on the quality of the image, while greatly reducing its memory usage.
 
-The image perception starts in the human eye, represented in Figure \ref{fig:eye}. Its different constituents accomplish different tasks, from focusing, to aperture control. Although their importance to the overall functioning of the eye, the part that matters most to the focus of this work is the innermost membrane, the retina.
+The image perception starts in the human eye. Its different constituents accomplish different tasks, from focusing, to aperture control. Although their importance to the overall functioning of the eye, the part that matters most to the focus of this work is the innermost membrane, the retina, represented in figure \ref{fig:retina}.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\figwidth]{Sections/2AV1/Diagrams/eyediagram.png}
-    \caption[Representation of an human eye]{Representation of an human eye \cite{owlcationAnatomyEyeHuman}.}
-    \label{fig:eye}
+    \includegraphics[width=\figwidth]{Sections/2AV1/Diagrams/retina.jpeg}
+    \caption[Representation of the retina]{Representation of the retina \cite{retinaWebvision}.}
+    \label{fig:retina}
 \end{figure}
 
 Once the desired image is properly focused by the lens, an inverse version of it is shone on the aforementioned membrane, which is covered by two types of light sensitive cells, the \emph{cones} and \emph{rods}, which transform the observable image into a series of pulses, that get subsequently processed.
@@ -265,7 +265,7 @@ In the decoder, the \emph{Control Unit} represents the process that organizes th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{AV1}
 
-Being the focus of this work, in the following sections, \emph{AV1} is discussed concerning its most relevant aspects, starting with its development process.
+As the focus of this work, in the following sections, \emph{AV1} is discussed concerning its most relevant aspects, starting with its development process.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{History and Development}
@@ -379,9 +379,9 @@ According to Moscow State University \cite{vatolinMSUCodecComparison2019}, \emph
     \label{fig:testqual}
 \end{figure}
 
-These results may vary greatly with the performed tests, as the encoding tools may prove to be more adequate to certain types of videos. On a different test, performed by \emph{Facebook} \cite{AV1BeatsX2642018}, \emph{AV1} presents a higher performance than the one presented previously, as seen in table \ref{tab:facetest}. Here, videos of various resolutions were encoded with \emph{VP9} and \emph{H.264} with equivalent parameters, and the obtained bitstreams are compared to \emph{AV1}'s, according to \gls{bdrate}.
+These results may vary greatly with the performed tests, as the encoding tools may prove to be more adequate to certain types of videos. On a different test, performed by \emph{Facebook} \cite{AV1BeatsX2642018}, \emph{AV1} presents a higher performance than the one presented previously, as seen in Table \ref{tab:facetest}. Here, videos of various resolutions were encoded with \emph{VP9} and \emph{H.264} with equivalent parameters, and the obtained bitstreams are compared to \emph{AV1}, according to \gls{bdrate}.
 
-\begin{table}[h]
+\begin{table}[!htpb]
     \centering
     \caption[BD-rate of \emph{VP9} and \emph{H.264} codecs, when compared to \emph{AV1} (negative corresponds to bitrate savings)]{BD-rate of \emph{VP9} and \emph{H.264} codecs, when compared to \emph{AV1} (negative corresponds to bitrate savings) \cite{AV1BeatsX2642018}.}
     \begin{tabular}{@{}cccccc@{}} \toprule
@@ -396,9 +396,11 @@ These results may vary greatly with the performed tests, as the encoding tools m
 
 As it may be seen, as the resolution increases, so do the bitrate savings. This leads to believe that if the same test were to be performed with \emph{4K} and \emph{8K} sequences, higher performances would be verified.
 
+\FloatBarrier 
+
 As to the encoding times, in two articles from \emph{Streaming Media} \cite{AV1FirstLook2018, GoodNewsAV12019}, it is possible to see the improvements made on \emph{libaom}. In Table \ref{tab:testtime} there are presented the encoding times of a 5 second clip, shortly after the reference software was released, August 2018, and in March 2019, under the same conditions. Besides the performance of \emph{libaom}, software for \emph{H.264/AVC}, \emph{H.265/HEVC} and \emph{VP9} is also evaluated.
 
-\begin{table}[h]
+\begin{table}[!htpb]
     \centering
     \caption[Encoding times of different video encoders, and improvements on \emph{AV1}]{Encoding times of different video encoders, and improvements on \emph{AV1} \cite{AV1FirstLook2018, GoodNewsAV12019}.}
     \begin{tabular}{ccc} \toprule

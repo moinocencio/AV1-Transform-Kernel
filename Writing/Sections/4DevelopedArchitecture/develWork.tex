@@ -17,7 +17,7 @@ All the developed architectures and corresponding tests were written in $C$ prog
 
 The first test was the application of the simplest integer \emph{DCT}, done by the multiplication of the input vector by a scaled up version of the transform matrix, $\mathbf{F}$, firstly shown in Equation \ref{eq:DCT2}. 
 
-The original integer transform matrix is shown in Equation \ref{eq:matscale}.
+The original transform matrix is shown in Equation \ref{eq:matscale}.
 
 \begin{equation} \label{eq:matscale}
     \begin{gathered}
@@ -34,9 +34,9 @@ The original integer transform matrix is shown in Equation \ref{eq:matscale}.
 
 As mentioned previously, the floating point coefficients bring a number of disadvantages on a hardware implementation, from increased calculation overheads, to encoder/decoder mismatches. 
 
-In order to address these problems, a scale and rounding operation was performed, as shown in Equation \ref{eq:matscale}, where $K$ represents the number of bits of the scaled coefficients.
+In order to address these problems, a scale and rounding operation was performed, as shown in Equation \ref{eq:matround}, where $K$ represents the number of bits of the scaled coefficients.
 
-\begin{equation} 
+\begin{equation} \label{eq:matround}
     \nint*{\mathbf{F}_K}   = \nint*{2^K \mathbf{F}}
 \end{equation}
 
@@ -89,11 +89,11 @@ To evaluate the performance of this first implementation, a test was performed t
     \label{tab:dcttime}
 \end{table}
 
-From these it is easily observable why the encoder's implemented transforms follow the \emph{butterfly} scheme. Although from sizes $4$ to $32$ the proposed implementation is faster than the current version of \emph{libaom}, the largest transform is slower. This factor, added to the error variation from the scaling operation makes this implementation quite damaging for the overall encoder performance, especially on a constant quality objective, as shown in Table \ref{tab:multresults}. Here, there are presented the timing results of an encoding test, where one encode was made with the standard \emph{aomenc}, the other had the proposed matrix multiplication \emph{DCT}'s. The test encoded the first 15 frames of the \emph{Parkrun} HD sequence, with two different quality objectives. After compression, the encoded video was decoded with \emph{aomdec}, calculating the PSNR of the output video.
+From these it is easily observable why the encoder's implemented transforms follow the \emph{butterfly} scheme. Although from sizes $4$ to $32$ the proposed     implementation is faster than the current version of \emph{libaom}, the largest transform is slower. This factor, added to the error variation from the scaling operation makes this implementation quite damaging for the overall encoder performance, especially on a constant quality objective, as shown in Table \ref{tab:multresults}. Here, there are presented the timing results of an encoding test, where one encode was made with the standard \emph{aomenc}, the other had the \emph{DCT}s implemented as the proposed matrix multiplications. The test encoded the first 15 frames of the \emph{Parkrun} HD sequence, with two different quality objectives. After compression, the encoded video was decoded with \emph{aomdec}, calculating the PSNR of the output video.
 
 \begin{table}[!htpb]
     \centering
-    \caption{\emph{aomenc}'s encoding time with original vs implemented \emph{DCT}.}
+    \caption{\emph{aomenc} encoding time with original vs implemented \emph{DCT}.}
     \begin{tabular}{cccc} \toprule
         \multirow{2}{*}{\textbf{cq-level}} & \multirow{2}{*}{\textbf{Measure}} &    \multicolumn{2}{c}{\textbf{Execution Time (ms)}} \\
         &   &   \textbf{Original} &      \textbf{MM} \\ \toprule
@@ -115,7 +115,7 @@ Taking this into account, a new approach was employed, using the same \emph{butt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Alternative \emph{Butterfly} Implementation}
 
-\emph{AV1}'s reference \emph{Transform stage} follows the aforementioned architecture for the DCT, in addition to expanding its use into the \emph{ADST}. In this scheme's publishing paper \cite{wen-hsiungchenFastComputationalAlgorithm1977}, the authors gave good reasons for the heavy adoption of this implementation, claiming that "\emph{The number of computational steps has been shown to be less than \nicefrac{1}{6} of the conventional DCT algorithm employing a 2-sided FFT}". 
+\emph{AV1}'s reference \emph{Transform stage} follows the aforementioned architecture for the DCT, in addition to expanding its use into the \emph{ADST}. In this scheme publishing paper \cite{wen-hsiungchenFastComputationalAlgorithm1977}, the authors gave good reasons for the heavy adoption of this implementation, claiming that "\emph{The number of computational steps has been shown to be less than \nicefrac{1}{6} of the conventional DCT algorithm employing a 2-sided FFT}". 
 
 This is achieved through a pipelined implementation of the previously shown matrix multiplication, where each stage is calculated as function of the previously calculated intermediary coefficients, as shown in Figures \ref{fig:intDCT} and \ref{fig:intADST}. Besides the reduction of complexity, this implementation also uses a fixed bank of \emph{cosine} coefficients (corresponding to \texttt{cospi} in \emph{libaom}), limited between $\cos\left(\nicefrac{\pi}{2}\right) < \alpha \leq \cos(0)$, i.e., $0 < \alpha \leq 1$ \footnote[1]{Zero is excluded from the set, as matrix $\mathbf{F}$ will not have any null element, for any $L$}. This way, the quantization error produced by the rounding and scaling operation is constant for all vector sizes.
 
@@ -178,7 +178,7 @@ The constructed \emph{DCT} architecture underwent the first test as the previous
 
 As shown, the developed architecture is, on average, $60\%$ faster for all vector sizes. This is due to the removal of the memory accessing overheads imposed by the access to the \texttt{cospi} array, as well the simplification of the performed operations. 
 
-However, the reliability of this implementation depends on whether the encoder can maintain the desired quality with the increased error introduced by the quantization of the \emph{cosine} approximations. To verify this factor, the tests presented in Section \ref{ssec:performance} were repeated, once with the original encoder, and other with the encoder with the described alternative version of the \emph{DCT}. The obtained quality and timing results are presented in Figures \ref{fig:buttqual} and \ref{fig:butttime}, respectively. In the latter, the dotted lines correspond to time with the original encoder. The percentage above each bar represent the time difference taken by the alternative encoder, relative to the original.
+However, the reliability of this implementation depends on whether the encoder can maintain the desired quality with the increased error introduced by the quantization of the \emph{cosine} approximations. To verify this factor, the tests presented in Section \ref{ssec:performance} were repeated, once with the original encoder, and other with the encoder with the described alternative version of the \emph{DCT}. The obtained quality and timing results are presented in Figures \ref{fig:buttqual} and \ref{fig:butttime}, respectively. In the latter, the dotted lines correspond to total time with the original encoder. The percentage above each bar represent the time difference taken by the alternative encoder, relative to the original.
 
 \begin{figure}[!htb]
     \centering
@@ -340,7 +340,7 @@ With these results, several illations can be retrieved. For lower resolutions, t
 
 Such architectures would need to process several input vectors at once, as to process several transformation blocks simultaneously.
 
-The developed hardware was then synthesized considering the \emph{Artix 7} FPGA family, obtaining the utilization results from Table \ref{tab:v1results}.
+The developed hardware was then synthesized considering the \emph{Artix 7} FPGA family, obtaining the utilization results from Table \ref{tab:v1results}. These results are presented in number of \emph{Look-Up-Tables} and \emph{Registers}, as presented by \emph{Vivado}.
 
 \begin{table}[!htpb]
     \centering
@@ -477,6 +477,9 @@ In order to prove the applicability of the developed architectures in such syste
     \label{fig:nexys4}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Hybrid Architecture Design}
+
 With the hardware chosen, the first step would be to synthesize the developed architectures to the desired FPGA. This operation provides numerous relevant data, such as the percentage of utilization, the estimated power drawn or some timing characteristics. 
 
 Referring to the first implementation of the \emph{DCT} kernel, the Synthesis to the current hardware is not possible, since the design occupies $119.57\%$ of the available slice LUTs. However, on a more capable kit, this design could be tested.
@@ -540,6 +543,9 @@ Specifying the desired interfaces, \emph{Vivado} automation routines handle most
     \caption{Block design generated by \emph{Vivado} for integration of \emph{DCT Wrapper} with \emph{Microblaze}.}
     \label{fig:blockdes}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Tests and Results}
 
 With the finalized design, some tests were developed in software, to be run on the \emph{Microblaze}. The interaction between it and the \emph{DCT Wrapper} is done with read and write routines provided by \emph{Xilinx}'s \gls{sdk}. These access the addresses attributed to the peripherals during \emph{Vivado}'s Implementation process.
 
